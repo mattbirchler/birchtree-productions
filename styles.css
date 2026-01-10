@@ -674,20 +674,12 @@ div.floating-icon {
     justify-content: center;
 }
 
-.headshot-placeholder {
+.headshot {
     width: 250px;
     height: 250px;
-    background: var(--color-bg-secondary);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-border);
-}
-
-.headshot-placeholder span {
-    font-size: var(--font-size-base);
-    color: var(--color-text-secondary);
+    object-fit: cover;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .about-content .section-label {
@@ -863,7 +855,7 @@ div.floating-icon {
         text-align: center;
     }
 
-    .headshot-placeholder {
+    .headshot {
         width: 200px;
         height: 200px;
     }

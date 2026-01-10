@@ -42,7 +42,7 @@
                 Birchtree Productions
             </h1>
             <p class="hero-subtitle fade-in fade-in-delay-1">
-                Crafting thoughtful apps and content that make technology more human.
+                Indie apps and content for people who believe technology should serve us, not the other way around.
             </p>
             <div class="hero-cta fade-in fade-in-delay-2">
                 <a href="#apps" class="btn btn-primary">Explore Apps</a>
@@ -60,8 +60,8 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-label scroll-reveal">Apps</h2>
-                <p class="section-title scroll-reveal">Tools designed with care.</p>
-                <p class="section-subtitle scroll-reveal">Simple, focused apps that help you get things done.</p>
+                <p class="section-title scroll-reveal">Handcrafted with intention.</p>
+                <p class="section-subtitle scroll-reveal">No algorithms, no tracking, no bloat. Just focused tools that respect your time and attention.</p>
             </div>
 
             <div class="apps-showcase">
@@ -72,7 +72,7 @@
                         </div>
                         <h3 class="app-name">Quick Reviews</h3>
                         <p class="app-award">MacStories Best New App of 2025</p>
-                        <p class="app-description">Placeholder description for Quick Reviews. More details coming soon.</p>
+                        <p class="app-description">Review the things you love and share them to social media.</p>
                         <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
@@ -88,7 +88,7 @@
                             <img src="images/chapterpod.png" alt="ChapterPod icon" class="app-icon">
                         </div>
                         <h3 class="app-name">ChapterPod</h3>
-                        <p class="app-description">Placeholder description for ChapterPod. More details coming soon.</p>
+                        <p class="app-description">Create professional podcast chapters with titles, images, and links while you listen—all on your Apple devices.</p>
                         <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
@@ -104,7 +104,7 @@
                             <img src="images/quick subtitles.png" alt="Quick Subtitles icon" class="app-icon">
                         </div>
                         <h3 class="app-name">Quick Subtitles</h3>
-                        <p class="app-description">Placeholder description for Quick Subtitles. More details coming soon.</p>
+                        <p class="app-description">Transcribe audio and video to text or SRT subtitles using fast, private, on-device AI.</p>
                         <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
@@ -120,7 +120,7 @@
                             <img src="images/quick notes.png" alt="Quick Notes icon" class="app-icon">
                         </div>
                         <h3 class="app-name">Quick Notes</h3>
-                        <p class="app-description">Placeholder description for Quick Notes. More details coming soon.</p>
+                        <p class="app-description">Turn your voice into high-quality text using Apple's on-device language models.</p>
                         <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
@@ -136,7 +136,7 @@
                             <img src="images/best-o-masto.png" alt="Best-o-Masto icon" class="app-icon">
                         </div>
                         <h3 class="app-name">Best-o-Masto</h3>
-                        <p class="app-description">Placeholder description for Best-o-Masto. More details coming soon.</p>
+                        <p class="app-description">Catch up without getting sucked in. Mastodon, efficiently.</p>
                         <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
@@ -153,8 +153,8 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-label scroll-reveal">Creative</h2>
-                <p class="section-title scroll-reveal">Ideas worth sharing.</p>
-                <p class="section-subtitle scroll-reveal">Thoughts on technology, productivity, and the creative process.</p>
+                <p class="section-title scroll-reveal">An independent voice.</p>
+                <p class="section-subtitle scroll-reveal">Honest takes on technology, creativity, and building things that matter.</p>
             </div>
 
             <div class="content-grid">
@@ -193,19 +193,19 @@
         <div class="container">
             <div class="about-wrapper scroll-reveal">
                 <div class="about-photo">
-                    <div class="headshot-placeholder">
-                        <span>Your Photo</span>
-                    </div>
+                    <img src="images/matt.jpg" alt="Matt Birchler" class="headshot">
                 </div>
                 <div class="about-content">
                     <h2 class="section-label">About</h2>
                     <p class="about-title">Hi, I'm Matt.</p>
                     <p class="about-text">
-                        Birchtree Productions, LLC is dedicated to creating apps and content that help people get more out of their technology.
-                        I believe in thoughtful design, user-focused experiences, and making complex things simple.
+                        I'm an indie developer and creator who misses the early web—when people made things because they were passionate, not because an algorithm told them to.
                     </p>
                     <p class="about-text">
-                        More details about me coming soon.
+                        Founded in 2025, Birchtree Productions is my attempt to bring that spirit forward. Every app is built with care, every piece of content is made for humans, and nothing here is optimized for engagement metrics.
+                    </p>
+                    <p class="about-text">
+                        In a world racing toward AI-generated everything, I'm betting on the handmade.
                     </p>
                 </div>
             </div>
@@ -225,7 +225,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Birchtree Productions, LLC. All rights reserved.</p>
+                <p>&copy; <span id="current-year"></span> Birchtree Productions, LLC. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -259,6 +259,9 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
