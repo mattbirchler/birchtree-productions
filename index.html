@@ -6,7 +6,7 @@
     <title>Birchtree Productions, LLC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,113 +15,149 @@
             <a href="#" class="nav-logo">Birchtree Productions</a>
             <ul class="nav-links">
                 <li><a href="#apps">Apps</a></li>
-                <li><a href="#content">Content</a></li>
+                <li><a href="#creative">Creative</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="gradient-text">Birchtree</span> Productions
-            </h1>
-            <p class="hero-subtitle">Crafting thoughtful apps and content that make technology more human.</p>
-            <div class="hero-cta">
-                <a href="#apps" class="btn btn-primary">Explore Apps</a>
-                <a href="#content" class="btn btn-secondary">Watch Videos</a>
-            </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
-        <div class="hero-visual">
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">
+                Birchtree Productions
+            </h1>
+            <p class="hero-subtitle fade-in fade-in-delay-1">
+                Crafting thoughtful apps and content that make technology more human.
+            </p>
+            <div class="hero-cta fade-in fade-in-delay-2">
+                <a href="#apps" class="btn btn-primary">Explore Apps</a>
+                <a href="#creative" class="btn btn-secondary">Watch Videos</a>
             </div>
         </div>
     </header>
 
     <section id="apps" class="section apps-section">
         <div class="container">
-            <h2 class="section-title">Apps</h2>
-            <p class="section-subtitle">Tools designed to simplify your creative workflow</p>
+            <div class="section-header">
+                <h2 class="section-label scroll-reveal">Apps</h2>
+                <p class="section-title scroll-reveal">Tools designed with care.</p>
+                <p class="section-subtitle scroll-reveal">Simple, focused apps that help you get things done.</p>
+            </div>
 
-            <div class="apps-grid">
-                <article class="app-card">
-                    <div class="app-icon" style="--accent: #FF6B6B;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
+            <div class="apps-showcase">
+                <article class="app-feature scroll-reveal">
+                    <div class="app-feature-content">
+                        <div class="app-icon-container">
+                            <div class="app-icon-placeholder">
+                                <span>App Icon</span>
+                            </div>
+                        </div>
+                        <h3 class="app-name">Quick Reviews</h3>
+                        <p class="app-award">MacStories Best New App of 2025</p>
+                        <p class="app-description">Placeholder description for Quick Reviews. More details coming soon.</p>
+                        <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
-                    <h3 class="app-name">Quick Reviews</h3>
-                    <p class="app-description">Placeholder description for Quick Reviews. More details coming soon.</p>
-                    <a href="#" class="app-link">Learn more &rarr;</a>
+                    <div class="app-feature-visual">
+                        <div class="screenshot-placeholder">
+                            <span>App Screenshot</span>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="app-card">
-                    <div class="app-icon" style="--accent: #4ECDC4;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="6" width="20" height="12" rx="2"/>
-                            <path d="M6 14h.01M10 14h4"/>
-                        </svg>
+                <article class="app-feature app-feature-reverse scroll-reveal">
+                    <div class="app-feature-content">
+                        <div class="app-icon-container">
+                            <div class="app-icon-placeholder">
+                                <span>App Icon</span>
+                            </div>
+                        </div>
+                        <h3 class="app-name">ChapterPod</h3>
+                        <p class="app-description">Placeholder description for ChapterPod. More details coming soon.</p>
+                        <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
-                    <h3 class="app-name">Quick Subtitles</h3>
-                    <p class="app-description">Placeholder description for Quick Subtitles. More details coming soon.</p>
-                    <a href="#" class="app-link">Learn more &rarr;</a>
+                    <div class="app-feature-visual">
+                        <div class="screenshot-placeholder">
+                            <span>App Screenshot</span>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="app-card">
-                    <div class="app-icon" style="--accent: #FFE66D;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                        </svg>
+                <article class="app-feature scroll-reveal">
+                    <div class="app-feature-content">
+                        <div class="app-icon-container">
+                            <div class="app-icon-placeholder">
+                                <span>App Icon</span>
+                            </div>
+                        </div>
+                        <h3 class="app-name">Quick Subtitles</h3>
+                        <p class="app-description">Placeholder description for Quick Subtitles. More details coming soon.</p>
+                        <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
-                    <h3 class="app-name">Quick Notes</h3>
-                    <p class="app-description">Placeholder description for Quick Notes. More details coming soon.</p>
-                    <a href="#" class="app-link">Learn more &rarr;</a>
+                    <div class="app-feature-visual">
+                        <div class="screenshot-placeholder">
+                            <span>App Screenshot</span>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="app-card">
-                    <div class="app-icon" style="--accent: #A855F7;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M8 12h8M12 8v8"/>
-                        </svg>
+                <article class="app-feature app-feature-reverse scroll-reveal">
+                    <div class="app-feature-content">
+                        <div class="app-icon-container">
+                            <div class="app-icon-placeholder">
+                                <span>App Icon</span>
+                            </div>
+                        </div>
+                        <h3 class="app-name">Quick Notes</h3>
+                        <p class="app-description">Placeholder description for Quick Notes. More details coming soon.</p>
+                        <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
-                    <h3 class="app-name">Best-o-Masto</h3>
-                    <p class="app-description">Placeholder description for Best-o-Masto. More details coming soon.</p>
-                    <a href="#" class="app-link">Learn more &rarr;</a>
+                    <div class="app-feature-visual">
+                        <div class="screenshot-placeholder">
+                            <span>App Screenshot</span>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="app-card">
-                    <div class="app-icon" style="--accent: #3B82F6;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-                        </svg>
+                <article class="app-feature scroll-reveal">
+                    <div class="app-feature-content">
+                        <div class="app-icon-container">
+                            <div class="app-icon-placeholder">
+                                <span>App Icon</span>
+                            </div>
+                        </div>
+                        <h3 class="app-name">Best-o-Masto</h3>
+                        <p class="app-description">Placeholder description for Best-o-Masto. More details coming soon.</p>
+                        <a href="#" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
-                    <h3 class="app-name">ChapterPod</h3>
-                    <p class="app-description">Placeholder description for ChapterPod. More details coming soon.</p>
-                    <a href="#" class="app-link">Learn more &rarr;</a>
+                    <div class="app-feature-visual">
+                        <div class="screenshot-placeholder">
+                            <span>App Screenshot</span>
+                        </div>
+                    </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <section id="content" class="section content-section">
+    <section id="creative" class="section content-section">
         <div class="container">
-            <h2 class="section-title">Content</h2>
-            <p class="section-subtitle">Thoughts on technology, productivity, and the creative process</p>
+            <div class="section-header">
+                <h2 class="section-label scroll-reveal">Creative</h2>
+                <p class="section-title scroll-reveal">Ideas worth sharing.</p>
+                <p class="section-subtitle scroll-reveal">Thoughts on technology, productivity, and the creative process.</p>
+            </div>
 
             <div class="content-grid">
-                <article class="content-card content-card-large">
-                    <div class="content-card-visual youtube-visual">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
+                <article class="content-card scroll-reveal">
+                    <div class="content-card-visual">
+                        <div class="content-image-placeholder">
+                            <span>Channel Image</span>
+                        </div>
                     </div>
                     <div class="content-card-body">
                         <span class="content-label">YouTube</span>
@@ -131,12 +167,11 @@
                     </div>
                 </article>
 
-                <article class="content-card">
-                    <div class="content-card-visual blog-visual">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                        </svg>
+                <article class="content-card scroll-reveal">
+                    <div class="content-card-visual">
+                        <div class="content-image-placeholder">
+                            <span>Blog Image</span>
+                        </div>
                     </div>
                     <div class="content-card-body">
                         <span class="content-label">Blog</span>
@@ -151,15 +186,23 @@
 
     <section id="about" class="section about-section">
         <div class="container">
-            <div class="about-content">
-                <h2 class="section-title">About</h2>
-                <p class="about-text">
-                    Birchtree Productions, LLC is dedicated to creating apps and content that help people get more out of their technology.
-                    We believe in thoughtful design, user-focused experiences, and making complex things simple.
-                </p>
-                <p class="about-text">
-                    More details about the company and team coming soon.
-                </p>
+            <div class="about-wrapper scroll-reveal">
+                <div class="about-photo">
+                    <div class="headshot-placeholder">
+                        <span>Your Photo</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <h2 class="section-label">About</h2>
+                    <p class="about-title">Hi, I'm Matt.</p>
+                    <p class="about-text">
+                        Birchtree Productions, LLC is dedicated to creating apps and content that help people get more out of their technology.
+                        I believe in thoughtful design, user-focused experiences, and making complex things simple.
+                    </p>
+                    <p class="about-text">
+                        More details about me coming soon.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -169,11 +212,10 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <span class="footer-logo">Birchtree Productions, LLC</span>
-                    <p class="footer-tagline">Apps & Content</p>
                 </div>
                 <div class="footer-links">
                     <a href="#apps">Apps</a>
-                    <a href="#content">Content</a>
+                    <a href="#creative">Creative</a>
                     <a href="#about">About</a>
                 </div>
             </div>
@@ -182,5 +224,36 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
