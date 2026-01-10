@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Quick Notes</title>
+    <link rel="icon" href="../../images/quick notes.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .tldr {
+            background: rgba(136, 57, 239, 0.05);
+            border: 1px solid rgba(136, 57, 239, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .tldr h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-link);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tldr p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "•";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="./" class="privacy-nav-brand">
+                <img src="../../images/quick notes.png" alt="Quick Notes">
+                <span>Quick Notes</span>
+            </a>
+            <a href="./" class="back-link">&larr; Back to Quick Notes</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Quick Notes</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="tldr">
+            <h2>TLDR</h2>
+            <p>Quick Notes uses Apple's on-device AI to process your voice recordings locally on your iPhone. We collect basic, non-identifiable usage analytics to improve the app experience, but we never collect your transcriptions, audio recordings, or any text you generate. Your content is completely private.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>How On-Device Processing Works</h2>
+            <h3>100% Local Processing</h3>
+            <p>All voice-to-text transcription happens entirely on your iPhone using Apple's built-in AI models. Your audio never leaves your device—not to our servers, not to Apple's servers, not anywhere.</p>
+
+            <h3>No Internet Required</h3>
+            <p>After the initial app download, Quick Notes works completely offline. Your notes are transcribed without any network connection.</p>
+
+            <h3>Your Data Stays Yours</h3>
+            <p>Notes are stored only in your app's local storage on your device. We have no servers, no databases, and no way to access your content even if we wanted to.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Collect</h2>
+            <p>We collect basic, non-identifiable usage analytics to help us understand how the app is used and to improve the experience. This includes things like which features are used and general app performance metrics. This data is completely anonymous and cannot be traced back to you or your device.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Don't Collect</h2>
+            <ul>
+                <li>Voice recordings or audio data</li>
+                <li>Transcribed text or notes you create</li>
+                <li>Any content you generate in the app</li>
+                <li>Personal information or identifiable data</li>
+                <li>Device identifiers or fingerprints</li>
+                <li>Location data</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Third-Party Services</h2>
+            <p>We use privacy-focused analytics to collect anonymous usage data, but we don't use any advertising or invasive tracking services. Your content and personal information are never shared with any third parties.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Data Storage</h2>
+            <p>Any notes you choose to save are stored locally in your app's private storage area using iOS's secure app sandbox. This data is protected by iOS's security mechanisms and is only accessible to Quick Notes on your device. You can delete notes at any time, and they're permanently removed from your device.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Apple's Privacy</h2>
+            <p>Quick Notes uses Apple's Speech Recognition framework with on-device processing. According to Apple's documentation, when using on-device recognition, audio is processed locally and is not sent to Apple's servers. For more information about Apple's approach to privacy and on-device intelligence, please review Apple's Privacy Policy.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>No Cloud Sync</h2>
+            <p>Quick Notes does not offer iCloud sync or any cloud backup features. Your notes live only on your device. While this means you're responsible for backing up your device if you want to preserve your notes, it also means there's no cloud storage that could be compromised or accessed by anyone else.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>If we ever change this privacy policy, we'll update this page and the app description in the App Store. We're committed to maintaining the highest privacy standards.</p>
+        </section>
+
+        <p class="last-updated">Last updated: October 18, 2025</p>
+    </main>
+</body>
+</html>

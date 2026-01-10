@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Quick Reviews</title>
+    <link rel="icon" href="../../images/quick-reviews.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "•";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .privacy-section a {
+            color: var(--color-link);
+        }
+
+        .privacy-section a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="../../" class="privacy-nav-brand">
+                <img src="../../images/quick-reviews.png" alt="Quick Reviews">
+                <span>Quick Reviews</span>
+            </a>
+            <a href="../../" class="back-link">&larr; Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Quick Reviews</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="privacy-section">
+            <h2>Overview</h2>
+            <p>This privacy policy describes how our app collects, uses, and protects any information when you use our service. We are committed to ensuring that your privacy is protected and we collect only the absolute minimum necessary data to provide our services.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Data Collection and Use</h2>
+            <p>Quick Reviews is designed with privacy in mind. We collect and transmit very limited data:</p>
+            <ul>
+                <li>When using Magic Mode (iOS app only), we transmit movie titles to The Movie Database (TMDB) to retrieve movie metadata</li>
+                <li>Device type (phone vs tablet), media types, and export actions are logged to understand how often these are used, but do not include personal information or what media is being reviewed</li>
+                <li>All other data and information you input remains locally on your device</li>
+                <li>We do not collect, store, or transmit any personal information</li>
+                <li>We do not use cookies or tracking technologies</li>
+                <li>We do not store your search history on our servers</li>
+                <li>We do not know what you are reviewing in our app</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Data Storage</h2>
+            <p>All your app data is stored locally on your device. We do not maintain any servers that store your personal information or usage data. It is possible in the future there will be options for syncing your data, but that will always be opt-in and done through well-known, secure services.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Third-Party Services</h2>
+            <p>Quick Reviews on the web uses third party analytics from Plausible to collect page view metrics and location data so that we understand how much the tool is being used.</p>
+            <p>Quick Reviews on iOS uses <a href="https://www.themoviedb.org">The Movie Database (TMDB)</a> API to power the "Magic Mode" feature:</p>
+            <ul>
+                <li>Titles entered by the user are sent to TMDB to retrieve movie information</li>
+                <li>This transmission is done securely</li>
+                <li>No personal information is included in these requests</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+        </section>
+
+        <p class="last-updated">Last updated: January 17, 2025</p>
+    </main>
+</body>
+</html>

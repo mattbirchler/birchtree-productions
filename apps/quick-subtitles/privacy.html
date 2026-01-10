@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Quick Subtitles</title>
+    <link rel="icon" href="../../images/quick subtitles.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .tldr {
+            background: rgba(136, 57, 239, 0.05);
+            border: 1px solid rgba(136, 57, 239, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .tldr h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-link);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tldr p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "•";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="./" class="privacy-nav-brand">
+                <img src="../../images/quick subtitles.png" alt="Quick Subtitles">
+                <span>Quick Subtitles</span>
+            </a>
+            <a href="./" class="back-link">&larr; Back to Quick Subtitles</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Quick Subtitles</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="tldr">
+            <h2>TLDR</h2>
+            <p>Quick Subtitles processes everything locally on your device. We collect basic usage statistics (like which features you use) but no personal data, file names, subtitle content, or video files. Your media files and subtitle data never leave your device.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Collect</h2>
+            <h3>Basic Usage Statistics</h3>
+            <p>We collect anonymous usage data to understand how people use the app. This includes:</p>
+            <ul>
+                <li>Which actions you perform (like exporting subtitles, generating transcripts, or importing text)</li>
+                <li>Your device type (Mac, iPad, or iPhone)</li>
+                <li>Timestamp of when actions occur</li>
+            </ul>
+            <p>This data contains no personal information, file names, subtitle content, video data, or unique identifiers that could identify you.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Don't Collect</h2>
+            <ul>
+                <li>Your video or audio files</li>
+                <li>Subtitle content, text, or timestamps</li>
+                <li>Transcript content</li>
+                <li>File names or metadata</li>
+                <li>Unique device identifiers or tracking IDs</li>
+                <li>Crash reports or performance metrics</li>
+                <li>Personal information of any kind</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>How Your Privacy Is Protected</h2>
+            <h3>100% Local Processing</h3>
+            <p>Quick Subtitles processes all your video files, subtitles, and transcripts locally on your iPhone, iPad, or Mac. Nothing is ever uploaded to our servers.</p>
+
+            <h3>Local Storage Only</h3>
+            <p>Your files, subtitles, and app settings are stored only on your device. We have no servers to store your data on.</p>
+
+            <h3>Works Offline</h3>
+            <p>Once installed, Quick Subtitles works completely offline. No internet connection is needed for any core functionality.</p>
+
+            <h3>No Third-Party Analytics</h3>
+            <p>We don't use crash reporting tools, analytics services, or advertising networks that could collect your data.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Optional AI Features</h2>
+            <p>Quick Subtitles offers optional AI-powered features for transcript generation. These features use on-device processing through Apple's built-in speech recognition technology. Your audio is processed locally on your device and is never sent to external servers.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Apple Speech Recognition</h2>
+            <p>Quick Subtitles uses Apple's Speech Recognition framework with on-device processing. According to Apple's documentation, when using on-device recognition, audio is processed locally and is not sent to Apple's servers. For more information about Apple's approach to privacy and on-device intelligence, please review Apple's Privacy Policy.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Data You Control</h2>
+            <h3>App Settings</h3>
+            <p>Your preferences are stored locally using standard iOS/macOS user defaults.</p>
+
+            <h3>Subtitle Data</h3>
+            <p>All your subtitles, timestamps, and styling are stored only on your device.</p>
+
+            <h3>Complete Control</h3>
+            <p>You can delete the app at any time to remove all stored data.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>If we ever change this privacy policy, we'll update this page and the app description in the App Store. Given that we collect minimal data, any changes would likely only involve clarifications or additional privacy protections.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Questions?</h2>
+            <p>If you have any questions about this privacy policy, feel free to contact us. The short version is simple: your video files and subtitle data stay on your device, period.</p>
+        </section>
+
+        <p class="last-updated">Last updated: January 2026</p>
+    </main>
+</body>
+</html>

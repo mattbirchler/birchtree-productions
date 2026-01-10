@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Best-o-Masto</title>
+    <link rel="icon" href="../../images/best-o-masto.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .tldr {
+            background: rgba(136, 57, 239, 0.05);
+            border: 1px solid rgba(136, 57, 239, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .tldr h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-link);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tldr p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "•";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="./" class="privacy-nav-brand">
+                <img src="../../images/best-o-masto.png" alt="Best-o-Masto">
+                <span>Best-o-Masto</span>
+            </a>
+            <a href="./" class="back-link">&larr; Back to Best-o-Masto</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Best-o-Masto</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="tldr">
+            <h2>TLDR</h2>
+            <p>Best-o-Masto collects absolutely no personal data, tracking information, or analytics from you. Period.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Don't Collect</h2>
+            <ul>
+                <li>Personal information</li>
+                <li>Usage analytics</li>
+                <li>Tracking cookies</li>
+                <li>Device identifiers</li>
+                <li>Location data</li>
+                <li>Crash reports</li>
+                <li>Performance metrics</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>How Your Data Stays Private</h2>
+            <h3>Local Storage Only</h3>
+            <p>Your Mastodon authentication tokens and app preferences are stored locally on your device using iOS Keychain and UserDefaults. This data never leaves your phone.</p>
+
+            <h3>Direct API Calls</h3>
+            <p>Best-o-Masto communicates directly with your Mastodon server. We don't proxy, intercept, or analyze these communications.</p>
+
+            <h3>No Third-Party Services</h3>
+            <p>We don't use analytics services, crash reporting tools, or advertising networks that could collect your data.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Mastodon Data</h2>
+            <p>When you use Best-o-Masto, you're interacting with your chosen Mastodon server. Any data handling is governed by your Mastodon instance's privacy policy, not ours. We simply display the content your server provides, we don't store, analyze, or process it.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>If we ever change this privacy policy, we'll update this page and the app description in the App Store.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Questions?</h2>
+            <p>If you have any questions about this privacy policy, feel free to contact us. Though honestly, there's not much to explain—we literally collect nothing.</p>
+        </section>
+
+        <p class="last-updated">Last updated: August 24, 2025</p>
+    </main>
+</body>
+</html>
