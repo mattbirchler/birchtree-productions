@@ -274,6 +274,19 @@
                 lightbox.classList.remove('active');
             }
         });
+
+        // Save and restore scroll position
+        const savedPosition = sessionStorage.getItem('homeScrollPosition');
+        if (savedPosition) {
+            window.scrollTo(0, parseInt(savedPosition));
+            sessionStorage.removeItem('homeScrollPosition');
+        }
+
+        document.querySelectorAll('a[href^="apps/"]').forEach(link => {
+            link.addEventListener('click', () => {
+                sessionStorage.setItem('homeScrollPosition', window.scrollY);
+            });
+        });
     </script>
 </body>
 </html>
