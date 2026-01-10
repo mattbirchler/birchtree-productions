@@ -9,8 +9,8 @@
     --color-bg-secondary: #f5f5f7;
     --color-text: #1d1d1f;
     --color-text-secondary: #86868b;
-    --color-link: #0066cc;
-    --color-link-hover: #0077ed;
+    --color-link: rgb(136, 57, 239);
+    --color-link-hover: rgb(156, 87, 255);
     --color-border: #d2d2d7;
 
     /* Spacing */
@@ -263,6 +263,40 @@ img {
     gap: var(--space-md);
     justify-content: center;
     flex-wrap: wrap;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    animation: bounce 3s ease-in-out infinite;
+}
+
+.scroll-indicator:hover {
+    color: var(--color-link);
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(8px);
+    }
 }
 
 /* Hero fade-in animations */
