@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChapterPod - Professional Podcast Chapters Made Easy</title>
+    <link rel="icon" href="../../images/chapterpod.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+    <style>
+        /* App page specific styles */
+        .app-hero {
+            min-height: auto;
+            padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+        }
+
+        .app-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-hero-title {
+            font-size: var(--font-size-hero);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--color-text);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-md);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .download-btn-primary {
+            background: var(--color-text);
+            color: white;
+        }
+
+        .download-btn-primary:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        .download-btn-secondary {
+            background: white;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+        }
+
+        .download-btn-secondary:hover {
+            border-color: var(--color-text-secondary);
+            transform: scale(1.02);
+        }
+
+        .download-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .hero-screenshot {
+            margin-top: var(--space-2xl);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-screenshot img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Feature sections */
+        .feature-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .feature-section-alt {
+            background: var(--color-bg-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-grid-reverse {
+            direction: rtl;
+        }
+
+        .feature-grid-reverse > * {
+            direction: ltr;
+        }
+
+        .feature-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-link);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-top: var(--space-md);
+        }
+
+        .feature-description a {
+            color: var(--color-link);
+            text-decoration: underline;
+        }
+
+        .feature-description a:hover {
+            color: var(--color-link-hover);
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Feature cards */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: var(--space-md);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            transition: all var(--transition-base);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(136, 57, 239, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+        }
+
+        .feature-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-link);
+        }
+
+        .feature-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        /* Centered section */
+        .centered-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Devices showcase */
+        .devices-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-2xl);
+            align-items: flex-end;
+            margin-top: var(--space-2xl);
+        }
+
+        .device-item {
+            text-align: center;
+        }
+
+        .device-item img {
+            border-radius: var(--radius-xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .device-item-large img {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .device-item-small img {
+            max-width: 200px;
+            width: 100%;
+            border-radius: var(--radius-2xl);
+        }
+
+        .device-label {
+            margin-top: var(--space-sm);
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        /* Import/Export cards */
+        .io-cards {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .io-card {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+        }
+
+        .io-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: rgba(136, 57, 239, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .io-card-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-link);
+        }
+
+        .io-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .io-card-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* File formats */
+        .file-formats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+        }
+
+        .file-format {
+            padding: 0.75rem 1.25rem;
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+        }
+
+        .file-format span {
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+        }
+
+        .file-format-output {
+            background: var(--color-link);
+            border-color: var(--color-link);
+        }
+
+        .file-format-output span {
+            color: white;
+        }
+
+        .file-format-arrow {
+            color: var(--color-text-secondary);
+        }
+
+        .file-format-arrow svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            max-width: 600px;
+            margin: var(--space-xl) auto 0;
+        }
+
+        .pricing-card {
+            padding: var(--space-lg);
+            border-radius: var(--radius-2xl);
+            text-align: left;
+        }
+
+        .pricing-card-free {
+            background: white;
+            border: 1px solid var(--color-border);
+        }
+
+        .pricing-card-paid {
+            background: var(--color-text);
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+        }
+
+        .pricing-card-price {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-top: var(--space-xs);
+        }
+
+        .pricing-card-subtitle {
+            font-size: var(--font-size-sm);
+            opacity: 0.7;
+            margin-top: var(--space-xs);
+        }
+
+        .pricing-card-features {
+            margin-top: var(--space-md);
+            list-style: none;
+        }
+
+        .pricing-card-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: var(--font-size-sm);
+        }
+
+        .pricing-card-features svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-card-free .pricing-card-features svg {
+            color: #22c55e;
+        }
+
+        .pricing-card-paid .pricing-card-features svg {
+            color: #4ade80;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
+            color: white;
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .cta-section .feature-title {
+            color: white;
+        }
+
+        .cta-section .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-section .download-btn-primary {
+            background: white;
+            color: var(--color-text);
+        }
+
+        .cta-section .download-btn-primary:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .cta-section .download-btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-section .download-btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-requirements {
+            margin-top: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* App page nav */
+        .app-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .app-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .app-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .app-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .app-nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .app-nav-links a {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* App footer */
+        .app-footer {
+            padding: var(--space-lg) var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .app-footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-footer-brand img {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-sm);
+        }
+
+        .app-footer-brand span {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .app-footer-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .app-footer-links a {
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .feature-grid-reverse {
+                direction: ltr;
+            }
+
+            .feature-image {
+                order: -1;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .devices-showcase {
+                flex-direction: column;
+            }
+
+            .app-nav-links {
+                display: none;
+            }
+
+            .app-footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-brand">
+                <img src="../../images/chapterpod.png" alt="ChapterPod">
+                <span>ChapterPod</span>
+            </a>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="app-hero">
+            <div class="app-hero-content fade-in">
+                <h1 class="app-hero-title">
+                    Add chapters to your podcast <span class="gradient-text">with ease.</span>
+                </h1>
+                <p class="app-hero-subtitle">
+                    ChapterPod makes it simple to create professional podcast chapters.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M480 112C488.8 112 496 119.2 496 128L496 432C496 440.8 488.8 448 480 448L160 448C151.2 448 144 440.8 144 432L144 128C144 119.2 151.2 112 160 112L480 112zM512 487.4C531.1 476.3 544 455.7 544 432L544 128C544 92.7 515.3 64 480 64L160 64C124.7 64 96 92.7 96 128L96 432C96 455.7 108.9 476.4 128 487.4L128 544C128 561.7 142.3 576 160 576L480 576C497.7 576 512 561.7 512 544L512 487.4zM464 496L464 528L176 528L176 496L464 496zM192 192L192 288C192 305.7 206.3 320 224 320L416 320C433.7 320 448 305.7 448 288L448 192C448 174.3 433.7 160 416 160L224 160C206.3 160 192 174.3 192 192zM296 384C296 397.3 306.7 408 320 408L424 408C437.3 408 448 397.3 448 384C448 370.7 437.3 360 424 360L320 360C306.7 360 296 370.7 296 384zM216 408C229.3 408 240 397.3 240 384C240 370.7 229.3 360 216 360C202.7 360 192 370.7 192 384C192 397.3 202.7 408 216 408z"/></svg>
+                        Download for Mac
+                    </a>
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iPhone & iPad
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-screenshot fade-in">
+                <img src="../../images/hero-screenshot.jpg" alt="ChapterPod main interface showing playback controls and chapter list">
+            </div>
+        </section>
+
+        <!-- Feature: Listen & Edit Together -->
+        <section id="features" class="feature-section feature-section-alt">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Unified Workflow</p>
+                    <h2 class="feature-title">Listen and edit.<br>All in one place.</h2>
+                    <p class="feature-description">
+                        No more switching between your podcast player (or QuickTime) and a separate chapter editor. ChapterPod puts playback and chapter creation in the same interface, so you can mark chapters as you listen.
+                    </p>
+                    <p class="feature-description">
+                        My podcast, <a href="https://www.macstories.net/comfort-zone/" target="_blank" rel="noopener noreferrer">Comfort Zone</a>, uses ChapterPod to add chapters to each episode. It's battle tested!
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/playback-chapters.jpg" alt="Playback controls alongside the chapter list">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Rich Chapter Support -->
+        <section class="feature-section">
+            <div class="feature-grid feature-grid-reverse scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Complete Chapter Support</p>
+                    <h2 class="feature-title">Everything a chapter needs.</h2>
+                    <p class="feature-description">
+                        Create rich chapters with all the metadata your listeners expect.
+                    </p>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Titles</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Images</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Links</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/chapter-details.jpg" alt="Chapter editing view showing title, image, and link fields">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Cross Platform -->
+        <section class="feature-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Cross-Platform</p>
+                <h2 class="feature-title">Works on all your Apple devices.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Whether you're at your desk or on the go, ChapterPod is there for you.
+                </p>
+                <div class="devices-showcase">
+                    <div class="device-item device-item-large">
+                        <img src="../../images/mac.png" alt="ChapterPod on Mac and iPad">
+                        <p class="device-label">Mac & iPad</p>
+                    </div>
+                    <div class="device-item device-item-small">
+                        <img src="../../images/iphone.png" alt="ChapterPod on iPhone">
+                        <p class="device-label">iPhone</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Transcripts -->
+        <section class="feature-section">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Simple Transcripts</p>
+                    <h2 class="feature-title">Generate transcripts locally.</h2>
+                    <p class="feature-description">
+                        ChapterPod can generate a transcript of your podcast.
+                    </p>
+                    <p class="feature-description">
+                        If you need more powerful transcription options, check out <a href="../quick-subtitles/">Quick Subtitles</a>.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/transcript-view.jpg" alt="Transcript panel with text">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Import/Export -->
+        <section class="feature-section feature-section-alt">
+            <div class="feature-grid feature-grid-reverse scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Chapters as Text</p>
+                    <h2 class="feature-title">Import text. Export text.</h2>
+                    <div class="io-cards">
+                        <div class="io-card">
+                            <div class="io-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="io-card-title">Import from Text</h3>
+                                <p class="io-card-description">Write your chapters somewhere else? Import them as text in a click.</p>
+                            </div>
+                        </div>
+                        <div class="io-card">
+                            <div class="io-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="io-card-title">Export as Text</h3>
+                                <p class="io-card-description">Need to share your chapter list somewhere else (like YouTube)? Export it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/import-export.jpg" alt="Import or export dialog">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: File Formats -->
+        <section class="feature-section">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Wide Compatibility</p>
+                <h2 class="feature-title">Works with most podcast audio file types.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Drop in your podcast audio—MP3, M4A, or AIF. ChapterPod handles the conversion and always outputs an MP3 with your chapters embedded.
+                </p>
+                <div class="file-formats">
+                    <div class="file-format"><span>MP3</span></div>
+                    <div class="file-format"><span>M4A</span></div>
+                    <div class="file-format"><span>AIF</span></div>
+                    <div class="file-format-arrow">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                    <div class="file-format file-format-output"><span>MP3 with Chapters</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="feature-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Pricing</p>
+                <h2 class="feature-title">Try it free. Unlock everything once.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    No subscriptions. Pay once and own it forever.
+                </p>
+                <div class="pricing-grid">
+                    <div class="pricing-card pricing-card-free">
+                        <h3 class="pricing-card-title">Free Trial</h3>
+                        <p class="pricing-card-price">$0</p>
+                        <p class="pricing-card-subtitle">Try before you buy</p>
+                        <ul class="pricing-card-features">
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Full access to all features for a limited number of projects
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card pricing-card-paid">
+                        <h3 class="pricing-card-title">Full Access</h3>
+                        <p class="pricing-card-price">$19.99</p>
+                        <p class="pricing-card-subtitle">One-time purchase</p>
+                        <ul class="pricing-card-features">
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Unlimited access to all features, forever
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="centered-section">
+                <h2 class="feature-title">Ready to add chapters<br>to your podcast?</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Download ChapterPod and start creating professional podcast chapters today.
+                </p>
+                <div class="download-buttons" style="margin-top: var(--space-xl);">
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M480 112C488.8 112 496 119.2 496 128L496 432C496 440.8 488.8 448 480 448L160 448C151.2 448 144 440.8 144 432L144 128C144 119.2 151.2 112 160 112L480 112zM512 487.4C531.1 476.3 544 455.7 544 432L544 128C544 92.7 515.3 64 480 64L160 64C124.7 64 96 92.7 96 128L96 432C96 455.7 108.9 476.4 128 487.4L128 544C128 561.7 142.3 576 160 576L480 576C497.7 576 512 561.7 512 544L512 487.4zM464 496L464 528L176 528L176 496L464 496zM192 192L192 288C192 305.7 206.3 320 224 320L416 320C433.7 320 448 305.7 448 288L448 192C448 174.3 433.7 160 416 160L224 160C206.3 160 192 174.3 192 192zM296 384C296 397.3 306.7 408 320 408L424 408C437.3 408 448 397.3 448 384C448 370.7 437.3 360 424 360L320 360C306.7 360 296 370.7 296 384zM216 408C229.3 408 240 397.3 240 384C240 370.7 229.3 360 216 360C202.7 360 192 370.7 192 384C192 397.3 202.7 408 216 408z"/></svg>
+                        Download for Mac
+                    </a>
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iPhone & iPad
+                    </a>
+                </div>
+                <p class="cta-requirements">Requires iOS 26, iPadOS 26, or macOS 26</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/chapterpod.png" alt="ChapterPod">
+                <span>ChapterPod</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span style="color: var(--color-border);">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Fade in animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
