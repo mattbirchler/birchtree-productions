@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Quick Reviews - Beautiful Visual Reviews for Movies, TV, Games & More</title>
+    <link rel="icon" href="../../images/quick-reviews.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+    <style>
+        /* App page specific styles */
+        .app-hero {
+            min-height: auto;
+            padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+        }
+
+        .app-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-hero-title {
+            font-size: var(--font-size-hero);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--color-text);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-md);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .download-btn-primary {
+            background: var(--color-text);
+            color: white;
+        }
+
+        .download-btn-primary:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        .download-btn-secondary {
+            background: white;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+        }
+
+        .download-btn-secondary:hover {
+            border-color: var(--color-text-secondary);
+            transform: scale(1.02);
+        }
+
+        .download-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .hero-screenshot {
+            margin-top: var(--space-2xl);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-screenshot img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Review showcase */
+        .review-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .review-showcase img {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-base);
+        }
+
+        .review-showcase img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Feature sections */
+        .feature-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .feature-section-alt {
+            background: var(--color-bg-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-grid-reverse {
+            direction: rtl;
+        }
+
+        .feature-grid-reverse > * {
+            direction: ltr;
+        }
+
+        .feature-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-link);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-top: var(--space-md);
+        }
+
+        .feature-description a {
+            color: var(--color-link);
+            text-decoration: underline;
+        }
+
+        .feature-description a:hover {
+            color: var(--color-link-hover);
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Feature cards */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: var(--space-md);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            transition: all var(--transition-base);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(136, 57, 239, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+        }
+
+        .feature-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-link);
+        }
+
+        .feature-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        /* Centered section */
+        .centered-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Media type grid */
+        .media-types {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .media-type {
+            text-align: center;
+            padding: var(--space-md);
+            background: white;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-base);
+        }
+
+        .media-type:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-link);
+        }
+
+        .media-type-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-xs);
+        }
+
+        .media-type-label {
+            font-weight: 500;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+        }
+
+        /* Premium badge */
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%);
+            color: white;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            margin-left: 0.5rem;
+        }
+
+        /* Feature list */
+        .feature-list {
+            list-style: none;
+            margin-top: var(--space-md);
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-list svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            color: var(--color-link);
+            margin-top: 2px;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            max-width: 600px;
+            margin: var(--space-xl) auto 0;
+        }
+
+        .pricing-card {
+            padding: var(--space-lg);
+            border-radius: var(--radius-2xl);
+            text-align: left;
+        }
+
+        .pricing-card-free {
+            background: white;
+            border: 1px solid var(--color-border);
+        }
+
+        .pricing-card-paid {
+            background: var(--color-text);
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+        }
+
+        .pricing-card-price {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-top: var(--space-xs);
+        }
+
+        .pricing-card-subtitle {
+            font-size: var(--font-size-sm);
+            opacity: 0.7;
+            margin-top: var(--space-xs);
+        }
+
+        .pricing-card-features {
+            margin-top: var(--space-md);
+            list-style: none;
+        }
+
+        .pricing-card-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-xs);
+        }
+
+        .pricing-card-features svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-card-free .pricing-card-features svg {
+            color: #22c55e;
+        }
+
+        .pricing-card-paid .pricing-card-features svg {
+            color: #4ade80;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
+            color: white;
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .cta-section .feature-title {
+            color: white;
+        }
+
+        .cta-section .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-section .download-btn-primary {
+            background: white;
+            color: var(--color-text);
+        }
+
+        .cta-section .download-btn-primary:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .cta-section .download-btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-section .download-btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-requirements {
+            margin-top: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* App page nav */
+        .app-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .app-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .app-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .app-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .app-nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .app-nav-links a {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* App footer */
+        .app-footer {
+            padding: var(--space-lg) var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .app-footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-footer-brand img {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-sm);
+        }
+
+        .app-footer-brand span {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .app-footer-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .app-footer-links a {
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .feature-grid-reverse {
+                direction: ltr;
+            }
+
+            .feature-image {
+                order: -1;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .media-types {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .review-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .app-nav-links {
+                display: none;
+            }
+
+            .app-footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-brand">
+                <img src="../../images/quick-reviews.png" alt="Quick Reviews" style="view-transition-name: quick-reviews-icon;">
+                <span>Quick Reviews</span>
+            </a>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="app-hero">
+            <div class="app-hero-content fade-in">
+                <h1 class="app-hero-title">
+                    Turn your opinions into <span class="gradient-text">stunning visuals.</span>
+                </h1>
+                <p class="app-hero-subtitle">
+                    Quick Reviews creates beautiful, shareable review images for movies, TV shows, games, books, and music that stand out on social media.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/us/app/quick-reviews/id6740369719" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iOS
+                    </a>
+                    <a href="https://quickreviews.app" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        Try on the Web
+                    </a>
+                </div>
+            </div>
+
+            <!-- Review examples showcase -->
+            <div class="review-showcase fade-in">
+                <!-- Placeholder for review example images (16x9) -->
+                <div style="background: var(--color-bg-secondary); border-radius: var(--radius-xl); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">Review 1</div>
+                <div style="background: var(--color-bg-secondary); border-radius: var(--radius-xl); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">Review 2</div>
+                <div style="background: var(--color-bg-secondary); border-radius: var(--radius-xl); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">Review 3</div>
+            </div>
+
+            <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Feature: Beautiful Customization -->
+        <section id="features" class="feature-section feature-section-alt">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Beautiful Customization</p>
+                    <h2 class="feature-title">Make every review<br>uniquely yours.</h2>
+                    <p class="feature-description">
+                        Customize colors, scoring systems, fonts, and layouts to create review images that match your personal style. Every review can look exactly how you want it.
+                    </p>
+                    <ul class="feature-list">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                            Customize colors and themes
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                            Multiple layout options
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            Alternate posters and cover art<span class="premium-badge">Premium</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <!-- Placeholder for customization screenshot -->
+                    <div style="background: var(--color-bg-secondary); border-radius: var(--radius-2xl); aspect-ratio: 9/16; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">App Screenshot</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Smart Features -->
+        <section class="feature-section">
+            <div class="feature-grid feature-grid-reverse scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Smart Features</p>
+                    <h2 class="feature-title">Let the app do the work.</h2>
+                    <p class="feature-description">
+                        Magic Mode automatically pulls in movie and show data, posters, and metadata so you can focus on what matters: your opinion.
+                    </p>
+                    <ul class="feature-list">
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            Magic Mode auto-completion<span class="premium-badge">Premium</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                            Letterboxd integration<span class="premium-badge">Premium</span>
+                        </li>
+                        <li>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                            4-point scoring with custom labels
+                        </li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <!-- Placeholder for magic mode screenshot -->
+                    <div style="background: var(--color-bg-secondary); border-radius: var(--radius-2xl); aspect-ratio: 9/16; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">App Screenshot</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Multi-Media Support -->
+        <section class="feature-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Multi-Media Support</p>
+                <h2 class="feature-title">Review everything you love.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Movies, TV shows, games, books, music, and more. Quick Reviews supports all the media you consume.
+                </p>
+                <div class="media-types">
+                    <div class="media-type">
+                        <div class="media-type-icon">🎬</div>
+                        <p class="media-type-label">Movies</p>
+                    </div>
+                    <div class="media-type">
+                        <div class="media-type-icon">📺</div>
+                        <p class="media-type-label">TV Shows</p>
+                    </div>
+                    <div class="media-type">
+                        <div class="media-type-icon">🎮</div>
+                        <p class="media-type-label">Games</p>
+                    </div>
+                    <div class="media-type">
+                        <div class="media-type-icon">📚</div>
+                        <p class="media-type-label">Books</p>
+                    </div>
+                    <div class="media-type">
+                        <div class="media-type-icon">🎵</div>
+                        <p class="media-type-label">Music</p>
+                    </div>
+                    <div class="media-type">
+                        <div class="media-type-icon">✨</div>
+                        <p class="media-type-label">And More</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Seamless Experience -->
+        <section class="feature-section">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Seamless Experience</p>
+                    <h2 class="feature-title">Track your reviews.<br>Share them anywhere.</h2>
+                    <p class="feature-description">
+                        Keep a full history of everything you've reviewed. Daily automated backups ensure you never lose your data. Copy review text for alt-text accessibility.
+                    </p>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Review History</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Auto Backups</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Easy Sharing</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-image">
+                    <!-- Placeholder for history screenshot -->
+                    <div style="background: var(--color-bg-secondary); border-radius: var(--radius-2xl); aspect-ratio: 9/16; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">App Screenshot</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="feature-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Pricing</p>
+                <h2 class="feature-title">Free to start. Premium to unlock more.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Create beautiful reviews for free. Upgrade to Premium for unlimited history, Magic Mode, and more.
+                </p>
+                <div class="pricing-grid">
+                    <div class="pricing-card pricing-card-free">
+                        <h3 class="pricing-card-title">Free</h3>
+                        <p class="pricing-card-price">$0</p>
+                        <p class="pricing-card-subtitle">Get started</p>
+                        <ul class="pricing-card-features">
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Create beautiful review images
+                            </li>
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Customize colors and layouts
+                            </li>
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                30 days of review history
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card pricing-card-paid">
+                        <h3 class="pricing-card-title">Premium</h3>
+                        <p class="pricing-card-price">Upgrade</p>
+                        <p class="pricing-card-subtitle">Unlock everything</p>
+                        <ul class="pricing-card-features">
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Unlimited review history
+                            </li>
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Magic Mode auto-completion
+                            </li>
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Alternate poster selection
+                            </li>
+                            <li>
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Letterboxd integration
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy callout -->
+        <section class="feature-section">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Privacy First</p>
+                <h2 class="feature-title">Your reviews stay yours.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    We don't collect your personal data. We're not in the data collection business—we're in the beautiful review business.
+                </p>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="centered-section">
+                <h2 class="feature-title">Ready to share your opinions<br>in style?</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Download Quick Reviews and start creating beautiful visual reviews today.
+                </p>
+                <div class="download-buttons" style="margin-top: var(--space-xl);">
+                    <a href="https://apps.apple.com/us/app/quick-reviews/id6740369719" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iOS
+                    </a>
+                    <a href="https://quickreviews.app" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        Try on the Web
+                    </a>
+                </div>
+                <p class="cta-requirements">Requires iOS 17.0 or later</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/quick-reviews.png" alt="Quick Reviews">
+                <span>Quick Reviews</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span style="color: var(--color-border);">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Fade in animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
