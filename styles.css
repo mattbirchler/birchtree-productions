@@ -566,7 +566,51 @@ div.floating-icon {
     width: 100%;
     max-width: 280px;
     border-radius: var(--radius-2xl);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.app-screenshot-wide {
+    max-width: 500px;
+}
+
+.app-screenshot {
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.app-screenshot:hover {
+    transform: scale(1.02);
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    cursor: pointer;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: var(--radius-xl);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
 }
 
 .screenshot-placeholder {

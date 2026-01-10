@@ -90,9 +90,7 @@
                         <a href="apps/chapterpod/" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
-                        <div class="screenshot-placeholder">
-                            <span>App Screenshot</span>
-                        </div>
+                        <img src="images/quick-chapters-main.png" alt="ChapterPod app screenshot" class="app-screenshot app-screenshot-wide">
                     </div>
                 </article>
 
@@ -106,9 +104,7 @@
                         <a href="apps/quick-subtitles/" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
-                        <div class="screenshot-placeholder">
-                            <span>App Screenshot</span>
-                        </div>
+                        <img src="images/quick-subtitles-main.png" alt="Quick Subtitles app screenshot" class="app-screenshot">
                     </div>
                 </article>
 
@@ -122,9 +118,7 @@
                         <a href="apps/quick-notes/" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
-                        <div class="screenshot-placeholder">
-                            <span>App Screenshot</span>
-                        </div>
+                        <img src="images/quick-notes-main.png" alt="Quick Notes app screenshot" class="app-screenshot">
                     </div>
                 </article>
 
@@ -138,9 +132,7 @@
                         <a href="apps/best-o-masto/" class="app-link">Learn more <span class="arrow">&rarr;</span></a>
                     </div>
                     <div class="app-feature-visual">
-                        <div class="screenshot-placeholder">
-                            <span>App Screenshot</span>
-                        </div>
+                        <img src="images/best-o-masto-main.png" alt="Best-o-Masto app screenshot" class="app-screenshot">
                     </div>
                 </article>
             </div>
@@ -260,6 +252,32 @@
 
         // Set current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Lightbox for screenshots
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = '<img src="" alt="Expanded screenshot">';
+        document.body.appendChild(lightbox);
+
+        const lightboxImg = lightbox.querySelector('img');
+
+        document.querySelectorAll('.app-screenshot').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
