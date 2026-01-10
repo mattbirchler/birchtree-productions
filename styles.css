@@ -231,6 +231,113 @@ img {
     padding: var(--space-3xl) var(--space-lg);
     background: transparent;
     position: relative;
+    overflow: hidden;
+}
+
+/* Floating App Icons */
+.floating-icons {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-icon {
+    position: absolute;
+    border-radius: 22%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    opacity: 0.6;
+    animation: floatIcon 8s ease-in-out infinite;
+}
+
+/* Image icons */
+img.floating-icon {
+    object-fit: cover;
+}
+
+/* Text placeholder icons */
+div.floating-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+}
+
+.icon-1 {
+    width: 100px;
+    height: 100px;
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+    transform: rotate(-12deg);
+}
+
+.icon-2 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    right: 12%;
+    animation-delay: -1.5s;
+    transform: rotate(8deg);
+}
+
+.icon-3 {
+    width: 70px;
+    height: 70px;
+    bottom: 25%;
+    left: 8%;
+    animation-delay: -3s;
+    transform: rotate(15deg);
+}
+
+.icon-4 {
+    width: 90px;
+    height: 90px;
+    bottom: 20%;
+    right: 10%;
+    animation-delay: -4.5s;
+    transform: rotate(-8deg);
+}
+
+.icon-5 {
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    right: 20%;
+    animation-delay: -6s;
+    transform: rotate(20deg);
+}
+
+.icon-6 {
+    width: 85px;
+    height: 85px;
+    font-size: 1.25rem;
+    top: 45%;
+    left: 12%;
+    background: linear-gradient(135deg, #8839ef 0%, #b86eff 100%);
+    animation-delay: -2s;
+    transform: rotate(-5deg);
+}
+
+.icon-7 {
+    width: 75px;
+    height: 75px;
+    font-size: 0.75rem;
+    top: 30%;
+    right: 22%;
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    animation-delay: -5s;
+    transform: rotate(10deg);
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0) rotate(var(--rotation, 0deg));
+    }
+    50% {
+        transform: translateY(-20px) rotate(var(--rotation, 0deg));
+    }
 }
 
 .hero-content {
@@ -403,21 +510,11 @@ img {
     margin-bottom: var(--space-md);
 }
 
-.app-icon-placeholder {
+.app-icon {
     width: 80px;
     height: 80px;
-    background: var(--color-bg-secondary);
     border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-border);
-}
-
-.app-icon-placeholder span {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .app-name {
@@ -675,6 +772,54 @@ img {
 
     .hero-subtitle {
         font-size: var(--font-size-lg);
+    }
+
+    .floating-icon {
+        opacity: 0.4;
+    }
+
+    .icon-1 {
+        width: 60px;
+        height: 60px;
+        top: 12%;
+        left: 5%;
+    }
+
+    .icon-2 {
+        width: 50px;
+        height: 50px;
+        top: 15%;
+        right: 5%;
+    }
+
+    .icon-3 {
+        width: 45px;
+        height: 45px;
+        bottom: 22%;
+        left: 3%;
+    }
+
+    .icon-4 {
+        width: 55px;
+        height: 55px;
+        bottom: 18%;
+        right: 5%;
+    }
+
+    .icon-5 {
+        display: none;
+    }
+
+    .icon-6 {
+        width: 50px;
+        height: 50px;
+        font-size: 0.875rem;
+        top: 40%;
+        left: 3%;
+    }
+
+    .icon-7 {
+        display: none;
     }
 
     .app-feature {
