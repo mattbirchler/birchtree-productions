@@ -969,3 +969,26 @@ div.floating-icon {
 :target {
     scroll-margin-top: 80px;
 }
+
+/* View Transitions */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: fade-out 0.25s ease-out;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 0.25s ease-in;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
