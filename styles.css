@@ -685,7 +685,7 @@ div.floating-icon {
 }
 
 .content-card-gradient {
-    background: linear-gradient(135deg, rgb(136, 57, 239) 0%, rgb(168, 50, 180) 100%);
+    background: rgb(136, 57, 239);
 }
 
 .content-card-body {
