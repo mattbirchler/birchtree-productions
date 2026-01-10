@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Notes - Voice to Text for Writers</title>
+    <meta name="description" content="Turn your voice into high-quality text with Apple's on-device AI. Perfect for writers who want better dictation than iOS's built-in feature.">
+    <link rel="icon" href="../../images/quick notes.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+    <style>
+        /* App page specific styles */
+        .app-hero {
+            min-height: auto;
+            padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+        }
+
+        .app-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-hero-title {
+            font-size: var(--font-size-hero);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--color-text);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-md);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(136, 57, 239, 0.1);
+            border: 1px solid rgba(136, 57, 239, 0.2);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--color-link);
+            margin-bottom: var(--space-md);
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .download-btn-primary {
+            background: var(--color-text);
+            color: white;
+        }
+
+        .download-btn-primary:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        .download-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .hero-screenshot {
+            margin-top: var(--space-2xl);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-screenshot img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Feature sections */
+        .feature-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .feature-section-alt {
+            background: var(--color-bg-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-grid-reverse {
+            direction: rtl;
+        }
+
+        .feature-grid-reverse > * {
+            direction: ltr;
+        }
+
+        .feature-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-link);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-top: var(--space-md);
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Feature cards grid */
+        .features-grid-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: var(--space-lg);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            transition: all var(--transition-base);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            background: rgba(136, 57, 239, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-sm);
+            font-size: 1.5rem;
+        }
+
+        .feature-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-link);
+        }
+
+        .feature-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Centered section */
+        .centered-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Privacy section */
+        .privacy-section {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+            background: rgba(136, 57, 239, 0.05);
+            border: 1px solid rgba(136, 57, 239, 0.15);
+            border-radius: var(--radius-2xl);
+            text-align: center;
+        }
+
+        .privacy-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(136, 57, 239, 0.1);
+            border: 1px solid rgba(136, 57, 239, 0.2);
+            border-radius: var(--radius-lg);
+            font-weight: 500;
+            color: var(--color-link);
+            transition: all var(--transition-base);
+        }
+
+        .privacy-link:hover {
+            background: rgba(136, 57, 239, 0.15);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
+            color: white;
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .cta-section .feature-title {
+            color: white;
+        }
+
+        .cta-section .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-section .download-btn-primary {
+            background: white;
+            color: var(--color-text);
+        }
+
+        .cta-section .download-btn-primary:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .cta-requirements {
+            margin-top: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* App page nav */
+        .app-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .app-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .app-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .app-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .app-nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .app-nav-links a {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* App footer */
+        .app-footer {
+            padding: var(--space-lg) var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .app-footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-footer-brand img {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-sm);
+        }
+
+        .app-footer-brand span {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .app-footer-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .app-footer-links a {
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .feature-grid-reverse {
+                direction: ltr;
+            }
+
+            .feature-image {
+                order: -1;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-nav-links {
+                display: none;
+            }
+
+            .app-footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-brand">
+                <img src="../../images/quick notes.png" alt="Quick Notes">
+                <span>Quick Notes</span>
+            </a>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="app-hero">
+            <div class="app-hero-content fade-in">
+                <div class="hero-badge">
+                    Private, powerful, and on-device
+                </div>
+                <h1 class="app-hero-title">
+                    Dictate notes while<br>
+                    <span class="gradient-text">you live your life.</span>
+                </h1>
+                <p class="app-hero-subtitle">
+                    Quick Notes uses Apple's on-device AI to turn your voice into high-quality text. Perfect for capturing ideas while walking, commuting, or doing chores.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iPhone & iPad
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-screenshot fade-in">
+                <img src="../../images/quick-notes-hero.png" alt="Quick Notes main interface">
+            </div>
+        </section>
+
+        <!-- Feature: Apple Intelligence -->
+        <section id="features" class="feature-section feature-section-alt">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Apple Intelligence</p>
+                    <h2 class="feature-title">Better than built-in dictation.</h2>
+                    <p class="feature-description">
+                        Powered by Apple's latest on-device language models, Quick Notes delivers superior transcription quality compared to iOS's standard dictation.
+                    </p>
+                    <p class="feature-description">
+                        Get cleaner punctuation, better formatting, and fewer errors—all processed entirely on your device.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/quick-notes-ai.png" alt="Apple Intelligence powered transcription">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Writer Focused -->
+        <section class="feature-section">
+            <div class="feature-grid feature-grid-reverse scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Built for Writers</p>
+                    <h2 class="feature-title">Capture ideas anywhere.</h2>
+                    <p class="feature-description">
+                        Whether you're walking the dog, on your morning run, doing the dishes, or commuting to work—Quick Notes is ready when inspiration strikes.
+                    </p>
+                    <p class="feature-description">
+                        Built for authors, journalists, and content creators who think best when they're moving.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/quick-notes-writer.png" alt="Writer-focused features">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="features-grid-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Features</p>
+                <h2 class="feature-title">Simple, fast, and private.</h2>
+            </div>
+            <div class="features-grid" style="margin-top: var(--space-2xl);">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Apple Intelligence</h3>
+                    <p class="feature-card-description">Powered by Apple's latest on-device AI models for superior transcription quality.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">100% Private</h3>
+                    <p class="feature-card-description">All processing happens on your device. None of your data is sent to the cloud.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Lightning Fast</h3>
+                    <p class="feature-card-description">On-device processing means instant transcription with no network delays.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Writer-Focused</h3>
+                    <p class="feature-card-description">Built for authors, journalists, and content creators who think on their feet.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Quick Copy & Save</h3>
+                    <p class="feature-card-description">Copy to clipboard instantly or save notes for later reference.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Native & Elegant</h3>
+                    <p class="feature-card-description">Built with SwiftUI for a beautiful, native iOS experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Section -->
+        <section class="feature-section">
+            <div class="privacy-section scroll-reveal">
+                <div class="privacy-icon">🔒</div>
+                <h2 class="privacy-title">Your Privacy is Sacred</h2>
+                <p class="privacy-description">
+                    Everything happens on your device. We collect basic, non-identifiable usage analytics to improve the app, but your transcriptions and content never leave your iPhone.
+                </p>
+                <a href="./privacy.html" class="privacy-link">
+                    Read our privacy policy
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="centered-section">
+                <h2 class="feature-title">Try it out, it's free!</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Available for iPhone and iPad.
+                </p>
+                <div class="download-buttons" style="margin-top: var(--space-xl);">
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iPhone & iPad
+                    </a>
+                </div>
+                <p class="cta-requirements">Requires iOS 26 or iPadOS 26</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/quick notes.png" alt="Quick Notes">
+                <span>Quick Notes</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span style="color: var(--color-border);">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Fade in animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

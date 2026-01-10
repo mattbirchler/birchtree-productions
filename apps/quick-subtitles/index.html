@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Subtitles - Fast, Private, On-Device Transcription</title>
+    <link rel="icon" href="../../images/quick subtitles.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+    <style>
+        /* App page specific styles */
+        .app-hero {
+            min-height: auto;
+            padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+        }
+
+        .app-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-hero-title {
+            font-size: var(--font-size-hero);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--color-text);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-md);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(136, 57, 239, 0.1);
+            border: 1px solid rgba(136, 57, 239, 0.2);
+            border-radius: var(--radius-xl);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--color-link);
+            margin-bottom: var(--space-md);
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .download-btn-primary {
+            background: var(--color-text);
+            color: white;
+        }
+
+        .download-btn-primary:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        .download-btn-secondary {
+            background: white;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+        }
+
+        .download-btn-secondary:hover {
+            border-color: var(--color-text-secondary);
+            transform: scale(1.02);
+        }
+
+        .download-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Trust badges */
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .trust-badge svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-link);
+        }
+
+        .hero-screenshot {
+            margin-top: var(--space-2xl);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-screenshot img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Feature sections */
+        .feature-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .feature-section-alt {
+            background: var(--color-bg-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-grid-reverse {
+            direction: rtl;
+        }
+
+        .feature-grid-reverse > * {
+            direction: ltr;
+        }
+
+        .feature-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-link);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-top: var(--space-md);
+        }
+
+        .feature-description a {
+            color: var(--color-link);
+            text-decoration: underline;
+        }
+
+        .feature-description a:hover {
+            color: var(--color-link-hover);
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Feature cards grid */
+        .features-grid-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: var(--space-lg);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            transition: all var(--transition-base);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            background: rgba(136, 57, 239, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-link);
+        }
+
+        .feature-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-card-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* How it works */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+            max-width: 900px;
+            margin: var(--space-2xl) auto 0;
+        }
+
+        .step-card {
+            padding: var(--space-lg);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-link);
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+        }
+
+        .step-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Centered section */
+        .centered-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
+            color: white;
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .cta-section .feature-title {
+            color: white;
+        }
+
+        .cta-section .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-section .download-btn-primary {
+            background: white;
+            color: var(--color-text);
+        }
+
+        .cta-section .download-btn-primary:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .cta-section .download-btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-section .download-btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-requirements {
+            margin-top: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* App page nav */
+        .app-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .app-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .app-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .app-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .app-nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .app-nav-links a {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* App footer */
+        .app-footer {
+            padding: var(--space-lg) var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .app-footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-footer-brand img {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-sm);
+        }
+
+        .app-footer-brand span {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .app-footer-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .app-footer-links a {
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .feature-grid-reverse {
+                direction: ltr;
+            }
+
+            .feature-image {
+                order: -1;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-nav-links {
+                display: none;
+            }
+
+            .app-footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-brand">
+                <img src="../../images/quick subtitles.png" alt="Quick Subtitles">
+                <span>Quick Subtitles</span>
+            </a>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="app-hero">
+            <div class="app-hero-content fade-in">
+                <div class="hero-badge">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    On-device AI transcription
+                </div>
+                <h1 class="app-hero-title">
+                    Transcribe your podcast.<br>
+                    <span class="gradient-text">In one minute.</span>
+                </h1>
+                <p class="app-hero-subtitle">
+                    Quick Subtitles turns your audio and video into clean text and SRT subtitles—100% on your device. No uploads, no waiting.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iPhone & iPad
+                    </a>
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M480 112C488.8 112 496 119.2 496 128L496 432C496 440.8 488.8 448 480 448L160 448C151.2 448 144 440.8 144 432L144 128C144 119.2 151.2 112 160 112L480 112zM512 487.4C531.1 476.3 544 455.7 544 432L544 128C544 92.7 515.3 64 480 64L160 64C124.7 64 96 92.7 96 128L96 432C96 455.7 108.9 476.4 128 487.4L128 544C128 561.7 142.3 576 160 576L480 576C497.7 576 512 561.7 512 544L512 487.4zM464 496L464 528L176 528L176 496L464 496zM192 192L192 288C192 305.7 206.3 320 224 320L416 320C433.7 320 448 305.7 448 288L448 192C448 174.3 433.7 160 416 160L224 160C206.3 160 192 174.3 192 192zM296 384C296 397.3 306.7 408 320 408L424 408C437.3 408 448 397.3 448 384C448 370.7 437.3 360 424 360L320 360C306.7 360 296 370.7 296 384zM216 408C229.3 408 240 397.3 240 384C240 370.7 229.3 360 216 360C202.7 360 192 370.7 192 384C192 397.3 202.7 408 216 408z"/></svg>
+                        Download for Mac
+                    </a>
+                </div>
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        100% local processing
+                    </div>
+                    <div class="trust-badge">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        1 hour audio in ~1 minute
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-screenshot fade-in">
+                <img src="../../images/quick-subtitles-hero.png" alt="Quick Subtitles main interface">
+            </div>
+        </section>
+
+        <!-- Feature: Privacy & Speed -->
+        <section id="features" class="feature-section feature-section-alt">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Private by Design</p>
+                    <h2 class="feature-title">Your audio never leaves your device.</h2>
+                    <p class="feature-description">
+                        Powered by Apple's on-device Speech APIs, Quick Subtitles processes everything locally. No uploads, no servers, no data collection.
+                    </p>
+                    <p class="feature-description">
+                        Perfect for sensitive recordings like meetings, interviews, or personal notes.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/quick-subtitles-privacy.png" alt="Privacy-focused transcription">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Speed -->
+        <section class="feature-section">
+            <div class="feature-grid feature-grid-reverse scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Blazing Fast</p>
+                    <h2 class="feature-title">One-hour podcasts in about a minute.</h2>
+                    <p class="feature-description">
+                        Optimized for long recordings with turbo mode and real-time progress tracking. Watch your transcript appear as the AI works.
+                    </p>
+                    <p class="feature-description">
+                        Works offline after the initial language model download.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="../../images/quick-subtitles-speed.png" alt="Fast transcription progress">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="features-grid-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Features</p>
+                <h2 class="feature-title">Everything you need to transcribe.</h2>
+            </div>
+            <div class="features-grid" style="margin-top: var(--space-2xl);">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">100% Local</h3>
+                    <p class="feature-card-description">Powered by Apple's on-device Speech APIs. No servers, no data collection.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Extreme Speed</h3>
+                    <p class="feature-card-description">Optimized for long recordings with turbo mode and real-time progress.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">AI Show Notes</h3>
+                    <p class="feature-card-description">Optional helpers using Gemini or OpenAI for summaries, titles, and chapters.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Text & SRT Export</h3>
+                    <p class="feature-card-description">Copy clean text or export SRT subtitles for any editor or platform.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">Smart Models</h3>
+                    <p class="feature-card-description">Automatic language and model management. Works offline after install.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                    </div>
+                    <h3 class="feature-card-title">No Uploads</h3>
+                    <p class="feature-card-description">Drop in files and go. Great for podcasts, meetings, lectures, and more.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="feature-section">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Simple Workflow</p>
+                <h2 class="feature-title">How it works</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Drop your file</h3>
+                        <p class="step-description">Audio or video—Quick Subtitles handles it.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">On-device transcription</h3>
+                        <p class="step-description">Watch real-time progress. Nothing leaves your device.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Export & share</h3>
+                        <p class="step-description">Copy text or export SRT. Optionally generate show notes with AI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="centered-section">
+                <h2 class="feature-title">Transcribe faster.<br>Keep it private.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Available for iPhone, iPad, and Mac.
+                </p>
+                <div class="download-buttons" style="margin-top: var(--space-xl);">
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for iPhone & iPad
+                    </a>
+                    <a href="https://apps.apple.com/app/id0000000000" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M480 112C488.8 112 496 119.2 496 128L496 432C496 440.8 488.8 448 480 448L160 448C151.2 448 144 440.8 144 432L144 128C144 119.2 151.2 112 160 112L480 112zM512 487.4C531.1 476.3 544 455.7 544 432L544 128C544 92.7 515.3 64 480 64L160 64C124.7 64 96 92.7 96 128L96 432C96 455.7 108.9 476.4 128 487.4L128 544C128 561.7 142.3 576 160 576L480 576C497.7 576 512 561.7 512 544L512 487.4zM464 496L464 528L176 528L176 496L464 496zM192 192L192 288C192 305.7 206.3 320 224 320L416 320C433.7 320 448 305.7 448 288L448 192C448 174.3 433.7 160 416 160L224 160C206.3 160 192 174.3 192 192zM296 384C296 397.3 306.7 408 320 408L424 408C437.3 408 448 397.3 448 384C448 370.7 437.3 360 424 360L320 360C306.7 360 296 370.7 296 384zM216 408C229.3 408 240 397.3 240 384C240 370.7 229.3 360 216 360C202.7 360 192 370.7 192 384C192 397.3 202.7 408 216 408z"/></svg>
+                        Download for Mac
+                    </a>
+                </div>
+                <p class="cta-requirements">Requires iOS 26, iPadOS 26, or macOS 26</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/quick subtitles.png" alt="Quick Subtitles">
+                <span>Quick Subtitles</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span style="color: var(--color-border);">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Fade in animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
