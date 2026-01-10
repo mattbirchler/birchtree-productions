@@ -109,6 +109,23 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
+        .screenshot-placeholder {
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, rgba(136, 57, 239, 0.1) 0%, rgba(219, 39, 119, 0.1) 100%);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            border: 1px dashed var(--color-border);
+        }
+
+        .feature-image .screenshot-placeholder {
+            aspect-ratio: 4 / 3;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
         /* Feature sections */
         .feature-section {
             padding: var(--space-3xl) var(--space-lg);
@@ -484,8 +501,15 @@
             </div>
 
             <div class="hero-screenshot fade-in">
-                <img src="../../images/quick-notes-hero.png" alt="Quick Notes main interface">
+                <div class="screenshot-placeholder">
+                    <span>quick-notes-hero.png</span>
+                </div>
             </div>
+            <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </a>
         </section>
 
         <!-- Feature: Apple Intelligence -->
@@ -502,7 +526,9 @@
                     </p>
                 </div>
                 <div class="feature-image">
-                    <img src="../../images/quick-notes-ai.png" alt="Apple Intelligence powered transcription">
+                    <div class="screenshot-placeholder">
+                        <span>quick-notes-ai.png</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -521,7 +547,9 @@
                     </p>
                 </div>
                 <div class="feature-image">
-                    <img src="../../images/quick-notes-writer.png" alt="Writer-focused features">
+                    <div class="screenshot-placeholder">
+                        <span>quick-notes-writer.png</span>
+                    </div>
                 </div>
             </div>
         </section>

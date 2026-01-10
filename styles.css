@@ -562,6 +562,13 @@ div.floating-icon {
     justify-content: center;
 }
 
+.app-screenshot {
+    width: 100%;
+    max-width: 280px;
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
 .screenshot-placeholder {
     width: 100%;
     aspect-ratio: 9 / 16;
