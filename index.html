@@ -236,13 +236,16 @@
             observer.observe(el);
         });
 
-        // Navbar background on scroll
+        // Navbar background on scroll and scroll indicator fade
         const navbar = document.querySelector('.navbar');
+        const scrollIndicator = document.querySelector('.scroll-indicator');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
+                if (scrollIndicator) scrollIndicator.classList.add('hidden');
             } else {
                 navbar.classList.remove('scrolled');
+                if (scrollIndicator) scrollIndicator.classList.remove('hidden');
             }
         });
 

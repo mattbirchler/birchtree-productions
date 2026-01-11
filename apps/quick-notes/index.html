@@ -735,6 +735,18 @@
             }, 100);
         });
 
+        // Hide scroll indicator on scroll
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        window.addEventListener('scroll', () => {
+            if (scrollIndicator) {
+                if (window.scrollY > 50) {
+                    scrollIndicator.classList.add('hidden');
+                } else {
+                    scrollIndicator.classList.remove('hidden');
+                }
+            }
+        });
+
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

@@ -387,8 +387,13 @@ div.floating-icon {
     background: var(--color-bg);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     color: var(--color-text-secondary);
-    transition: color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    transition: color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base), opacity 0.3s ease;
     animation: bounce 3s ease-in-out infinite;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
 }
 
 .scroll-indicator:hover {
