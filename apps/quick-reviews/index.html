@@ -190,7 +190,6 @@
         .feature-image img {
             width: 100%;
             border-radius: var(--radius-2xl);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         /* Feature cards */
@@ -622,9 +621,9 @@
             <!-- Review examples showcase -->
             <div class="review-showcase fade-in">
                 <!-- Placeholder for review example images (16x9) -->
-                <div style="background: var(--color-bg-secondary); border-radius: var(--radius-xl); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); text-align: center; padding: 1rem; font-size: 0.875rem;">quick-reviews-example-1.png<br>1920x1080 (16:9)</div>
-                <div style="background: var(--color-bg-secondary); border-radius: var(--radius-xl); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); text-align: center; padding: 1rem; font-size: 0.875rem;">quick-reviews-example-2.png<br>1920x1080 (16:9)</div>
-                <div style="background: var(--color-bg-secondary); border-radius: var(--radius-xl); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); text-align: center; padding: 1rem; font-size: 0.875rem;">quick-reviews-example-3.png<br>1920x1080 (16:9)</div>
+                <img src="../../images/quick-reviews-example-1.jpg" alt="Example movie review created with Quick Reviews" style="border-radius: var(--radius-xl);">
+                <img src="../../images/quick-reviews-example-2.jpg" alt="Example TV show review created with Quick Reviews" style="border-radius: var(--radius-xl);">
+                <img src="../../images/quick-reviews-example-3.jpg" alt="Example review created with Quick Reviews" style="border-radius: var(--radius-xl);">
             </div>
 
             <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
@@ -659,8 +658,7 @@
                     </ul>
                 </div>
                 <div class="feature-image">
-                    <!-- Placeholder for customization screenshot -->
-                    <div style="background: var(--color-bg-secondary); border-radius: var(--radius-2xl); aspect-ratio: 9/16; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); text-align: center; padding: 1rem; font-size: 0.875rem;">quick-reviews-screen-N.png<br>1290x2796 (iPhone)</div>
+                    <img src="../../images/quick-reviews-screen-N.png" alt="Quick Reviews app showing customization options" style="width: 100%; max-width: 280px; margin: 0 auto; display: block; border-radius: var(--radius-2xl);">
                 </div>
             </div>
         </section>
@@ -683,15 +681,10 @@
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
                             Letterboxd integration<span class="premium-badge">Premium</span>
                         </li>
-                        <li>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-                            4-point scoring with custom labels
-                        </li>
                     </ul>
                 </div>
                 <div class="feature-image">
-                    <!-- Placeholder for magic mode screenshot -->
-                    <div style="background: var(--color-bg-secondary); border-radius: var(--radius-2xl); aspect-ratio: 9/16; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); text-align: center; padding: 1rem; font-size: 0.875rem;">quick-reviews-screen-N.png<br>1290x2796 (iPhone)</div>
+                    <img src="../../images/quick-reviews-screen-2.png" alt="Quick Reviews app showing Magic Mode" style="width: 100%; max-width: 280px; margin: 0 auto; display: block; border-radius: var(--radius-2xl);">
                 </div>
             </div>
         </section>
@@ -764,8 +757,7 @@
                     </div>
                 </div>
                 <div class="feature-image">
-                    <!-- Placeholder for history screenshot -->
-                    <div style="background: var(--color-bg-secondary); border-radius: var(--radius-2xl); aspect-ratio: 9/16; max-width: 280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); text-align: center; padding: 1rem; font-size: 0.875rem;">quick-reviews-screen-N.png<br>1290x2796 (iPhone)</div>
+                    <img src="../../images/quick-reviews-screen-3.png" alt="Quick Reviews app showing review history" style="width: 100%; max-width: 280px; margin: 0 auto; display: block; border-radius: var(--radius-2xl);">
                 </div>
             </div>
         </section>
@@ -829,6 +821,10 @@
                 <p class="feature-description" style="margin-top: var(--space-md);">
                     We don't collect your personal data. We're not in the data collection business—we're in the beautiful review business.
                 </p>
+                <a href="./privacy.html" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: var(--space-md); color: var(--color-link); font-weight: 500;">
+                    Read our privacy policy
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
             </div>
         </section>
 
