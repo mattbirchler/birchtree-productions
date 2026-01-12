@@ -356,11 +356,11 @@ div.floating-icon {
     color: var(--color-text);
 }
 
-.hero-icon {
-    height: 1em;
+.nav-logo-icon {
+    height: 1.4em;
     width: auto;
-    vertical-align: -0.1em;
-    margin-right: 0.2em;
+    vertical-align: -0.3em;
+    margin-right: 0.3em;
     border-radius: 22%;
 }
 
