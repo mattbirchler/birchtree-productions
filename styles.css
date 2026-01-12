@@ -356,6 +356,14 @@ div.floating-icon {
     color: var(--color-text);
 }
 
+.hero-icon {
+    height: 1em;
+    width: auto;
+    vertical-align: -0.1em;
+    margin-right: 0.2em;
+    border-radius: 22%;
+}
+
 .hero-subtitle {
     font-size: var(--font-size-2xl);
     font-weight: 400;
