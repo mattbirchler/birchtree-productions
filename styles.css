@@ -344,21 +344,9 @@ div.floating-icon {
 .icon-6 {
     width: 85px;
     height: 85px;
-    font-size: 1.25rem;
     top: 45%;
     left: 12%;
-    background: linear-gradient(135deg, #8839ef 0%, #b86eff 100%);
     animation: floatIcon6 15s ease-in-out infinite;
-}
-
-.icon-7 {
-    width: 75px;
-    height: 75px;
-    font-size: 0.75rem;
-    top: 30%;
-    right: 22%;
-    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-    animation: floatIcon7 9s ease-in-out infinite;
 }
 
 /* Unique floating animations for each icon */
@@ -399,12 +387,6 @@ div.floating-icon {
     0%, 100% { transform: translate(0, 0) rotate(-5deg); }
     33% { transform: translate(20px, -22px) rotate(0deg); }
     66% { transform: translate(-12px, -32px) rotate(-10deg); }
-}
-
-@keyframes floatIcon7 {
-    0%, 100% { transform: translate(0, 0) rotate(10deg); }
-    40% { transform: translate(-25px, -20px) rotate(15deg); }
-    70% { transform: translate(10px, -35px) rotate(5deg); }
 }
 
 .hero-content {
@@ -1047,13 +1029,8 @@ div.floating-icon {
     .icon-6 {
         width: 50px;
         height: 50px;
-        font-size: 0.875rem;
         top: 40%;
         left: 3%;
-    }
-
-    .icon-7 {
-        display: none;
     }
 
     .app-feature {
