@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Yearly Run Goals - Track Your Yearly Distance</title>
+    <meta name="description" content="Set, track, and achieve yearly distance goals for running, walking, cycling, or swimming. Beautiful progress visualization with Apple Health integration. Privacy-first, on-device tracking.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Yearly Run Goals - Track Your Yearly Distance">
+    <meta property="og:description" content="Set, track, and achieve yearly distance goals for running, walking, cycling, or swimming. Beautiful progress visualization with Apple Health integration.">
+    <meta property="og:image" content="https://birchtree.me/images/yearly%20run%20goals.png">
+    <meta property="og:url" content="https://birchtree.me/apps/yearly-run-goals/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yearly Run Goals - Track Your Yearly Distance">
+    <meta name="twitter:description" content="Set, track, and achieve yearly distance goals for running, walking, cycling, or swimming. Beautiful progress visualization with Apple Health integration.">
+    <meta name="twitter:image" content="https://birchtree.me/images/yearly%20run%20goals.png">
+
+    <link rel="canonical" href="https://birchtree.me/apps/yearly-run-goals/">
+    <link rel="icon" href="../../images/yearly%20run%20goals.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Yearly Run Goals",
+        "description": "Set, track, and achieve yearly distance goals for running, walking, cycling, or swimming. Beautiful progress visualization with Apple Health integration.",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "iOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Birchtree Productions, LLC"
+        }
+    }
+    </script>
+    <style>
+        /* App page specific styles */
+        .app-hero {
+            min-height: auto;
+            padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+        }
+
+        .app-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--color-text);
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #059669 0%,
+                #10b981 40%,
+                #059669 60%,
+                #10b981 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .app-hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-md);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .download-btn-primary {
+            background: var(--color-text);
+            color: white;
+        }
+
+        .download-btn-primary:hover {
+            background: #000;
+            transform: scale(1.02);
+        }
+
+        .download-btn-secondary {
+            background: white;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+        }
+
+        .download-btn-secondary:hover {
+            border-color: var(--color-text-secondary);
+            transform: scale(1.02);
+        }
+
+        .download-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Feature sections */
+        .feature-section {
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .feature-section-alt {
+            background: var(--color-bg-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-grid-reverse {
+            direction: rtl;
+        }
+
+        .feature-grid-reverse > * {
+            direction: ltr;
+        }
+
+        .feature-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-link);
+            margin-bottom: var(--space-xs);
+        }
+
+        .feature-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-top: var(--space-md);
+        }
+
+        .feature-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: var(--radius-2xl);
+        }
+
+        .feature-image-centered {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Feature cards */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: var(--space-md);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            transition: all var(--transition-base);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: card-reveal 0.5s ease forwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes card-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(136, 57, 239, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+        }
+
+        .feature-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-link);
+        }
+
+        .feature-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        /* Centered section */
+        .centered-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Workout types */
+        .workout-types {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+        }
+
+        .workout-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            font-weight: 500;
+            transition: all var(--transition-base);
+        }
+
+        .workout-type:hover {
+            border-color: var(--color-link);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .workout-type svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-link);
+        }
+
+        /* Coming Soon Badge */
+        .coming-soon-badge {
+            display: inline-block;
+            margin-top: var(--space-xl);
+            padding: 0.875rem 2rem;
+            background: #ea580c;
+            color: white;
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            border-radius: var(--radius-xl);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
+            color: white;
+            padding: var(--space-3xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .cta-section .feature-title {
+            color: white;
+        }
+
+        .cta-section .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-section .download-btn-primary {
+            background: white;
+            color: var(--color-text);
+        }
+
+        .cta-section .download-btn-primary:hover {
+            background: var(--color-bg-secondary);
+        }
+
+        .cta-requirements {
+            margin-top: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* App page nav */
+        .app-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .app-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .app-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .app-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .app-nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .app-nav-links a {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* App footer */
+        .app-footer {
+            padding: var(--space-lg) var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .app-footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .app-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-footer-brand img {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-sm);
+        }
+
+        .app-footer-brand span {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .app-footer-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .app-footer-links a {
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+        }
+
+        .app-footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .feature-grid-reverse {
+                direction: ltr;
+            }
+
+            .feature-image {
+                order: -1;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .app-nav-links {
+                display: none;
+            }
+
+            .app-footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-brand">
+                <img src="../../images/yearly%20run%20goals.png" alt="Yearly Run Goals" style="view-transition-name: yearly-run-goals-icon;">
+                <span>Yearly Run Goals</span>
+            </a>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="app-hero">
+            <div class="app-hero-content fade-in">
+                <h1 class="app-hero-title">
+                    Your year. Your goal. <span class="gradient-text">Your pace.</span>
+                </h1>
+                <p class="app-hero-subtitle">
+                    A beautifully simple way to set, track, and achieve your yearly distance goals. No complexity, no clutter.
+                </p>
+                <div class="coming-soon-badge">
+                    Coming Soon
+                </div>
+            </div>
+
+            <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- Feature: Progress Visualization -->
+        <section id="features" class="feature-section feature-section-alt">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Beautiful Progress</p>
+                    <h2 class="feature-title">See your year<br>at a glance.</h2>
+                    <p class="feature-description">
+                        Watch your distance grow throughout the year with a beautiful cumulative progress chart. A goal pace line shows if you're ahead or behind, and a dashed line compares your progress to last year.
+                    </p>
+                    <p class="feature-description">
+                        Import workouts from Apple Health or log them manually. Either way, you'll see your projected finish based on your current pace.
+                    </p>
+                </div>
+                <div class="feature-image feature-image-centered">
+                    <img src="../../images/yearly-run-tracker-main.png" alt="Progress chart showing cumulative distance over the year">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Workout Types -->
+        <section class="feature-section">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Multiple Activities</p>
+                <h2 class="feature-title">Track what matters to you.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Whether you run, walk, cycle, or swim, Yearly Run Goals tracks your distance. Change workout types anytime without losing your data.
+                </p>
+                <div class="workout-types">
+                    <div class="workout-type">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Running
+                    </div>
+                    <div class="workout-type">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        Walking
+                    </div>
+                    <div class="workout-type">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Runs + Walks
+                    </div>
+                    <div class="workout-type">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke-width="2"/></svg>
+                        Cycling
+                    </div>
+                    <div class="workout-type">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        Swimming
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Insights -->
+        <section class="feature-section feature-section-alt">
+            <div class="feature-grid scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Detailed Insights</p>
+                    <h2 class="feature-title">Understand your patterns.</h2>
+                    <p class="feature-description">
+                        Dive into monthly breakdowns, discover which days you work out most, and explore comprehensive stats including streaks, averages, and personal records.
+                    </p>
+                    <div class="feature-cards" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Monthly Breakdown</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Streak Tracking</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Weekly Patterns</h3>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </div>
+                            <h3 class="feature-card-title">Personal Records</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-image feature-image-centered">
+                    <img src="../../images/yearly-run-tracker-insights.png" alt="Insights view with monthly breakdown and stats">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Calendar & Export -->
+        <section class="feature-section">
+            <div class="feature-grid feature-grid-reverse scroll-reveal">
+                <div class="feature-content">
+                    <p class="feature-label">Share Your Progress</p>
+                    <h2 class="feature-title">Beautiful exports for sharing.</h2>
+                    <p class="feature-description">
+                        Export your progress chart or a beautiful 12-month calendar grid showing all your workout days. Perfect for end-of-year sharing or celebrating milestones on social media.
+                    </p>
+                    <p class="feature-description">
+                        You can also export all your data as JSON for backup or analysis.
+                    </p>
+                </div>
+                <div class="feature-image feature-image-centered">
+                    <img src="../../images/yearly-run-tracker-calendar.png" alt="Year calendar export showing workout days">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Privacy -->
+        <section class="feature-section feature-section-alt">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Your Data, Your Device</p>
+                <h2 class="feature-title">Privacy by design.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    No accounts. No servers. No tracking. Everything stays on your iPhone. Export your data anytime, delete it with one tap if needed.
+                </p>
+                <div class="feature-cards" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            </div>
+                        <h3 class="feature-card-title">No Account Required</h3>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                        </div>
+                        <h3 class="feature-card-title">No Servers</h3>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                        </div>
+                        <h3 class="feature-card-title">No Tracking</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="feature-section">
+            <div class="centered-section scroll-reveal">
+                <p class="feature-label">Pricing</p>
+                <h2 class="feature-title">Free to download.</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    No ads. No subscriptions. Just a simple app that helps you reach your goals.
+                </p>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="centered-section">
+                <h2 class="feature-title">Ready to hit your<br>yearly goal?</h2>
+                <p class="feature-description" style="margin-top: var(--space-md);">
+                    Yearly Run Goals is coming soon to the App Store.
+                </p>
+                <p class="cta-requirements" style="margin-top: var(--space-lg);">Requires iOS 17 or later</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/yearly%20run%20goals.png" alt="Yearly Run Goals">
+                <span>Yearly Run Goals</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span style="color: var(--color-border);">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Fade in animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Hide scroll indicator on scroll
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        window.addEventListener('scroll', () => {
+            if (scrollIndicator) {
+                if (window.scrollY > 50) {
+                    scrollIndicator.classList.add('hidden');
+                } else {
+                    scrollIndicator.classList.remove('hidden');
+                }
+            }
+        });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
