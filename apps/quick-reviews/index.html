@@ -25,6 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="../../styles.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
@@ -336,6 +337,7 @@
         .media-type-icon {
             font-size: 2rem;
             margin-bottom: var(--space-xs);
+            color: var(--color-link);
         }
 
         .media-type-label {
@@ -450,6 +452,41 @@
         }
 
         .pricing-card-paid .pricing-card-features svg {
+            color: #4ade80;
+        }
+
+        /* Phosphor icon sizing */
+        .download-btn i {
+            font-size: 1.25rem;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+        }
+
+        .feature-list i {
+            font-size: 20px;
+            flex-shrink: 0;
+            color: var(--color-link);
+            margin-top: 4px;
+        }
+
+        .feature-card-icon i {
+            font-size: 24px;
+            color: var(--color-link);
+        }
+
+        .pricing-card-features i {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .pricing-card-free .pricing-card-features i {
+            color: #22c55e;
+        }
+
+        .pricing-card-paid .pricing-card-features i {
             color: #4ade80;
         }
 
@@ -677,7 +714,7 @@
                         Download for iOS
                     </a>
                     <a href="https://quickreviews.app" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        <i class="ph ph-globe-simple"></i>
                         Try on the Web
                     </a>
                 </div>
@@ -692,9 +729,7 @@
             </div>
 
             <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+                <i class="ph ph-caret-down"></i>
             </a>
         </section>
 
@@ -709,15 +744,15 @@
                     </p>
                     <ul class="feature-list">
                         <li>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                            <i class="ph ph-palette"></i>
                             Customize colors and themes
                         </li>
                         <li>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                            <i class="ph ph-layout"></i>
                             Multiple layout options
                         </li>
                         <li>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <i class="ph ph-image"></i>
                             Alternate posters and cover art<span class="premium-badge">Premium</span>
                         </li>
                     </ul>
@@ -739,11 +774,11 @@
                     </p>
                     <ul class="feature-list">
                         <li>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            <i class="ph ph-magic-wand"></i>
                             Magic Mode auto-completion<span class="premium-badge">Premium</span>
                         </li>
                         <li>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                            <i class="ph ph-link"></i>
                             Letterboxd integration<span class="premium-badge">Premium</span>
                         </li>
                     </ul>
@@ -764,27 +799,27 @@
                 </p>
                 <div class="media-types">
                     <div class="media-type">
-                        <div class="media-type-icon">🎬</div>
+                        <div class="media-type-icon"><i class="ph ph-film-slate"></i></div>
                         <p class="media-type-label">Movies</p>
                     </div>
                     <div class="media-type">
-                        <div class="media-type-icon">📺</div>
+                        <div class="media-type-icon"><i class="ph ph-television-simple"></i></div>
                         <p class="media-type-label">TV Shows</p>
                     </div>
                     <div class="media-type">
-                        <div class="media-type-icon">🎮</div>
+                        <div class="media-type-icon"><i class="ph ph-game-controller"></i></div>
                         <p class="media-type-label">Games</p>
                     </div>
                     <div class="media-type">
-                        <div class="media-type-icon">📚</div>
+                        <div class="media-type-icon"><i class="ph ph-book-open-text"></i></div>
                         <p class="media-type-label">Books</p>
                     </div>
                     <div class="media-type">
-                        <div class="media-type-icon">🎵</div>
+                        <div class="media-type-icon"><i class="ph ph-music-notes"></i></div>
                         <p class="media-type-label">Music</p>
                     </div>
                     <div class="media-type">
-                        <div class="media-type-icon">✨</div>
+                        <div class="media-type-icon"><i class="ph ph-sparkle"></i></div>
                         <p class="media-type-label">And More</p>
                     </div>
                 </div>
@@ -803,19 +838,19 @@
                     <div class="feature-cards">
                         <div class="feature-card">
                             <div class="feature-card-icon">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <i class="ph ph-clock-counter-clockwise"></i>
                             </div>
                             <h3 class="feature-card-title">Review History</h3>
                         </div>
                         <div class="feature-card">
                             <div class="feature-card-icon">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                                <i class="ph ph-cloud-arrow-up"></i>
                             </div>
                             <h3 class="feature-card-title">Auto Backups</h3>
                         </div>
                         <div class="feature-card">
                             <div class="feature-card-icon">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <i class="ph ph-share-network"></i>
                             </div>
                             <h3 class="feature-card-title">Easy Sharing</h3>
                         </div>
@@ -842,15 +877,15 @@
                         <p class="pricing-card-subtitle">Get started</p>
                         <ul class="pricing-card-features">
                             <li>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <i class="ph ph-check"></i>
                                 Create beautiful review images
                             </li>
                             <li>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <i class="ph ph-check"></i>
                                 Customize colors and layouts
                             </li>
                             <li>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <i class="ph ph-check"></i>
                                 30 days of review history
                             </li>
                         </ul>
@@ -861,15 +896,15 @@
                         <p class="pricing-card-subtitle">per year</p>
                         <ul class="pricing-card-features">
                             <li>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <i class="ph ph-check"></i>
                                 Magic Mode auto-completion
                             </li>
                             <li>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <i class="ph ph-check"></i>
                                 Letterboxd integration
                             </li>
                             <li>
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <i class="ph ph-check"></i>
                                 Year End Reviews
                             </li>
                         </ul>
@@ -888,7 +923,7 @@
                 </p>
                 <a href="./privacy.html" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: var(--space-md); color: var(--color-link); font-weight: 500;">
                     Read our privacy policy
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <i class="ph ph-caret-right"></i>
                 </a>
             </div>
         </section>
@@ -906,7 +941,7 @@
                         Download for iOS
                     </a>
                     <a href="https://quickreviews.app" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-secondary">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        <i class="ph ph-globe-simple"></i>
                         Try on the Web
                     </a>
                 </div>
