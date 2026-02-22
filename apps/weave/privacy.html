@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Weave</title>
+    <link rel="icon" href="../../images/typefully-icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* Override accent color to green for Weave */
+        :root {
+            --color-link: #16a34a;
+            --color-link-hover: #15803d;
+        }
+
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .tldr {
+            background: rgba(22, 163, 74, 0.05);
+            border: 1px solid rgba(22, 163, 74, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .tldr h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-link);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tldr p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "\2022";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="./" class="privacy-nav-brand">
+                <img src="../../images/typefully-icon.png" alt="Weave">
+                <span>Weave</span>
+            </a>
+            <a href="./" class="back-link">&larr; Back to Weave</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Weave</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="tldr">
+            <h2>TLDR</h2>
+            <p>Weave connects to Typefully's API using your API key, which is stored securely in your device's Keychain. We don't collect personal data. Your posts and drafts are stored locally on your device. Basic anonymous usage analytics help us improve the app.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Collect</h2>
+            <h3>Basic Usage Statistics</h3>
+            <p>We collect anonymous usage data to understand how people use the app. This includes:</p>
+            <ul>
+                <li>Which actions you perform (like publishing a post or scheduling)</li>
+                <li>Your device type (iPhone or iPad)</li>
+                <li>Timestamp of when actions occur</li>
+            </ul>
+            <p>This data contains no personal information, post content, API keys, usernames, or unique identifiers that could identify you.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What We Don't Collect</h2>
+            <ul>
+                <li>Your Typefully API key</li>
+                <li>Post content, drafts, or threads</li>
+                <li>Your social media usernames or profile data</li>
+                <li>Images or videos you attach to posts</li>
+                <li>Unique device identifiers or tracking IDs</li>
+                <li>Personal information of any kind</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>How Your Privacy Is Protected</h2>
+            <h3>Keychain Storage</h3>
+            <p>Your Typefully API key is stored in the iOS Keychain with "ThisDeviceOnly" protection. It is never logged, never included in analytics, and never transmitted except as a Bearer token directly to Typefully's API.</p>
+
+            <h3>Local Draft Storage</h3>
+            <p>Your drafts, selected platforms, and account preferences are stored locally on your device using SwiftData. This data never leaves your device.</p>
+
+            <h3>On-Device Scheduling</h3>
+            <p>Natural language date parsing uses Apple Foundation Models entirely on-device. No text is sent to external servers for processing.</p>
+
+            <h3>Clean Logout</h3>
+            <p>Logging out wipes everything &mdash; your API key from the Keychain, all local data from SwiftData, and any cached state. Nothing persists after logout.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Third-Party Services</h2>
+            <h3>Typefully API</h3>
+            <p>Weave communicates with Typefully's API to publish posts, manage your queue, and fetch your account information. This communication happens directly between your device and Typefully's servers using your API key. We do not proxy or intercept this traffic. Please refer to Typefully's own privacy policy for how they handle your data.</p>
+
+            <h3>Media Uploads</h3>
+            <p>When you attach images or video, they are uploaded via presigned S3 URLs provided by Typefully. These uploads go directly from your device to Typefully's storage infrastructure.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Not an Official Typefully App</h2>
+            <p>Weave is an independent, third-party app built for Typefully users. It is not affiliated with, endorsed by, or officially connected to Typefully in any way. Typefully is a trademark of its respective owner.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Data You Control</h2>
+            <h3>Your API Key</h3>
+            <p>You can remove your API key at any time by logging out. This immediately revokes Weave's access to your Typefully account.</p>
+
+            <h3>Local Data</h3>
+            <p>All drafts and preferences are stored only on your device. Delete the app to remove all stored data.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>If we ever change this privacy policy, we'll update this page and the app description in the App Store. Given that we collect minimal data, any changes would likely only involve clarifications or additional privacy protections.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Questions?</h2>
+            <p>If you have any questions about this privacy policy, feel free to contact us. The short version: your API key stays in the Keychain, your drafts stay on your device, and we don't collect your content.</p>
+        </section>
+
+        <p class="last-updated">Last updated: February 2026</p>
+    </main>
+</body>
+</html>
