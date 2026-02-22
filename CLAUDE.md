@@ -65,12 +65,20 @@ Each app page in `apps/[app-name]/index.html` should have:
 - App pages: Minimal nav with app branding and Features/Pricing links
 - All navs use backdrop blur effect when scrolled
 
+## CSS Cache Busting
+After making changes to `styles.css`, **always run `./cache-bust.sh`** before committing. This updates all HTML files with a hash-based query parameter (e.g. `styles.css?v=be9fc7ad`) so browsers fetch the latest version instead of serving a stale cached copy.
+
+```bash
+./cache-bust.sh
+```
+
 ## File Organization
 
 ```
 /
 ├── index.html              # Main landing page
 ├── styles.css              # Shared styles
+├── cache-bust.sh           # Run after changing styles.css
 ├── CLAUDE.md               # This file
 ├── .gitignore
 ├── images/                 # All images
