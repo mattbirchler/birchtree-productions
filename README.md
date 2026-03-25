@@ -9,7 +9,7 @@ Birchtree Productions creates handcrafted apps and content for people who believ
 ## Apps
 
 - **Quick Reviews** — Review the things you love and share them to social media. *MacStories Best New App of 2025*
-- **ChapterPod** — Create professional podcast chapters with titles, images, and links while you listen — all on your Apple devices.
+- **Chapterize** — Create professional podcast chapters with titles, images, and links while you listen — all on your Apple devices.
 - **Quick Subtitles** — Transcribe audio and video to text or SRT subtitles using fast, private, on-device AI.
 - **Quick Notes** — Turn your voice into high-quality text using Apple's on-device language models.
 - **Best-o-Masto** — Catch up without getting sucked in. Mastodon, efficiently.
