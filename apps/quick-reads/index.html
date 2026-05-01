@@ -21,7 +21,7 @@
     <meta name="twitter:image" content="https://quickreads.app/images/quick-reads.png">
 
     <link rel="canonical" href="https://quickreads.app">
-    <link rel="icon" href="../../images/quick-reads.png" type="image/png">
+    <link rel="icon" href="../../images/quick-reads-icon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -40,11 +40,11 @@
         "operatingSystem": "iOS, Web",
         "offers": {
             "@type": "Offer",
-            "price": "5.99",
+            "price": "3.99",
             "priceCurrency": "USD",
             "priceSpecification": {
                 "@type": "UnitPriceSpecification",
-                "price": "5.99",
+                "price": "3.99",
                 "priceCurrency": "USD",
                 "billingDuration": "P1M"
             }
@@ -643,7 +643,7 @@
     <nav class="app-nav">
         <div class="app-nav-container">
             <a href="../../" class="app-nav-brand">
-                <img src="../../images/quick-reads.png" alt="Quick Reads" style="view-transition-name: quick-reads-icon;">
+                <img src="../../images/quick-reads-icon.svg" alt="Quick Reads" style="view-transition-name: quick-reads-icon;">
                 <span>Quick Reads</span>
             </a>
             <ul class="app-nav-links">
@@ -752,7 +752,7 @@
                     <p class="feature-card-description">Save articles with one click directly from your browser as you browse the web.</p>
                 </a>
                 <div class="feature-card scroll-reveal">
-                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-secondary); margin-bottom: var(--space-xs);">Coming Soon</span>
+                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: #16a34a; margin-bottom: var(--space-xs);">TestFlight Beta</span>
                     <div class="feature-card-icon">
                         <i class="ph ph-device-mobile"></i>
                     </div>
@@ -760,7 +760,7 @@
                     <p class="feature-card-description">Read anywhere with a native app designed for iPhone and iPad.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: var(--color-text-secondary); margin-bottom: var(--space-xs);">Coming Soon</span>
+                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: #16a34a; margin-bottom: var(--space-xs);">Available Now</span>
                     <div class="feature-card-icon">
                         <i class="ph ph-vault"></i>
                     </div>
@@ -776,24 +776,13 @@
                 <p class="feature-label">Pricing</p>
                 <h2 class="feature-title">Simple, honest pricing.</h2>
                 <p class="feature-description" style="margin-top: var(--space-md);">
-                    One plan. Everything included. Start with a free trial.
+                    Pick the plan that fits. Start with a free trial.
                 </p>
                 <div class="pricing-cards">
-                    <div class="pricing-card pricing-card-featured" style="max-width: 380px;">
-                        <div style="display: flex; justify-content: center; gap: var(--space-xs); margin-bottom: var(--space-lg);">
-                            <button class="pricing-toggle-btn active" data-plan="monthly" style="padding: 0.5rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-text); color: white; font-weight: 600; font-size: var(--font-size-sm); cursor: pointer; transition: all var(--transition-base);">Monthly</button>
-                            <button class="pricing-toggle-btn" data-plan="yearly" style="padding: 0.5rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); font-weight: 600; font-size: var(--font-size-sm); cursor: pointer; transition: all var(--transition-base);">Yearly</button>
-                        </div>
-                        <div id="pricingMonthly">
-                            <div class="pricing-card-badge">Full Access</div>
-                            <div class="pricing-card-price">$5.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /mo</span></div>
-                            <div class="pricing-card-period">7-day free trial</div>
-                        </div>
-                        <div id="pricingYearly" style="display: none;">
-                            <div class="pricing-card-badge">Full Access <span style="background: rgba(139, 92, 246, 0.1); color: var(--color-link); padding: 0.125rem 0.5rem; border-radius: var(--radius-sm); font-size: var(--font-size-xs); margin-left: 0.25rem;">Save 17%</span></div>
-                            <div class="pricing-card-price">$59.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /yr</span></div>
-                            <div class="pricing-card-period">$5.00/mo &middot; 7-day free trial</div>
-                        </div>
+                    <div class="pricing-card" style="max-width: 320px;">
+                        <div class="pricing-card-badge">Basic</div>
+                        <div class="pricing-card-price">$3.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /mo</span></div>
+                        <div class="pricing-card-period">7-day free trial</div>
                         <ul style="list-style: none; padding: 0; margin-top: var(--space-lg); text-align: left; display: flex; flex-direction: column; gap: var(--space-sm);">
                             <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
                                 <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
@@ -811,13 +800,54 @@
                                 <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
                                 Full API access
                             </li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary); opacity: 0.5;">
+                                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
+                                Text-to-speech
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary); opacity: 0.5;">
+                                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
+                                Webhooks
+                            </li>
+                        </ul>
+                        <div style="margin-top: var(--space-lg);">
+                            <a href="https://quickreads.app" class="download-btn download-btn-secondary" style="width: 100%; justify-content: center;">Get Basic</a>
+                        </div>
+                    </div>
+                    <div class="pricing-card pricing-card-featured" style="max-width: 380px;">
+                        <div style="display: flex; justify-content: center; gap: var(--space-xs); margin-bottom: var(--space-lg);">
+                            <button class="pricing-toggle-btn active" data-plan="monthly" style="padding: 0.5rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-text); color: white; font-weight: 600; font-size: var(--font-size-sm); cursor: pointer; transition: all var(--transition-base);">Monthly</button>
+                            <button class="pricing-toggle-btn" data-plan="yearly" style="padding: 0.5rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); font-weight: 600; font-size: var(--font-size-sm); cursor: pointer; transition: all var(--transition-base);">Yearly</button>
+                        </div>
+                        <div id="pricingMonthly">
+                            <div class="pricing-card-badge">Pro</div>
+                            <div class="pricing-card-price">$5.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /mo</span></div>
+                            <div class="pricing-card-period">7-day free trial</div>
+                        </div>
+                        <div id="pricingYearly" style="display: none;">
+                            <div class="pricing-card-badge">Pro <span style="background: rgba(139, 92, 246, 0.1); color: var(--color-link); padding: 0.125rem 0.5rem; border-radius: var(--radius-sm); font-size: var(--font-size-xs); margin-left: 0.25rem;">Save 17%</span></div>
+                            <div class="pricing-card-price">$59.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /yr</span></div>
+                            <div class="pricing-card-period">$5.00/mo &middot; 7-day free trial</div>
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin-top: var(--space-lg); text-align: left; display: flex; flex-direction: column; gap: var(--space-sm);">
+                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                                Everything in Basic
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                                Text-to-speech
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                                Webhooks
+                            </li>
                             <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
                                 <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
                                 All future features
                             </li>
                         </ul>
                         <div style="margin-top: var(--space-lg);">
-                            <a href="https://quickreads.app" class="download-btn download-btn-primary" style="width: 100%; justify-content: center;">Check it Out</a>
+                            <a href="https://quickreads.app" class="download-btn download-btn-primary" style="width: 100%; justify-content: center;">Get Pro</a>
                         </div>
                     </div>
                 </div>
@@ -845,7 +875,7 @@
     <footer class="app-footer">
         <div class="app-footer-container">
             <a href="../../" class="app-footer-brand">
-                <img src="../../images/quick-reads.png" alt="Quick Reads">
+                <img src="../../images/quick-reads-icon.svg" alt="Quick Reads">
                 <span>Quick Reads</span>
             </a>
             <div class="app-footer-links">
