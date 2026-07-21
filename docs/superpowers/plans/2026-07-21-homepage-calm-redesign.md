@@ -17,7 +17,7 @@
 - **Run `./cache-bust.sh` before any commit that changes `home.css` or `styles.css`.**
 - **Preserve all existing `view-transition-name` inline styles on app icons.** The homepage-to-subpage view transitions depend on them.
 - **Preserve existing behavior in the inline `<script>` in `index.html`:** scroll reveal, navbar scroll state, footer year, screenshot lightbox, and scroll position save/restore.
-- Accent purple is `rgb(136, 57, 239)` and appears only on inline links, focus rings, and the button dot on hover.
+- Accent purple is `rgb(136, 57, 239)` and appears only on inline links, focus rings, and the button dot on hover. Accent purple is also permitted on hover borders (`.calm .btn:hover`, `.calm .btn-dot:hover`, `.calm .contact-btn:hover`).
 - No viewport-scaled root font-size. Use `clamp()` for fluid sizing.
 
 ## File Structure
@@ -664,6 +664,7 @@ git commit -m "Establish calm foundation tokens and remove homepage gradients an
     position: fixed;
     top: clamp(1rem, 2.5vw, 2.4rem);
     left: 50%;
+    right: auto;
     transform: translateX(-50%);
     width: auto;
     max-width: calc(100vw - 2rem);
@@ -673,10 +674,6 @@ git commit -m "Establish calm foundation tokens and remove homepage gradients an
     box-shadow: none;
     z-index: 5000;
     transition: background-color 0.3s ease;
-}
-
-.calm .navbar.scrolled {
-    background: var(--color-card);
 }
 
 .calm .nav-container {
@@ -699,6 +696,7 @@ git commit -m "Establish calm foundation tokens and remove homepage gradients an
 .calm .nav-logo-icon {
     width: 1.6rem;
     height: 1.6rem;
+    max-width: none;
     border-radius: 22%;
 }
 
@@ -725,8 +723,8 @@ git commit -m "Establish calm foundation tokens and remove homepage gradients an
         font-size: 0;
     }
 
-    .calm .nav-logo-icon {
-        font-size: 1rem;
+    .calm .nav-logo {
+        gap: 0;
     }
 }
 
@@ -740,7 +738,7 @@ git commit -m "Establish calm foundation tokens and remove homepage gradients an
     gap: 0.6rem;
     padding: 0.9rem 1.4rem;
     border-radius: var(--radius-pill);
-    border: 1px solid #d7dbe2;
+    border: 1px solid #8c8c8c;
     background: var(--color-card);
     color: #000;
     font-size: clamp(0.75rem, 1.1vw, 0.875rem);
