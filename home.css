@@ -386,7 +386,13 @@ body.calm {
    .scroll-reveal stays on an unclipped ancestor (.section-header,
    .about-wrapper) and .revealed cascades down to the clipped .wipe
    descendants instead of living on the same node. */
-.calm .wipe {
+/* Fail-safe: .wipe text is VISIBLE by default. The clip is only armed once
+   home.js confirms it is running and will manage the reveal (it adds
+   .is-armed). If the script fails, is blocked, or errors before this point,
+   the copy simply appears with no animation instead of being clipped to
+   nothing with no way to recover. Hiding content by default and relying on
+   JS to bring it back is how headings silently disappear. */
+.calm.is-armed .wipe {
     clip-path: inset(0 100% 0 0);
     transition: clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -404,7 +410,8 @@ body.calm {
 .calm .section-header.revealed .wipe,
 .calm .about-wrapper.revealed .wipe,
 .calm .wipe.revealed,
-.calm.is-loaded .stage-copy .wipe {
+.calm.is-loaded .stage-copy .wipe,
+.calm.is-revealed-all .wipe {
     clip-path: inset(0 0 0 0);
 }
 
@@ -485,20 +492,23 @@ body.calm {
 }
 
 .calm .app-card-shot {
-    border-radius: var(--radius-image);
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
+/* Five of the eight screenshots are portrait iPhone captures (~2.05:1 tall)
+   and three are landscape Mac/iPad captures (~0.8:1). Sizing on width alone
+   makes the portrait ones enormously tall. Constraining HEIGHT instead gives
+   every card the same visual weight: portrait shots land near 200px wide,
+   landscape ones stay wide and simply fill less of the cap. */
 .calm .app-card-shot .app-screenshot {
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: var(--radius-image);
     cursor: zoom-in;
-    /* styles.css has an unscoped `.app-screenshot { max-width: 280px }`
-       sized for the old narrow feature-row visual column. This card's
-       screenshot column is roughly twice as wide, so left unset the image
-       would render capped at 280px inside a much wider box. */
-    max-width: none;
 }
 
 .calm .app-card-body {
@@ -554,5 +564,218 @@ body.calm {
 
     .calm .app-card-link {
         justify-content: flex-start;
+    }
+}
+
+/* ---------- Parallax screenshot band ---------- */
+
+.calm .band {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1440 / 550;
+    overflow: hidden;
+    background: var(--color-card);
+    margin: var(--gap-section) 0;
+}
+
+.calm .band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.calm .band-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 16.6667%;
+    flex: 0 0 16.6667%;
+    padding: 0 0.5rem;
+    align-self: flex-start;
+    will-change: transform;
+}
+
+.calm .band-col:nth-child(2n) {
+    align-self: flex-end;
+}
+
+.calm .band-col img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-image);
+    object-fit: cover;
+    /* styles.css sets an unscoped img { max-width: 100% }; harmless here,
+       but the band sizes purely by column width so make it explicit. */
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .calm .band {
+        aspect-ratio: 390 / 340;
+    }
+
+    .calm .band-col {
+        width: 33.3333%;
+        flex: 0 0 33.3333%;
+    }
+
+    .calm .band-col:nth-child(n + 4) {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm .band-col {
+        transform: none !important;
+        will-change: auto;
+    }
+}
+
+/* ---------- Section labels (text shuffle target) ---------- */
+
+/* Scrambled glyphs are not the same width as the real ones, so the label
+   reserves space to stop the heading below it jittering mid-animation. */
+.calm .section-label {
+    display: inline-block;
+    min-width: 6ch;
+}
+
+/* ---------- Creative rows ---------- */
+
+.calm .creative-rows {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: var(--pad-card);
+}
+
+.calm .creative-row {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 14rem) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    padding: 2rem 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.calm .creative-row + .creative-row {
+    border-top: 1px solid #d7dbe2;
+}
+
+.calm .creative-row-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.calm .creative-row-label .content-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 0.3rem;
+}
+
+.calm .creative-row-label .content-title {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    margin: 0;
+}
+
+.calm .creative-row-copy {
+    margin: 0;
+    line-height: 1.76;
+    letter-spacing: -0.02em;
+}
+
+.calm .creative-row-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ---------- About ---------- */
+
+.calm .about-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: var(--pad-card);
+}
+
+.calm .about-photo .headshot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-image);
+}
+
+.calm .about-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 1rem;
+}
+
+.calm .about-text {
+    line-height: 1.76;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Contact ---------- */
+
+.calm .contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.calm .contact-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+/* ---------- Footer ---------- */
+
+.calm .footer {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    margin: var(--gap-section) clamp(0.5rem, 1.5vw, 1rem) clamp(0.5rem, 1.5vw, 1rem);
+    border-top: none;
+}
+
+@media (max-width: 900px) {
+    .calm .creative-row {
+        grid-template-columns: 4rem minmax(0, 1fr);
+        grid-template-areas:
+            "thumb label"
+            "copy copy"
+            "link link";
+        gap: 1rem;
+    }
+
+    .calm .creative-row-thumb { grid-area: thumb; }
+    .calm .creative-row-label { grid-area: label; }
+    .calm .creative-row-copy { grid-area: copy; }
+    .calm .creative-row-link { grid-area: link; justify-content: flex-start; }
+
+    .calm .about-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm .about-photo {
+        max-width: 12rem;
     }
 }

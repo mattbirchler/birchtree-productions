@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=be9fc7ad">
-    <link rel="stylesheet" href="home.css?v=f03dfb77">
+    <link rel="stylesheet" href="home.css?v=6e0e7fe3">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -256,6 +256,33 @@
         </div>
     </section>
 
+    <div class="band" aria-hidden="true">
+        <div class="band-col" data-speed="0.10">
+            <img src="images/quick-reviews-main.png" alt="">
+            <img src="images/quick-reads-reader.jpg" alt="">
+        </div>
+        <div class="band-col" data-speed="-0.16">
+            <img src="images/quick-notes-hero.jpg" alt="">
+            <img src="images/weave-threads.png" alt="">
+        </div>
+        <div class="band-col" data-speed="0.22">
+            <img src="images/quick-subtitles-hero.jpeg" alt="">
+            <img src="images/yearly-run-tracker-insights.png" alt="">
+        </div>
+        <div class="band-col" data-speed="-0.12">
+            <img src="images/chapter-details.png" alt="">
+            <img src="images/best-o-masto-main.png" alt="">
+        </div>
+        <div class="band-col" data-speed="0.18">
+            <img src="images/quick-reads-queue.jpg" alt="">
+            <img src="images/quick-notes-writer.jpg" alt="">
+        </div>
+        <div class="band-col" data-speed="-0.20">
+            <img src="images/quick-reviews-example-1.jpg" alt="">
+            <img src="images/transcript-view.png" alt="">
+        </div>
+    </div>
+
     <section id="creative" class="section content-section">
         <div class="container">
             <div class="section-header scroll-reveal">
@@ -264,27 +291,32 @@
                 <p class="section-subtitle wipe">Honest takes on technology, creativity, and building things that matter.</p>
             </div>
 
-            <div class="content-grid">
-                <article class="content-card scroll-reveal">
-                    <div class="content-card-visual">
-                        <img src="images/ABC_header.png" alt="A Better Computer YouTube channel" class="content-image">
+            <div class="creative-rows scroll-reveal">
+                <article class="creative-row">
+                    <div class="creative-row-thumb">
+                        <img src="images/ABC_header.png" alt="A Better Computer YouTube channel">
                     </div>
-                    <div class="content-card-body">
+                    <div class="creative-row-label">
                         <span class="content-label">YouTube</span>
                         <h3 class="content-title">A Better Computer</h3>
-                        <p class="content-description">Software tutorials, and, well, as the name implies, just a bunch of ways I think you can make yourself a better computer.</p>
-                        <a href="https://www.youtube.com/@ABetterComputer" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Channel</a>
+                    </div>
+                    <p class="creative-row-copy">Software tutorials, and, well, as the name implies, just a bunch of ways I think you can make yourself a better computer.</p>
+                    <div class="creative-row-link">
+                        <a href="https://www.youtube.com/@ABetterComputer" target="_blank" rel="noopener noreferrer" class="btn-dot">Visit Channel</a>
                     </div>
                 </article>
 
-                <article class="content-card scroll-reveal">
-                    <div class="content-card-visual content-card-gradient">
+                <article class="creative-row">
+                    <div class="creative-row-thumb">
+                        <img src="images/birchtree-icon.png" alt="Birchtree blog">
                     </div>
-                    <div class="content-card-body">
+                    <div class="creative-row-label">
                         <span class="content-label">Blog</span>
                         <h3 class="content-title">Birchtree</h3>
-                        <p class="content-description">My personal blog about tech, Apple, and generally whatever else I want to talk about. Running since 2010.</p>
-                        <a href="https://birchtree.me" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read Blog</a>
+                    </div>
+                    <p class="creative-row-copy">My personal blog about tech, Apple, and generally whatever else I want to talk about. Running since 2010.</p>
+                    <div class="creative-row-link">
+                        <a href="https://birchtree.me" target="_blank" rel="noopener noreferrer" class="btn-dot">Read Blog</a>
                     </div>
                 </article>
             </div>
@@ -433,6 +465,6 @@
             });
         });
     </script>
-    <script src="home.js?v=fb7b5b57" defer></script>
+    <script src="home.js?v=408b707e" defer></script>
 </body>
 </html>

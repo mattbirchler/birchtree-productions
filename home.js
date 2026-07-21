@@ -269,13 +269,146 @@
         measure();
     }
 
+    // Arm the reveal wipes. Until this runs, .wipe copy is plain visible text
+    // (see the .is-armed note in home.css), so a script failure can never
+    // leave the page with invisible headings.
+    document.body.classList.add('is-armed');
+
     window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
             document.body.classList.add('is-loaded');
         });
     });
 
+    // Second fail-safe: if an element somehow never receives .revealed (an
+    // observer that does not fire, a browser quirk, a zero-area target),
+    // reveal everything rather than leaving copy permanently clipped. A
+    // missed animation is a far smaller failure than missing text.
+    window.setTimeout(function () {
+        document.body.classList.add('is-revealed-all');
+    }, 3000);
+
+    function initBand() {
+        var band = document.querySelector('.band');
+        if (!band || reduceMotion.matches) { return; }
+
+        var cols = Array.prototype.slice.call(band.querySelectorAll('.band-col'));
+        if (!cols.length) { return; }
+
+        var frame = null;
+        var visible = false;
+
+        function update() {
+            frame = null;
+            if (!visible) { return; }
+
+            var box = band.getBoundingClientRect();
+            // -1 when the band sits just below the viewport, +1 just above.
+            var progress = (window.innerHeight / 2 - (box.top + box.height / 2)) /
+                           ((window.innerHeight + box.height) / 2);
+
+            cols.forEach(function (col) {
+                var speed = parseFloat(col.getAttribute('data-speed')) || 0;
+                var shift = progress * speed * box.height;
+                col.style.transform = 'translate3d(0,' + shift.toFixed(2) + 'px,0)';
+            });
+        }
+
+        function schedule() {
+            if (frame === null) {
+                frame = window.requestAnimationFrame(update);
+            }
+        }
+
+        // Only run the scroll handler while the band is actually on screen.
+        var io = new IntersectionObserver(function (entries) {
+            visible = entries[0].isIntersecting;
+            if (visible) { schedule(); }
+        }, { rootMargin: '100px' });
+        io.observe(band);
+
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule);
+        schedule();
+    }
+
+    function initShuffle() {
+        // Deliberately scoped to section labels only. Do not widen this
+        // selector: scrambling body copy fights Atkinson Hyperlegible Next,
+        // which this site uses specifically for legibility.
+        var labels = Array.prototype.slice.call(
+            document.querySelectorAll('.section-label')
+        );
+        if (!labels.length || reduceMotion.matches) { return; }
+
+        var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*+=@';
+        var DURATION = 600;   // ms for the whole word to settle
+        var SETTLE = 0.55;    // fraction of DURATION each char stays scrambled
+
+        function randomGlyph() {
+            return GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
+        }
+
+        function shuffle(el) {
+            if (el.dataset.shuffled === 'true') { return; }
+            el.dataset.shuffled = 'true';
+
+            var text = el.textContent;
+            var start = null;
+
+            function step(now) {
+                if (start === null) { start = now; }
+                var elapsed = now - start;
+                var out = '';
+                var settled = 0;
+
+                for (var i = 0; i < text.length; i++) {
+                    var ch = text.charAt(i);
+                    if (ch === ' ') {
+                        out += ' ';
+                        settled++;
+                        continue;
+                    }
+                    // Each character settles slightly later than the one
+                    // before it, so the word resolves left to right.
+                    var charStart = (i / text.length) * DURATION * SETTLE;
+                    if (elapsed >= charStart + DURATION * (1 - SETTLE)) {
+                        out += ch;
+                        settled++;
+                    } else {
+                        out += randomGlyph();
+                    }
+                }
+
+                el.textContent = out;
+
+                if (settled < text.length) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    // Always restore the exact original string, so a dropped
+                    // frame can never leave a stray glyph behind.
+                    el.textContent = text;
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    shuffle(entry.target);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        labels.forEach(function (label) { io.observe(label); });
+    }
+
     initStage();
+    initBand();
+    initShuffle();
 
     window.__calmReduceMotion = reduceMotion;
 }());
