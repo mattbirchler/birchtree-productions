@@ -58,3 +58,117 @@ body.calm {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
+
+/* ---------- Pill nav ---------- */
+
+.calm .navbar {
+    position: fixed;
+    top: clamp(1rem, 2.5vw, 2.4rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    background: var(--color-card);
+    border-radius: var(--radius-pill);
+    border: none;
+    box-shadow: none;
+    z-index: 5000;
+    transition: background-color 0.3s ease;
+}
+
+.calm .navbar.scrolled {
+    background: var(--color-card);
+}
+
+.calm .nav-container {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    max-width: none;
+    padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.calm .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.calm .nav-logo-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 22%;
+}
+
+.calm .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.6vw, 1.4rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.calm .nav-links a {
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+/* On narrow screens the wordmark would force the pill off-screen. */
+@media (max-width: 640px) {
+    .calm .nav-logo span,
+    .calm .nav-logo {
+        font-size: 0;
+    }
+
+    .calm .nav-logo-icon {
+        font-size: 1rem;
+    }
+}
+
+/* ---------- Pill buttons with dot ---------- */
+
+.calm .btn,
+.calm .btn-dot,
+.calm .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid #d7dbe2;
+    background: var(--color-card);
+    color: #000;
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.calm .btn::after,
+.calm .btn-dot::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #000;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.calm .btn:hover,
+.calm .btn-dot:hover,
+.calm .contact-btn:hover {
+    border-color: var(--accent);
+}
+
+.calm .btn:hover::after,
+.calm .btn-dot:hover::after {
+    background: var(--accent);
+    transform: scale(1.6);
+}
