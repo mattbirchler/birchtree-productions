@@ -366,3 +366,76 @@ body.calm {
 .calm .stage-mark {
     max-width: none;
 }
+
+/* ---------- Reveal wipes ---------- */
+
+/* Copy reveals by wiping left to right rather than fading. Hero elements
+   reveal on load (see .is-loaded below). Everything else is driven by the
+   pre-existing IntersectionObserver in index.html, which adds .revealed
+   to any .scroll-reveal element it observes.
+
+   Important: .scroll-reveal and .wipe are deliberately NOT the same
+   element for scroll-driven copy. A .wipe element sits at
+   clip-path: inset(0 100% 0 0) before reveal - a genuinely zero-area box.
+   Chromium's IntersectionObserver never reports isIntersecting for a
+   target with a zero-area clip-path, no matter how long you scroll, so an
+   element carrying both classes at once would never receive .revealed and
+   would stay permanently invisible. Verified directly: an isolated
+   zero-area clip-path target never intersects under headless Chrome,
+   while an identical opacity:0 target does. To avoid that trap,
+   .scroll-reveal stays on an unclipped ancestor (.section-header,
+   .about-wrapper) and .revealed cascades down to the clipped .wipe
+   descendants instead of living on the same node. */
+.calm .wipe {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Neutralize the unscoped .scroll-reveal fade/slide (styles.css) on
+   section headers - .section-header only carries .scroll-reveal so the
+   IntersectionObserver has an unclipped target to observe. The visible
+   reveal is handled entirely by the nested .wipe elements below. */
+.calm .section-header.scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.calm .section-header.revealed .wipe,
+.calm .about-wrapper.revealed .wipe,
+.calm .wipe.revealed,
+.calm.is-loaded .stage-copy .wipe {
+    clip-path: inset(0 0 0 0);
+}
+
+.calm .stage-copy .stage-title.wipe {
+    transition-delay: 0.3s;
+}
+
+.calm .stage-copy .stage-tagline.wipe {
+    transition-delay: 0.45s;
+}
+
+/* Stagger reveals within a section header. */
+.calm .section-header .wipe:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.calm .section-header .wipe:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm .wipe {
+        clip-path: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .calm .section-header.revealed .wipe,
+    .calm .about-wrapper.revealed .wipe,
+    .calm .wipe.revealed,
+    .calm.is-loaded .stage-copy .wipe {
+        opacity: 1;
+    }
+}

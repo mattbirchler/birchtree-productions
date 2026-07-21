@@ -269,6 +269,12 @@
         measure();
     }
 
+    window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+            document.body.classList.add('is-loaded');
+        });
+    });
+
     initStage();
 
     window.__calmReduceMotion = reduceMotion;
