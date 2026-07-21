@@ -28,6 +28,7 @@
 | `home.js` (new) | Hero magnetic/drag, parallax band, text shuffle |
 | `index.html` (modify) | Markup restructure, link the two new files, add `.calm` to body |
 | `tools/check-isolation.py` (new) | Guard: enforces scoping and sub-page isolation |
+| `tools/test-check-isolation.py` (new) | Stdlib regression tests for the guard's parsing logic |
 | `cache-bust.sh` (modify) | Extend to hash `home.css` and `home.js` |
 | `CLAUDE.md` (modify) | Remove the now-false background-shapes and gradient mandates |
 | `styles.css` | **Untouched.** Guarded. |
@@ -42,57 +43,128 @@ Sets up the two new files and the check that makes every later task safe. Nothin
 - Create: `home.css`
 - Create: `home.js`
 - Create: `tools/check-isolation.py`
+- Create: `tools/test-check-isolation.py`
 - Modify: `index.html` (head link, body class, script tag)
 - Modify: `cache-bust.sh`
 
 **Interfaces:**
 - Consumes: nothing
-- Produces: `body.calm` scoping hook; `tools/check-isolation.py` exits 0 on pass and 1 with printed violations on fail; `home.css` and `home.js` exist and are loaded only by `index.html`
+- Produces: `body.calm` scoping hook; `tools/check-isolation.py` exits 0 on pass and 1 with printed violations on fail; `tools/test-check-isolation.py` exits 0 when the guard's parsing logic behaves correctly against fixture CSS/HTML and non-zero otherwise; `home.css` and `home.js` exist and are loaded only by `index.html`
 
 - [ ] **Step 1: Write the guard script**
 
-Create `tools/check-isolation.py`:
+Create `tools/check-isolation.py`. Selector scoping is a whole-token match on
+`.calm` (not a substring test, so `.calmXtra` fails), statement at-rules
+(`@charset "...";`, `@layer utilities;`) are parsed as their own units so
+they can never glue onto and hide the next real selector, quoted string
+literals are skipped while scanning so braces inside `content: "} {"` can't
+desync the parser, and the asset-reference check is scoped to `href=`/`src=`
+attribute values rather than a raw substring search over the whole file:
 
 ```python
 #!/usr/bin/env python3
 """Verify homepage styles cannot affect app sub-pages.
 
 Two guarantees:
-  1. Every rule in home.css is scoped under .calm, so the file cannot leak
-     styles even if some page loads it by accident.
-  2. home.css and home.js are referenced only by index.html.
+  1. Every rule in home.css is scoped under a whole `.calm` class token, so
+     the file cannot leak styles even if some page loads it by accident.
+  2. home.css and home.js are referenced (via href=/src=) only by index.html.
 
 Run from anywhere: python3 tools/check-isolation.py
+
+The parsing/checking logic below is importable (see tools/test-check-isolation.py)
+so it can be exercised against fixture strings without touching the filesystem.
 """
 import pathlib
 import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-ALLOWED_UNSCOPED = ("@import", "@charset", "@font-face", "@keyframes")
+
+# Whole-token match for the .calm class: a literal ".calm" not immediately
+# followed by another word character or hyphen (which would make it a
+# different class, e.g. ".calmXtra" or ".calm-extra").
+CALM_TOKEN_RE = re.compile(r"\.calm\b(?![\w-])")
+
+# Block at-rules whose body contains nested rules with real page selectors
+# that still need to be scope-checked (e.g. `@media {...}` wrapping `.calm ...`).
+BLOCK_RECURSE_AT_RULES = ("@media", "@supports", "@layer")
+
+# Block at-rules whose body is declarations or keyframe stops (0%, from, to),
+# never page selectors, so there is nothing to scope-check inside them.
+BLOCK_OPAQUE_AT_RULES = ("@font-face", "@keyframes")
+
+# Statement (blockless, `;`-terminated) at-rules that carry no CSS rules at
+# all, so they cannot leak anything regardless of what they say.
+# `@import` is deliberately NOT here: it can pull in an entirely separate
+# stylesheet whose contents this script cannot see or validate, so it is
+# treated as a violation rather than silently trusted.
+STATEMENT_SAFE_AT_RULES = ("@charset", "@layer")
+
+# Attribute-scoped asset reference: only href="..."/src="..." values count,
+# not incidental mentions of the filename elsewhere in the markup (e.g. in a
+# comment or visible text).
+ASSET_ATTR_RE = re.compile(r'(?:href|src)\s*=\s*["\']([^"\']*)["\']', re.I)
 
 
 def strip_comments(css):
     return re.sub(r"/\*.*?\*/", "", css, flags=re.S)
 
 
-def top_level_rules(css):
-    """Yield (selector, body) for each rule at the current nesting level."""
+def _skip_string(css, i):
+    """Given css[i] is a quote character, return the index just past the
+    matching closing quote, honoring backslash escapes."""
+    quote = css[i]
+    i += 1
+    n = len(css)
+    while i < n:
+        ch = css[i]
+        if ch == "\\":
+            i += 2
+            continue
+        if ch == quote:
+            return i + 1
+        i += 1
+    return i  # unterminated string; consume to end rather than loop forever
+
+
+def top_level_units(css):
+    """Yield ('rule', selector, body) or ('statement', text) for each unit
+    at the current nesting level, skipping over quoted strings so that
+    braces/semicolons inside CSS string literals never desync the scan."""
     depth = 0
-    sel_start = 0
+    start = 0
     body_start = 0
     selector = ""
-    for i, ch in enumerate(css):
+    i = 0
+    n = len(css)
+    while i < n:
+        ch = css[i]
+        if ch in ("'", '"'):
+            i = _skip_string(css, i)
+            continue
         if ch == "{":
             if depth == 0:
-                selector = css[sel_start:i].strip()
+                selector = css[start:i].strip()
                 body_start = i + 1
             depth += 1
-        elif ch == "}":
+            i += 1
+            continue
+        if ch == "}":
             depth -= 1
+            i += 1
             if depth == 0:
-                yield selector, css[body_start:i]
-                sel_start = i + 1
+                yield ("rule", selector, css[body_start:i - 1])
+                start = i
+            continue
+        if ch == ";" and depth == 0:
+            statement = css[start:i].strip()
+            i += 1
+            if statement:
+                yield ("statement", statement)
+            start = i
+            continue
+        i += 1
 
 
 def check_selector(selector, violations):
@@ -100,22 +172,52 @@ def check_selector(selector, violations):
         part = part.strip()
         if not part:
             continue
-        if ".calm" not in part:
+        if not CALM_TOKEN_RE.search(part):
             violations.append(f"unscoped selector: {part!r}")
 
 
 def walk(css, violations):
-    for selector, body in top_level_rules(css):
+    for unit in top_level_units(css):
+        if unit[0] == "statement":
+            text = unit[1]
+            if not text.startswith("@"):
+                continue  # stray semicolon; no selector, nothing to check
+            name = text.split()[0]
+            if name in STATEMENT_SAFE_AT_RULES:
+                continue
+            violations.append(f"unsupported at-rule: {text!r}")
+            continue
+
+        _, selector, body = unit
         if selector.startswith("@"):
             name = selector.split()[0]
-            if name in ("@media", "@supports", "@layer"):
+            if name in BLOCK_RECURSE_AT_RULES:
                 walk(body, violations)
-            elif name in ALLOWED_UNSCOPED:
+            elif name in BLOCK_OPAQUE_AT_RULES:
                 continue
             else:
                 violations.append(f"unsupported at-rule: {selector!r}")
         else:
             check_selector(selector, violations)
+
+
+def check_home_css_text(css_text):
+    """Return a list of violation strings for the given CSS source."""
+    violations = []
+    walk(strip_comments(css_text), violations)
+    return violations
+
+
+def check_asset_references(html_text, assets=("home.css", "home.js")):
+    """Return the list of asset names actually referenced via href=/src=
+    attributes in the given HTML source (not just mentioned anywhere)."""
+    found = []
+    for match in ASSET_ATTR_RE.finditer(html_text):
+        value = match.group(1)
+        for asset in assets:
+            if asset in value:
+                found.append(asset)
+    return found
 
 
 def main():
@@ -125,16 +227,15 @@ def main():
     if not home_css.exists():
         print("FAIL: home.css does not exist")
         return 1
-    walk(strip_comments(home_css.read_text()), violations)
+    violations.extend(check_home_css_text(home_css.read_text()))
 
     root_index = ROOT / "index.html"
     for html in sorted(ROOT.rglob("*.html")):
         if html == root_index:
             continue
         text = html.read_text()
-        for asset in ("home.css", "home.js"):
-            if asset in text:
-                violations.append(f"{asset} referenced by {html.relative_to(ROOT)}")
+        for asset in check_asset_references(text):
+            violations.append(f"{asset} referenced by {html.relative_to(ROOT)}")
 
     if violations:
         print("FAIL: homepage styles are not isolated")
@@ -149,6 +250,27 @@ def main():
 if __name__ == "__main__":
     sys.exit(main())
 ```
+
+- [ ] **Step 1a: Write the regression test suite and run it**
+
+Create `tools/test-check-isolation.py`. It imports `tools/check-isolation.py`
+by file path (no logic duplicated) and runs the importable
+`check_home_css_text` / `check_asset_references` helpers against fixture
+strings, printing a per-case result and exiting non-zero if any case fails.
+At minimum it must cover: a substring-only match like `.calmXtra` (must
+FAIL), a blockless `@charset "...";` followed by an unscoped selector (must
+FAIL, proving the statement doesn't swallow the next rule), the same bug via
+a blockless `@layer utilities;` (must FAIL), a `content: "} foo {"` string
+literal that would desync a naive brace counter (must PASS on its own, and
+must not hide a real leak placed after it), a legitimately scoped stylesheet
+with nested `@media` and `@keyframes` (must PASS), a plainly unscoped
+selector (must FAIL), and a multi-selector comma list where one part is
+unscoped (must FAIL).
+
+Run: `python3 tools/test-check-isolation.py`
+
+Expected: every case prints `[ok]` and the run ends with `PASS: all N cases
+behaved as expected`, exit code 0.
 
 - [ ] **Step 2: Create a deliberately bad `home.css` and prove the guard catches it**
 
@@ -296,7 +418,7 @@ Expected: the homepage looks exactly as it did before, except the page backgroun
 - [ ] **Step 9: Commit**
 
 ```bash
-git add home.css home.js tools/check-isolation.py cache-bust.sh index.html apps/
+git add home.css home.js tools/check-isolation.py tools/test-check-isolation.py cache-bust.sh index.html apps/
 git commit -m "Add isolated homepage stylesheet, script, and isolation guard"
 ```
 
@@ -2058,7 +2180,8 @@ Update the File Organization tree to include the new files:
 ├── styles.css              # Shared styles (app sub-pages)
 ├── cache-bust.sh           # Run after changing styles.css, home.css, or home.js
 ├── tools/
-│   └── check-isolation.py  # Verifies homepage styles cannot reach sub-pages
+│   ├── check-isolation.py       # Verifies homepage styles cannot reach sub-pages
+│   └── test-check-isolation.py  # Regression tests for check-isolation.py
 ```
 
 - [ ] **Step 2: Run the isolation guard**
