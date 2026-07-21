@@ -193,9 +193,26 @@ body.calm {
     padding: 0;
 }
 
+/* Centered square that anchors both the mark and the rings. .stage-rings
+   is nested inside this element (not a sibling) and sized to it with
+   `inset: 0`, so the rings' center and the mark's center are the same
+   point by construction - there is no longer a separate anchor to drift
+   out of sync with the mark's actual grid position. */
+.calm .stage-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68vmin;
+    height: 68vmin;
+    overflow: visible;
+}
+
 .calm .stage-rings {
     position: absolute;
     inset: 0;
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -208,18 +225,37 @@ body.calm {
     transform: rotate(var(--spin, 0deg));
 }
 
+/* The visible orbit circle. A hairline stroke rather than a stepped fill:
+   at this composition's scale (three nested rings this close together) a
+   filled/shaded ring reads as a target/badge and competes with the app
+   icons, while a 1px stroke is just enough to imply "this icon lives on a
+   path" without adding visual weight. Rotating this element via --spin is
+   a no-op (a circle is rotationally symmetric), so home.js's pointer
+   tracking never disturbs it. */
+.calm .stage-ring::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+    margin: calc(var(--radius) * -1);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
 .calm .stage-ring[data-ring="outer"] {
-    --radius: 46vmin;
+    --radius: 28vmin;
     --icon-size: clamp(44px, 5.5vmin, 72px);
 }
 
 .calm .stage-ring[data-ring="mid"] {
-    --radius: 32vmin;
+    --radius: 20vmin;
     --icon-size: clamp(38px, 4.6vmin, 60px);
 }
 
 .calm .stage-ring[data-ring="inner"] {
-    --radius: 20vmin;
+    --radius: 15vmin;
     --icon-size: clamp(32px, 3.8vmin, 50px);
 }
 
@@ -247,13 +283,10 @@ body.calm {
     transition: none;
 }
 
-.calm .stage-center {
-    position: relative;
-    z-index: 2;
-}
-
 .calm .stage-mark {
     display: block;
+    position: relative;
+    z-index: 2;
     width: clamp(120px, 14vw, 200px);
     height: auto;
     border-radius: 22%;
@@ -283,8 +316,12 @@ body.calm {
     margin: 0;
 }
 
-/* Below this width the rings crowd the mark and the pinned copy overlaps
-   the composition, so the copy moves beneath it. */
+/* Below this width the pinned bottom-right copy would collide with the
+   composition, so it drops into normal flow, centered beneath the stage.
+   .stage-center switches to vw (rather than vmin) so its size tracks the
+   one axis that is actually constrained on a narrow phone; the row below
+   it (.stage-copy, now static) is guaranteed clear because it is a
+   separate grid row with a gap, not an independently anchored overlay. */
 @media (max-width: 768px) {
     .calm .stage {
         height: auto;
@@ -294,22 +331,21 @@ body.calm {
         gap: 2rem;
     }
 
-    .calm .stage-rings {
-        position: absolute;
-        inset: 0 0 auto 0;
-        height: 60vh;
+    .calm .stage-center {
+        width: 88vw;
+        height: 88vw;
     }
 
     .calm .stage-ring[data-ring="outer"] {
-        --radius: 40vmin;
+        --radius: 38vw;
     }
 
     .calm .stage-ring[data-ring="mid"] {
-        --radius: 28vmin;
+        --radius: 34vw;
     }
 
     .calm .stage-ring[data-ring="inner"] {
-        --radius: 17vmin;
+        --radius: 30vw;
     }
 
     .calm .stage-copy {

@@ -830,24 +830,24 @@ Replace the entire `<header class="hero">...</header>` block with:
 
 ```html
     <header class="hero stage" id="stage">
-        <div class="stage-rings" aria-hidden="true">
-            <div class="stage-ring" data-ring="outer">
-                <img src="images/quick-reviews.png" alt="" class="stage-icon" style="--angle: 20deg;">
-                <img src="images/quick-reads.png" alt="" class="stage-icon" style="--angle: 140deg;">
-                <img src="images/chapterpod.png" alt="" class="stage-icon" style="--angle: 260deg;">
-            </div>
-            <div class="stage-ring" data-ring="mid">
-                <img src="images/yearly run goals.png" alt="" class="stage-icon" style="--angle: 75deg;">
-                <img src="images/quick subtitles.png" alt="" class="stage-icon" style="--angle: 195deg;">
-                <img src="images/quick notes.png" alt="" class="stage-icon" style="--angle: 315deg;">
-            </div>
-            <div class="stage-ring" data-ring="inner">
-                <img src="images/typefully-icon.png" alt="" class="stage-icon" style="--angle: 40deg;">
-                <img src="images/best-o-masto.png" alt="" class="stage-icon" style="--angle: 220deg;">
-            </div>
-        </div>
-
         <div class="stage-center">
+            <div class="stage-rings" aria-hidden="true">
+                <div class="stage-ring" data-ring="outer">
+                    <img src="images/quick-reviews.png" alt="" class="stage-icon" style="--angle: 20deg;">
+                    <img src="images/quick-reads.png" alt="" class="stage-icon" style="--angle: 140deg;">
+                    <img src="images/chapterpod.png" alt="" class="stage-icon" style="--angle: 260deg;">
+                </div>
+                <div class="stage-ring" data-ring="mid">
+                    <img src="images/yearly run goals.png" alt="" class="stage-icon" style="--angle: 75deg;">
+                    <img src="images/quick subtitles.png" alt="" class="stage-icon" style="--angle: 195deg;">
+                    <img src="images/quick notes.png" alt="" class="stage-icon" style="--angle: 315deg;">
+                </div>
+                <div class="stage-ring" data-ring="inner">
+                    <img src="images/typefully-icon.png" alt="" class="stage-icon" style="--angle: 40deg;">
+                    <img src="images/best-o-masto.png" alt="" class="stage-icon" style="--angle: 220deg;">
+                </div>
+            </div>
+
             <img src="images/birchtree-icon.png" alt="Birchtree Productions" class="stage-mark">
         </div>
 
@@ -859,6 +859,16 @@ Replace the entire `<header class="hero">...</header>` block with:
 ```
 
 Note: the icons are `aria-hidden` because they are decorative here. Each app is named in full in the Apps section below, so no information is lost to screen readers.
+
+**Amendment after fix round 1 (post-implementation):** `.stage-rings` moved from a sibling of
+`.stage-center` to a child of it. As originally written, `.stage-rings` anchored to the whole
+`.stage` panel (`inset: 0`) while `.stage-center`/`.stage-mark` were positioned by grid flow, so
+the two centers only coincided by coincidence (true on desktop, false on mobile once
+`.stage-copy` became an in-flow row, which pushed the mark up and left the ring anchor pointed at
+the wrong point - orbiting icons landed on the mark and on the tagline text). Nesting
+`.stage-rings` inside `.stage-center` and giving `.stage-rings` `inset: 0` within it makes the
+two centers the same point by construction, at every viewport width. See "Fix round 1" in
+`.superpowers/sdd/task-4-report.md` for the full geometry writeup and measurements.
 
 - [ ] **Step 2: Append the stage styles to `home.css`**
 
@@ -876,11 +886,29 @@ Note: the icons are `aria-hidden` because they are decorative here. Each app is 
     background: #f0f0f2;
     overflow: hidden;
     touch-action: pan-y;
+    padding: 0;
+}
+
+/* Centered square that anchors both the mark and the rings. .stage-rings
+   is nested inside this element (not a sibling) and sized to it with
+   `inset: 0`, so the rings' center and the mark's center are the same
+   point by construction - there is no longer a separate anchor to drift
+   out of sync with the mark's actual grid position. */
+.calm .stage-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68vmin;
+    height: 68vmin;
+    overflow: visible;
 }
 
 .calm .stage-rings {
     position: absolute;
     inset: 0;
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -893,18 +921,37 @@ Note: the icons are `aria-hidden` because they are decorative here. Each app is 
     transform: rotate(var(--spin, 0deg));
 }
 
+/* The visible orbit circle. A hairline stroke rather than a stepped fill:
+   at this composition's scale (three nested rings this close together) a
+   filled/shaded ring reads as a target/badge and competes with the app
+   icons, while a 1px stroke is just enough to imply "this icon lives on a
+   path" without adding visual weight. Rotating this element via --spin is
+   a no-op (a circle is rotationally symmetric), so home.js's pointer
+   tracking never disturbs it. */
+.calm .stage-ring::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+    margin: calc(var(--radius) * -1);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
 .calm .stage-ring[data-ring="outer"] {
-    --radius: 46vmin;
+    --radius: 28vmin;
     --icon-size: clamp(44px, 5.5vmin, 72px);
 }
 
 .calm .stage-ring[data-ring="mid"] {
-    --radius: 32vmin;
+    --radius: 20vmin;
     --icon-size: clamp(38px, 4.6vmin, 60px);
 }
 
 .calm .stage-ring[data-ring="inner"] {
-    --radius: 20vmin;
+    --radius: 15vmin;
     --icon-size: clamp(32px, 3.8vmin, 50px);
 }
 
@@ -932,13 +979,10 @@ Note: the icons are `aria-hidden` because they are decorative here. Each app is 
     transition: none;
 }
 
-.calm .stage-center {
-    position: relative;
-    z-index: 2;
-}
-
 .calm .stage-mark {
     display: block;
+    position: relative;
+    z-index: 2;
     width: clamp(120px, 14vw, 200px);
     height: auto;
     border-radius: 22%;
@@ -968,8 +1012,12 @@ Note: the icons are `aria-hidden` because they are decorative here. Each app is 
     margin: 0;
 }
 
-/* Below this width the rings crowd the mark and the pinned copy overlaps
-   the composition, so the copy moves beneath it. */
+/* Below this width the pinned bottom-right copy would collide with the
+   composition, so it drops into normal flow, centered beneath the stage.
+   .stage-center switches to vw (rather than vmin) so its size tracks the
+   one axis that is actually constrained on a narrow phone; the row below
+   it (.stage-copy, now static) is guaranteed clear because it is a
+   separate grid row with a gap, not an independently anchored overlay. */
 @media (max-width: 768px) {
     .calm .stage {
         height: auto;
@@ -979,22 +1027,21 @@ Note: the icons are `aria-hidden` because they are decorative here. Each app is 
         gap: 2rem;
     }
 
-    .calm .stage-rings {
-        position: absolute;
-        inset: 0 0 auto 0;
-        height: 60vh;
+    .calm .stage-center {
+        width: 88vw;
+        height: 88vw;
     }
 
     .calm .stage-ring[data-ring="outer"] {
-        --radius: 40vmin;
+        --radius: 38vw;
     }
 
     .calm .stage-ring[data-ring="mid"] {
-        --radius: 28vmin;
+        --radius: 34vw;
     }
 
     .calm .stage-ring[data-ring="inner"] {
-        --radius: 17vmin;
+        --radius: 30vw;
     }
 
     .calm .stage-copy {
@@ -1002,6 +1049,16 @@ Note: the icons are `aria-hidden` because they are decorative here. Each app is 
         max-width: none;
         text-align: center;
     }
+}
+
+/* ---------- Stage interference fix -----------
+   styles.css is still loaded and its unscoped `img { max-width: 100% }`
+   resolves against .stage-icon's containing block, which is .stage-ring
+   at width:0/height:0 - without this reset every orbiting icon collapses
+   to zero width, invisible. */
+.calm .stage-icon,
+.calm .stage-mark {
+    max-width: none;
 }
 ```
 
