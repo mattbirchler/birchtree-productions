@@ -10,6 +10,20 @@ Run from anywhere: python3 tools/check-isolation.py
 
 The parsing/checking logic below is importable (see tools/test-check-isolation.py)
 so it can be exercised against fixture strings without touching the filesystem.
+
+Threat model: this guard catches accidental unscoped rules written by a human
+or agent editing home.css - the ordinary way this file could leak styles onto
+app sub-pages. It is not a defense against deliberately smuggled styles, and
+does not try to be. Two gaps are known and accepted rather than fixed:
+  - CSS escape sequences (e.g. ".calm\002d evil") are, per the CSS spec,
+    distinct class tokens from ".calm", so they pass the raw-text check even
+    though a browser may render them confusingly close to it.
+  - A substring match inside an unrelated string literal, such as an
+    attribute selector value (e.g. `[data-x=".calm"]`), passes, since the
+    checker looks for the token in the selector text and does not parse
+    attribute-value strings semantically.
+Anyone relying on this script to stop intentional obfuscation is relying on
+it for something it was never built to do.
 """
 import pathlib
 import re
@@ -103,12 +117,70 @@ def top_level_units(css):
         i += 1
 
 
+def split_selector_list(selector):
+    """Split a selector list on commas, but only at parenthesis depth 0, so
+    that functional pseudo-classes like :is(.a, .b) or :not(.a, .b) are not
+    mistaken for separate top-level selectors."""
+    parts = []
+    depth = 0
+    start = 0
+    for i, ch in enumerate(selector):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        elif ch == "," and depth == 0:
+            parts.append(selector[start:i])
+            start = i + 1
+    parts.append(selector[start:])
+    return parts
+
+
+def mask_not_content(selector):
+    """Return `selector` with the argument of every :not(...) blanked out
+    (parens included stay, contents become spaces), so a subsequent token
+    search only sees text outside any negation. Handles nested parens inside
+    the :not() argument correctly."""
+    result = list(selector)
+    n = len(selector)
+    i = 0
+    while i < n:
+        if selector[i : i + 5].lower() == ":not(":
+            paren_idx = i + 4  # index of the '('
+            depth = 1
+            j = paren_idx + 1
+            while j < n and depth > 0:
+                if selector[j] == "(":
+                    depth += 1
+                elif selector[j] == ")":
+                    depth -= 1
+                j += 1
+            for k in range(paren_idx + 1, j - 1):
+                result[k] = " "
+            i = j
+            continue
+        i += 1
+    return "".join(result)
+
+
 def check_selector(selector, violations):
-    for part in selector.split(","):
+    for part in split_selector_list(selector):
         part = part.strip()
         if not part:
             continue
-        if not CALM_TOKEN_RE.search(part):
+        # A .calm occurrence only counts as scoping if it exists outside any
+        # :not(...) - inside a negation the rule applies precisely when
+        # .calm is ABSENT, which is the inverse of scoping (e.g.
+        # `body:not(.calm) .leak` targets exactly the pages this guards
+        # against).
+        if CALM_TOKEN_RE.search(mask_not_content(part)):
+            continue
+        if CALM_TOKEN_RE.search(part):
+            violations.append(
+                f"selector scoped only inside a negation (:not()), which is "
+                f"inverted and does not count as scoped: {part!r}"
+            )
+        else:
             violations.append(f"unscoped selector: {part!r}")
 
 

@@ -137,6 +137,50 @@ case(
     """,
 )
 
+# --- Comma splitter must respect parenthesis depth (functional pseudo-
+# classes contain commas that are not selector-list separators) -----------
+case(
+    "functional_pseudo_is_comma_must_pass",
+    "pass",
+    """
+    .calm :is(.a, .b) { color: red; }
+    """,
+)
+
+case(
+    "functional_pseudo_not_comma_must_pass",
+    "pass",
+    """
+    .calm .thing:not(.hidden, .disabled) { color: red; }
+    """,
+)
+
+case(
+    "functional_pseudo_where_comma_must_pass",
+    "pass",
+    """
+    .calm :where(.x, .y) .z { color: red; }
+    """,
+)
+
+# --- Negated scope: .calm only appears inside :not(), which is inverted ---
+case(
+    "negated_scope_must_fail",
+    "fail",
+    """
+    body:not(.calm) .leak { color: red; }
+    """,
+)
+
+# --- .calm appears both inside and outside a :not() -> still scoped ------
+case(
+    "calm_inside_and_outside_not_must_pass",
+    "pass",
+    """
+    .calm .a:not(.calm-child) { color: red; }
+    """,
+)
+
 # --- @import cannot be validated, so it must be flagged -------------------
 case(
     "import_statement_must_fail",

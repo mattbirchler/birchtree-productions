@@ -59,7 +59,19 @@ Create `tools/check-isolation.py`. Selector scoping is a whole-token match on
 they can never glue onto and hide the next real selector, quoted string
 literals are skipped while scanning so braces inside `content: "} {"` can't
 desync the parser, and the asset-reference check is scoped to `href=`/`src=`
-attribute values rather than a raw substring search over the whole file:
+attribute values rather than a raw substring search over the whole file.
+Selector lists are split on commas only at parenthesis depth 0, so
+functional pseudo-classes with their own comma-separated arguments
+(`:is(.a, .b)`, `:not(.a, .b)`, `:where(.x, .y)`) are not mistaken for
+separate top-level selectors, and a `.calm` occurrence only counts as
+scoping when it exists outside every `:not(...)` argument, since a rule
+like `body:not(.calm) .leak` applies precisely on pages that lack `.calm`
+(the inverse of scoping). The script's docstring also states its threat
+model in plain terms: it catches accidental unscoped rules, not
+deliberately smuggled ones, and two gaps are accepted rather than fixed
+(CSS escape sequences like `.calm\002d evil` are distinct tokens, and
+attribute-selector string literals like `[data-x=".calm"]` pass the
+raw-text check):
 
 ```python
 #!/usr/bin/env python3
@@ -74,6 +86,20 @@ Run from anywhere: python3 tools/check-isolation.py
 
 The parsing/checking logic below is importable (see tools/test-check-isolation.py)
 so it can be exercised against fixture strings without touching the filesystem.
+
+Threat model: this guard catches accidental unscoped rules written by a human
+or agent editing home.css - the ordinary way this file could leak styles onto
+app sub-pages. It is not a defense against deliberately smuggled styles, and
+does not try to be. Two gaps are known and accepted rather than fixed:
+  - CSS escape sequences (e.g. ".calm\002d evil") are, per the CSS spec,
+    distinct class tokens from ".calm", so they pass the raw-text check even
+    though a browser may render them confusingly close to it.
+  - A substring match inside an unrelated string literal, such as an
+    attribute selector value (e.g. `[data-x=".calm"]`), passes, since the
+    checker looks for the token in the selector text and does not parse
+    attribute-value strings semantically.
+Anyone relying on this script to stop intentional obfuscation is relying on
+it for something it was never built to do.
 """
 import pathlib
 import re
@@ -167,12 +193,70 @@ def top_level_units(css):
         i += 1
 
 
+def split_selector_list(selector):
+    """Split a selector list on commas, but only at parenthesis depth 0, so
+    that functional pseudo-classes like :is(.a, .b) or :not(.a, .b) are not
+    mistaken for separate top-level selectors."""
+    parts = []
+    depth = 0
+    start = 0
+    for i, ch in enumerate(selector):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        elif ch == "," and depth == 0:
+            parts.append(selector[start:i])
+            start = i + 1
+    parts.append(selector[start:])
+    return parts
+
+
+def mask_not_content(selector):
+    """Return `selector` with the argument of every :not(...) blanked out
+    (parens included stay, contents become spaces), so a subsequent token
+    search only sees text outside any negation. Handles nested parens inside
+    the :not() argument correctly."""
+    result = list(selector)
+    n = len(selector)
+    i = 0
+    while i < n:
+        if selector[i : i + 5].lower() == ":not(":
+            paren_idx = i + 4  # index of the '('
+            depth = 1
+            j = paren_idx + 1
+            while j < n and depth > 0:
+                if selector[j] == "(":
+                    depth += 1
+                elif selector[j] == ")":
+                    depth -= 1
+                j += 1
+            for k in range(paren_idx + 1, j - 1):
+                result[k] = " "
+            i = j
+            continue
+        i += 1
+    return "".join(result)
+
+
 def check_selector(selector, violations):
-    for part in selector.split(","):
+    for part in split_selector_list(selector):
         part = part.strip()
         if not part:
             continue
-        if not CALM_TOKEN_RE.search(part):
+        # A .calm occurrence only counts as scoping if it exists outside any
+        # :not(...) - inside a negation the rule applies precisely when
+        # .calm is ABSENT, which is the inverse of scoping (e.g.
+        # `body:not(.calm) .leak` targets exactly the pages this guards
+        # against).
+        if CALM_TOKEN_RE.search(mask_not_content(part)):
+            continue
+        if CALM_TOKEN_RE.search(part):
+            violations.append(
+                f"selector scoped only inside a negation (:not()), which is "
+                f"inverted and does not count as scoped: {part!r}"
+            )
+        else:
             violations.append(f"unscoped selector: {part!r}")
 
 
@@ -264,8 +348,14 @@ a blockless `@layer utilities;` (must FAIL), a `content: "} foo {"` string
 literal that would desync a naive brace counter (must PASS on its own, and
 must not hide a real leak placed after it), a legitimately scoped stylesheet
 with nested `@media` and `@keyframes` (must PASS), a plainly unscoped
-selector (must FAIL), and a multi-selector comma list where one part is
-unscoped (must FAIL).
+selector (must FAIL), a multi-selector comma list where one part is
+unscoped (must FAIL), functional pseudo-classes whose own comma-separated
+arguments must not be mistaken for top-level selector separators
+(`:is(.a, .b)`, `:not(.a, .b)`, `:where(.x, .y)`, all must PASS), a
+selector where `.calm` appears only inside `:not(...)` such as
+`body:not(.calm) .leak` (must FAIL, since that is the inverse of scoping),
+and a selector where `.calm` appears both inside and outside a `:not(...)`
+such as `.calm .a:not(.calm-child)` (must PASS).
 
 Run: `python3 tools/test-check-isolation.py`
 
