@@ -1119,6 +1119,14 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
         var stage = document.getElementById('stage');
         if (!stage) { return; }
 
+        // .stage-rings is nested inside .stage-center (not a sibling of
+        // .stage), and .stage-center is the element actually centered on
+        // the mark - on narrow widths .stage grows a second grid row for
+        // .stage-copy, so .stage's own bounding box is no longer centered
+        // on the rings. .stage-center's box is the correct reference on
+        // every breakpoint.
+        var stageCenter = stage.querySelector('.stage-center') || stage;
+
         var rings = Array.prototype.slice.call(
             stage.querySelectorAll('.stage-ring')
         );
@@ -1141,11 +1149,15 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
         var velocity = 0;
         var pointer = null;
         var dragging = false;
+        var activePointerId = null;
         var lastX = 0;
         var frame = null;
+        var measureFrame = null;
 
         function ringRadiusPx(ring) {
-            // --radius is authored in vmin, so resolve it against the element.
+            // --radius is authored in vmin (desktop) or vw (mobile), so
+            // resolve it against a real element rather than trying to
+            // parse the unit ourselves.
             var raw = getComputedStyle(ring).getPropertyValue('--radius').trim();
             var probe = document.createElement('div');
             probe.style.position = 'absolute';
@@ -1173,9 +1185,18 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
                 return;
             }
 
-            var box = stage.getBoundingClientRect();
-            var cx = box.left + box.width / 2;
-            var cy = box.top + box.height / 2;
+            var centerBox = stageCenter.getBoundingClientRect();
+            var cx = centerBox.left + centerBox.width / 2;
+            var cy = centerBox.top + centerBox.height / 2;
+
+            // .stage clips overflow, so the final rendered position of an
+            // icon (rest position plus magnetic offset) must stay inside
+            // its visible box, inset by the icon's own half-size, or the
+            // pull could push part of an icon past the clip edge - this
+            // happens in practice for the outer ring in a narrow desktop
+            // window, where the resting icon already sits only ~10-16px
+            // from the edge.
+            var stageBox = stage.getBoundingClientRect();
 
             icons.forEach(function (icon) {
                 var ring = icon.parentNode;
@@ -1203,8 +1224,25 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
                     return;
                 }
 
-                icon.style.setProperty('--mx', (dx / dist * pull).toFixed(2) + 'px');
-                icon.style.setProperty('--my', (dy / dist * pull).toFixed(2) + 'px');
+                var targetX = restX + (dx / dist) * pull;
+                var targetY = restY + (dy / dist) * pull;
+
+                // Clamp the target point (not just the offset) to the
+                // visible stage, inset by half the icon's own size.
+                var half = parseFloat(icon.dataset.halfPx) || 0;
+                var minX = stageBox.left + half;
+                var maxX = stageBox.right - half;
+                var minY = stageBox.top + half;
+                var maxY = stageBox.bottom - half;
+                if (minX <= maxX) {
+                    targetX = Math.min(Math.max(targetX, minX), maxX);
+                }
+                if (minY <= maxY) {
+                    targetY = Math.min(Math.max(targetY, minY), maxY);
+                }
+
+                icon.style.setProperty('--mx', (targetX - restX).toFixed(2) + 'px');
+                icon.style.setProperty('--my', (targetY - restY).toFixed(2) + 'px');
             });
         }
 
@@ -1235,7 +1273,29 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
             rings.forEach(function (ring) {
                 ring.dataset.radiusPx = ringRadiusPx(ring);
             });
+            icons.forEach(function (icon) {
+                // width is a real CSS property (unlike --radius), so
+                // getComputedStyle resolves it straight to pixels.
+                icon.dataset.halfPx = parseFloat(getComputedStyle(icon).width) / 2 || 0;
+            });
             schedule();
+        }
+
+        // resize fires continuously during a window drag-resize, and
+        // measure() forces a synchronous layout per ring (append/measure/
+        // remove) plus a getComputedStyle read per icon - coalesce bursts
+        // into a single measure per animation frame rather than layout-
+        // thrashing on every tick. A breakpoint change (vmin <-> vw ring
+        // radii) is still picked up correctly since the deferred call still
+        // runs after the resize settles.
+        function scheduleMeasure() {
+            if (measureFrame !== null) {
+                window.cancelAnimationFrame(measureFrame);
+            }
+            measureFrame = window.requestAnimationFrame(function () {
+                measureFrame = null;
+                measure();
+            });
         }
 
         // Magnetic hover is pointer-driven, so it only makes sense where a
@@ -1261,15 +1321,30 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
             stage.style.cursor = 'grab';
 
             stage.addEventListener('pointerdown', function (e) {
+                if (e.button !== 0) { return; }
+                // Ignore a second simultaneous pointer rather than trying to
+                // support real multi-touch gestures - a single drag stays
+                // immune to an interleaved second pointer.
+                if (dragging) { return; }
                 dragging = true;
+                activePointerId = e.pointerId;
                 lastX = e.clientX;
                 velocity = 0;
                 stage.style.cursor = 'grabbing';
-                stage.setPointerCapture(e.pointerId);
+                try {
+                    stage.setPointerCapture(e.pointerId);
+                } catch (err) {
+                    // A stale/inactive pointerId (or a touch-cancellation
+                    // race) can throw NotFoundError here. dragging is
+                    // already true and the pointerId is already recorded,
+                    // so the drag still works - it just degrades to
+                    // tracking only while the pointer stays over .stage,
+                    // instead of continuing to track past its edges.
+                }
             });
 
             stage.addEventListener('pointermove', function (e) {
-                if (!dragging) { return; }
+                if (!dragging || e.pointerId !== activePointerId) { return; }
                 var dx = e.clientX - lastX;
                 lastX = e.clientX;
                 velocity = dx;
@@ -1282,7 +1357,12 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
 
             function endDrag(e) {
                 if (!dragging) { return; }
+                if (e && e.pointerId !== undefined &&
+                    e.pointerId !== activePointerId) {
+                    return;
+                }
                 dragging = false;
+                activePointerId = null;
                 stage.style.cursor = 'grab';
                 if (e && e.pointerId !== undefined &&
                     stage.hasPointerCapture(e.pointerId)) {
@@ -1295,12 +1375,39 @@ git commit -m "Build concentric app-icon hero stage with static ring layout"
             stage.addEventListener('pointercancel', endDrag);
         }
 
-        window.addEventListener('resize', measure);
+        window.addEventListener('resize', scheduleMeasure);
         measure();
     }
 
     initStage();
 ```
+
+**Amendment after fix round 1 (post-implementation):** four robustness gaps were found by
+code review and fixed, none changing the tuning constants, the magnetic edge clamp, the
+`.stage-center` rest-position reference, or the `(hover: hover)`/reduced-motion gating:
+
+1. `stage.setPointerCapture(e.pointerId)` is now wrapped in try/catch. Real browsers can throw
+   `NotFoundError` for a stale/inactive pointerId (headless synthetic events never reproduce
+   this). Since `dragging` and `activePointerId` are set before the capture call, an unhandled
+   throw would have left `dragging` stuck `true` forever if the user released outside `.stage`.
+   On failure the drag now still proceeds, just degraded to tracking only while the pointer
+   stays over `.stage`.
+2. `measure()` (per-ring `appendChild`/`getBoundingClientRect`/`removeChild` plus a
+   `getComputedStyle` per icon) is now debounced on `resize` via a dedicated
+   `scheduleMeasure()` that cancels any pending `requestAnimationFrame` and schedules one,
+   instead of running synchronously on every `resize` tick. A breakpoint change (the
+   `vmin`/`vw` ring-radius switch at 768px) is still picked up correctly since the deferred
+   call runs after the resize settles.
+3. `pointerdown` now returns early unless `e.button === 0`, so a right-click or middle-click
+   no longer starts a drag or flips the cursor to `grabbing`.
+4. Drag state now tracks the `pointerId` that started it (`activePointerId`). A `pointerdown`
+   while already dragging is ignored, and `pointermove`/`pointerup`/`pointercancel` from any
+   other pointerId are ignored, so a second simultaneous pointer can no longer corrupt
+   `lastX`/`velocity` or end a drag it didn't start. This is a minimal single-drag guard, not
+   full multi-touch gesture support.
+
+See "Fix round 1" in `.superpowers/sdd/task-5-report.md` for the verification evidence
+(measured spin values, interleaved-pointer test, forced-throw test, etc.).
 
 - [ ] **Step 2: Verify magnetic hover**
 

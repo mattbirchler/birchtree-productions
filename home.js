@@ -39,8 +39,10 @@
         var velocity = 0;
         var pointer = null;
         var dragging = false;
+        var activePointerId = null;
         var lastX = 0;
         var frame = null;
+        var measureFrame = null;
 
         function ringRadiusPx(ring) {
             // --radius is authored in vmin (desktop) or vw (mobile), so
@@ -169,6 +171,23 @@
             schedule();
         }
 
+        // resize fires continuously during a window drag-resize, and
+        // measure() forces a synchronous layout per ring (append/measure/
+        // remove) plus a getComputedStyle read per icon - coalesce bursts
+        // into a single measure per animation frame rather than layout-
+        // thrashing on every tick. A breakpoint change (vmin <-> vw ring
+        // radii) is still picked up correctly since the deferred call still
+        // runs after the resize settles.
+        function scheduleMeasure() {
+            if (measureFrame !== null) {
+                window.cancelAnimationFrame(measureFrame);
+            }
+            measureFrame = window.requestAnimationFrame(function () {
+                measureFrame = null;
+                measure();
+            });
+        }
+
         // Magnetic hover is pointer-driven, so it only makes sense where a
         // hovering pointer exists.
         var canHover = window.matchMedia('(hover: hover)').matches;
@@ -192,15 +211,30 @@
             stage.style.cursor = 'grab';
 
             stage.addEventListener('pointerdown', function (e) {
+                if (e.button !== 0) { return; }
+                // Ignore a second simultaneous pointer rather than trying to
+                // support real multi-touch gestures - a single drag stays
+                // immune to an interleaved second pointer.
+                if (dragging) { return; }
                 dragging = true;
+                activePointerId = e.pointerId;
                 lastX = e.clientX;
                 velocity = 0;
                 stage.style.cursor = 'grabbing';
-                stage.setPointerCapture(e.pointerId);
+                try {
+                    stage.setPointerCapture(e.pointerId);
+                } catch (err) {
+                    // A stale/inactive pointerId (or a touch-cancellation
+                    // race) can throw NotFoundError here. dragging is
+                    // already true and the pointerId is already recorded,
+                    // so the drag still works - it just degrades to
+                    // tracking only while the pointer stays over .stage,
+                    // instead of continuing to track past its edges.
+                }
             });
 
             stage.addEventListener('pointermove', function (e) {
-                if (!dragging) { return; }
+                if (!dragging || e.pointerId !== activePointerId) { return; }
                 var dx = e.clientX - lastX;
                 lastX = e.clientX;
                 velocity = dx;
@@ -213,7 +247,12 @@
 
             function endDrag(e) {
                 if (!dragging) { return; }
+                if (e && e.pointerId !== undefined &&
+                    e.pointerId !== activePointerId) {
+                    return;
+                }
                 dragging = false;
+                activePointerId = null;
                 stage.style.cursor = 'grab';
                 if (e && e.pointerId !== undefined &&
                     stage.hasPointerCapture(e.pointerId)) {
@@ -226,7 +265,7 @@
             stage.addEventListener('pointercancel', endDrag);
         }
 
-        window.addEventListener('resize', measure);
+        window.addEventListener('resize', scheduleMeasure);
         measure();
     }
 
