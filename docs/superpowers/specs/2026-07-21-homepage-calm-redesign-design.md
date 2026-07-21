@@ -81,10 +81,10 @@ edge far enough that the corners are visible.
 - `images/birchtree-icon.png` centered at `clamp(120px, 14vw, 200px)`
 - Eight app icons distributed across three concentric rings at approximately
   `100vw`, `70vw`, and `45vw` diameter, positioned by rotation plus translation
-  so ring spacing stays even. Distribution is 4 icons on the outer ring, 3 on the
-  middle, 1 on the inner, with each ring's icons evenly spaced by angle and the
-  rings offset from each other so icons do not align radially. Icon size scales
-  down toward the center ring so the Birchtree mark stays dominant.
+  so ring spacing stays even. Distribution is 3 icons per ring on the outer and
+  middle rings and 2 on the inner, with each ring's icons evenly spaced by angle
+  and the rings offset from each other so icons do not align radially. Icon size
+  scales down toward the center ring so the Birchtree mark stays dominant.
 - Tagline pinned bottom-right, revealed with `clip-path: inset(0 100% 0 0)`
 
 **Magnetic hover:** a `pointermove` handler on the stage translates each icon
@@ -92,8 +92,13 @@ toward the cursor, scaled by inverse distance and clamped to a maximum offset.
 Throttled with `requestAnimationFrame`. A CSS transition carries icons back to
 rest on pointer leave.
 
-**Drag:** the inner ring carries `cursor: grab` and rotates on drag with momentum
-decay.
+**Drag:** the stage carries `cursor: grab`. Dragging anywhere on it rotates all
+three rings at different rates (inner fastest, outer slowest), with momentum
+decay on release.
+
+*Amended 2026-07-21 during planning.* This originally specified drag on the inner
+ring only. Once the icon distribution settled at 2 icons on the inner ring, that
+made for a poor drag target, and a whole-stage grab is more discoverable.
 
 **Reduced motion** (`prefers-reduced-motion: reduce`): rings render static,
 magnetic and drag are disabled, tagline fades instead of wiping.
