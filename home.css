@@ -170,3 +170,163 @@ body.calm {
     background: var(--accent);
     transform: scale(1.6);
 }
+
+/* ---------- Hero stage ---------- */
+
+.calm .stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    min-height: 34rem;
+    margin: clamp(0.5rem, 1.5vw, 1rem);
+    border-radius: var(--radius-panel);
+    background: #f0f0f2;
+    overflow: hidden;
+    touch-action: pan-y;
+    /* .hero (styles.css) still applies alongside .stage and carries
+       `padding: var(--space-3xl) var(--space-lg)` (8rem/2rem). Left as-is
+       that shrinks the grid content box .stage-mark centers in - harmless
+       here only because the padding happens to be symmetric, which is a
+       coincidence, not a guarantee. Zero it in the same rule that first
+       needs it so the later @media override below still wins on mobile. */
+    padding: 0;
+}
+
+.calm .stage-rings {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.calm .stage-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: rotate(var(--spin, 0deg));
+}
+
+.calm .stage-ring[data-ring="outer"] {
+    --radius: 46vmin;
+    --icon-size: clamp(44px, 5.5vmin, 72px);
+}
+
+.calm .stage-ring[data-ring="mid"] {
+    --radius: 32vmin;
+    --icon-size: clamp(38px, 4.6vmin, 60px);
+}
+
+.calm .stage-ring[data-ring="inner"] {
+    --radius: 20vmin;
+    --icon-size: clamp(32px, 3.8vmin, 50px);
+}
+
+.calm .stage-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: calc(var(--icon-size) / -2);
+    border-radius: 22%;
+    /* Orbit to the ring position, counter-rotate to stay upright, then
+       apply the magnetic offset set by home.js. */
+    transform:
+        rotate(var(--angle))
+        translateY(calc(var(--radius) * -1))
+        rotate(calc((var(--angle) + var(--spin, 0deg)) * -1))
+        translate(var(--mx, 0px), var(--my, 0px));
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* While the pointer is over the stage, magnetic updates must not lag behind
+   a half-second transition. home.js toggles this class. */
+.calm .stage.is-tracking .stage-icon {
+    transition: none;
+}
+
+.calm .stage-center {
+    position: relative;
+    z-index: 2;
+}
+
+.calm .stage-mark {
+    display: block;
+    width: clamp(120px, 14vw, 200px);
+    height: auto;
+    border-radius: 22%;
+}
+
+.calm .stage-copy {
+    position: absolute;
+    right: clamp(1.5rem, 4vw, 4rem);
+    bottom: clamp(1.5rem, 4vw, 4rem);
+    z-index: 2;
+    max-width: 26rem;
+    text-align: right;
+}
+
+.calm .stage-title {
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+}
+
+.calm .stage-tagline {
+    font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Below this width the rings crowd the mark and the pinned copy overlaps
+   the composition, so the copy moves beneath it. */
+@media (max-width: 768px) {
+    .calm .stage {
+        height: auto;
+        min-height: 0;
+        padding: 8rem 1.5rem 3rem;
+        grid-template-rows: auto auto;
+        gap: 2rem;
+    }
+
+    .calm .stage-rings {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 60vh;
+    }
+
+    .calm .stage-ring[data-ring="outer"] {
+        --radius: 40vmin;
+    }
+
+    .calm .stage-ring[data-ring="mid"] {
+        --radius: 28vmin;
+    }
+
+    .calm .stage-ring[data-ring="inner"] {
+        --radius: 17vmin;
+    }
+
+    .calm .stage-copy {
+        position: static;
+        max-width: none;
+        text-align: center;
+    }
+}
+
+/* ---------- Stage interference fix -----------
+   styles.css is still loaded and its unscoped `img { max-width: 100% }`
+   resolves against .stage-icon's containing block, which is .stage-ring
+   at width:0/height:0 - without this reset every orbiting icon collapses
+   to zero width, invisible. (The matching .hero padding leak is reset
+   directly in the base .calm .stage rule above, not here, so it stays
+   below the mobile @media override in source order.) */
+.calm .stage-icon,
+.calm .stage-mark {
+    max-width: none;
+}

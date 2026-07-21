@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=be9fc7ad">
-    <link rel="stylesheet" href="home.css?v=429f131f">
+    <link rel="stylesheet" href="home.css?v=8758ecb6">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -55,33 +55,32 @@
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="floating-icons" aria-hidden="true">
-            <img src="images/quick-reviews.png" alt="" class="floating-icon icon-1">
-            <img src="images/chapterpod.png" alt="" class="floating-icon icon-2">
-            <img src="images/quick subtitles.png" alt="" class="floating-icon icon-3">
-            <img src="images/quick notes.png" alt="" class="floating-icon icon-4">
-            <img src="images/best-o-masto.png" alt="" class="floating-icon icon-5">
-            <img src="images/yearly run goals.png" alt="" class="floating-icon icon-6">
-            <img src="images/typefully-icon.png" alt="" class="floating-icon icon-7">
-        </div>
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">
-                Birchtree Productions
-            </h1>
-            <p class="hero-subtitle fade-in fade-in-delay-1">
-                Indie apps and content for people who believe technology should serve us, not the other way around.
-            </p>
-            <div class="hero-cta fade-in fade-in-delay-2">
-                <a href="#apps" class="btn btn-primary">Explore Apps</a>
-                <a href="#about" class="btn btn-secondary">About Us</a>
+    <header class="hero stage" id="stage">
+        <div class="stage-rings" aria-hidden="true">
+            <div class="stage-ring" data-ring="outer">
+                <img src="images/quick-reviews.png" alt="" class="stage-icon" style="--angle: 20deg;">
+                <img src="images/quick-reads.png" alt="" class="stage-icon" style="--angle: 140deg;">
+                <img src="images/chapterpod.png" alt="" class="stage-icon" style="--angle: 260deg;">
+            </div>
+            <div class="stage-ring" data-ring="mid">
+                <img src="images/yearly run goals.png" alt="" class="stage-icon" style="--angle: 75deg;">
+                <img src="images/quick subtitles.png" alt="" class="stage-icon" style="--angle: 195deg;">
+                <img src="images/quick notes.png" alt="" class="stage-icon" style="--angle: 315deg;">
+            </div>
+            <div class="stage-ring" data-ring="inner">
+                <img src="images/typefully-icon.png" alt="" class="stage-icon" style="--angle: 40deg;">
+                <img src="images/best-o-masto.png" alt="" class="stage-icon" style="--angle: 220deg;">
             </div>
         </div>
-        <a href="#apps" class="scroll-indicator fade-in fade-in-delay-2" aria-label="Scroll down">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </a>
+
+        <div class="stage-center">
+            <img src="images/birchtree-icon.png" alt="Birchtree Productions" class="stage-mark">
+        </div>
+
+        <div class="stage-copy">
+            <h1 class="stage-title wipe">Birchtree Productions</h1>
+            <p class="stage-tagline wipe">Indie apps and content for people who believe technology should serve us, not the other way around.</p>
+        </div>
     </header>
 
     <section id="apps" class="section apps-section">
