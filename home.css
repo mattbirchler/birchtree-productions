@@ -65,6 +65,7 @@ body.calm {
     position: fixed;
     top: clamp(1rem, 2.5vw, 2.4rem);
     left: 50%;
+    right: auto;
     transform: translateX(-50%);
     width: auto;
     max-width: calc(100vw - 2rem);
@@ -74,10 +75,6 @@ body.calm {
     box-shadow: none;
     z-index: 5000;
     transition: background-color 0.3s ease;
-}
-
-.calm .navbar.scrolled {
-    background: var(--color-card);
 }
 
 .calm .nav-container {
@@ -100,6 +97,7 @@ body.calm {
 .calm .nav-logo-icon {
     width: 1.6rem;
     height: 1.6rem;
+    max-width: none;
     border-radius: 22%;
 }
 
@@ -126,8 +124,8 @@ body.calm {
         font-size: 0;
     }
 
-    .calm .nav-logo-icon {
-        font-size: 1rem;
+    .calm .nav-logo {
+        gap: 0;
     }
 }
 
@@ -141,7 +139,7 @@ body.calm {
     gap: 0.6rem;
     padding: 0.9rem 1.4rem;
     border-radius: var(--radius-pill);
-    border: 1px solid #d7dbe2;
+    border: 1px solid #8c8c8c;
     background: var(--color-card);
     color: #000;
     font-size: clamp(0.75rem, 1.1vw, 0.875rem);
