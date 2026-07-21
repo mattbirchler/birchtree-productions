@@ -5,7 +5,232 @@
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Feature modules are registered here in later tasks.
+    function initStage() {
+        var stage = document.getElementById('stage');
+        if (!stage) { return; }
+
+        // .stage-rings is nested inside .stage-center (not a sibling of
+        // .stage), and .stage-center is the element actually centered on
+        // the mark - on narrow widths .stage grows a second grid row for
+        // .stage-copy, so .stage's own bounding box is no longer centered
+        // on the rings. .stage-center's box is the correct reference on
+        // every breakpoint.
+        var stageCenter = stage.querySelector('.stage-center') || stage;
+
+        var rings = Array.prototype.slice.call(
+            stage.querySelectorAll('.stage-ring')
+        );
+        var icons = Array.prototype.slice.call(
+            stage.querySelectorAll('.stage-icon')
+        );
+        if (!icons.length) { return; }
+
+        var MAX_PULL = 20;      // px an icon can travel toward the cursor
+        var FALLOFF = 260;      // px at which the pull reaches zero
+        var DRAG_RATE = {       // deg of spin per px dragged, per ring
+            outer: 0.06,
+            mid: 0.11,
+            inner: 0.18
+        };
+        var FRICTION = 0.94;    // momentum decay per frame
+        var MIN_VELOCITY = 0.01;
+
+        var spin = { outer: 0, mid: 0, inner: 0 };
+        var velocity = 0;
+        var pointer = null;
+        var dragging = false;
+        var lastX = 0;
+        var frame = null;
+
+        function ringRadiusPx(ring) {
+            // --radius is authored in vmin (desktop) or vw (mobile), so
+            // resolve it against a real element rather than trying to
+            // parse the unit ourselves.
+            var raw = getComputedStyle(ring).getPropertyValue('--radius').trim();
+            var probe = document.createElement('div');
+            probe.style.position = 'absolute';
+            probe.style.visibility = 'hidden';
+            probe.style.width = raw;
+            stage.appendChild(probe);
+            var px = probe.getBoundingClientRect().width;
+            stage.removeChild(probe);
+            return px;
+        }
+
+        function applySpin() {
+            rings.forEach(function (ring) {
+                var key = ring.getAttribute('data-ring');
+                ring.style.setProperty('--spin', spin[key] + 'deg');
+            });
+        }
+
+        function applyMagnetic() {
+            if (!pointer) {
+                icons.forEach(function (icon) {
+                    icon.style.setProperty('--mx', '0px');
+                    icon.style.setProperty('--my', '0px');
+                });
+                return;
+            }
+
+            var centerBox = stageCenter.getBoundingClientRect();
+            var cx = centerBox.left + centerBox.width / 2;
+            var cy = centerBox.top + centerBox.height / 2;
+
+            // .stage clips overflow, so the final rendered position of an
+            // icon (rest position plus magnetic offset) must stay inside
+            // its visible box, inset by the icon's own half-size, or the
+            // pull could push part of an icon past the clip edge - this
+            // happens in practice for the outer ring in a narrow desktop
+            // window, where the resting icon already sits only ~10-16px
+            // from the edge.
+            var stageBox = stage.getBoundingClientRect();
+
+            icons.forEach(function (icon) {
+                var ring = icon.parentNode;
+                var key = ring.getAttribute('data-ring');
+                var radius = parseFloat(ring.dataset.radiusPx) || 0;
+                var angleDeg = parseFloat(
+                    getComputedStyle(icon).getPropertyValue('--angle')
+                ) || 0;
+                var theta = (angleDeg + spin[key]) * Math.PI / 180;
+
+                // Rest position computed analytically, so reading it back is
+                // never contaminated by the offset we are about to apply.
+                var restX = cx + Math.sin(theta) * radius;
+                var restY = cy - Math.cos(theta) * radius;
+
+                var dx = pointer.x - restX;
+                var dy = pointer.y - restY;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                var strength = Math.max(0, 1 - dist / FALLOFF);
+                var pull = strength * strength * MAX_PULL;
+
+                if (dist < 0.5) {
+                    icon.style.setProperty('--mx', '0px');
+                    icon.style.setProperty('--my', '0px');
+                    return;
+                }
+
+                var targetX = restX + (dx / dist) * pull;
+                var targetY = restY + (dy / dist) * pull;
+
+                // Clamp the target point (not just the offset) to the
+                // visible stage, inset by half the icon's own size.
+                var half = parseFloat(icon.dataset.halfPx) || 0;
+                var minX = stageBox.left + half;
+                var maxX = stageBox.right - half;
+                var minY = stageBox.top + half;
+                var maxY = stageBox.bottom - half;
+                if (minX <= maxX) {
+                    targetX = Math.min(Math.max(targetX, minX), maxX);
+                }
+                if (minY <= maxY) {
+                    targetY = Math.min(Math.max(targetY, minY), maxY);
+                }
+
+                icon.style.setProperty('--mx', (targetX - restX).toFixed(2) + 'px');
+                icon.style.setProperty('--my', (targetY - restY).toFixed(2) + 'px');
+            });
+        }
+
+        function tick() {
+            frame = null;
+
+            if (!dragging && Math.abs(velocity) > MIN_VELOCITY) {
+                Object.keys(spin).forEach(function (key) {
+                    spin[key] += velocity * DRAG_RATE[key];
+                });
+                velocity *= FRICTION;
+                applySpin();
+                schedule();
+            } else if (!dragging) {
+                velocity = 0;
+            }
+
+            applyMagnetic();
+        }
+
+        function schedule() {
+            if (frame === null) {
+                frame = window.requestAnimationFrame(tick);
+            }
+        }
+
+        function measure() {
+            rings.forEach(function (ring) {
+                ring.dataset.radiusPx = ringRadiusPx(ring);
+            });
+            icons.forEach(function (icon) {
+                // width is a real CSS property (unlike --radius), so
+                // getComputedStyle resolves it straight to pixels.
+                icon.dataset.halfPx = parseFloat(getComputedStyle(icon).width) / 2 || 0;
+            });
+            schedule();
+        }
+
+        // Magnetic hover is pointer-driven, so it only makes sense where a
+        // hovering pointer exists.
+        var canHover = window.matchMedia('(hover: hover)').matches;
+
+        if (canHover && !reduceMotion.matches) {
+            stage.addEventListener('pointermove', function (e) {
+                if (e.pointerType !== 'mouse') { return; }
+                pointer = { x: e.clientX, y: e.clientY };
+                stage.classList.add('is-tracking');
+                schedule();
+            });
+
+            stage.addEventListener('pointerleave', function () {
+                pointer = null;
+                stage.classList.remove('is-tracking');
+                schedule();
+            });
+        }
+
+        if (!reduceMotion.matches) {
+            stage.style.cursor = 'grab';
+
+            stage.addEventListener('pointerdown', function (e) {
+                dragging = true;
+                lastX = e.clientX;
+                velocity = 0;
+                stage.style.cursor = 'grabbing';
+                stage.setPointerCapture(e.pointerId);
+            });
+
+            stage.addEventListener('pointermove', function (e) {
+                if (!dragging) { return; }
+                var dx = e.clientX - lastX;
+                lastX = e.clientX;
+                velocity = dx;
+                Object.keys(spin).forEach(function (key) {
+                    spin[key] += dx * DRAG_RATE[key];
+                });
+                applySpin();
+                schedule();
+            });
+
+            function endDrag(e) {
+                if (!dragging) { return; }
+                dragging = false;
+                stage.style.cursor = 'grab';
+                if (e && e.pointerId !== undefined &&
+                    stage.hasPointerCapture(e.pointerId)) {
+                    stage.releasePointerCapture(e.pointerId);
+                }
+                schedule();
+            }
+
+            stage.addEventListener('pointerup', endDrag);
+            stage.addEventListener('pointercancel', endDrag);
+        }
+
+        window.addEventListener('resize', measure);
+        measure();
+    }
+
+    initStage();
 
     window.__calmReduceMotion = reduceMotion;
 }());
