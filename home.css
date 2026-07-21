@@ -1,0 +1,8 @@
+/* Birchtree Productions homepage.
+   Loaded only by index.html. Every rule is scoped under .calm so these
+   styles cannot reach the app sub-pages under apps/.
+   Verified by tools/check-isolation.py. */
+
+body.calm {
+    background-color: #f7f7f7;
+}
