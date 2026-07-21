@@ -4,5 +4,57 @@
    Verified by tools/check-isolation.py. */
 
 body.calm {
-    background-color: #f7f7f7;
+    /* Surfaces */
+    --color-ground: #f7f7f7;
+    --color-card: #ffffff;
+
+    /* Radii */
+    --radius-panel: 2.4rem;
+    --radius-card: 2rem;
+    --radius-image: 1.5rem;
+    --radius-pill: 99999px;
+
+    /* Ink */
+    --accent: rgb(136, 57, 239);
+
+    /* Rhythm */
+    --pad-card: clamp(1.5rem, 4vw, 4rem);
+    --gap-section: clamp(2rem, 5vw, 5rem);
+
+    background-color: var(--color-ground);
+}
+
+/* The homepage carries no decorative gradients, blobs, or shadows.
+   Content surfaces separate from the ground by radius and contrast alone. */
+.calm .background-shapes,
+.calm .grain-overlay,
+.calm .grain-svg {
+    display: none;
+}
+
+.calm .section {
+    background: var(--color-ground);
+}
+
+.calm .app-feature,
+.calm .content-card,
+.calm .about-wrapper {
+    box-shadow: none;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+}
+
+/* Purple survives as ink only. */
+.calm a {
+    color: inherit;
+}
+
+.calm .about-text a,
+.calm .app-award a {
+    color: var(--accent);
+}
+
+.calm :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
