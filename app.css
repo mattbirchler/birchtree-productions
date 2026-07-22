@@ -693,6 +693,16 @@ body.calm-app {
     .calm-app .feature-card:hover .feature-card-icon {
         transform: none;
     }
+
+    /* Card cascade: fade only, no slide. */
+    .calm-app.is-armed .feature-card.scroll-reveal {
+        transform: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .calm-app.is-armed .feature-card.scroll-reveal.revealed {
+        transform: none;
+    }
 }
 
 /* ---------- Responsive ---------- */
