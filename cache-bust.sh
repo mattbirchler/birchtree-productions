@@ -1,15 +1,23 @@
 #!/bin/bash
-# Updates all HTML files with a cache-busting hash for styles.css
-# Run this after making changes to styles.css
+# Updates all HTML files with cache-busting hashes for the CSS and JS assets.
+# Run this after making changes to styles.css, home.css, or home.js.
 
-HASH=$(md5 -q styles.css | cut -c1-8)
+set -e
 
-echo "Cache-busting styles.css with hash: $HASH"
+bust() {
+    asset="$1"
+    [ -f "$asset" ] || return 0
+    name=$(basename "$asset")
+    escaped=$(echo "$name" | sed 's/\./\\./g')
+    hash=$(md5 -q "$asset" | cut -c1-8)
+    echo "Cache-busting $name with hash: $hash"
+    find . -name "*.html" | while read -r file; do
+        sed -i '' "s|${escaped}\(?v=[a-z0-9]*\)\{0,1\}\"|${name}?v=${hash}\"|g" "$file"
+    done
+}
 
-# Update all HTML files that reference styles.css
-find . -name "*.html" | while read -r file; do
-    # Replace styles.css (with or without existing query param) with styles.css?v=HASH
-    sed -i '' "s|styles\.css\(?v=[a-f0-9]*\)\{0,1\}\"|styles.css?v=$HASH\"|g" "$file"
-done
+bust styles.css
+bust home.css
+bust home.js
 
 echo "Done. Updated all HTML files."

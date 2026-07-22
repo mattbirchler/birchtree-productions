@@ -1,0 +1,889 @@
+/* Birchtree Productions homepage.
+   Loaded only by index.html. Every rule is scoped under .calm so these
+   styles cannot reach the app sub-pages under apps/.
+   Verified by tools/check-isolation.py. */
+
+body.calm {
+    /* Surfaces */
+    --color-ground: #f7f7f7;
+    --color-card: #ffffff;
+
+    /* Radii */
+    --radius-panel: 2.4rem;
+    --radius-card: 2rem;
+    --radius-image: 1.5rem;
+    --radius-pill: 99999px;
+
+    /* Ink */
+    --accent: rgb(136, 57, 239);
+
+    /* Rhythm */
+    --pad-card: clamp(1.5rem, 4vw, 4rem);
+    --gap-section: clamp(2rem, 5vw, 5rem);
+
+    background-color: var(--color-ground);
+}
+
+/* The homepage carries no decorative gradients, blobs, or shadows.
+   Content surfaces separate from the ground by radius and contrast alone. */
+.calm .background-shapes,
+.calm .grain-overlay,
+.calm .grain-svg {
+    display: none;
+}
+
+.calm .section {
+    background: var(--color-ground);
+}
+
+.calm .app-feature,
+.calm .content-card,
+.calm .about-wrapper {
+    box-shadow: none;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+}
+
+/* Purple survives as ink only. */
+.calm a {
+    color: inherit;
+}
+
+.calm .about-text a,
+.calm .app-award a {
+    color: var(--accent);
+}
+
+.calm :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Pill nav ---------- */
+
+.calm .navbar {
+    position: fixed;
+    top: clamp(1rem, 2.5vw, 2.4rem);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    background: var(--color-card);
+    border-radius: var(--radius-pill);
+    border: none;
+    box-shadow: none;
+    z-index: 5000;
+    transition: background-color 0.3s ease;
+}
+
+.calm .nav-container {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    max-width: none;
+    padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.calm .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.calm .nav-logo-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    max-width: none;
+    border-radius: 22%;
+}
+
+.calm .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.6vw, 1.4rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.calm .nav-links a {
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+/* On narrow screens the wordmark would force the pill off-screen. */
+@media (max-width: 640px) {
+    .calm .nav-logo span,
+    .calm .nav-logo {
+        font-size: 0;
+    }
+
+    .calm .nav-logo {
+        gap: 0;
+    }
+}
+
+/* ---------- Pill buttons with dot ---------- */
+
+.calm .btn,
+.calm .btn-dot,
+.calm .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid #8c8c8c;
+    background: var(--color-card);
+    color: #000;
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: border-color 0.25s ease, background-color 0.25s ease,
+                transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.calm .btn::after,
+.calm .btn-dot::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #000;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.calm .btn:hover,
+.calm .btn-dot:hover,
+.calm .contact-btn:hover {
+    border-color: var(--accent);
+}
+
+.calm .btn:hover::after,
+.calm .btn-dot:hover::after {
+    background: var(--accent);
+    transform: scale(1.6);
+}
+
+/* ---------- Hero stage ---------- */
+
+.calm .stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    min-height: 34rem;
+    margin: clamp(0.5rem, 1.5vw, 1rem);
+    border-radius: var(--radius-panel);
+    background: #f0f0f2;
+    overflow: hidden;
+    touch-action: pan-y;
+    /* .hero (styles.css) still applies alongside .stage and carries
+       `padding: var(--space-3xl) var(--space-lg)` (8rem/2rem). Left as-is
+       that shrinks the grid content box .stage-mark centers in - harmless
+       here only because the padding happens to be symmetric, which is a
+       coincidence, not a guarantee. Zero it in the same rule that first
+       needs it so the later @media override below still wins on mobile. */
+    padding: 0;
+}
+
+/* Centered square that anchors both the mark and the rings. .stage-rings
+   is nested inside this element (not a sibling) and sized to it with
+   `inset: 0`, so the rings' center and the mark's center are the same
+   point by construction - there is no longer a separate anchor to drift
+   out of sync with the mark's actual grid position. */
+.calm .stage-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68vmin;
+    height: 68vmin;
+    overflow: visible;
+}
+
+.calm .stage-rings {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.calm .stage-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: rotate(var(--spin, 0deg));
+}
+
+/* The visible orbit circle. A hairline stroke rather than a stepped fill:
+   at this composition's scale (three nested rings this close together) a
+   filled/shaded ring reads as a target/badge and competes with the app
+   icons, while a 1px stroke is just enough to imply "this icon lives on a
+   path" without adding visual weight. Rotating this element via --spin is
+   a no-op (a circle is rotationally symmetric), so home.js's pointer
+   tracking never disturbs it. */
+.calm .stage-ring::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+    margin: calc(var(--radius) * -1);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.calm .stage-ring[data-ring="outer"] {
+    --radius: 28vmin;
+    --icon-size: clamp(44px, 5.5vmin, 72px);
+}
+
+.calm .stage-ring[data-ring="mid"] {
+    --radius: 20vmin;
+    --icon-size: clamp(38px, 4.6vmin, 60px);
+}
+
+.calm .stage-ring[data-ring="inner"] {
+    --radius: 15vmin;
+    --icon-size: clamp(32px, 3.8vmin, 50px);
+}
+
+/* --explode scales the orbit radius: 0 = stacked at the mark's center,
+   1 = out on the ring. It defaults to 1 so a no-JS / reduced-motion page
+   renders every icon resting in place. The load "boom" drives it 0 -> 1. */
+.calm .stage-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: calc(var(--icon-size) / -2);
+    border-radius: 22%;
+    /* Orbit to the ring position (radius scaled by --explode for the load
+       burst), counter-rotate to stay upright, then apply the magnetic
+       offset set by home.js. */
+    transform:
+        rotate(var(--angle))
+        translateY(calc(var(--radius) * -1 * var(--explode, 1)))
+        rotate(calc((var(--angle) + var(--spin, 0deg)) * -1))
+        translate(var(--mx, 0px), var(--my, 0px));
+    transition: transform 0.6s cubic-bezier(0.34, 1.25, 0.5, 1);
+}
+
+/* While the pointer is over the stage, magnetic updates must not lag behind
+   a transition. home.js toggles this class. */
+.calm .stage.is-tracking .stage-icon {
+    transition: none;
+}
+
+/* ---------- Hero load animation (the "boom") ----------
+   anim-ready is set on <html> before first paint (inline head script) only
+   when motion is allowed, collapsing every icon behind the mark. home.js
+   then adds boom-start (mark shakes) and, once the shake finishes, boom-go
+   (icons burst outward to their rings). The burst is a plain transform
+   transition on --explode, so it never depends on @property support and
+   never interpolates a degenerate scale(0) matrix. */
+html.anim-ready .calm .stage-icon {
+    --explode: 0;
+    opacity: 0;
+}
+
+html.anim-ready.boom-go .calm .stage-icon {
+    --explode: 1;
+    opacity: 1;
+}
+
+/* Burst from the center outward: inner ring first, outer ring last. */
+html.anim-ready.boom-go .calm .stage-ring[data-ring="mid"] .stage-icon {
+    transition-delay: 0.07s;
+}
+
+html.anim-ready.boom-go .calm .stage-ring[data-ring="outer"] .stage-icon {
+    transition-delay: 0.14s;
+}
+
+/* The mark winds up (shake) then releases (a small pop as the icons fly out). */
+html.anim-ready.boom-start .calm .stage-mark {
+    animation: mark-shake 0.5s ease-in-out;
+}
+
+html.anim-ready.boom-go .calm .stage-mark {
+    animation: mark-pop 0.45s ease-out;
+}
+
+/* Once the pop settles, the mark keeps a quiet resting heartbeat: a gentle
+   lub-dub at 60bpm (1s per beat). boom-rest is added by home.js after the
+   pop finishes; it comes after boom-go in source order so its animation wins
+   the same-specificity tie. Gated on anim-ready, so reduced-motion never
+   reaches it. */
+html.anim-ready.boom-rest .calm .stage-mark {
+    animation: mark-heartbeat 1s ease-in-out infinite;
+}
+
+@keyframes mark-heartbeat {
+    0% { transform: scale(1); }
+    12% { transform: scale(1.045); }
+    24% { transform: scale(1); }
+    36% { transform: scale(1.028); }
+    50% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes mark-shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    15% { transform: translateX(-3px) rotate(-4deg); }
+    30% { transform: translateX(3px) rotate(4deg); }
+    45% { transform: translateX(-2px) rotate(-3deg); }
+    60% { transform: translateX(2px) rotate(3deg); }
+    80% { transform: translateX(-1px) rotate(-1deg); }
+}
+
+@keyframes mark-pop {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+.calm .stage-mark {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: clamp(120px, 14vw, 200px);
+    height: auto;
+    border-radius: 22%;
+}
+
+.calm .stage-copy {
+    position: absolute;
+    right: clamp(1.5rem, 4vw, 4rem);
+    bottom: clamp(1.5rem, 4vw, 4rem);
+    z-index: 2;
+    max-width: 34rem;
+    text-align: right;
+}
+
+.calm .stage-title {
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 0 0 0.6rem;
+}
+
+.calm .stage-tagline {
+    font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Below this width the pinned bottom-right copy would collide with the
+   composition, so it drops into normal flow, centered beneath the stage.
+   .stage-center switches to vw (rather than vmin) so its size tracks the
+   one axis that is actually constrained on a narrow phone; the row below
+   it (.stage-copy, now static) is guaranteed clear because it is a
+   separate grid row with a gap, not an independently anchored overlay. */
+@media (max-width: 768px) {
+    .calm .stage {
+        height: auto;
+        min-height: 0;
+        padding: 8rem 1.5rem 3rem;
+        grid-template-rows: auto auto;
+        gap: 2rem;
+    }
+
+    .calm .stage-center {
+        width: 88vw;
+        height: 88vw;
+    }
+
+    .calm .stage-ring[data-ring="outer"] {
+        --radius: 38vw;
+    }
+
+    .calm .stage-ring[data-ring="mid"] {
+        --radius: 34vw;
+    }
+
+    .calm .stage-ring[data-ring="inner"] {
+        --radius: 30vw;
+    }
+
+    .calm .stage-copy {
+        position: static;
+        max-width: none;
+        text-align: center;
+    }
+}
+
+/* ---------- Stage interference fix -----------
+   styles.css is still loaded and its unscoped `img { max-width: 100% }`
+   resolves against .stage-icon's containing block, which is .stage-ring
+   at width:0/height:0 - without this reset every orbiting icon collapses
+   to zero width, invisible. (The matching .hero padding leak is reset
+   directly in the base .calm .stage rule above, not here, so it stays
+   below the mobile @media override in source order.) */
+.calm .stage-icon,
+.calm .stage-mark {
+    max-width: none;
+}
+
+/* ---------- Reveal wipes ---------- */
+
+/* Copy reveals by wiping left to right rather than fading. Hero elements
+   reveal on load (see .is-loaded below). Everything else is driven by the
+   pre-existing IntersectionObserver in index.html, which adds .revealed
+   to any .scroll-reveal element it observes.
+
+   Important: .scroll-reveal and .wipe are deliberately NOT the same
+   element for scroll-driven copy. A .wipe element sits at
+   clip-path: inset(0 100% 0 0) before reveal - a genuinely zero-area box.
+   Chromium's IntersectionObserver never reports isIntersecting for a
+   target with a zero-area clip-path, no matter how long you scroll, so an
+   element carrying both classes at once would never receive .revealed and
+   would stay permanently invisible. Verified directly: an isolated
+   zero-area clip-path target never intersects under headless Chrome,
+   while an identical opacity:0 target does. To avoid that trap,
+   .scroll-reveal stays on an unclipped ancestor (.section-header,
+   .about-wrapper) and .revealed cascades down to the clipped .wipe
+   descendants instead of living on the same node. */
+/* Fail-safe: .wipe text is VISIBLE by default. The clip is only armed once
+   home.js confirms it is running and will manage the reveal (it adds
+   .is-armed). If the script fails, is blocked, or errors before this point,
+   the copy simply appears with no animation instead of being clipped to
+   nothing with no way to recover. Hiding content by default and relying on
+   JS to bring it back is how headings silently disappear. */
+.calm.is-armed .wipe {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Neutralize the unscoped .scroll-reveal fade/slide (styles.css) on
+   section headers - .section-header only carries .scroll-reveal so the
+   IntersectionObserver has an unclipped target to observe. The visible
+   reveal is handled entirely by the nested .wipe elements below. */
+.calm .section-header.scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.calm .section-header.revealed .wipe,
+.calm .about-wrapper.revealed .wipe,
+.calm .wipe.revealed,
+.calm.is-loaded .stage-copy .wipe,
+.calm.is-revealed-all .wipe {
+    clip-path: inset(0 0 0 0);
+}
+
+.calm .stage-copy .stage-title.wipe {
+    transition-delay: 0.3s;
+}
+
+.calm .stage-copy .stage-tagline.wipe {
+    transition-delay: 0.45s;
+}
+
+/* Stagger reveals within a section header. */
+.calm .section-header .wipe:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.calm .section-header .wipe:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm .wipe {
+        clip-path: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .calm .section-header.revealed .wipe,
+    .calm .about-wrapper.revealed .wipe,
+    .calm .wipe.revealed,
+    .calm.is-loaded .stage-copy .wipe {
+        opacity: 1;
+    }
+}
+
+/* ---------- Apps card stack ---------- */
+
+.calm .apps-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* Each app is one white card: icon on the left, name/description in the
+   middle, the Learn more pill on the right. No screenshots; those live in
+   the parallax band above the section. */
+.calm .app-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: clamp(1.25rem, 3vw, 2.25rem) var(--pad-card);
+}
+
+.calm .app-card-icon {
+    display: grid;
+    place-items: center;
+}
+
+.calm .app-card-icon .app-icon {
+    width: clamp(56px, 8vw, 84px);
+    height: auto;
+    border-radius: 22%;
+    /* styles.css has an unscoped `.app-icon { box-shadow: ... }` left over
+       from the old feature-row layout. The calm homepage carries no
+       decorative shadows, so it must be cancelled here. */
+    box-shadow: none;
+}
+
+.calm .app-card-info {
+    min-width: 0;
+}
+
+.calm .app-card-info .app-name {
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0;
+}
+
+.calm .app-card-info .app-award {
+    margin: 0.35rem 0 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.calm .app-card-info .app-award a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--accent);
+}
+
+.calm .app-card-copy {
+    margin: 0.4rem 0 0;
+    line-height: 1.65;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--color-text-secondary, #6e6e73);
+}
+
+.calm .app-card-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+    .calm .app-card {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+            "icon info"
+            "link link";
+        row-gap: 1.25rem;
+    }
+
+    .calm .app-card-icon { grid-area: icon; align-self: start; }
+    .calm .app-card-info { grid-area: info; }
+    .calm .app-card-link { grid-area: link; justify-content: flex-start; }
+}
+
+/* ---------- Parallax screenshot band ---------- */
+
+.calm .band {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1440 / 550;
+    overflow: hidden;
+    background: var(--color-card);
+    margin: var(--gap-section) 0;
+}
+
+.calm .band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.calm .band-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 16.6667%;
+    flex: 0 0 16.6667%;
+    padding: 0 0.5rem;
+    align-self: flex-start;
+    will-change: transform;
+}
+
+.calm .band-col:nth-child(2n) {
+    align-self: flex-end;
+}
+
+.calm .band-col img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-image);
+    object-fit: cover;
+    /* styles.css sets an unscoped img { max-width: 100% }; harmless here,
+       but the band sizes purely by column width so make it explicit. */
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .calm .band {
+        aspect-ratio: 390 / 340;
+    }
+
+    .calm .band-col {
+        width: 33.3333%;
+        flex: 0 0 33.3333%;
+    }
+
+    .calm .band-col:nth-child(n + 4) {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm .band-col {
+        transform: none !important;
+        will-change: auto;
+    }
+}
+
+/* ---------- Section labels (text shuffle target) ---------- */
+
+/* Scrambled glyphs are not the same width as the real ones, so the label
+   reserves space to stop the heading below it jittering mid-animation. */
+.calm .section-label {
+    display: inline-block;
+    min-width: 6ch;
+}
+
+/* ---------- Creative rows ---------- */
+
+.calm .creative-rows {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: var(--pad-card);
+}
+
+.calm .creative-row {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 14rem) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    padding: 2rem 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.calm .creative-row + .creative-row {
+    border-top: 1px solid #d7dbe2;
+}
+
+.calm .creative-row-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.calm .creative-row-label .content-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin-bottom: 0.3rem;
+}
+
+.calm .creative-row-label .content-title {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    margin: 0;
+}
+
+.calm .creative-row-copy {
+    margin: 0;
+    line-height: 1.76;
+    letter-spacing: -0.02em;
+}
+
+.calm .creative-row-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ---------- About ---------- */
+
+.calm .about-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: var(--pad-card);
+}
+
+.calm .about-photo .headshot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-image);
+}
+
+.calm .about-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 1rem;
+}
+
+.calm .about-text {
+    line-height: 1.76;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Contact ---------- */
+
+.calm .contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.calm .contact-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+/* ---------- Footer ---------- */
+
+.calm .footer {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    margin: var(--gap-section) clamp(0.5rem, 1.5vw, 1rem) clamp(0.5rem, 1.5vw, 1rem);
+    border-top: none;
+}
+
+@media (max-width: 900px) {
+    .calm .creative-row {
+        grid-template-columns: 4rem minmax(0, 1fr);
+        grid-template-areas:
+            "thumb label"
+            "copy copy"
+            "link link";
+        gap: 1rem;
+    }
+
+    .calm .creative-row-thumb { grid-area: thumb; }
+    .calm .creative-row-label { grid-area: label; }
+    .calm .creative-row-copy { grid-area: copy; }
+    .calm .creative-row-link { grid-area: link; justify-content: flex-start; }
+
+    .calm .about-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm .about-photo {
+        max-width: 12rem;
+    }
+}
+
+/* ==========================================================================
+   Motion polish
+   Small feedback and entrance touches found via the animation survey.
+   Everything animates transform/opacity only, stays within budget, and
+   degrades under prefers-reduced-motion.
+   ========================================================================== */
+
+/* (1) Press feedback on the pill buttons. Hover already animates the border
+   and dot; this adds a tactile press-in. Gated to no-preference so
+   reduced-motion users keep the (non-moving) hover feedback instead. */
+@media (prefers-reduced-motion: no-preference) {
+    .calm .btn:active,
+    .calm .btn-dot:active,
+    .calm .contact-btn:active {
+        transform: scale(0.97);
+    }
+}
+
+/* (2) Staggered entrance for the app cards. The base opacity/transform reveal
+   comes from .scroll-reveal (styles.css); here the calm settle curve plus a
+   60ms-per-card delay turn eight independent reveals into one gentle cascade.
+   Only .app-card is targeted, so the old .app-feature stagger is untouched. */
+.calm .apps-showcase .app-card.scroll-reveal {
+    transform: translateY(16px);
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.calm .apps-showcase .app-card.scroll-reveal.revealed {
+    transform: translateY(0);
+}
+
+.calm .apps-showcase .app-card:nth-child(1).revealed { transition-delay: 0s; }
+.calm .apps-showcase .app-card:nth-child(2).revealed { transition-delay: 0.06s; }
+.calm .apps-showcase .app-card:nth-child(3).revealed { transition-delay: 0.12s; }
+.calm .apps-showcase .app-card:nth-child(4).revealed { transition-delay: 0.18s; }
+.calm .apps-showcase .app-card:nth-child(5).revealed { transition-delay: 0.24s; }
+.calm .apps-showcase .app-card:nth-child(6).revealed { transition-delay: 0.30s; }
+.calm .apps-showcase .app-card:nth-child(7).revealed { transition-delay: 0.36s; }
+.calm .apps-showcase .app-card:nth-child(8).revealed { transition-delay: 0.42s; }
+
+/* (3) App icons pop toward the reader when their card is hovered, echoing the
+   hero's playful icon language. Hover-only so it never fires on touch. */
+@media (hover: hover) and (pointer: fine) {
+    .calm .app-card .app-card-icon .app-icon {
+        transition: transform 0.22s cubic-bezier(0.34, 1.25, 0.5, 1);
+    }
+
+    .calm .app-card:hover .app-card-icon .app-icon {
+        transform: scale(1.06) rotate(-2deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Card entrance: fade only, no slide. */
+    .calm .apps-showcase .app-card.scroll-reveal {
+        transform: none;
+        transition: opacity 0.4s ease;
+    }
+
+    /* No icon pop. */
+    .calm .app-card:hover .app-card-icon .app-icon {
+        transform: none;
+    }
+}

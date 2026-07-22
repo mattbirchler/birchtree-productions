@@ -8,7 +8,7 @@ Portfolio website for Birchtree Productions, LLC - an indie app development comp
 ### Colors
 - **Accent color**: `rgb(136, 57, 239)` (purple)
 - **Accent hover**: `rgb(156, 87, 255)`
-- **Gradient**: `linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%)`
+- **Gradient**: `linear-gradient(135deg, rgb(136, 57, 239) 0%, #db2777 100%)` (app sub-pages only; the homepage uses no gradients)
 - All CSS variables are defined in `styles.css`
 
 ### Typography
@@ -22,7 +22,7 @@ Portfolio website for Birchtree Productions, LLC - an indie app development comp
 ## Page Structure
 
 ### All Pages Must Include
-1. **Background shapes** - Floating colored blobs for visual interest
+1. **Background shapes** (app sub-pages only) - Floating colored blobs for visual interest. The homepage (`index.html`) deliberately omits these; see `docs/superpowers/specs/2026-07-21-homepage-calm-redesign-design.md`.
    ```html
    <div class="background-shapes">
        <div class="shape shape-1"></div>
@@ -72,13 +72,34 @@ After making changes to `styles.css`, **always run `./cache-bust.sh`** before co
 ./cache-bust.sh
 ```
 
+## Homepage Styles
+
+The homepage uses its own `home.css` and `home.js`, loaded only by
+`index.html`, with every CSS rule scoped under `body.calm`. This keeps the
+calm card architecture off the app sub-pages, which still use the original
+`styles.css` treatment.
+
+**Never modify `styles.css` when working on the homepage.** Run
+`python3 tools/check-isolation.py` to verify isolation holds. It fails if any
+rule in `home.css` is unscoped or if either homepage asset is referenced by a
+sub-page.
+
+Note that `styles.css` has several unscoped rules (`img`, `.app-icon`,
+`.app-screenshot`, `.hero`) that leak onto the homepage. Some are load-bearing:
+`.app-screenshot { max-width: 280px }` exists because most app screenshots are
+tall portrait iPhone captures. The homepage caps them by height instead.
+
 ## File Organization
 
 ```
 /
 ├── index.html              # Main landing page
-├── styles.css              # Shared styles
-├── cache-bust.sh           # Run after changing styles.css
+├── home.css                # Homepage-only styles (scoped under body.calm)
+├── home.js                 # Homepage-only behavior
+├── styles.css              # Shared styles (app sub-pages)
+├── cache-bust.sh           # Run after changing styles.css, home.css, or home.js
+├── tools/
+│   └── check-isolation.py  # Verifies homepage styles cannot reach sub-pages
 ├── CLAUDE.md               # This file
 ├── .gitignore
 ├── images/                 # All images
