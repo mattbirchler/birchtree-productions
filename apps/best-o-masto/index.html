@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +24,9 @@
     <link rel="icon" href="../../images/best-o-masto.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../styles.css?v=be9fc7ad">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="../../app.css?v=bfb48c76">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -48,538 +49,19 @@
         }
     }
     </script>
-    <style>
-        /* App page specific styles */
-        .app-hero {
-            min-height: auto;
-            padding: var(--space-xl) var(--space-lg) var(--space-2xl);
-        }
-
-        .app-hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .app-hero-title {
-            font-size: var(--font-size-5xl);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            color: var(--color-text);
-        }
-
-        .gradient-text {
-            background: linear-gradient(
-                90deg,
-                rgb(136, 57, 239) 0%,
-                #db2777 40%,
-                rgb(136, 57, 239) 60%,
-                #db2777 100%
-            );
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shimmer 4s ease-in-out infinite;
-        }
-
-        @keyframes gradient-shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .app-hero-subtitle {
-            font-size: var(--font-size-xl);
-            color: var(--color-text-secondary);
-            margin-top: var(--space-md);
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        .download-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-            justify-content: center;
-            margin-top: var(--space-xl);
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: var(--radius-xl);
-            font-weight: 600;
-            font-size: var(--font-size-base);
-            transition: all var(--transition-base);
-        }
-
-        .download-btn-primary {
-            background: var(--color-text);
-            color: white;
-        }
-
-        .download-btn-primary:hover {
-            background: #000;
-            transform: scale(1.02);
-        }
-
-        .download-btn svg {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        .hero-screenshot {
-            margin-top: var(--space-2xl);
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-screenshot img {
-            width: 100%;
-            border-radius: var(--radius-2xl);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
-
-        .screenshot-placeholder {
-            aspect-ratio: 16 / 10;
-            background: linear-gradient(135deg, rgba(136, 57, 239, 0.1) 0%, rgba(219, 39, 119, 0.1) 100%);
-            border-radius: var(--radius-2xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: var(--font-size-sm);
-            border: 1px dashed var(--color-border);
-        }
-
-        /* Feature sections */
-        .feature-section {
-            padding: var(--space-3xl) var(--space-lg);
-        }
-
-        .feature-section-alt {
-            background: var(--color-bg-secondary);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-2xl);
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-grid-reverse {
-            direction: rtl;
-        }
-
-        .feature-grid-reverse > * {
-            direction: ltr;
-        }
-
-        .feature-label {
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-link);
-            margin-bottom: var(--space-xs);
-        }
-
-        .feature-title {
-            font-size: var(--font-size-3xl);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--color-text);
-            line-height: 1.2;
-        }
-
-        .feature-description {
-            font-size: var(--font-size-base);
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-            margin-top: var(--space-md);
-        }
-
-        .feature-image img {
-            width: 100%;
-            border-radius: var(--radius-2xl);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Feature cards grid */
-        .features-grid-section {
-            padding: var(--space-3xl) var(--space-lg);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            padding: var(--space-lg);
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            transition: all var(--transition-base);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: card-reveal 0.5s ease forwards;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes card-reveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-lg);
-            background: rgba(136, 57, 239, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-sm);
-            font-size: 1.5rem;
-        }
-
-        .feature-card-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--color-link);
-        }
-
-        .feature-card-title {
-            font-weight: 600;
-            font-size: var(--font-size-lg);
-            color: var(--color-text);
-            margin-bottom: var(--space-xs);
-        }
-
-        .feature-card-description {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Centered section */
-        .centered-section {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Comparison section */
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-lg);
-            max-width: 900px;
-            margin: var(--space-2xl) auto 0;
-        }
-
-        .comparison-card {
-            padding: var(--space-xl);
-            border-radius: var(--radius-2xl);
-        }
-
-        .comparison-card-problem {
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid rgba(239, 68, 68, 0.15);
-        }
-
-        .comparison-card-solution {
-            background: rgba(34, 197, 94, 0.05);
-            border: 1px solid rgba(34, 197, 94, 0.15);
-        }
-
-        .comparison-card-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            margin-bottom: var(--space-md);
-        }
-
-        .comparison-card-problem .comparison-card-title {
-            color: #ef4444;
-        }
-
-        .comparison-card-solution .comparison-card-title {
-            color: #22c55e;
-        }
-
-        .comparison-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-        }
-
-        .comparison-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-sm);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        .comparison-list li span {
-            flex-shrink: 0;
-        }
-
-        /* How it works */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-            max-width: 900px;
-            margin: var(--space-2xl) auto 0;
-        }
-
-        .step-card {
-            padding: var(--space-lg);
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            text-align: center;
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--color-link);
-            color: white;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--space-sm);
-        }
-
-        .step-title {
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: var(--space-xs);
-        }
-
-        .step-description {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
-            color: white;
-            padding: var(--space-3xl) var(--space-lg);
-            text-align: center;
-        }
-
-        .cta-section .feature-title {
-            color: white;
-        }
-
-        .cta-section .feature-description {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .cta-section .download-btn-primary {
-            background: white;
-            color: var(--color-text);
-        }
-
-        .cta-section .download-btn-primary:hover {
-            background: var(--color-bg-secondary);
-        }
-
-        .cta-requirements {
-            margin-top: var(--space-md);
-            font-size: var(--font-size-sm);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* App page nav */
-        .app-nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: var(--space-sm) var(--space-lg);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .app-nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .app-nav-brand {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .app-nav-brand img {
-            width: 32px;
-            height: 32px;
-            border-radius: var(--radius-md);
-        }
-
-        .app-nav-brand span {
-            font-weight: 600;
-            color: var(--color-text);
-        }
-
-        .app-nav-links {
-            display: flex;
-            gap: var(--space-lg);
-            list-style: none;
-        }
-
-        .app-nav-links a {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            transition: color var(--transition-fast);
-        }
-
-        .app-nav-links a:hover {
-            color: var(--color-text);
-        }
-
-        /* App footer */
-        .app-footer {
-            padding: var(--space-lg) var(--space-lg);
-            border-top: 1px solid var(--color-border);
-        }
-
-        .app-footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: var(--space-md);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .app-footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .app-footer-brand img {
-            width: 24px;
-            height: 24px;
-            border-radius: var(--radius-sm);
-        }
-
-        .app-footer-brand span {
-            font-weight: 500;
-            font-size: var(--font-size-sm);
-            color: var(--color-text);
-        }
-
-        .app-footer-links {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        .app-footer-links a {
-            color: var(--color-text-secondary);
-            transition: color var(--transition-fast);
-        }
-
-        .app-footer-links a:hover {
-            color: var(--color-text);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-xl);
-            }
-
-            .feature-grid-reverse {
-                direction: ltr;
-            }
-
-            .feature-image {
-                order: -1;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .app-nav-links {
-                display: none;
-            }
-
-            .app-footer-container {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
-<body>
-    <div class="background-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
-
+<body class="calm-app" style="--app-accent: #9333ea;">
     <!-- Navigation -->
     <nav class="app-nav">
         <div class="app-nav-container">
-            <a href="../../" class="app-nav-brand">
+            <a href="../../" class="app-nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Birchtree Productions</span>
+            </a>
+            <div class="app-nav-brand">
                 <img src="../../images/best-o-masto.png" alt="Best-o-Masto" style="view-transition-name: best-o-masto-icon;">
                 <span>Best-o-Masto</span>
-            </a>
+            </div>
             <ul class="app-nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
@@ -588,68 +70,76 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
-        <section class="app-hero">
-            <div class="app-hero-content fade-in">
-                <h1 class="app-hero-title">
+        <!-- Hero -->
+        <header class="app-hero">
+            <div class="app-hero-inner">
+                <img src="../../images/best-o-masto.png" alt="Best-o-Masto" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">
                     Catch up without<br>
-                    <span class="gradient-text">getting sucked in.</span>
+                    <span class="accent-line">getting sucked in.</span>
                 </h1>
-                <p class="app-hero-subtitle">
+                <p class="app-hero-subtitle wipe">
                     Best-o-Masto shows you the 20 most engaging posts from your Mastodon timeline, plus a dedicated feed for your favorite accounts. No infinite scroll, no algorithmic rage.
                 </p>
                 <div class="download-buttons">
-                    <a href="https://apps.apple.com/us/app/best-o-masto/id6747150331" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    <a href="https://apps.apple.com/us/app/best-o-masto/id6747150331" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                         Download for iPhone
                     </a>
                 </div>
             </div>
+        </header>
 
-            <div class="hero-screenshot fade-in">
-                <img src="../../images/best-o-masto-hero.jpeg" alt="Best-o-Masto app interface">
-            </div>
-            <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </a>
-        </section>
+        <div class="hero-screenshot">
+            <img src="../../images/best-o-masto-hero.jpeg" alt="Best-o-Masto app interface" data-drift="0.06">
+        </div>
 
         <!-- Feature Grid -->
-        <section id="features" class="features-grid-section feature-section-alt">
-            <div class="centered-section scroll-reveal">
-                <p class="feature-label">Features</p>
-                <h2 class="feature-title">Social media that respects your time.</h2>
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Features</p>
+                <h2 class="section-title wipe">Social media that respects your time.</h2>
             </div>
-            <div class="features-grid" style="margin-top: var(--space-2xl);">
+            <div class="features-grid">
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">🎯</div>
+                    <div class="feature-card-icon">
+                        <i>&#127919;</i>
+                    </div>
                     <h3 class="feature-card-title">Top 20 Posts Only</h3>
                     <p class="feature-card-description">No infinite scroll. Just the most engaging posts from your timeline, ranked by actual interaction.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">⭐</div>
+                    <div class="feature-card-icon">
+                        <i>&#11088;</i>
+                    </div>
                     <h3 class="feature-card-title">Your Top 8</h3>
                     <p class="feature-card-description">Select 8 accounts you never want to miss. Get a dedicated feed just for them. MySpace nostalgia, modern execution.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">✏️</div>
+                    <div class="feature-card-icon">
+                        <i>&#9999;&#65039;</i>
+                    </div>
                     <h3 class="feature-card-title">Simple Posting</h3>
                     <p class="feature-card-description">Share thoughts and photos with a clean compose interface. No threads, no complexity. Just post and go.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">🎨</div>
+                    <div class="feature-card-icon">
+                        <i>&#127912;</i>
+                    </div>
                     <h3 class="feature-card-title">Your Style</h3>
                     <p class="feature-card-description">Choose from 6 beautiful theme colors. Open links in Ivory or Mona for full interactions.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">❤️</div>
+                    <div class="feature-card-icon">
+                        <i>&#10084;&#65039;</i>
+                    </div>
                     <h3 class="feature-card-title">Quick Interactions</h3>
                     <p class="feature-card-description">Like and boost posts directly from the app. See what matters, interact, and get on with your life.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">🔒</div>
+                    <div class="feature-card-icon">
+                        <i>&#128274;</i>
+                    </div>
                     <h3 class="feature-card-title">Secure & Native</h3>
                     <p class="feature-card-description">OAuth authentication with keychain storage. Built with SwiftUI for a fast, native iOS experience.</p>
                 </div>
@@ -657,85 +147,97 @@
         </section>
 
         <!-- Problem vs Solution -->
-        <section class="feature-section">
-            <div class="centered-section scroll-reveal">
-                <p class="feature-label">The Philosophy</p>
-                <h2 class="feature-title">The problem with social media</h2>
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">The Philosophy</p>
+                <h2 class="section-title wipe">The problem with social media</h2>
             </div>
-            <div class="comparison-grid scroll-reveal">
-                <div class="comparison-card comparison-card-problem">
-                    <h3 class="comparison-card-title">Traditional Social Media</h3>
-                    <ul class="comparison-list">
-                        <li><span>❌</span> Designed to keep you scrolling forever</li>
-                        <li><span>❌</span> Algorithmic feeds prioritize engagement over quality</li>
-                        <li><span>❌</span> Important updates from friends get buried</li>
-                        <li><span>❌</span> Rage-inducing content gets promoted</li>
-                        <li><span>❌</span> Hours disappear into the void</li>
-                    </ul>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-x-circle"></i>
+                    </div>
+                    <h3 class="feature-card-title">Traditional Social Media</h3>
+                    <p class="feature-card-description">
+                        &#10060; Designed to keep you scrolling forever<br>
+                        &#10060; Algorithmic feeds prioritize engagement over quality<br>
+                        &#10060; Important updates from friends get buried<br>
+                        &#10060; Rage-inducing content gets promoted<br>
+                        &#10060; Hours disappear into the void
+                    </p>
                 </div>
-                <div class="comparison-card comparison-card-solution">
-                    <h3 class="comparison-card-title">Best-o-Masto</h3>
-                    <ul class="comparison-list">
-                        <li><span>✅</span> Fixed limit of 20 posts, no infinite scroll</li>
-                        <li><span>✅</span> Chronological timeline sorted by real engagement</li>
-                        <li><span>✅</span> Dedicated feed for your most important people</li>
-                        <li><span>✅</span> Quality content that people actually interact with</li>
-                        <li><span>✅</span> Check in, catch up, get on with your life</li>
-                    </ul>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-check-circle"></i>
+                    </div>
+                    <h3 class="feature-card-title">Best-o-Masto</h3>
+                    <p class="feature-card-description">
+                        &#9989; Fixed limit of 20 posts, no infinite scroll<br>
+                        &#9989; Chronological timeline sorted by real engagement<br>
+                        &#9989; Dedicated feed for your most important people<br>
+                        &#9989; Quality content that people actually interact with<br>
+                        &#9989; Check in, catch up, get on with your life
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- How It Works -->
-        <section id="how-it-works" class="feature-section feature-section-alt">
-            <div class="centered-section scroll-reveal">
-                <p class="feature-label">Simple Setup</p>
-                <h2 class="feature-title">How it works</h2>
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h3 class="step-title">Connect your Mastodon</h3>
-                        <p class="step-description">Secure OAuth login to any Mastodon instance. Your credentials stay safe.</p>
+        <section id="how-it-works" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Simple Setup</p>
+                <h2 class="section-title wipe">How it works</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i>1</i>
                     </div>
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h3 class="step-title">Pick your Top 8</h3>
-                        <p class="step-description">Select up to 8 accounts you never want to miss. Create your personal priority feed.</p>
+                    <h3 class="feature-card-title">Connect your Mastodon</h3>
+                    <p class="feature-card-description">Secure OAuth login to any Mastodon instance. Your credentials stay safe.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i>2</i>
                     </div>
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <h3 class="step-title">Enjoy focused browsing</h3>
-                        <p class="step-description">See the best content, interact with posts, and reclaim your time.</p>
+                    <h3 class="feature-card-title">Pick your Top 8</h3>
+                    <p class="feature-card-description">Select up to 8 accounts you never want to miss. Create your personal priority feed.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i>3</i>
                     </div>
+                    <h3 class="feature-card-title">Enjoy focused browsing</h3>
+                    <p class="feature-card-description">See the best content, interact with posts, and reclaim your time.</p>
                 </div>
             </div>
         </section>
 
         <!-- Free Section -->
-        <section id="pricing" class="feature-section">
-            <div class="centered-section scroll-reveal">
-                <div style="max-width: 600px; margin: 0 auto; padding: var(--space-xl); background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.15); border-radius: var(--radius-2xl); text-align: center;">
-                    <p style="font-size: 3rem; margin-bottom: var(--space-sm);">🎉</p>
-                    <h2 style="font-size: var(--font-size-2xl); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-sm);">100% Free. Forever.</h2>
-                    <p style="color: var(--color-text-secondary); line-height: 1.7;">Best-o-Masto is completely free with no ads, no subscriptions, and no features locked behind a paywall. Just download and enjoy intentional social media.</p>
+        <section id="pricing" class="section">
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">&#127881;</div>
+                    <div class="pricing-card-price">100% Free. Forever.</div>
+                    <p class="pricing-card-period">Best-o-Masto is completely free with no ads, no subscriptions, and no features locked behind a paywall. Just download and enjoy intentional social media.</p>
                 </div>
             </div>
         </section>
 
         <!-- Final CTA -->
-        <section class="cta-section">
-            <div class="centered-section">
-                <h2 class="feature-title">Ready to reclaim your time?</h2>
-                <p class="feature-description" style="margin-top: var(--space-md);">
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Ready to reclaim your time?</h2>
+                <p class="cta-copy">
                     Join the movement toward more intentional social media.
                 </p>
-                <div class="download-buttons" style="margin-top: var(--space-xl);">
-                    <a href="https://apps.apple.com/us/app/best-o-masto/id6747150331" target="_blank" rel="noopener noreferrer" class="download-btn download-btn-primary">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div class="download-buttons">
+                    <a href="https://apps.apple.com/us/app/best-o-masto/id6747150331" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                         Download Best-o-Masto
                     </a>
                 </div>
-                <p class="cta-requirements">Available for iPhone</p>
+                <p class="cta-copy">Available for iPhone</p>
             </div>
         </section>
     </main>
@@ -749,58 +251,12 @@
             </a>
             <div class="app-footer-links">
                 <a href="./privacy.html">Privacy Policy</a>
-                <span style="color: var(--color-border);">|</span>
+                <span class="app-footer-sep">|</span>
                 <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Scroll reveal animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Fade in animations
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 100);
-        });
-
-        // Hide scroll indicator on scroll
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        window.addEventListener('scroll', () => {
-            if (scrollIndicator) {
-                if (window.scrollY > 50) {
-                    scrollIndicator.classList.add('hidden');
-                } else {
-                    scrollIndicator.classList.remove('hidden');
-                }
-            }
-        });
-
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+    <script src="../../app.js?v=15b52a66" defer></script>
 </body>
 </html>
