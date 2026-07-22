@@ -323,6 +323,24 @@ html.anim-ready.boom-go .calm .stage-mark {
     animation: mark-pop 0.45s ease-out;
 }
 
+/* Once the pop settles, the mark keeps a quiet resting heartbeat: a gentle
+   lub-dub at 60bpm (1s per beat). boom-rest is added by home.js after the
+   pop finishes; it comes after boom-go in source order so its animation wins
+   the same-specificity tie. Gated on anim-ready, so reduced-motion never
+   reaches it. */
+html.anim-ready.boom-rest .calm .stage-mark {
+    animation: mark-heartbeat 1s ease-in-out infinite;
+}
+
+@keyframes mark-heartbeat {
+    0% { transform: scale(1); }
+    12% { transform: scale(1.045); }
+    24% { transform: scale(1); }
+    36% { transform: scale(1.028); }
+    50% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
 @keyframes mark-shake {
     0%, 100% { transform: translateX(0) rotate(0deg); }
     15% { transform: translateX(-3px) rotate(-4deg); }

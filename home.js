@@ -418,6 +418,11 @@
             html.classList.add('boom-start');
             window.setTimeout(function () {
                 html.classList.add('boom-go');
+                // After the pop (mark-pop is 0.45s), settle into the resting
+                // heartbeat loop.
+                window.setTimeout(function () {
+                    html.classList.add('boom-rest');
+                }, 460);
             }, 520);
         });
     }
