@@ -146,7 +146,8 @@ body.calm {
     font-weight: 700;
     letter-spacing: 0.04em;
     text-decoration: none;
-    transition: border-color 0.25s ease, background-color 0.25s ease;
+    transition: border-color 0.25s ease, background-color 0.25s ease,
+                transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .calm .btn::after,
@@ -799,5 +800,72 @@ html.anim-ready.boom-go .calm .stage-mark {
 
     .calm .about-photo {
         max-width: 12rem;
+    }
+}
+
+/* ==========================================================================
+   Motion polish
+   Small feedback and entrance touches found via the animation survey.
+   Everything animates transform/opacity only, stays within budget, and
+   degrades under prefers-reduced-motion.
+   ========================================================================== */
+
+/* (1) Press feedback on the pill buttons. Hover already animates the border
+   and dot; this adds a tactile press-in. Gated to no-preference so
+   reduced-motion users keep the (non-moving) hover feedback instead. */
+@media (prefers-reduced-motion: no-preference) {
+    .calm .btn:active,
+    .calm .btn-dot:active,
+    .calm .contact-btn:active {
+        transform: scale(0.97);
+    }
+}
+
+/* (2) Staggered entrance for the app cards. The base opacity/transform reveal
+   comes from .scroll-reveal (styles.css); here the calm settle curve plus a
+   60ms-per-card delay turn eight independent reveals into one gentle cascade.
+   Only .app-card is targeted, so the old .app-feature stagger is untouched. */
+.calm .apps-showcase .app-card.scroll-reveal {
+    transform: translateY(16px);
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.calm .apps-showcase .app-card.scroll-reveal.revealed {
+    transform: translateY(0);
+}
+
+.calm .apps-showcase .app-card:nth-child(1).revealed { transition-delay: 0s; }
+.calm .apps-showcase .app-card:nth-child(2).revealed { transition-delay: 0.06s; }
+.calm .apps-showcase .app-card:nth-child(3).revealed { transition-delay: 0.12s; }
+.calm .apps-showcase .app-card:nth-child(4).revealed { transition-delay: 0.18s; }
+.calm .apps-showcase .app-card:nth-child(5).revealed { transition-delay: 0.24s; }
+.calm .apps-showcase .app-card:nth-child(6).revealed { transition-delay: 0.30s; }
+.calm .apps-showcase .app-card:nth-child(7).revealed { transition-delay: 0.36s; }
+.calm .apps-showcase .app-card:nth-child(8).revealed { transition-delay: 0.42s; }
+
+/* (3) App icons pop toward the reader when their card is hovered, echoing the
+   hero's playful icon language. Hover-only so it never fires on touch. */
+@media (hover: hover) and (pointer: fine) {
+    .calm .app-card .app-card-icon .app-icon {
+        transition: transform 0.22s cubic-bezier(0.34, 1.25, 0.5, 1);
+    }
+
+    .calm .app-card:hover .app-card-icon .app-icon {
+        transform: scale(1.06) rotate(-2deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Card entrance: fade only, no slide. */
+    .calm .apps-showcase .app-card.scroll-reveal {
+        transform: none;
+        transition: opacity 0.4s ease;
+    }
+
+    /* No icon pop. */
+    .calm .app-card:hover .app-card-icon .app-icon {
+        transform: none;
     }
 }
