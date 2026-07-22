@@ -225,6 +225,36 @@ case(
     """,
 )
 
+# --- .calm-app scope token: scoped passes, unscoped fails ------------------
+SCOPED_CASES = []
+
+
+def scoped_case(name, kind, token, css):
+    SCOPED_CASES.append((name, kind, token, css))
+
+
+scoped_case(
+    "calm_app_scoped_must_pass", "pass", "calm-app",
+    ".calm-app .feature-card { color: red; }",
+)
+scoped_case(
+    "calm_app_unscoped_must_fail", "fail", "calm-app",
+    ".feature-card { color: red; }",
+)
+# Cross-token isolation: .calm is NOT .calm-app and vice versa.
+scoped_case(
+    "calm_does_not_satisfy_calm_app_must_fail", "fail", "calm-app",
+    ".calm .thing { color: red; }",
+)
+scoped_case(
+    "calm_app_does_not_satisfy_calm_must_fail", "fail", "calm",
+    ".calm-app .thing { color: red; }",
+)
+scoped_case(
+    "calm_app_body_scoped_must_pass", "pass", "calm-app",
+    "body.calm-app { color: red; }",
+)
+
 # --- HTML asset reference: must be scoped to href=/src=, not substring ---
 HTML_COMMENT_MENTION = """
 <html><body>
@@ -267,11 +297,44 @@ def run():
         if not ok:
             failures.append(name)
 
+    # Scoped-token CSS tests (parameterized scope token).
+    for name, kind, token, css in SCOPED_CASES:
+        violations = check_isolation.check_scoped_css_text(css, token)
+        got_fail = len(violations) > 0
+        want_fail = kind == "fail"
+        ok = got_fail == want_fail
+        status = "ok" if ok else "FAILED"
+        detail = f" violations={violations!r}" if not ok else ""
+        print(f"[{status}] {name}{detail}")
+        if not ok:
+            failures.append(name)
+
+    # Asset-reference classification (index vs apps/ direction rules).
+    classify_cases = [
+        ("home_css_by_index_ok", "home.css", "index.html", True, None),
+        ("home_css_by_app_fails", "home.css", "apps/quick-reads/index.html", False,
+         "home.css referenced by apps/quick-reads/index.html"),
+        ("app_css_by_app_ok", "app.css", "apps/quick-reads/index.html", False, None),
+        ("app_css_by_index_fails", "app.css", "index.html", True,
+         "app.css referenced by index.html"),
+        ("app_js_by_index_fails", "app.js", "index.html", True,
+         "app.js referenced by index.html"),
+    ]
+    for name, asset, rel, is_index, expected in classify_cases:
+        got = check_isolation.classify_asset_reference(asset, rel, is_index)
+        ok = got == expected
+        status = "ok" if ok else "FAILED"
+        detail = f" got={got!r} expected={expected!r}" if not ok else ""
+        print(f"[{status}] {name}{detail}")
+        if not ok:
+            failures.append(name)
+
     print()
     if failures:
         print(f"FAIL: {len(failures)} case(s) failed: {', '.join(failures)}")
         return 1
-    print(f"PASS: all {len(CASES) + len(html_cases)} cases behaved as expected")
+    total = len(CASES) + len(html_cases) + len(SCOPED_CASES) + len(classify_cases)
+    print(f"PASS: all {total} cases behaved as expected")
     return 0
 
 

@@ -31,10 +31,14 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-# Whole-token match for the .calm class: a literal ".calm" not immediately
-# followed by another word character or hyphen (which would make it a
-# different class, e.g. ".calmXtra" or ".calm-extra").
-CALM_TOKEN_RE = re.compile(r"\.calm\b(?![\w-])")
+def scope_token_re(token):
+    """Whole-token matcher for a scope class like "calm" or "calm-app": a
+    literal ".<token>" not immediately followed by another word character or
+    hyphen (which would make it a different class, e.g. ".calmXtra" or
+    ".calm-app-extra"). Because of the trailing guard, ".calm" does not match
+    ".calm-app" and ".calm-app" does not match ".calm", so checking each file
+    against its own token gives cross-token isolation for free."""
+    return re.compile(r"\." + re.escape(token) + r"\b(?![\w-])")
 
 # Block at-rules whose body contains nested rules with real page selectors
 # that still need to be scope-checked (e.g. `@media {...}` wrapping `.calm ...`).
@@ -166,19 +170,14 @@ def mask_not_content(selector):
     return "".join(result)
 
 
-def check_selector(selector, violations):
+def check_selector(selector, violations, token_re):
     for part in split_selector_list(selector):
         part = part.strip()
         if not part:
             continue
-        # A .calm occurrence only counts as scoping if it exists outside any
-        # :not(...) - inside a negation the rule applies precisely when
-        # .calm is ABSENT, which is the inverse of scoping (e.g.
-        # `body:not(.calm) .leak` targets exactly the pages this guards
-        # against).
-        if CALM_TOKEN_RE.search(mask_not_content(part)):
+        if token_re.search(mask_not_content(part)):
             continue
-        if CALM_TOKEN_RE.search(part):
+        if token_re.search(part):
             violations.append(
                 f"selector scoped only inside a negation (:not()), which is "
                 f"inverted and does not count as scoped: {part!r}"
@@ -187,12 +186,12 @@ def check_selector(selector, violations):
             violations.append(f"unscoped selector: {part!r}")
 
 
-def walk(css, violations):
+def walk(css, violations, token_re):
     for unit in top_level_units(css):
         if unit[0] == "statement":
             text = unit[1]
             if not text.startswith("@"):
-                continue  # stray semicolon; no selector, nothing to check
+                continue
             name = text.split()[0]
             if name in STATEMENT_SAFE_AT_RULES:
                 continue
@@ -203,20 +202,26 @@ def walk(css, violations):
         if selector.startswith("@"):
             name = selector.split()[0]
             if name in BLOCK_RECURSE_AT_RULES:
-                walk(body, violations)
+                walk(body, violations, token_re)
             elif name in BLOCK_OPAQUE_AT_RULES:
                 continue
             else:
                 violations.append(f"unsupported at-rule: {selector!r}")
         else:
-            check_selector(selector, violations)
+            check_selector(selector, violations, token_re)
+
+
+def check_scoped_css_text(css_text, scope_token="calm"):
+    """Return a list of violation strings for CSS that must be fully scoped
+    under a whole `.<scope_token>` class."""
+    violations = []
+    walk(strip_comments(css_text), violations, scope_token_re(scope_token))
+    return violations
 
 
 def check_home_css_text(css_text):
-    """Return a list of violation strings for the given CSS source."""
-    violations = []
-    walk(strip_comments(css_text), violations)
-    return violations
+    """Back-compat wrapper: home.css is scoped under `.calm`."""
+    return check_scoped_css_text(css_text, "calm")
 
 
 def check_asset_references(html_text, assets=("home.css", "home.js")):
@@ -231,30 +236,56 @@ def check_asset_references(html_text, assets=("home.css", "home.js")):
     return found
 
 
+def classify_asset_reference(asset, rel_path, is_index):
+    """Given one asset referenced (via href/src) by a file, return a violation
+    string if that reference is not allowed, else None.
+
+    Policy: home.css/home.js may be referenced only by index.html; app.css/
+    app.js may be referenced only by files under apps/. rel_path is the file's
+    path relative to the repo root, using forward slashes."""
+    norm = rel_path.replace("\\", "/")
+    under_apps = norm.startswith("apps/")
+    if asset in ("home.css", "home.js"):
+        return None if is_index else f"{asset} referenced by {rel_path}"
+    if asset in ("app.css", "app.js"):
+        return None if under_apps else f"{asset} referenced by {rel_path}"
+    return None
+
+
 def main():
     violations = []
 
+    # Scope checks. home.css must exist; app.css is optional until the first
+    # app page is converted.
     home_css = ROOT / "home.css"
     if not home_css.exists():
         print("FAIL: home.css does not exist")
         return 1
-    violations.extend(check_home_css_text(home_css.read_text()))
+    violations.extend(check_scoped_css_text(home_css.read_text(), "calm"))
 
+    app_css = ROOT / "app.css"
+    if app_css.exists():
+        violations.extend(check_scoped_css_text(app_css.read_text(), "calm-app"))
+
+    # Reference checks for all four managed assets, in both directions.
     root_index = ROOT / "index.html"
+    managed = ("home.css", "home.js", "app.css", "app.js")
     for html in sorted(ROOT.rglob("*.html")):
-        if html == root_index:
-            continue
         text = html.read_text()
-        for asset in check_asset_references(text):
-            violations.append(f"{asset} referenced by {html.relative_to(ROOT)}")
+        rel = str(html.relative_to(ROOT))
+        is_index = html == root_index
+        for asset in check_asset_references(text, assets=managed):
+            problem = classify_asset_reference(asset, rel, is_index)
+            if problem:
+                violations.append(problem)
 
     if violations:
-        print("FAIL: homepage styles are not isolated")
+        print("FAIL: page styles are not isolated")
         for v in violations:
             print(f"  - {v}")
         return 1
 
-    print("PASS: homepage styles are isolated")
+    print("PASS: page styles are isolated")
     return 0
 
 

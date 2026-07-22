@@ -1,0 +1,736 @@
+/* Birchtree Productions - app sub-page calm styles.
+   Loaded by app sub-pages under apps/ (never by index.html). Every rule is
+   scoped under .calm-app so these styles cannot reach the homepage or leak
+   between pages. Self-contained: reset, tokens, and components live here, so
+   pages that load this drop styles.css entirely.
+   Verified by tools/check-isolation.py. */
+
+/* ---------- Reset (scoped) ---------- */
+body.calm-app,
+.calm-app *,
+.calm-app *::before,
+.calm-app *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.calm-app {
+    /* Surfaces */
+    --color-ground: #f7f7f7;
+    --color-card: #ffffff;
+    --color-panel: #f0f0f2;
+    --color-text: #1d1d1f;
+    --color-text-secondary: #6e6e73;
+    --color-border: #d7dbe2;
+
+    /* Ink (accent is per-app, defaults to the brand purple) */
+    --accent: var(--app-accent, rgb(136, 57, 239));
+
+    /* Radii */
+    --radius-panel: 2.4rem;
+    --radius-card: 2rem;
+    --radius-image: 1.5rem;
+    --radius-pill: 99999px;
+
+    /* Rhythm */
+    --pad-card: clamp(1.5rem, 4vw, 4rem);
+    --gap-section: clamp(2rem, 5vw, 5rem);
+
+    /* Type */
+    --font-sans: 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Fraunces', Georgia, serif;
+
+    background-color: var(--color-ground);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.calm-app img {
+    display: block;
+    max-width: 100%;
+}
+
+.calm-app a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.calm-app :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Pill nav ---------- */
+.calm-app .app-nav {
+    position: fixed;
+    top: clamp(1rem, 2.5vw, 2.4rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    background: var(--color-card);
+    border-radius: var(--radius-pill);
+    z-index: 5000;
+}
+
+.calm-app .app-nav-container {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.calm-app .app-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.calm-app .app-nav-brand img {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 22%;
+}
+
+.calm-app .app-nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.6vw, 1.4rem);
+    list-style: none;
+}
+
+.calm-app .app-nav-links a {
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .calm-app .app-nav-brand span {
+        display: none;
+    }
+}
+
+/* ---------- Pill buttons ---------- */
+.calm-app .btn-dot,
+.calm-app .btn-fill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: var(--radius-pill);
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background-color 0.25s ease,
+                transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.calm-app .btn-dot {
+    border: 1px solid #8c8c8c;
+    background: var(--color-card);
+    color: #000;
+}
+
+.calm-app .btn-dot::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #000;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.calm-app .btn-dot:hover {
+    border-color: var(--accent);
+}
+
+.calm-app .btn-dot:hover::after {
+    background: var(--accent);
+    transform: scale(1.6);
+}
+
+.calm-app .btn-fill {
+    border: 1px solid var(--color-text);
+    background: var(--color-text);
+    color: #fff;
+}
+
+.calm-app .btn-fill:hover {
+    background: #000;
+    border-color: #000;
+}
+
+.calm-app .download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.calm-app .download-buttons svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+/* ---------- Hero (icon stage) ---------- */
+.calm-app .app-hero {
+    position: relative;
+    margin: clamp(0.5rem, 1.5vw, 1rem);
+    margin-top: clamp(6rem, 12vw, 9rem);
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+    border-radius: var(--radius-panel);
+    background: var(--color-panel);
+    text-align: center;
+}
+
+.calm-app .app-hero-inner {
+    max-width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.calm-app .app-hero-icon {
+    width: clamp(96px, 12vw, 148px);
+    height: auto;
+    border-radius: 22%;
+}
+
+/* Pure-CSS entrance: pops once on load, then rests. No JS dependency, so a
+   script failure can never strand the icon invisible. Reduced motion skips it
+   and the icon is simply present (default opacity/scale). */
+@media (prefers-reduced-motion: no-preference) {
+    .calm-app .app-hero-icon {
+        animation: app-icon-pop 0.6s cubic-bezier(0.34, 1.25, 0.5, 1) both;
+    }
+}
+
+@keyframes app-icon-pop {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.calm-app .app-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+}
+
+.calm-app .accent-line {
+    color: var(--accent);
+}
+
+.calm-app .app-hero-subtitle {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 34rem;
+}
+
+.calm-app .hero-screenshot {
+    margin: var(--gap-section) auto 0;
+    max-width: 960px;
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
+}
+
+.calm-app .hero-screenshot img {
+    width: 100%;
+    border-radius: var(--radius-image);
+    max-height: 620px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* ---------- Reveal wipes ---------- */
+/* Fail-safe: .wipe copy is VISIBLE by default; the clip/fade is armed only
+   once app.js adds .is-armed. Section headers carry .scroll-reveal on an
+   UNCLIPPED ancestor so the IntersectionObserver has a non-zero-area target
+   (a zero-area clip-path element never reports isIntersecting in Chromium),
+   and .revealed cascades down to the .wipe children.
+
+   Each motion preference owns its own gated rules: full-motion gets the
+   clip wipe, reduced-motion gets a plain opacity fade. Gating the clip rule
+   under no-preference (rather than trying to override it inside the reduce
+   block) is what makes the reduced-motion path actually win, since a media
+   query adds no specificity weight of its own. */
+
+/* Section header itself is never clipped: it is the unclipped observer target. */
+.calm-app .section-header.scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .calm-app.is-armed .wipe {
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .calm-app .section-header.revealed .wipe,
+    .calm-app .wipe.revealed,
+    .calm-app.is-loaded .app-hero .wipe,
+    .calm-app.is-revealed-all .wipe {
+        clip-path: inset(0 0 0 0);
+    }
+
+    .calm-app .app-hero .app-hero-title.wipe { transition-delay: 0.3s; }
+    .calm-app .app-hero .app-hero-subtitle.wipe { transition-delay: 0.45s; }
+    .calm-app .section-header .wipe:nth-child(2) { transition-delay: 0.1s; }
+    .calm-app .section-header .wipe:nth-child(3) { transition-delay: 0.2s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm-app.is-armed .wipe {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .calm-app .section-header.revealed .wipe,
+    .calm-app .wipe.revealed,
+    .calm-app.is-loaded .app-hero .wipe,
+    .calm-app.is-revealed-all .wipe {
+        opacity: 1;
+    }
+}
+
+/* ---------- Sections ---------- */
+.calm-app .section {
+    padding: var(--gap-section) clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.calm-app .section-header {
+    max-width: 46rem;
+    margin: 0 auto var(--gap-section);
+    text-align: center;
+}
+
+/* Scrambled glyphs are not the real glyph widths, so the label reserves space
+   to stop the heading below it jittering while it shuffles. */
+.calm-app .section-label {
+    display: inline-block;
+    min-width: 6ch;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+}
+
+.calm-app .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.calm-app .section-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0.75rem auto 0;
+    max-width: 40rem;
+}
+
+/* ---------- Feature rows ---------- */
+.calm-app .feature-row {
+    max-width: 1000px;
+    margin: 0 auto clamp(1rem, 2vw, 2rem);
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: var(--pad-card);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.calm-app .feature-row.feature-flip .feature-row-media {
+    order: -1;
+}
+
+.calm-app .feature-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.calm-app .feature-description {
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-top: 0.75rem;
+}
+
+.calm-app .feature-description a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.calm-app .feature-row-media {
+    border-radius: var(--radius-image);
+    overflow: hidden;
+    will-change: transform;
+}
+
+.calm-app .feature-row-media img {
+    width: 100%;
+    border-radius: var(--radius-image);
+    max-height: 480px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* ---------- Feature grid ---------- */
+.calm-app .features-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.calm-app .feature-card {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.calm-app .feature-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 1rem;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.calm-app .feature-card-icon i {
+    font-size: 24px;
+    color: var(--accent);
+}
+
+.calm-app .feature-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.calm-app .feature-card-description {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.calm-app .feature-card-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #16a34a;
+}
+
+/* Card cascade: armed (hidden) only when JS is running; visible otherwise. */
+.calm-app.is-armed .feature-card.scroll-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.calm-app.is-armed .feature-card.scroll-reveal.revealed,
+.calm-app.is-revealed-all .feature-card.scroll-reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.calm-app .features-grid .feature-card:nth-child(1).revealed { transition-delay: 0s; }
+.calm-app .features-grid .feature-card:nth-child(2).revealed { transition-delay: 0.06s; }
+.calm-app .features-grid .feature-card:nth-child(3).revealed { transition-delay: 0.12s; }
+.calm-app .features-grid .feature-card:nth-child(4).revealed { transition-delay: 0.18s; }
+.calm-app .features-grid .feature-card:nth-child(5).revealed { transition-delay: 0.24s; }
+.calm-app .features-grid .feature-card:nth-child(6).revealed { transition-delay: 0.30s; }
+
+/* ---------- Pricing ---------- */
+.calm-app .pricing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.calm-app .pricing-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+}
+
+.calm-app .pricing-card-featured {
+    border-color: var(--accent);
+}
+
+.calm-app .pricing-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.calm-app .pricing-toggle-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease,
+                transform 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.calm-app .pricing-toggle-btn.active {
+    background: var(--color-text);
+    color: #fff;
+    border-color: var(--color-text);
+}
+
+.calm-app .pricing-swap {
+    transition: opacity 0.15s ease;
+}
+
+.calm-app .pricing-swap.swapping {
+    opacity: 0;
+}
+
+.calm-app .pricing-card-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.calm-app .pricing-save {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--accent);
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.7rem;
+    margin-left: 0.35rem;
+}
+
+.calm-app .pricing-card-price {
+    font-size: clamp(2.2rem, 5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.calm-app .pricing-card-price .unit {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .pricing-card-period {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.4rem;
+}
+
+.calm-app .pricing-features {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.calm-app .pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .pricing-features li.is-off {
+    opacity: 0.5;
+}
+
+.calm-app .pricing-cta {
+    margin-top: 1.5rem;
+}
+
+.calm-app .pricing-cta .btn-dot,
+.calm-app .pricing-cta .btn-fill {
+    width: 100%;
+    justify-content: center;
+}
+
+/* ---------- CTA ---------- */
+.calm-app .cta {
+    max-width: 1000px;
+    margin: var(--gap-section) auto;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    padding: clamp(2.5rem, 6vw, 4rem) var(--pad-card);
+    text-align: center;
+}
+
+.calm-app .cta-copy {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--color-text-secondary);
+    margin: 0.75rem auto 1.75rem;
+    max-width: 34rem;
+}
+
+/* ---------- Footer ---------- */
+.calm-app .app-footer {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    margin: var(--gap-section) clamp(0.5rem, 1.5vw, 1rem) clamp(0.5rem, 1.5vw, 1rem);
+    padding: clamp(1.5rem, 3vw, 2rem) var(--pad-card);
+}
+
+.calm-app .app-footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.calm-app .app-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+}
+
+.calm-app .app-footer-brand img {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 22%;
+}
+
+.calm-app .app-footer-links {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .app-footer-links a {
+    color: var(--color-text-secondary);
+}
+
+.calm-app .app-footer-links a:hover {
+    color: var(--color-text);
+}
+
+.calm-app .app-footer-sep {
+    color: var(--color-border);
+}
+
+/* ---------- Motion polish ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    .calm-app .btn-dot:active,
+    .calm-app .btn-fill:active,
+    .calm-app .pricing-toggle-btn:active {
+        transform: scale(0.97);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .calm-app .feature-card-icon {
+        transition: transform 0.22s cubic-bezier(0.34, 1.25, 0.5, 1);
+    }
+
+    .calm-app .feature-card:hover .feature-card-icon {
+        transform: scale(1.06) rotate(-2deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .feature-card:hover .feature-card-icon {
+        transform: none;
+    }
+
+    /* Card cascade: fade only, no slide. */
+    .calm-app.is-armed .feature-card.scroll-reveal {
+        transform: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .calm-app.is-armed .feature-card.scroll-reveal.revealed {
+        transform: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .calm-app .feature-row {
+        grid-template-columns: 1fr;
+        gap: clamp(1.25rem, 4vw, 2rem);
+    }
+
+    .calm-app .feature-row .feature-row-media {
+        order: -1;
+    }
+
+    .calm-app .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calm-app .app-nav-links {
+        display: none;
+    }
+
+    .calm-app .app-footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .calm-app .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+}
