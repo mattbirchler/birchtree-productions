@@ -89,9 +89,13 @@ that color is semantic status, not decoration.
 
 ## Page structure (generic template, shown with Quick Reads content)
 
-1. **Pill nav**, fixed and floating like the homepage: app icon + app
-   name linking to `../../`, then Features / Pricing anchor links. Below
-   640px the wordmark hides, icon and links remain. The existing
+1. **Pill nav**, fixed and floating like the homepage. Left to right:
+   an explicit **back link** (`.app-nav-back`: a left chevron + "Birchtree
+   Productions") to `../../`, a divider, the app brand (app icon + app
+   name, identity only, not a second home link), then Features / Pricing
+   anchor links. Every app page MUST carry this back link so visitors can
+   always return to the landing page. Below 640px the back label and the
+   wordmark hide, leaving chevron + app icon + links. The existing
    `view-transition-name` on the nav icon survives.
 
 2. **Icon-stage hero**: a rounded `--color-panel` panel (not 100vh;

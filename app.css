@@ -85,10 +85,33 @@ body.calm-app {
     padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1rem, 2.5vw, 1.6rem);
 }
 
+.calm-app .app-nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.calm-app .app-nav-back:hover {
+    color: var(--color-text);
+}
+
+.calm-app .app-nav-back svg {
+    width: 1rem;
+    height: 1rem;
+}
+
 .calm-app .app-nav-brand {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    padding-left: clamp(0.7rem, 1.5vw, 1.4rem);
+    border-left: 1px solid var(--color-border);
     font-size: clamp(0.85rem, 1.4vw, 1rem);
     font-weight: 700;
     white-space: nowrap;
@@ -115,6 +138,7 @@ body.calm-app {
 }
 
 @media (max-width: 640px) {
+    .calm-app .app-nav-back span,
     .calm-app .app-nav-brand span {
         display: none;
     }
