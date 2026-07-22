@@ -210,6 +210,21 @@ case(
     """,
 )
 
+# --- @property registers a custom property; its body is descriptors, not
+#     selectors, so it cannot leak and must pass ------------------------------
+case(
+    "property_at_rule_must_pass",
+    "pass",
+    """
+    @property --explode {
+        syntax: "<number>";
+        inherits: false;
+        initial-value: 1;
+    }
+    body.calm { color: red; }
+    """,
+)
+
 # --- HTML asset reference: must be scoped to href=/src=, not substring ---
 HTML_COMMENT_MENTION = """
 <html><body>

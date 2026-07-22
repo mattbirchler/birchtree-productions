@@ -42,7 +42,10 @@ BLOCK_RECURSE_AT_RULES = ("@media", "@supports", "@layer")
 
 # Block at-rules whose body is declarations or keyframe stops (0%, from, to),
 # never page selectors, so there is nothing to scope-check inside them.
-BLOCK_OPAQUE_AT_RULES = ("@font-face", "@keyframes")
+# `@property` registers a custom property document-wide, but its body is
+# descriptors (syntax/inherits/initial-value), not selectors, so it cannot
+# apply styles to any element and cannot leak layout to a sub-page.
+BLOCK_OPAQUE_AT_RULES = ("@font-face", "@keyframes", "@property")
 
 # Statement (blockless, `;`-terminated) at-rules that carry no CSS rules at
 # all, so they cannot leak anything regardless of what they say.

@@ -406,9 +406,26 @@
         labels.forEach(function (label) { io.observe(label); });
     }
 
+    function initBoom() {
+        var html = document.documentElement;
+        // anim-ready is set by the inline head script only when motion is
+        // allowed; without it the icons are already resting in place.
+        if (!html.classList.contains('anim-ready')) { return; }
+        if (!document.getElementById('stage')) { return; }
+
+        // Wind up (mark shakes), then release (icons burst to their rings).
+        window.requestAnimationFrame(function () {
+            html.classList.add('boom-start');
+            window.setTimeout(function () {
+                html.classList.add('boom-go');
+            }, 520);
+        });
+    }
+
     initStage();
     initBand();
     initShuffle();
+    initBoom();
 
     window.__calmReduceMotion = reduceMotion;
 }());

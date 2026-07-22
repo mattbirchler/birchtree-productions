@@ -26,7 +26,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=be9fc7ad">
-    <link rel="stylesheet" href="home.css?v=6e0e7fe3">
+    <link rel="stylesheet" href="home.css?v=91578056">
+    <script>
+        // Arm the hero load animation before first paint so the app icons
+        // start collapsed behind the mark (no flash of the final layout).
+        // Skipped entirely under reduced motion, and if JS is off the icons
+        // simply render in place. See the boom rules in home.css.
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('anim-ready');
+        }
+    </script>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -83,179 +92,6 @@
         </div>
     </header>
 
-    <section id="apps" class="section apps-section">
-        <div class="container">
-            <div class="section-header scroll-reveal">
-                <h2 class="section-label wipe">Apps</h2>
-                <p class="section-title wipe">Handcrafted with intention.</p>
-                <p class="section-subtitle wipe">Apps designed for people who need their computers to work for them, not to suck them in with the sole purpose of "driving stakeholder value".</p>
-            </div>
-
-            <div class="apps-showcase">
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/quick-reviews.png" alt="Quick Reviews icon" class="app-icon" style="view-transition-name: quick-reviews-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/quick-reviews-main.png" alt="Quick Reviews app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Quick Reviews</h3>
-                            <p class="app-award"><a href="https://www.macstories.net/stories/macstories-selects-2025-recognizing-the-best-apps-of-the-year/#best-new-app" target="_blank" rel="noopener noreferrer">MacStories Best New App of 2025 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></p>
-                        </div>
-                        <p class="app-card-copy">Review the things you love and share them to social media.</p>
-                        <div class="app-card-link">
-                            <a href="apps/quick-reviews/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/quick-reads-icon.svg" alt="Quick Reads icon" class="app-icon" style="view-transition-name: quick-reads-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/quick-reads-hero.png" alt="Quick Reads app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Quick Reads</h3>
-                        </div>
-                        <p class="app-card-copy">A beautiful read-later service for the articles that matter. Save from anywhere, highlight what resonates, and build your personal library.</p>
-                        <div class="app-card-link">
-                            <a href="apps/quick-reads/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/chapterpod.png" alt="Chapterize icon" class="app-icon" style="view-transition-name: chapterpod-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/quick-chapters-main.png" alt="Chapterize app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Chapterize</h3>
-                        </div>
-                        <p class="app-card-copy">Create professional podcast chapters with titles, images, and links while you listen, all on your Apple devices.</p>
-                        <div class="app-card-link">
-                            <a href="apps/chapterpod/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/yearly run goals.png" alt="Yearly Run Goals icon" class="app-icon" style="view-transition-name: yearly-run-goals-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/yearly-run-tracker-main.png" alt="Yearly Run Goals app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Yearly Run Goals</h3>
-                        </div>
-                        <p class="app-card-copy">Set, track, and achieve yearly distance goals for running, walking, cycling, or swimming.</p>
-                        <div class="app-card-link">
-                            <a href="apps/yearly-run-goals/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/quick subtitles.png" alt="Quick Subtitles icon" class="app-icon" style="view-transition-name: quick-subtitles-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/quick-subtitles-main.png" alt="Quick Subtitles app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Quick Subtitles</h3>
-                        </div>
-                        <p class="app-card-copy">Transcribe audio and video to text or SRT subtitles using fast, private, on-device AI.</p>
-                        <div class="app-card-link">
-                            <a href="apps/quick-subtitles/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/quick notes.png" alt="Quick Notes icon" class="app-icon" style="view-transition-name: quick-notes-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/quick-notes-main.png" alt="Quick Notes app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Quick Notes</h3>
-                        </div>
-                        <p class="app-card-copy">Turn your voice into high-quality text using Apple's on-device language models.</p>
-                        <div class="app-card-link">
-                            <a href="apps/quick-notes/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/typefully-icon.png" alt="Weave icon" class="app-icon" style="view-transition-name: weave-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/weave-main.png" alt="Weave app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Weave</h3>
-                        </div>
-                        <p class="app-card-copy">A native iOS app for Typefully. Write threads, schedule posts, and publish everywhere.</p>
-                        <div class="app-card-link">
-                            <a href="apps/weave/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="app-card scroll-reveal">
-                    <div class="app-card-head">
-                        <div class="app-card-icon">
-                            <img src="images/best-o-masto.png" alt="Best-o-Masto icon" class="app-icon" style="view-transition-name: best-o-masto-icon;">
-                        </div>
-                        <div class="app-card-shot">
-                            <img src="images/best-o-masto-main.png" alt="Best-o-Masto app screenshot" class="app-screenshot">
-                        </div>
-                    </div>
-                    <div class="app-card-body">
-                        <div class="app-card-title">
-                            <h3 class="app-name">Best-o-Masto</h3>
-                        </div>
-                        <p class="app-card-copy">Catch up without getting sucked in. Mastodon, efficiently.</p>
-                        <div class="app-card-link">
-                            <a href="apps/best-o-masto/" class="btn-dot">Learn more</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
     <div class="band" aria-hidden="true">
         <div class="band-col" data-speed="0.10">
             <img src="images/quick-reviews-main.png" alt="">
@@ -282,6 +118,123 @@
             <img src="images/transcript-view.png" alt="">
         </div>
     </div>
+
+    <section id="apps" class="section apps-section">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <h2 class="section-label wipe">Apps</h2>
+                <p class="section-title wipe">Handcrafted with intention.</p>
+                <p class="section-subtitle wipe">Apps designed for people who need their computers to work for them, not to suck them in with the sole purpose of "driving stakeholder value".</p>
+            </div>
+
+            <div class="apps-showcase">
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/quick-reviews.png" alt="Quick Reviews icon" class="app-icon" style="view-transition-name: quick-reviews-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Quick Reviews</h3>
+                        <p class="app-award"><a href="https://www.macstories.net/stories/macstories-selects-2025-recognizing-the-best-apps-of-the-year/#best-new-app" target="_blank" rel="noopener noreferrer">MacStories Best New App of 2025 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></p>
+                        <p class="app-card-copy">Review the things you love and share them to social media.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/quick-reviews/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/quick-reads.png" alt="Quick Reads icon" class="app-icon" style="view-transition-name: quick-reads-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Quick Reads</h3>
+                        <p class="app-card-copy">A beautiful read-later service for the articles that matter. Save from anywhere, highlight what resonates, and build your personal library.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/quick-reads/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/chapterpod.png" alt="Chapterize icon" class="app-icon" style="view-transition-name: chapterpod-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Chapterize</h3>
+                        <p class="app-card-copy">Create professional podcast chapters with titles, images, and links while you listen, all on your Apple devices.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/chapterpod/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/yearly run goals.png" alt="Yearly Run Goals icon" class="app-icon" style="view-transition-name: yearly-run-goals-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Yearly Run Goals</h3>
+                        <p class="app-card-copy">Set, track, and achieve yearly distance goals for running, walking, cycling, or swimming.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/yearly-run-goals/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/quick subtitles.png" alt="Quick Subtitles icon" class="app-icon" style="view-transition-name: quick-subtitles-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Quick Subtitles</h3>
+                        <p class="app-card-copy">Transcribe audio and video to text or SRT subtitles using fast, private, on-device AI.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/quick-subtitles/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/quick notes.png" alt="Quick Notes icon" class="app-icon" style="view-transition-name: quick-notes-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Quick Notes</h3>
+                        <p class="app-card-copy">Turn your voice into high-quality text using Apple's on-device language models.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/quick-notes/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/typefully-icon.png" alt="Weave icon" class="app-icon" style="view-transition-name: weave-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Weave</h3>
+                        <p class="app-card-copy">A native iOS app for Typefully. Write threads, schedule posts, and publish everywhere.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/weave/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+
+                <article class="app-card scroll-reveal">
+                    <div class="app-card-icon">
+                        <img src="images/best-o-masto.png" alt="Best-o-Masto icon" class="app-icon" style="view-transition-name: best-o-masto-icon;">
+                    </div>
+                    <div class="app-card-info">
+                        <h3 class="app-name">Best-o-Masto</h3>
+                        <p class="app-card-copy">Catch up without getting sucked in. Mastodon, efficiently.</p>
+                    </div>
+                    <div class="app-card-link">
+                        <a href="apps/best-o-masto/" class="btn-dot">Learn more</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
 
     <section id="creative" class="section content-section">
         <div class="container">
@@ -465,6 +418,6 @@
             });
         });
     </script>
-    <script src="home.js?v=408b707e" defer></script>
+    <script src="home.js?v=5eaf4a51" defer></script>
 </body>
 </html>
