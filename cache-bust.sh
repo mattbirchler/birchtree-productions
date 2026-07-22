@@ -1,6 +1,6 @@
 #!/bin/bash
 # Updates all HTML files with cache-busting hashes for the CSS and JS assets.
-# Run this after making changes to styles.css, home.css, or home.js.
+# Run this after making changes to styles.css, home.css, home.js, app.css, or app.js.
 
 set -e
 
@@ -19,5 +19,7 @@ bust() {
 bust styles.css
 bust home.css
 bust home.js
+bust app.css
+bust app.js
 
 echo "Done. Updated all HTML files."

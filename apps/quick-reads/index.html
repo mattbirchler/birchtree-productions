@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +24,9 @@
     <link rel="icon" href="../../images/quick-reads-icon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="../../styles.css?v=be9fc7ad">
+    <link rel="stylesheet" href="../../app.css?v=3323f31f">
     <script defer data-domain="quickreads.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -55,590 +55,8 @@
         }
     }
     </script>
-    <style>
-        /* Override accent color to violet for Quick Reads */
-        :root {
-            --color-link: #8b5cf6;
-            --color-link-hover: #7c3aed;
-        }
-
-        /* App page specific styles */
-        .app-hero {
-            min-height: auto;
-            padding: var(--space-xl) var(--space-lg) var(--space-2xl);
-        }
-
-        .app-hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .app-hero-title {
-            font-size: var(--font-size-5xl);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            color: var(--color-text);
-        }
-
-        .gradient-text {
-            background: linear-gradient(
-                90deg,
-                #8b5cf6 0%,
-                #a78bfa 40%,
-                #8b5cf6 60%,
-                #a78bfa 100%
-            );
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shimmer 4s ease-in-out infinite;
-        }
-
-        @keyframes gradient-shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .app-hero-subtitle {
-            font-size: var(--font-size-xl);
-            color: var(--color-text-secondary);
-            margin-top: var(--space-md);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        .download-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-            justify-content: center;
-            margin-top: var(--space-xl);
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: var(--radius-xl);
-            font-weight: 600;
-            font-size: var(--font-size-base);
-            transition: all var(--transition-base);
-        }
-
-        .download-btn-primary {
-            background: var(--color-text);
-            color: white;
-        }
-
-        .download-btn-primary:hover {
-            background: #000;
-            transform: scale(1.02);
-        }
-
-        .download-btn-secondary {
-            background: white;
-            color: var(--color-text);
-            border: 2px solid var(--color-border);
-        }
-
-        .download-btn-secondary:hover {
-            border-color: var(--color-text-secondary);
-            transform: scale(1.02);
-        }
-
-        .download-btn svg {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        /* Trust badges */
-        .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--space-lg);
-            margin-top: var(--space-xl);
-        }
-
-        .trust-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        .trust-badge svg {
-            width: 20px;
-            height: 20px;
-            color: var(--color-link);
-        }
-
-        .hero-screenshot {
-            margin-top: var(--space-2xl);
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-screenshot img {
-            width: 100%;
-            border-radius: var(--radius-sm);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
-
-        .screenshot-placeholder {
-            aspect-ratio: 16 / 10;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
-            border-radius: var(--radius-2xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: var(--font-size-sm);
-            border: 1px dashed var(--color-border);
-        }
-
-        .feature-image .screenshot-placeholder {
-            aspect-ratio: 4 / 3;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Feature sections */
-        .feature-section {
-            padding: var(--space-3xl) var(--space-lg);
-        }
-
-        .feature-section-alt {
-            background: var(--color-bg-secondary);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-2xl);
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-grid-reverse {
-            direction: rtl;
-        }
-
-        .feature-grid-reverse > * {
-            direction: ltr;
-        }
-
-        .feature-label {
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-link);
-            margin-bottom: var(--space-xs);
-        }
-
-        .feature-title {
-            font-size: var(--font-size-3xl);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--color-text);
-            line-height: 1.2;
-        }
-
-        .feature-description {
-            font-size: var(--font-size-base);
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-            margin-top: var(--space-md);
-        }
-
-        .feature-description a {
-            color: var(--color-link);
-            text-decoration: underline;
-        }
-
-        .feature-description a:hover {
-            color: var(--color-link-hover);
-        }
-
-        .feature-image img {
-            width: 100%;
-            border-radius: var(--radius-sm);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Feature cards grid */
-        .features-grid-section {
-            padding: var(--space-3xl) var(--space-lg);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            padding: var(--space-lg);
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            transition: all var(--transition-base);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: card-reveal 0.5s ease forwards;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes card-reveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-lg);
-            background: rgba(139, 92, 246, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-sm);
-        }
-
-        .feature-card-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--color-link);
-        }
-
-        .feature-card-icon i {
-            font-size: 24px;
-            color: var(--color-link);
-        }
-
-        .feature-card-title {
-            font-weight: 600;
-            font-size: var(--font-size-lg);
-            color: var(--color-text);
-            margin-bottom: var(--space-xs);
-        }
-
-        .feature-card-description {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Browser extension pills */
-        .platform-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-xs);
-            margin-top: var(--space-md);
-        }
-
-        .platform-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding: 0.375rem 0.75rem;
-            background: var(--color-bg-secondary);
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            color: var(--color-text);
-        }
-
-        .platform-pill .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        /* Centered section */
-        .centered-section {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Pricing */
-        .pricing-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-lg);
-            justify-content: center;
-            margin-top: var(--space-2xl);
-        }
-
-        .pricing-card {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            min-width: 260px;
-            max-width: 320px;
-            text-align: center;
-            transition: all var(--transition-base);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
-        }
-
-        .pricing-card-featured {
-            border-color: var(--color-link);
-            box-shadow: 0 0 0 1px var(--color-link);
-        }
-
-        .pricing-card-badge {
-            display: inline-block;
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-link);
-            margin-bottom: var(--space-sm);
-        }
-
-        .pricing-card-price {
-            font-size: var(--font-size-4xl);
-            font-weight: 700;
-            color: var(--color-text);
-            line-height: 1;
-        }
-
-        .pricing-card-period {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
-
-        .pricing-card-savings {
-            display: inline-block;
-            margin-top: var(--space-sm);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            color: var(--color-link);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2d 100%);
-            color: white;
-            padding: var(--space-3xl) var(--space-lg);
-            text-align: center;
-        }
-
-        .cta-section .feature-title {
-            color: white;
-        }
-
-        .cta-section .feature-description {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .cta-section .download-btn-primary {
-            background: white;
-            color: var(--color-text);
-        }
-
-        .cta-section .download-btn-primary:hover {
-            background: var(--color-bg-secondary);
-        }
-
-        .cta-section .download-btn-secondary {
-            background: transparent;
-            color: white;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .cta-section .download-btn-secondary:hover {
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .cta-requirements {
-            margin-top: var(--space-md);
-            font-size: var(--font-size-sm);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* App page nav */
-        .app-nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: var(--space-sm) var(--space-lg);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .app-nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .app-nav-brand {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .app-nav-brand img {
-            width: 32px;
-            height: 32px;
-            border-radius: var(--radius-sm);
-        }
-
-        .app-nav-brand span {
-            font-weight: 600;
-            color: var(--color-text);
-        }
-
-        .app-nav-links {
-            display: flex;
-            gap: var(--space-lg);
-            list-style: none;
-        }
-
-        .app-nav-links a {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            transition: color var(--transition-fast);
-        }
-
-        .app-nav-links a:hover {
-            color: var(--color-text);
-        }
-
-        /* App footer */
-        .app-footer {
-            padding: var(--space-lg) var(--space-lg);
-            border-top: 1px solid var(--color-border);
-        }
-
-        .app-footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: var(--space-md);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .app-footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .app-footer-brand img {
-            width: 24px;
-            height: 24px;
-            border-radius: var(--radius-sm);
-        }
-
-        .app-footer-brand span {
-            font-weight: 500;
-            font-size: var(--font-size-sm);
-            color: var(--color-text);
-        }
-
-        .app-footer-links {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        .app-footer-links a {
-            color: var(--color-text-secondary);
-            transition: color var(--transition-fast);
-        }
-
-        .app-footer-links a:hover {
-            color: var(--color-text);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-xl);
-            }
-
-            .feature-grid-reverse {
-                direction: ltr;
-            }
-
-            .feature-image {
-                order: -1;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .app-nav-links {
-                display: none;
-            }
-
-            .app-footer-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .trust-badges {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .pricing-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
 </head>
-<body>
-    <div class="background-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
-
+<body class="calm-app" style="--app-accent: #8b5cf6;">
     <!-- Navigation -->
     <nav class="app-nav">
         <div class="app-nav-container">
@@ -654,74 +72,70 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
-        <section class="app-hero">
-            <div class="app-hero-content fade-in">
-                <h1 class="app-hero-title">
+        <!-- Hero -->
+        <header class="app-hero">
+            <div class="app-hero-inner">
+                <img src="../../images/quick-reads-icon.svg" alt="Quick Reads" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">
                     Save articles.<br>
                     Read them later.<br>
-                    <span class="gradient-text">Simple as that.</span>
+                    <span class="accent-line">Simple as that.</span>
                 </h1>
-                <p class="app-hero-subtitle">
+                <p class="app-hero-subtitle wipe">
                     A beautiful, distraction-free space for the articles that matter. Save from anywhere, highlight what resonates, and build your personal library.
                 </p>
                 <div class="download-buttons">
-                    <a href="https://quickreads.app" class="download-btn download-btn-primary">
+                    <a href="https://quickreads.app" class="btn-fill">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                         Get Started Free
                     </a>
                 </div>
             </div>
+        </header>
 
-            <div class="hero-screenshot fade-in">
-                <img src="../../images/quick-reads-queue.jpg" alt="Your reading queue in Quick Reads">
-            </div>
-            <a href="#features" class="scroll-indicator fade-in" aria-label="Scroll down">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </a>
-        </section>
+        <div class="hero-screenshot">
+            <img src="../../images/quick-reads-queue.jpg" alt="Your reading queue in Quick Reads" data-drift="0.06">
+        </div>
 
         <!-- Feature: Beautiful Reading -->
-        <section id="features" class="feature-section feature-section-alt">
-            <div class="feature-grid scroll-reveal">
-                <div class="feature-content">
-                    <p class="feature-label">Reading Experience</p>
+        <section id="features" class="section">
+            <div class="feature-row">
+                <div class="feature-row-copy">
+                    <p class="section-label">Reading Experience</p>
                     <h2 class="feature-title">Beautiful reading experience.</h2>
                     <p class="feature-description">
                         Articles are stripped down to just the words and images. Highlight passages and read free from distractions.
                     </p>
                 </div>
-                <div class="feature-image">
+                <div class="feature-row-media" data-drift="0.05">
                     <img src="../../images/quick-reads-reader.jpg" alt="Distraction-free article reader">
                 </div>
             </div>
         </section>
 
         <!-- Feature: Obsidian Plugin -->
-        <section class="feature-section">
-            <div class="feature-grid feature-grid-reverse scroll-reveal">
-                <div class="feature-content">
-                    <p class="feature-label">Obsidian Plugin</p>
+        <section class="section">
+            <div class="feature-row feature-flip">
+                <div class="feature-row-copy">
+                    <p class="section-label">Obsidian Plugin</p>
                     <h2 class="feature-title">Highlights, synced to Obsidian.</h2>
                     <p class="feature-description">
                         Sync your highlights directly into Obsidian and connect them to your notes.
                     </p>
                 </div>
-                <div class="feature-image">
+                <div class="feature-row-media" data-drift="0.05">
                     <img src="../../images/quick-reads-obsidian.png" alt="Obsidian plugin for Quick Reads">
                 </div>
             </div>
         </section>
 
         <!-- Feature Grid -->
-        <section class="features-grid-section feature-section-alt">
-            <div class="centered-section scroll-reveal">
-                <p class="feature-label">Everything You Need</p>
-                <h2 class="feature-title">A focused set of features designed for thoughtful reading.</h2>
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Everything You Need</p>
+                <h2 class="section-title wipe">A focused set of features designed for thoughtful reading.</h2>
             </div>
-            <div class="features-grid" style="margin-top: var(--space-2xl);">
+            <div class="features-grid">
                 <div class="feature-card scroll-reveal">
                     <div class="feature-card-icon">
                         <i class="ph ph-queue"></i>
@@ -743,8 +157,8 @@
                     <h3 class="feature-card-title">Full API</h3>
                     <p class="feature-card-description">Build your own tools, automations, and integrations with a complete REST API.</p>
                 </div>
-                <a class="feature-card scroll-reveal" href="https://chromewebstore.google.com/detail/quick-reads/ldopokalpolaeofalkgkmeeofojlgifc" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: #16a34a; margin-bottom: var(--space-xs);">Available Now</span>
+                <a class="feature-card scroll-reveal" href="https://chromewebstore.google.com/detail/quick-reads/ldopokalpolaeofalkgkmeeofojlgifc" target="_blank" rel="noopener noreferrer">
+                    <span class="feature-card-badge">Available Now</span>
                     <div class="feature-card-icon">
                         <i class="ph ph-globe"></i>
                     </div>
@@ -752,7 +166,7 @@
                     <p class="feature-card-description">Save articles with one click directly from your browser as you browse the web.</p>
                 </a>
                 <div class="feature-card scroll-reveal">
-                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: #16a34a; margin-bottom: var(--space-xs);">TestFlight Beta</span>
+                    <span class="feature-card-badge">TestFlight Beta</span>
                     <div class="feature-card-icon">
                         <i class="ph ph-device-mobile"></i>
                     </div>
@@ -760,7 +174,7 @@
                     <p class="feature-card-description">Read anywhere with a native app designed for iPhone and iPad.</p>
                 </div>
                 <div class="feature-card scroll-reveal">
-                    <span class="feature-card-badge" style="display: inline-block; font-size: var(--font-size-xs); font-weight: 600; color: #16a34a; margin-bottom: var(--space-xs);">Available Now</span>
+                    <span class="feature-card-badge">Available Now</span>
                     <div class="feature-card-icon">
                         <i class="ph ph-vault"></i>
                     </div>
@@ -771,98 +185,98 @@
         </section>
 
         <!-- Pricing -->
-        <section id="pricing" class="feature-section">
-            <div class="centered-section scroll-reveal">
-                <p class="feature-label">Pricing</p>
-                <h2 class="feature-title">Simple, honest pricing.</h2>
-                <p class="feature-description" style="margin-top: var(--space-md);">
-                    Pick the plan that fits. Start with a free trial.
-                </p>
-                <div class="pricing-cards">
-                    <div class="pricing-card" style="max-width: 320px;">
-                        <div class="pricing-card-badge">Basic</div>
-                        <div class="pricing-card-price">$3.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /mo</span></div>
-                        <div class="pricing-card-period">7-day free trial</div>
-                        <ul style="list-style: none; padding: 0; margin-top: var(--space-lg); text-align: left; display: flex; flex-direction: column; gap: var(--space-sm);">
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Unlimited saved articles
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Unlimited highlights
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Beautiful reading experience
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Full API access
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary); opacity: 0.5;">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
-                                Text-to-speech
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary); opacity: 0.5;">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
-                                Webhooks
-                            </li>
-                        </ul>
-                        <div style="margin-top: var(--space-lg);">
-                            <a href="https://quickreads.app" class="download-btn download-btn-secondary" style="width: 100%; justify-content: center;">Get Basic</a>
-                        </div>
+        <section id="pricing" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Pricing</p>
+                <h2 class="section-title wipe">Simple, honest pricing.</h2>
+                <p class="section-subtitle wipe">Pick the plan that fits. Start with a free trial.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">Basic</div>
+                    <div class="pricing-card-price">$3.99<span class="unit"> /mo</span></div>
+                    <div class="pricing-card-period">7-day free trial</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Unlimited saved articles
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Unlimited highlights
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Beautiful reading experience
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Full API access
+                        </li>
+                        <li class="is-off">
+                            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
+                            Text-to-speech
+                        </li>
+                        <li class="is-off">
+                            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
+                            Webhooks
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://quickreads.app" class="btn-dot">Get Basic</a>
                     </div>
-                    <div class="pricing-card pricing-card-featured" style="max-width: 380px;">
-                        <div style="display: flex; justify-content: center; gap: var(--space-xs); margin-bottom: var(--space-lg);">
-                            <button class="pricing-toggle-btn active" data-plan="monthly" style="padding: 0.5rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-text); color: white; font-weight: 600; font-size: var(--font-size-sm); cursor: pointer; transition: all var(--transition-base);">Monthly</button>
-                            <button class="pricing-toggle-btn" data-plan="yearly" style="padding: 0.5rem 1rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); font-weight: 600; font-size: var(--font-size-sm); cursor: pointer; transition: all var(--transition-base);">Yearly</button>
-                        </div>
-                        <div id="pricingMonthly">
+                </div>
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-toggle">
+                        <button class="pricing-toggle-btn active" data-plan="monthly">Monthly</button>
+                        <button class="pricing-toggle-btn" data-plan="yearly">Yearly</button>
+                    </div>
+                    <div class="pricing-swap">
+                        <div data-pricing-pane="monthly">
                             <div class="pricing-card-badge">Pro</div>
-                            <div class="pricing-card-price">$5.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /mo</span></div>
+                            <div class="pricing-card-price">$5.99<span class="unit"> /mo</span></div>
                             <div class="pricing-card-period">7-day free trial</div>
                         </div>
-                        <div id="pricingYearly" style="display: none;">
-                            <div class="pricing-card-badge">Pro <span style="background: rgba(139, 92, 246, 0.1); color: var(--color-link); padding: 0.125rem 0.5rem; border-radius: var(--radius-sm); font-size: var(--font-size-xs); margin-left: 0.25rem;">Save 17%</span></div>
-                            <div class="pricing-card-price">$59.99<span style="font-size: var(--font-size-base); font-weight: 400; color: var(--color-text-secondary);"> /yr</span></div>
+                        <div data-pricing-pane="yearly" style="display: none;">
+                            <div class="pricing-card-badge">Pro <span class="pricing-save">Save 17%</span></div>
+                            <div class="pricing-card-price">$59.99<span class="unit"> /yr</span></div>
                             <div class="pricing-card-period">$5.00/mo &middot; 7-day free trial</div>
                         </div>
-                        <ul style="list-style: none; padding: 0; margin-top: var(--space-lg); text-align: left; display: flex; flex-direction: column; gap: var(--space-sm);">
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Everything in Basic
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Text-to-speech
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                Webhooks
-                            </li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
-                                <svg viewBox="0 0 14 14" fill="none" stroke="var(--color-link)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                                All future features
-                            </li>
-                        </ul>
-                        <div style="margin-top: var(--space-lg);">
-                            <a href="https://quickreads.app" class="download-btn download-btn-primary" style="width: 100%; justify-content: center;">Get Pro</a>
-                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Everything in Basic
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Text-to-speech
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Webhooks
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            All future features
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://quickreads.app" class="btn-fill">Get Pro</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Final CTA -->
-        <section class="cta-section">
-            <div class="centered-section">
-                <h2 class="feature-title">Ready to get started?</h2>
-                <p class="feature-description" style="margin-top: var(--space-md);">
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Ready to get started?</h2>
+                <p class="cta-copy">
                     Save your first article in seconds. No credit card required.
                 </p>
-                <div class="download-buttons" style="margin-top: var(--space-xl);">
-                    <a href="https://quickreads.app" class="download-btn download-btn-primary">
+                <div class="download-buttons">
+                    <a href="https://quickreads.app" class="btn-fill">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                         Get Started Free
                     </a>
@@ -880,77 +294,14 @@
             </a>
             <div class="app-footer-links">
                 <a href="https://quickreads.app/docs">API Docs</a>
-                <span style="color: var(--color-border);">|</span>
+                <span class="app-footer-sep">|</span>
                 <a href="https://quickreads.app/privacy">Privacy Policy</a>
-                <span style="color: var(--color-border);">|</span>
+                <span class="app-footer-sep">|</span>
                 <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Scroll reveal animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Fade in animations
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 100);
-        });
-
-        // Hide scroll indicator on scroll
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        window.addEventListener('scroll', () => {
-            if (scrollIndicator) {
-                if (window.scrollY > 50) {
-                    scrollIndicator.classList.add('hidden');
-                } else {
-                    scrollIndicator.classList.remove('hidden');
-                }
-            }
-        });
-
-        // Pricing toggle
-        document.querySelectorAll('.pricing-toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.pricing-toggle-btn').forEach(b => {
-                    b.style.background = 'var(--color-bg)';
-                    b.style.color = 'var(--color-text)';
-                    b.classList.remove('active');
-                });
-                btn.style.background = 'var(--color-text)';
-                btn.style.color = 'white';
-                btn.classList.add('active');
-                const plan = btn.dataset.plan;
-                document.getElementById('pricingMonthly').style.display = plan === 'monthly' ? '' : 'none';
-                document.getElementById('pricingYearly').style.display = plan === 'yearly' ? '' : 'none';
-            });
-        });
-
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+    <script src="../../app.js?v=15b52a66" defer></script>
 </body>
 </html>
