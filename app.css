@@ -479,6 +479,59 @@ body.calm-app {
     color: #16a34a;
 }
 
+/* Accent tier badge (e.g. "Premium"), for paid/upgrade labels. Distinct from
+   .feature-card-badge, whose green reads as an availability/status colour. */
+.calm-app .badge-accent {
+    display: inline-block;
+    padding: 0.05rem 0.45rem;
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* ---------- Chips (small labelled pills, optionally with a colour dot) ----------
+   Generic row of pill chips: platform lists, file formats, feature tags. The
+   dot colour is set per chip via --chip-dot (defaults to the app accent). */
+.calm-app .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.calm-app .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.calm-app .chip-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--chip-dot, var(--accent));
+    flex: none;
+}
+
+.calm-app .chip-arrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text-secondary);
+}
+
 /* Card cascade: armed (hidden) only when JS is running; visible otherwise. */
 .calm-app.is-armed .feature-card.scroll-reveal {
     opacity: 0;
