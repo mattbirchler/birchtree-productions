@@ -280,20 +280,20 @@ body.calm-app {
     object-position: top;
 }
 
-/* ---------- Reveal wipes ---------- */
-/* Fail-safe: .wipe copy is VISIBLE by default; the clip/fade is armed only
-   once app.js adds .is-armed. Section headers carry .scroll-reveal on an
-   UNCLIPPED ancestor so the IntersectionObserver has a non-zero-area target
-   (a zero-area clip-path element never reports isIntersecting in Chromium),
-   and .revealed cascades down to the .wipe children.
+/* ---------- Reveal (fade + rise) ---------- */
+/* Copy reveals by fading up a little. This deliberately does NOT use a
+   left-to-right clip-path wipe: on the centered app-page hero copy a clip
+   wipe visibly cut glyphs during the reveal (the leading letter clipped),
+   so it was replaced with a fade that can never clip a letter. (The homepage
+   keeps its clip wipe because its copy is right-aligned in a narrow box.)
 
-   Each motion preference owns its own gated rules: full-motion gets the
-   clip wipe, reduced-motion gets a plain opacity fade. Gating the clip rule
-   under no-preference (rather than trying to override it inside the reduce
-   block) is what makes the reduced-motion path actually win, since a media
-   query adds no specificity weight of its own. */
+   Fail-safe: .wipe copy is VISIBLE by default; hiding is armed only once
+   app.js adds .is-armed. Section headers carry .scroll-reveal on an
+   observer-target ancestor and .revealed cascades to the .wipe children; a
+   3s .is-revealed-all fallback reveals everything if the observer never
+   fires. Each motion preference owns its own gated rules so the reduced
+   path wins without a specificity fight. */
 
-/* Section header itself is never clipped: it is the unclipped observer target. */
 .calm-app .section-header.scroll-reveal {
     opacity: 1;
     transform: none;
@@ -302,21 +302,24 @@ body.calm-app {
 
 @media (prefers-reduced-motion: no-preference) {
     .calm-app.is-armed .wipe {
-        clip-path: inset(0 100% 0 0);
-        transition: clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity: 0;
+        transform: translateY(0.5rem);
+        transition: opacity 0.6s ease,
+                    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .calm-app .section-header.revealed .wipe,
     .calm-app .wipe.revealed,
     .calm-app.is-loaded .app-hero .wipe,
     .calm-app.is-revealed-all .wipe {
-        clip-path: inset(0 0 0 0);
+        opacity: 1;
+        transform: none;
     }
 
-    .calm-app .app-hero .app-hero-title.wipe { transition-delay: 0.3s; }
-    .calm-app .app-hero .app-hero-subtitle.wipe { transition-delay: 0.45s; }
-    .calm-app .section-header .wipe:nth-child(2) { transition-delay: 0.1s; }
-    .calm-app .section-header .wipe:nth-child(3) { transition-delay: 0.2s; }
+    .calm-app .app-hero .app-hero-title.wipe { transition-delay: 0.15s; }
+    .calm-app .app-hero .app-hero-subtitle.wipe { transition-delay: 0.3s; }
+    .calm-app .section-header .wipe:nth-child(2) { transition-delay: 0.08s; }
+    .calm-app .section-header .wipe:nth-child(3) { transition-delay: 0.16s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
