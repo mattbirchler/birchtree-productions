@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>nonogame - Three Fresh Nonograms Every Day</title>
+    <meta name="description" content="A calm daily nonogram (picross) puzzle in your browser. Three new puzzles every day, in three sizes, always solvable by logic alone. No app to install, no account required.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="nonogame - Three Fresh Nonograms Every Day">
+    <meta property="og:description" content="A calm daily nonogram puzzle in your browser. Three new puzzles every day, always solvable by logic alone. No app to install, no account required.">
+    <meta property="og:image" content="https://birchtree.me/images/nonogame-board.png">
+    <meta property="og:url" content="https://nonogame.app">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="nonogame - Three Fresh Nonograms Every Day">
+    <meta name="twitter:description" content="A calm daily nonogram puzzle in your browser. Three new puzzles every day, always solvable by logic alone.">
+    <meta name="twitter:image" content="https://birchtree.me/images/nonogame-board.png">
+
+    <link rel="canonical" href="https://nonogame.app">
+    <link rel="icon" href="../../images/nonogame-icon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+    <style>
+        /* Three tiers rather than the usual two, so the row needs a little more
+           room to keep them on one line. It still wraps on narrow screens. */
+        .calm-app .pricing-cards {
+            max-width: 1120px;
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "nonogame",
+        "description": "A daily nonogram puzzle game. Three fresh puzzles every day, in three sizes, always solvable by logic alone.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web",
+        "url": "https://nonogame.app",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Birchtree Productions, LLC"
+        }
+    }
+    </script>
+</head>
+<body class="calm-app" style="--app-accent: #c8401f;">
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Birchtree Productions</span>
+            </a>
+            <div class="app-nav-brand">
+                <img src="../../images/nonogame-icon.svg" alt="nonogame" style="view-transition-name: nonogame-icon;">
+                <span>nonogame</span>
+            </div>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <header class="app-hero">
+            <div class="app-hero-inner">
+                <img src="../../images/nonogame-icon.svg" alt="nonogame" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">
+                    Three fresh nonograms.<br>
+                    <span class="accent-line">Every single day.</span>
+                </h1>
+                <p class="app-hero-subtitle wipe">
+                    A quiet daily puzzle that lives in your browser. Fill the squares the numbers describe, watch a picture appear, and get on with your day. Nothing to install and no account needed.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://nonogame.app" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        Play today's puzzles
+                    </a>
+                </div>
+                <div class="chip-row">
+                    <span class="chip"><span class="chip-dot"></span>Free to play</span>
+                    <span class="chip"><span class="chip-dot"></span>Works on phone, tablet, and desktop</span>
+                    <span class="chip"><span class="chip-dot"></span>No ads, no tracking</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="hero-screenshot">
+            <img src="../../images/nonogame-board.png" alt="A 15x15 nonogame puzzle partway through being solved" data-drift="0.06">
+        </div>
+
+        <!-- Feature: The daily three -->
+        <section id="features" class="section">
+            <div class="feature-row">
+                <div class="feature-row-copy">
+                    <p class="section-label">The Daily Three</p>
+                    <h2 class="feature-title">A small one, a medium one, and a big one.</h2>
+                    <p class="feature-description">
+                        Every day brings three new puzzles: 10x10 for a coffee break, 15x15 for a proper sit down, and 20x20 for the evening. They start gentle on Monday and get tougher as the week goes on, so there's always one that fits the time you have.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/nonogame-today.png" alt="Today's three puzzles: small, medium, and large">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Learn in a minute -->
+        <section class="section">
+            <div class="feature-row feature-flip">
+                <div class="feature-row-copy">
+                    <p class="section-label">Easy to Learn</p>
+                    <h2 class="feature-title">Never played one before? You will get it in a minute.</h2>
+                    <p class="feature-description">
+                        Each number counts a run of filled squares in its row or column. That's the whole game. A five-by-five practice puzzle walks you through it, wrong squares just bounce back out, and the first picture you draw is a heart.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/nonogame-howto.png" alt="The how to play tutorial with a solved heart puzzle">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Dark mode -->
+        <section class="section">
+            <div class="feature-row">
+                <div class="feature-row-copy">
+                    <p class="section-label">Day and Night</p>
+                    <h2 class="feature-title">Follows your system theme.</h2>
+                    <p class="feature-description">
+                        Warm paper by day, deep ink by night. The board picks up whichever one your device is already using, so a late night puzzle never blinds you.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/nonogame-dark.png" alt="A nonogame puzzle in dark mode">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Everything You Need</p>
+                <h2 class="section-title wipe">Built for people who just want a good puzzle.</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-brain"></i>
+                    </div>
+                    <h3 class="feature-card-title">Never a Guess</h3>
+                    <p class="feature-card-description">Every puzzle is checked by a solver before it ships. If it cannot be finished by logic alone, it does not make it in.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-cursor-click"></i>
+                    </div>
+                    <h3 class="feature-card-title">Click or Drag</h3>
+                    <p class="feature-card-description">Fill a run in one stroke, mark the blanks with crosses, and undo or redo anything. It works the same with a mouse or a thumb.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-lightbulb"></i>
+                    </div>
+                    <h3 class="feature-card-title">A Nudge When Stuck</h3>
+                    <p class="feature-card-description">Hints fill in one square you could have worked out yourself, so you get unstuck without being handed the answer.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-flame"></i>
+                    </div>
+                    <h3 class="feature-card-title">Streaks and Stats</h3>
+                    <p class="feature-card-description">A free account keeps your solves, your times, and your daily streak, with a one day grace period for the day life gets in the way.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-device-mobile"></i>
+                    </div>
+                    <h3 class="feature-card-title">Add to Home Screen</h3>
+                    <p class="feature-card-description">Install it from your browser and it opens like an app, with its own icon and no address bar in the way.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-shield-check"></i>
+                    </div>
+                    <h3 class="feature-card-title">Nothing Creepy</h3>
+                    <p class="feature-card-description">No ads, no autocapture, no session recording. Sign in with an emailed link or a passkey: there are no passwords here at all.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Pricing</p>
+                <h2 class="section-title wipe">Play it however suits you.</h2>
+                <p class="section-subtitle wipe">Today's three puzzles are free forever. Pay only if you want the archive.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">No account</div>
+                    <div class="pricing-card-price">Free</div>
+                    <div class="pricing-card-period">Just start playing</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Today's three puzzles, every day
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Nothing to set up
+                        </li>
+                        <li class="is-off">
+                            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><line x1="3" y1="3" x2="11" y2="11"/><line x1="11" y1="3" x2="3" y2="11"/></svg>
+                            Nothing saved past the day
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://nonogame.app" target="_blank" rel="noopener noreferrer" class="btn-dot">Play now</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">Free account</div>
+                    <div class="pricing-card-price">Free</div>
+                    <div class="pricing-card-period">An emailed link, then a passkey</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Solves, stats, and finished pictures, kept
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Daily streaks, with a grace day
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Progress synced across your devices
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://nonogame.app/signup" target="_blank" rel="noopener noreferrer" class="btn-dot">Create an account</a>
+                    </div>
+                </div>
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-toggle">
+                        <button class="pricing-toggle-btn active" data-plan="monthly">Monthly</button>
+                        <button class="pricing-toggle-btn" data-plan="yearly">Yearly</button>
+                    </div>
+                    <div class="pricing-swap">
+                        <div data-pricing-pane="monthly">
+                            <div class="pricing-card-badge">Plus</div>
+                            <div class="pricing-card-price">$3<span class="unit"> /mo</span></div>
+                            <div class="pricing-card-period">Cancel anytime</div>
+                        </div>
+                        <div data-pricing-pane="yearly" style="display: none;">
+                            <div class="pricing-card-badge">Plus <span class="pricing-save">Save 44%</span></div>
+                            <div class="pricing-card-price">$20<span class="unit"> /yr</span></div>
+                            <div class="pricing-card-period">$1.67/mo &middot; cancel anytime</div>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Everything a free account keeps
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Every past day, playable
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Themed collections of five, with personal bests
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            A random puzzle dealt every day
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://nonogame.app" target="_blank" rel="noopener noreferrer" class="btn-fill">Get Plus</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Today's puzzles are waiting.</h2>
+                <p class="cta-copy">
+                    Three of them, free, in the browser you already have open.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://nonogame.app" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        Play nonogame
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/nonogame-icon.svg" alt="nonogame">
+                <span>nonogame</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="https://nonogame.app" target="_blank" rel="noopener noreferrer">nonogame.app</a>
+                <span class="app-footer-sep">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../app.js?v=15b52a66" defer></script>
+</body>
+</html>
