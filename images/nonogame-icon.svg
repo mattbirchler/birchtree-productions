@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The site as a tab icon: the 5x5 heart from the how-to-play demo, the
+       first picture anyone solves here, on the same paper the boards sit on.
+       Filled cells wear vermilion because a heart in red is a hanko: the one
+       stamp the palette allows. -->
+  <rect x="1" y="1" width="62" height="62" rx="12" fill="#fbf9f3" stroke="#ddd6c8" stroke-width="1.5"/>
+  <!-- Row 0: . X . X . -->
+  <rect x="5.5" y="5.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <rect x="16" y="5" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="27.5" y="5.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <rect x="38" y="5" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="49.5" y="5.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <!-- Row 1: X X X X X -->
+  <rect x="5" y="16" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="16" y="16" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="27" y="16" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="38" y="16" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="49" y="16" width="10" height="10" rx="2" fill="#c8401f"/>
+  <!-- Row 2: X X X X X -->
+  <rect x="5" y="27" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="16" y="27" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="27" y="27" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="38" y="27" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="49" y="27" width="10" height="10" rx="2" fill="#c8401f"/>
+  <!-- Row 3: . X X X . -->
+  <rect x="5.5" y="38.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <rect x="16" y="38" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="27" y="38" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="38" y="38" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="49.5" y="38.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <!-- Row 4: . . X . . -->
+  <rect x="5.5" y="49.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <rect x="16.5" y="49.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <rect x="27" y="49" width="10" height="10" rx="2" fill="#c8401f"/>
+  <rect x="38.5" y="49.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+  <rect x="49.5" y="49.5" width="9" height="9" rx="2" fill="none" stroke="#ddd6c8"/>
+</svg>
