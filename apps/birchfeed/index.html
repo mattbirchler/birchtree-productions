@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Birchfeed - RSS Sync for the App You Already Use</title>
+    <meta name="description" content="Dead simple, reliable RSS syncing. Works in Reeder, NetNewsWire, Unread, and anything that speaks Google Reader, FreshRSS, or Fever. $39 a year after a 14-day free trial.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Birchfeed - RSS Sync for the App You Already Use">
+    <meta property="og:description" content="Dead simple, reliable RSS syncing. Works in Reeder, NetNewsWire, Unread, and anything that speaks Google Reader, FreshRSS, or Fever. $39 a year after a 14-day free trial.">
+    <meta property="og:image" content="https://birchtree.me/images/birchfeed-reader.jpg">
+    <meta property="og:url" content="https://birchfeed.app">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Birchfeed - RSS Sync for the App You Already Use">
+    <meta name="twitter:description" content="Dead simple, reliable RSS syncing. Works in Reeder, NetNewsWire, Unread, and anything that speaks Google Reader, FreshRSS, or Fever.">
+    <meta name="twitter:image" content="https://birchtree.me/images/birchfeed-reader.jpg">
+
+    <link rel="canonical" href="https://birchfeed.app">
+    <link rel="icon" href="../../images/birchfeed-icon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Birchfeed",
+        "description": "An RSS syncing service that works in the reader app you already use, with a built-in web reader, a live News Stream, daily email roundups, and automations.",
+        "applicationCategory": "NewsApplication",
+        "operatingSystem": "Web",
+        "url": "https://birchfeed.app",
+        "offers": {
+            "@type": "Offer",
+            "price": "39",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Birchtree Productions, LLC"
+        }
+    }
+    </script>
+</head>
+<body class="calm-app" style="--app-accent: #2f3238;">
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Birchtree Productions</span>
+            </a>
+            <div class="app-nav-brand">
+                <img src="../../images/birchfeed-icon.svg" alt="Birchfeed" style="view-transition-name: birchfeed-icon;">
+                <span>Birchfeed</span>
+            </div>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <header class="app-hero">
+            <div class="app-hero-inner">
+                <img src="../../images/birchfeed-icon.svg" alt="Birchfeed" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">
+                    RSS made by someone<br>
+                    <span class="accent-line">obsessed with RSS.</span>
+                </h1>
+                <p class="app-hero-subtitle wipe">
+                    Rock solid sync, works in the best RSS clients out there, and a few other clever things.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://birchfeed.app/signup" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        Start free trial
+                    </a>
+                    <a href="https://birchfeed.app/signin" target="_blank" rel="noopener noreferrer" class="btn-dot">Sign in</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="hero-screenshot">
+            <img src="../../images/birchfeed-reader.jpg" alt="The Birchfeed web reader: a three-pane view with feeds on the left, an article list in the middle, and the open article on the right" data-drift="0.06">
+        </div>
+
+        <!-- Works with your reader -->
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Bring Your Own App</p>
+                <h2 class="section-title wipe">If you like your RSS app, you can keep your RSS app.*</h2>
+                <p class="section-subtitle wipe">Thanks to open industry standards (remember those?), Birchfeed probably works in the RSS app you already use. If your app shows a Google Reader, FreshRSS, or Fever option, you're in! These are the ones it's tested with, and what to pick in each.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-device-mobile"></i>
+                    </div>
+                    <h3 class="feature-card-title">Reeder Classic</h3>
+                    <p class="feature-card-description">Choose Reader or FreshRSS, depending on the version you have. This is the reader Birchfeed is tested against most.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-desktop"></i>
+                    </div>
+                    <h3 class="feature-card-title">NetNewsWire</h3>
+                    <p class="feature-card-description">Choose FreshRSS when adding an account.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-lightning"></i>
+                    </div>
+                    <h3 class="feature-card-title">Current</h3>
+                    <p class="feature-card-description">Choose FreshRSS or Google Reader.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-book-open"></i>
+                    </div>
+                    <h3 class="feature-card-title">Unread</h3>
+                    <p class="feature-card-description">Choose Fever.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-browser"></i>
+                    </div>
+                    <h3 class="feature-card-title">Web Reader</h3>
+                    <p class="feature-card-description">Built in, nothing to set up. A full three-pane reader in any browser.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-plugs-connected"></i>
+                    </div>
+                    <h3 class="feature-card-title">Something Else?</h3>
+                    <p class="feature-card-description">Any app with a Google Reader, FreshRSS, or Fever option should work. Pick whichever one it offers.</p>
+                </div>
+            </div>
+            <p class="section-subtitle scroll-reveal" style="text-align: center; margin: 2rem auto 0; max-width: 40rem;">*Okay, yeah, some apps don't support those, but the good ones do! Do you build a reader app? <a href="https://birchfeed.app/developers" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Integrate Birchfeed directly</a>.</p>
+        </section>
+
+        <!-- Feature: News Stream -->
+        <section class="section">
+            <div class="feature-row feature-flip">
+                <div class="feature-row-copy">
+                    <p class="section-label">The News Stream</p>
+                    <h2 class="feature-title">Big news day? Open a window and watch it roll in.</h2>
+                    <p class="feature-description">
+                        Open it up in a new window and watch the news of the day stream by in real time. Perfect for those big news days or the generally news-obsessed.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/birchfeed-stream.jpg" alt="The News Stream: a single live column of arriving articles with a freshness indicator at the top">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Daily Roundups -->
+        <section class="section">
+            <div class="feature-row">
+                <div class="feature-row-copy">
+                    <p class="section-label">Daily Roundups</p>
+                    <h2 class="feature-title">One email a day with what you missed.</h2>
+                    <p class="feature-description">
+                        Schedule a daily email that summarizes what happened while you were away. Schedule it for 6AM and wake up to what happened overnight, or make it 5PM and see what happened while you were working. It's always 100% personalized to you.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/birchfeed-today.jpg" alt="The Today page: the day's date, a written briefing, and the last 24 hours of arrivals grouped by feed">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature: Automations -->
+        <section class="section">
+            <div class="feature-row feature-flip">
+                <div class="feature-row-copy">
+                    <p class="section-label">Automations</p>
+                    <h2 class="feature-title">Simple rules that act on new articles the moment they arrive.</h2>
+                    <p class="feature-description">
+                        Get a push or an email when something you care about pops up, star it for later, or mark the noise as read so you never even see it. Rules can watch one feed, a folder, or everything you follow.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/birchfeed-automations.jpg" alt="Three automation rules written as plain sentences, each with a toggle and a matched-this-week count">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">The Details</p>
+                <h2 class="section-title wipe">All the small things.</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-arrows-left-right"></i>
+                    </div>
+                    <h3 class="feature-card-title">OPML Import and Export</h3>
+                    <p class="feature-card-description">Got feeds already? Bring them over! Ever want to leave? Take them with you.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-fingerprint"></i>
+                    </div>
+                    <h3 class="feature-card-title">Passkey-Only</h3>
+                    <p class="feature-card-description">Passkeys are more secure and impossible to forget. There's also 0% chance of me leaking a password if it never exists at all.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-key"></i>
+                    </div>
+                    <h3 class="feature-card-title">Keys You Control</h3>
+                    <p class="feature-card-description">Each reader app gets its own key, revocable on its own, with a last-used date so you can see what is still connected.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-star"></i>
+                    </div>
+                    <h3 class="feature-card-title">Starred Means Kept</h3>
+                    <p class="feature-card-description">Old articles age out on a schedule to keep things fast. Anything you star is kept for good.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-code"></i>
+                    </div>
+                    <h3 class="feature-card-title">Open to Developers</h3>
+                    <p class="feature-card-description">A documented Reader API, so any app can add Birchfeed directly instead of going through a FreshRSS or Fever setting.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-shield-check"></i>
+                    </div>
+                    <h3 class="feature-card-title">No Ads, No Tracking</h3>
+                    <p class="feature-card-description">We don't really need to know who you are or what you're doing, so we don't.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Pricing</p>
+                <h2 class="section-title wipe">One plan. First 14 days free.</h2>
+                <p class="section-subtitle wipe">Everything included. No card needed to start.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-card-badge">Everything</div>
+                    <div class="pricing-card-price">$39<span class="unit"> /yr</span></div>
+                    <div class="pricing-card-period">After a 14-day free trial</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Unlimited feeds and folders
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Every reader connection
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            The web reader
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            The News Stream
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            The daily briefing
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Cancel any time
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://birchfeed.app/signup" target="_blank" rel="noopener noreferrer" class="btn-fill">Start free trial</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Early bird offer. The live site checks the clock; this page cannot,
+                 so remove this paragraph once the offer ends. -->
+            <p class="section-subtitle scroll-reveal" style="text-align: center; margin: 2rem auto 0; max-width: 40rem;">Early bird: accounts created before October 1, 2026 pay $29 a year instead.</p>
+            <p class="section-subtitle scroll-reveal" style="text-align: center; margin: 0.75rem auto 0; max-width: 40rem;">Your feeds and starred articles are always yours to export.</p>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Your feeds, in the app you already like.</h2>
+                <p class="cta-copy">
+                    Fourteen days free, no card needed, and nothing to install.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://birchfeed.app/signup" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        Start free trial
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/birchfeed-icon.svg" alt="Birchfeed">
+                <span>Birchfeed</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="https://birchfeed.app" target="_blank" rel="noopener noreferrer">birchfeed.app</a>
+                <span class="app-footer-sep">|</span>
+                <a href="https://birchfeed.app/developers" target="_blank" rel="noopener noreferrer">Developers</a>
+                <span class="app-footer-sep">|</span>
+                <a href="https://birchfeed.app/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                <span class="app-footer-sep">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../app.js?v=15b52a66" defer></script>
+</body>
+</html>
