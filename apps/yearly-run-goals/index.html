@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./yearly-run-goals.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -72,12 +73,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/yearly%20run%20goals.png" alt="Yearly Run Goals" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Your year. Your goal. <span class="accent-line">Your pace.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Your year.<br>Your goal.<br>Your pace.</h1>
                 <p class="app-hero-subtitle wipe">
                     A simple way to set, track, and achieve your yearly distance goals.
                 </p>
@@ -87,162 +86,319 @@
                         Download for iPhone
                     </a>
                 </div>
+                <p class="app-hero-note">Free to download. No ads, no subscriptions.</p>
+            </div>
+
+            <div class="app-hero-stage" role="img" aria-label="The Yearly Run Goals main screen. A Year Progress card shows 17 of 365 miles with a chart of the year so far, above a January calendar with each run day filled in green.">
+                <div class="yr-phone" aria-hidden="true">
+                    <div class="yr-toolbar">
+                        <i class="ph ph-export"></i>
+                        <i class="ph ph-chart-bar"></i>
+                        <i class="ph ph-gear"></i>
+                    </div>
+                    <div class="yr-card yr-progress">
+                            <div class="yr-progress-head">
+                                <span class="yr-card-title">Year Progress</span>
+                                <span class="yr-pct">5%</span>
+                            </div>
+                            <p class="yr-total"><b>17</b> / 365 mi</p>
+                            <p class="yr-stat yr-stat-pace"><span class="yr-badge"><i class="ph ph-arrow-down-right"></i></span><span>On pace for <b>276 mi</b></span></p>
+                            <p class="yr-stat yr-stat-last"><span class="yr-badge"><i class="ph ph-arrow-up"></i></span><span><span>7.8</span> mi ahead of <b>last year</b></span></p>
+                            <svg class="yr-chart" viewBox="0 0 320 176" focusable="false">
+                                <g class="yr-chart-grid">
+                                    <line x1="0" y1="8" x2="290" y2="8"/>
+                                    <line x1="0" y1="58" x2="290" y2="58"/>
+                                    <line x1="0" y1="108" x2="290" y2="108"/>
+                                    <line x1="0" y1="158" x2="290" y2="158"/>
+                                    <line class="yr-chart-axis" x1="0.5" y1="8" x2="0.5" y2="158"/>
+                                </g>
+                                <path class="yr-chart-area" d="M0,153 L12.6,148 25.2,140.5 37.8,128.5 50.4,128.5 63,121 75.6,121 88.2,113 100.9,105 113.5,105 126.1,91 138.7,81.5 151.3,76 163.9,71 277.4,71 290,71 290,158 0,158 Z"/>
+                                <path class="yr-chart-goal" d="M0,158 L290,43"/>
+                                <path class="yr-chart-last" d="M0,158 L13,151 25,151 38,143 50,138 63,138 76,133 164,133 176,120 190,120 202,115 227,115 240,110 290,110"/>
+                                <path class="yr-chart-line" pathLength="1" d="M0,153 L12.6,148 25.2,140.5 37.8,128.5 50.4,128.5 63,121 75.6,121 88.2,113 100.9,105 113.5,105 126.1,91 138.7,81.5 151.3,76 163.9,71 277.4,71 290,71"/>
+                                <g class="yr-chart-labels">
+                                    <text x="298" y="11">30</text>
+                                    <text x="298" y="61">20</text>
+                                    <text x="298" y="111">10</text>
+                                    <text x="298" y="161">0</text>
+                                    <text x="4" y="173">Jan</text>
+                                </g>
+                            </svg>
+                    </div>
+                    <div class="yr-card">
+                        <p class="yr-month-title">January 2026</p>
+                        <div class="yr-cal">
+                                <span class="yr-dow">M</span>
+                                <span class="yr-dow">T</span>
+                                <span class="yr-dow">W</span>
+                                <span class="yr-dow">T</span>
+                                <span class="yr-dow">F</span>
+                                <span class="yr-dow">S</span>
+                                <span class="yr-dow">S</span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span class="yr-day is-run">1<small>1.0</small></span>
+                                <span class="yr-day is-run">2<small>1.0</small></span>
+                                <span class="yr-day is-run">3<small>1.5</small></span>
+                                <span class="yr-day is-run">4<small>2.4</small></span>
+                                <span class="yr-day">5</span>
+                                <span class="yr-day is-run">6<small>1.5</small></span>
+                                <span class="yr-day">7</span>
+                                <span class="yr-day is-run">8<small>1.6</small></span>
+                                <span class="yr-day is-run">9<small>1.6</small></span>
+                                <span class="yr-day">10</span>
+                                <span class="yr-day is-run">11<small>2.8</small></span>
+                                <span class="yr-day is-run">12<small>1.9</small></span>
+                                <span class="yr-day is-run">13<small>1.1</small></span>
+                                <span class="yr-day is-run">14<small>1.0</small></span>
+                                <span class="yr-day">15</span>
+                                <span class="yr-day">16</span>
+                                <span class="yr-day">17</span>
+                                <span class="yr-day">18</span>
+                                <span class="yr-day">19</span>
+                                <span class="yr-day">20</span>
+                                <span class="yr-day">21</span>
+                                <span class="yr-day">22</span>
+                                <span class="yr-day">23</span>
+                                <span class="yr-day is-today">24</span>
+                                <span class="yr-day is-future">25</span>
+                        </div>
+                    </div>
+                    <div class="yr-log-pill"><i class="ph ph-plus-circle"></i> Log Running</div>
+                </div>
             </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/yearly-run-tracker-main.png" alt="Progress chart showing cumulative distance over the year" data-drift="0.06">
-        </div>
-
-        <!-- Progress Visualization -->
+        <!-- Progress -->
         <section id="features" class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Beautiful Progress</p>
                 <h2 class="section-title wipe">See your year<br>at a glance.</h2>
                 <p class="section-subtitle wipe">
-                    There's nothing wrong with having a goal, right? Yearly Run Tracker does exactly what it sounds like: track your progress through the year!
+                    There's nothing wrong with having a goal, right? Yearly Run Goals does exactly what it sounds like: track your progress through the year!
                 </p>
-                <p class="section-subtitle wipe">
-                    Import workouts from Apple Health or log them manually. Either way, you'll see your projected finish based on your current pace.
-                </p>
+            </div>
+
+            <div class="bento">
+                <!-- Log a run, projection moves -->
+                <article class="tile" style="--span: 7" data-demo="log">
+                    <div class="tile-stage">
+                        <div class="yr-card yr-progress" aria-hidden="true">
+                            <div class="yr-progress-head">
+                                <span class="yr-card-title">Year Progress</span>
+                                <span class="yr-pct" data-log-pct>5%</span>
+                            </div>
+                            <p class="yr-total"><b data-log-total>17</b> / 365 mi</p>
+                            <p class="yr-stat yr-stat-pace" data-log-pacewrap><span class="yr-badge"><i class="ph ph-arrow-down-right"></i></span><span>On pace for <b data-log-pace>276 mi</b></span></p>
+                            <p class="yr-stat yr-stat-last"><span class="yr-badge"><i class="ph ph-arrow-up"></i></span><span><span data-log-ahead>7.8</span> mi ahead of <b>last year</b></span></p>
+                            <svg class="yr-chart" viewBox="0 0 320 176" focusable="false">
+                                <g class="yr-chart-grid">
+                                    <line x1="0" y1="8" x2="290" y2="8"/>
+                                    <line x1="0" y1="58" x2="290" y2="58"/>
+                                    <line x1="0" y1="108" x2="290" y2="108"/>
+                                    <line x1="0" y1="158" x2="290" y2="158"/>
+                                    <line class="yr-chart-axis" x1="0.5" y1="8" x2="0.5" y2="158"/>
+                                </g>
+                                <path class="yr-chart-area" d="M0,153 L12.6,148 25.2,140.5 37.8,128.5 50.4,128.5 63,121 75.6,121 88.2,113 100.9,105 113.5,105 126.1,91 138.7,81.5 151.3,76 163.9,71 277.4,71 290,71 290,158 0,158 Z"/>
+                                <path class="yr-chart-goal" d="M0,158 L290,43"/>
+                                <path class="yr-chart-last" d="M0,158 L13,151 25,151 38,143 50,138 63,138 76,133 164,133 176,120 190,120 202,115 227,115 240,110 290,110"/>
+                                <path class="yr-chart-line" pathLength="1" d="M0,153 L12.6,148 25.2,140.5 37.8,128.5 50.4,128.5 63,121 75.6,121 88.2,113 100.9,105 113.5,105 126.1,91 138.7,81.5 151.3,76 163.9,71 277.4,71 290,71"/>
+                                <g class="yr-chart-labels">
+                                    <text x="298" y="11">30</text>
+                                    <text x="298" y="61">20</text>
+                                    <text x="298" y="111">10</text>
+                                    <text x="298" y="161">0</text>
+                                    <text x="4" y="173">Jan</text>
+                                </g>
+                            </svg>
+                            <div class="yr-cal yr-week">
+                                <span class="yr-day">19</span>
+                                <span class="yr-day">20</span>
+                                <span class="yr-day">21</span>
+                                <span class="yr-day">22</span>
+                                <span class="yr-day">23</span>
+                                <span class="yr-day is-today" data-log-day>24<small data-log-day-mi></small></span>
+                                <span class="yr-day is-future">25</span>
+                            </div>
+                        </div>
+                        <div class="yr-controls">
+                            <label class="yr-slider">
+                                <span>Today's run</span>
+                                <input type="range" min="0.5" max="10" step="0.5" value="3" data-log-range aria-label="Distance of today's run, in miles">
+                                <output data-log-out>3.0 mi</output>
+                            </label>
+                            <button type="button" class="yr-log-btn" data-log-btn><i class="ph ph-plus-circle" aria-hidden="true"></i> <span>Log Running</span></button>
+                        </div>
+                        <p class="yr-sr" aria-live="polite" data-log-status></p>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Log a run and watch your finish line move.</h3>
+                        <p>Every workout updates your projected finish based on your current pace. Pick a distance and log today's run to try it.</p>
+                    </div>
+                </article>
+
+                <!-- Apple Health import -->
+                <article class="tile" style="--span: 5" data-demo="import" data-steps="600,350,350,350,500">
+                    <div class="tile-stage">
+                        <div class="demo-card" aria-hidden="true">
+                            <div class="yr-import-head">
+                                <span class="yr-health"><i class="ph ph-heart"></i></span>
+                                <span class="yr-import-name">Apple Health</span>
+                                <span class="yr-import-total"><b data-count-from="0" data-count-to="17">17</b> mi</span>
+                            </div>
+                            <div class="yr-row yr-row-1"><i class="ph ph-person-simple-run"></i><span>Thu, Jan 1</span><b>1.0 mi</b></div>
+                            <div class="yr-row yr-row-2"><i class="ph ph-person-simple-run"></i><span>Fri, Jan 2</span><b>1.0 mi</b></div>
+                            <div class="yr-row yr-row-3"><i class="ph ph-person-simple-run"></i><span>Sat, Jan 3</span><b>1.5 mi</b></div>
+                            <div class="yr-row yr-row-4"><i class="ph ph-person-simple-run"></i><span>Sun, Jan 4</span><b>2.4 mi</b></div>
+                            <div class="yr-row yr-row-5 yr-row-more"><span>and 7 more runs</span></div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> 11 workouts imported</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Bring your workouts in from Apple Health.</h3>
+                        <p>Import workouts from Apple Health or log them manually. Either way, you'll see your projected finish based on your current pace.</p>
+                    </div>
+                </article>
+
+                <!-- Activity types -->
+                <article class="tile tile-split" style="--span: 12" data-demo="activity">
+                    <div class="tile-copy">
+                        <h3>Track what matters to you.</h3>
+                        <p>Whether you run, walk, cycle, or swim, Yearly Run Goals tracks your distance. It's called Yearly Run Goals, but it'll do more than that.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="yr-chips">
+                            <button type="button" class="yr-chip is-active" aria-pressed="true" data-activity="Running" data-icon="ph-person-simple-run" data-total="17" data-goal="365"><i class="ph ph-person-simple-run" aria-hidden="true"></i> Running</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-activity="Walking" data-icon="ph-person-simple-walk" data-total="41" data-goal="500"><i class="ph ph-person-simple-walk" aria-hidden="true"></i> Walking</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-activity="Runs + Walks" data-icon="ph-sneaker-move" data-total="58" data-goal="750"><i class="ph ph-sneaker-move" aria-hidden="true"></i> Runs + Walks</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-activity="Cycling" data-icon="ph-bicycle" data-total="212" data-goal="2000"><i class="ph ph-bicycle" aria-hidden="true"></i> Cycling</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-activity="Swimming" data-icon="ph-person-simple-swim" data-total="6" data-goal="50"><i class="ph ph-person-simple-swim" aria-hidden="true"></i> Swimming</button>
+                        </div>
+                        <div class="yr-card yr-activity" aria-live="polite">
+                            <div class="yr-progress-head">
+                                <span class="yr-card-title">Year Progress</span>
+                                <span class="yr-pct" data-activity-pct>5%</span>
+                            </div>
+                            <p class="yr-total"><b data-activity-total>17</b> / <span data-activity-goal>365</span> mi</p>
+                            <div class="yr-meter" aria-hidden="true"><span data-activity-meter style="transform: scaleX(0.05)"></span></div>
+                            <div class="yr-log-pill"><i class="ph ph-plus-circle" aria-hidden="true"></i> Log <span data-activity-name>Running</span></div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Workout Types -->
+        <!-- Insights, sharing, privacy -->
         <section class="section">
             <div class="section-header scroll-reveal">
-                <p class="section-label wipe">Different Activity Options</p>
-                <h2 class="section-title wipe">Track what matters to you.</h2>
+                <p class="section-label wipe">Fun Insights</p>
+                <h2 class="section-title wipe">Understand your workout patterns.</h2>
                 <p class="section-subtitle wipe">
-                    Whether you run, walk, cycle, or swim, Yearly Run Goals tracks your distance. It's called Yearly Run Goals, but it'll do more than that.
+                    Dive into monthly breakdowns, discover which days you work out most, and explore comprehensive stats including streaks, averages, and personal records.
                 </p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-person-simple-run"></i>
-                    </div>
-                    <h3 class="feature-card-title">Running</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-person-simple-walk"></i>
-                    </div>
-                    <h3 class="feature-card-title">Walking</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-sneaker-move"></i>
-                    </div>
-                    <h3 class="feature-card-title">Runs + Walks</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-bicycle"></i>
-                    </div>
-                    <h3 class="feature-card-title">Cycling</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-person-simple-swim"></i>
-                    </div>
-                    <h3 class="feature-card-title">Swimming</h3>
-                </div>
-            </div>
-        </section>
 
-        <!-- Feature: Insights -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Fun Insights</p>
-                    <h2 class="feature-title">Understand your workout patterns.</h2>
-                    <p class="feature-description">
-                        Dive into monthly breakdowns, discover which days you work out most, and explore comprehensive stats including streaks, averages, and personal records.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/yearly-run-tracker-insights.png" alt="Insights view with monthly breakdown and stats">
-                </div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-calendar"></i>
+            <div class="bento">
+                <!-- Insights -->
+                <article class="tile" style="--span: 7" data-demo="insights" data-steps="400">
+                    <div class="tile-stage">
+                        <div class="yr-tabs" role="group" aria-label="Insights views">
+                            <button type="button" class="yr-chip is-active" aria-pressed="true" data-insight="weekly">Weekly Patterns</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-insight="monthly">Monthly Breakdown</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-insight="stats">Streaks and Records</button>
+                        </div>
+                        <div class="yr-panels">
+                            <div class="yr-card" data-insight-panel="weekly" role="img" aria-label="Running Pattern: average distance by day of week. Sunday is the longest at about 2.6 miles and Wednesday the shortest at 1 mile.">
+                                <p class="yr-card-title">Running Pattern</p>
+                                <p class="yr-card-sub">Average distance by day of week</p>
+                                <div class="yr-bars" aria-hidden="true">
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.87"></span><small>Sun</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.63"></span><small>Mon</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.43"></span><small>Tue</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.33"></span><small>Wed</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.43"></span><small>Thu</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.43"></span><small>Fri</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.50"></span><small>Sat</small></div>
+                                </div>
+                            </div>
+                            <div class="yr-card" data-insight-panel="monthly" role="img" aria-label="Monthly breakdown: 17 miles in January, with the rest of the year still to come." hidden>
+                                <p class="yr-card-title">Monthly Breakdown</p>
+                                <div class="yr-bars yr-bars-months" aria-hidden="true">
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.68"></span><small>J</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>F</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>M</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>A</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>M</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>J</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>J</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>A</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>S</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>O</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>N</small></div>
+                                    <div class="yr-bar-col"><span class="yr-bar" style="--h: 0.00"></span><small>D</small></div>
+                                </div>
+                            </div>
+                            <div class="yr-card" data-insight-panel="stats" hidden>
+                                <p class="yr-card-title">Year Stats</p>
+                                <div class="yr-stats">
+                                    <div class="yr-stat-card"><i class="ph ph-flame" style="color: #ff7a1a" aria-hidden="true"></i><span>Current Streak</span><p><b>0</b> days</p></div>
+                                    <div class="yr-stat-card"><i class="ph ph-star" style="color: #b620e0" aria-hidden="true"></i><span>Longest Streak</span><p><b>4</b> days</p></div>
+                                    <div class="yr-stat-card"><i class="ph ph-person-simple-run" style="color: #2fbe4d" aria-hidden="true"></i><span>Total Runs</span><p><b>11</b> this year</p></div>
+                                    <div class="yr-stat-card"><i class="ph ph-chart-bar" style="color: #0a7aff" aria-hidden="true"></i><span>Average Run</span><p><b>1.6</b> mi</p></div>
+                                    <div class="yr-stat-card"><i class="ph ph-trophy" style="color: #f5b400" aria-hidden="true"></i><span>Longest Run</span><p><b>2.8</b> mi</p></div>
+                                    <div class="yr-stat-card"><i class="ph ph-calendar-x" style="color: #ff3b30" aria-hidden="true"></i><span>Longest Gap</span><p><b>9</b> days</p></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Monthly Breakdown</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-flame"></i>
+                    <div class="tile-copy">
+                        <h3>Find out which days you actually show up.</h3>
+                        <p>Monthly breakdowns, weekly patterns, streak tracking and personal records, all worked out from the workouts you've logged.</p>
                     </div>
-                    <h3 class="feature-card-title">Streak Tracking</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-chart-line"></i>
-                    </div>
-                    <h3 class="feature-card-title">Weekly Patterns</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-trophy"></i>
-                    </div>
-                    <h3 class="feature-card-title">Personal Records</h3>
-                </div>
-            </div>
-        </section>
+                </article>
 
-        <!-- Feature: Calendar & Export -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Share Your Progress</p>
-                    <h2 class="feature-title">Beautiful exports for sharing.</h2>
-                    <p class="feature-description">
-                        Export your progress chart or a beautiful 12-month calendar grid showing all your workout days. Perfect for end-of-year sharing or celebrating milestones on social media.
-                    </p>
-                    <p class="feature-description">
-                        You can also export all your data as JSON for backup or analysis.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/yearly-run-tracker-calendar.png" alt="Year calendar export showing workout days">
-                </div>
-            </div>
-        </section>
+                <!-- Privacy -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-lock-simple" aria-hidden="true"></i>
+                    <div>
+                        <h3>No accounts. No servers. Your workout data stays on your iPhone.</h3>
+                        <p>Export your data anytime, delete it with one tap if needed.</p>
+                        <p>We collect basic anonymous analytics (app opens, activity logs, chart exports) to understand how people use the app, but your actual workout data is never included. It simply helps us prioritize what to build next.</p>
+                    </div>
+                </article>
 
-        <!-- Privacy -->
-        <section class="section">
-            <div class="section-header scroll-reveal">
-                <p class="section-label wipe">Your Data, Your Device</p>
-                <h2 class="section-title wipe">Privacy by design.</h2>
-                <p class="section-subtitle wipe">
-                    No accounts. No servers. Your workout data stays on your iPhone. Export your data anytime, delete it with one tap if needed.
-                </p>
-                <p class="section-subtitle wipe">
-                    We collect basic anonymous analytics (app opens, activity logs, chart exports) to understand how people use the app, but your actual workout data is never included. It simply helps us prioritize what to build next.
-                </p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-lock-simple"></i>
+                <!-- Exports -->
+                <article class="tile tile-split" style="--span: 12" data-demo="export" data-steps="500">
+                    <div class="tile-copy">
+                        <h3>Beautiful exports for sharing.</h3>
+                        <p>Export your progress chart or a beautiful 12-month calendar grid showing all your workout days. Perfect for end-of-year sharing or celebrating milestones on social media.</p>
+                        <p>You can also export all your data as JSON for backup or analysis.</p>
                     </div>
-                    <h3 class="feature-card-title">No Account Required</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-database"></i>
+                    <div class="tile-stage">
+                        <div class="yr-tabs" role="group" aria-label="Export type">
+                            <button type="button" class="yr-chip is-active" aria-pressed="true" data-export="calendar">Calendar grid</button>
+                            <button type="button" class="yr-chip" aria-pressed="false" data-export="chart">Progress chart</button>
+                        </div>
+                        <div class="yr-poster" aria-hidden="true">
+                            <p class="yr-poster-year">2026</p>
+                            <div class="yr-poster-stats">
+                                <span><b><span data-count-from="0" data-count-to="17">17</span> mi</b>Total</span>
+                                <span><b data-count-from="0" data-count-to="11">11</b>Workouts</span>
+                                <span><b data-count-from="0" data-count-to="11">11</b>Active Days</span>
+                            </div>
+                            <div class="yr-year" data-export-panel="calendar" data-year="2026"></div>
+                            <div class="yr-poster-chart" data-export-panel="chart" hidden></div>
+                            <p class="yr-poster-brand"><i class="ph ph-person-simple-run"></i> Yearly Run Goals</p>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">No Servers</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-shield-check"></i>
-                    </div>
-                    <h3 class="feature-card-title">Your Data Stays Local</h3>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -288,5 +444,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./yearly-run-goals.js" defer></script>
 </body>
 </html>

@@ -1103,5 +1103,6 @@ body.calm-app {
 
     .calm-app .tile-split {
         display: flex;
+        align-items: stretch;
     }
 }
