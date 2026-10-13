@@ -1,0 +1,837 @@
+/* Pastry - page-local styles for the live feature demos.
+   Loaded only by apps/pastry/index.html, on top of app.css. Every rule is
+   scoped under .calm-app and every class is prefixed pz- so nothing here can
+   collide with the shared calm components.
+
+   The demos are small HTML replicas of the Pastry panel. Their state is a
+   data-step attribute that pastry.js advances on a timer; all the visual
+   change lives here. With no JS the demos rest in their "before" state. */
+
+body.calm-app {
+    --pz-ink: #1d1d1f;
+    --pz-muted: #8a7f88;
+    --pz-stage: #f6eff2;
+    --pz-rose: #9c3d5f;
+    --pz-cocoa: #33241d;
+    --pz-cream: #fbead0;
+    --pz-wallpaper: linear-gradient(135deg, #ecc1b8 0%, #dd9db1 45%, #b796d8 100%);
+    --pz-system: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    --pz-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Hero: copy left, live panel right ---------- */
+.calm-app .pz-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: stretch;
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    text-align: left;
+}
+
+.calm-app .pz-hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    padding-right: 0;
+}
+
+.calm-app .pz-hero .app-hero-icon {
+    width: clamp(72px, 8vw, 104px);
+}
+
+.calm-app .pz-hero .app-hero-title {
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    line-height: 1.04;
+    text-wrap: balance;
+}
+
+.calm-app .pz-hero .download-buttons {
+    justify-content: flex-start;
+}
+
+.calm-app .pz-hero-note {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    max-width: 30rem;
+}
+
+.calm-app .pz-hero-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    min-height: 35rem;
+    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 2.5rem);
+    border-radius: calc(var(--radius-panel) - 0.9rem);
+    background: var(--pz-wallpaper);
+}
+
+/* ---------- The panel replica ---------- */
+.calm-app .pz-panel {
+    width: 100%;
+    max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-family: var(--pz-system);
+    color: var(--pz-ink);
+    text-align: left;
+}
+
+.calm-app .pz-glass {
+    background: rgba(255, 243, 249, 0.88);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 18px 40px -18px rgba(120, 40, 80, 0.45),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.calm-app .pz-search {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--radius-pill);
+    font-size: 1.05rem;
+    color: var(--pz-muted);
+}
+
+.calm-app .pz-search span {
+    flex: 1;
+}
+
+.calm-app .pz-kbd {
+    padding: 0.05rem 0.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.4rem;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--pz-muted);
+    font-family: inherit;
+    font-size: 0.7rem;
+}
+
+.calm-app .pz-list {
+    padding: 0.6rem;
+    border-radius: 1.5rem;
+}
+
+.calm-app .pz-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.2rem 0.2rem 0.5rem;
+}
+
+.calm-app .pz-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--pz-ink);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.calm-app .pz-tab.is-active {
+    background: #3a3a3c;
+    border-color: #3a3a3c;
+    color: #fff;
+}
+
+.calm-app .pz-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.9rem;
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    color: var(--pz-muted);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.calm-app .pz-footer span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ---------- Rows ---------- */
+.calm-app .pz-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 3.6rem;
+    padding: 0 0.6rem;
+    border: 1.5px solid transparent;
+    border-radius: 0.9rem;
+    overflow: hidden;
+    transition: height 0.45s var(--pz-ease), opacity 0.3s ease,
+                background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.calm-app .pz-row.is-selected {
+    background: rgba(235, 238, 255, 0.95);
+    border-color: #9fb0ee;
+}
+
+.calm-app .pz-row.is-leaving {
+    height: 0;
+    opacity: 0;
+    border-width: 0;
+}
+
+.calm-app .pz-row-tall {
+    height: auto;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.calm-app .pz-row-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.7rem;
+    background: rgba(120, 90, 110, 0.1);
+    color: #6f6470;
+    font-size: 1.25rem;
+}
+
+.calm-app .pz-row-icon-link {
+    background: #e3e4fb;
+    color: #5560d6;
+}
+
+.calm-app .pz-row-icon-swatch {
+    background: #d9728c;
+}
+
+.calm-app .pz-row-icon-shot {
+    background: linear-gradient(160deg, #cfe3f7 0%, #f3d9e6 60%, #fbead0 100%);
+    color: #6b6078;
+}
+
+.calm-app .pz-row-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .pz-row-title {
+    overflow: hidden;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .pz-row-tall .pz-row-title {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.calm-app .pz-row-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    overflow: hidden;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--pz-muted);
+    white-space: nowrap;
+}
+
+.calm-app .pz-row-meta-wrap {
+    display: block;
+    white-space: normal;
+}
+
+.calm-app .pz-app {
+    flex: none;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.25rem;
+    background: var(--pz-app, #b9aeb7);
+}
+
+.calm-app .pz-row-key {
+    flex: none;
+    font-size: 0.72rem;
+    color: #a79fa6;
+}
+
+.calm-app .pz-row.is-selected .pz-row-key {
+    color: #4f63d2;
+    font-weight: 600;
+}
+
+/* ---------- Bento ---------- */
+.calm-app .pz-bento {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+.calm-app .pz-tile {
+    grid-column: span var(--span, 6);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(0.6rem, 1.2vw, 0.9rem);
+    border-radius: var(--radius-card);
+    background: var(--color-card);
+}
+
+.calm-app .pz-tile-split {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+}
+
+.calm-app .pz-stage {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 16rem;
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    border-radius: calc(var(--radius-card) - 0.6rem);
+    background: var(--pz-stage);
+    font-family: var(--pz-system);
+    color: var(--pz-ink);
+}
+
+.calm-app .pz-card {
+    padding: 0.4rem;
+    border-radius: 1.1rem;
+    background: #fff;
+    box-shadow: 0 10px 24px -16px rgba(120, 40, 80, 0.35);
+}
+
+.calm-app .pz-copy {
+    padding: clamp(1rem, 2vw, 1.5rem) clamp(0.6rem, 1.5vw, 1.1rem) clamp(0.6rem, 1.5vw, 0.9rem);
+}
+
+.calm-app .pz-copy h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.calm-app .pz-copy p {
+    max-width: 34rem;
+    margin-top: 0.5rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* Caption and replay control under a demo */
+.calm-app .pz-stage-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 2rem;
+    font-size: 0.8rem;
+    color: var(--pz-muted);
+}
+
+.calm-app .pz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--pz-ink);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s var(--pz-ease);
+}
+
+.calm-app .pz-btn:hover {
+    border-color: var(--accent);
+}
+
+.calm-app .pz-btn:active {
+    transform: scale(0.97);
+}
+
+.calm-app .pz-replay {
+    margin-left: auto;
+}
+
+.calm-app .pz-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--pz-rose);
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* ---------- Demo: secrets expire ---------- */
+.calm-app .pz-tile[data-step="4"] .pz-secret {
+    height: 0;
+    opacity: 0;
+}
+
+.calm-app .pz-tile[data-step="4"] .pz-secret:nth-child(2) { transition-delay: 0.12s; }
+.calm-app .pz-tile[data-step="4"] .pz-secret:nth-child(3) { transition-delay: 0.24s; }
+
+.calm-app .pz-tile[data-demo="expire"][data-step="4"] .pz-note {
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+.calm-app .pz-tile[data-demo="expire"] .pz-card {
+    min-height: 4.4rem;
+}
+
+/* ---------- Demo: masked, pasted whole ---------- */
+.calm-app .pz-field {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.9rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.9rem;
+    background: #fff;
+}
+
+.calm-app .pz-field-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--pz-muted);
+}
+
+.calm-app .pz-field-value {
+    display: block;
+    min-height: 1.4em;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.calm-app .pz-field-body {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ---------- Demo: hidden from screen sharing ---------- */
+.calm-app .pz-screens {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.calm-app .pz-screen-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.calm-app .pz-screen {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 1rem;
+    background: var(--pz-wallpaper);
+    overflow: hidden;
+}
+
+.calm-app .pz-doc {
+    position: absolute;
+    inset: 10% 34% 22% 6%;
+    padding: 0.9rem 1rem;
+    border-radius: 0.7rem;
+    background: #fff;
+    box-shadow: 0 12px 30px -14px rgba(60, 20, 50, 0.5);
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.calm-app .pz-doc-title {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.calm-app .pz-doc p {
+    color: #55505a;
+    overflow-wrap: anywhere;
+}
+
+.calm-app .pz-paste {
+    color: #4f63d2;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.calm-app .pz-mini {
+    position: absolute;
+    top: 16%;
+    right: 4%;
+    width: 46%;
+    padding: 0.35rem;
+    border-radius: 0.9rem;
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+    transition: opacity 0.22s ease, transform 0.3s var(--pz-ease);
+}
+
+.calm-app .pz-mini .pz-row {
+    height: 2.4rem;
+    gap: 0.45rem;
+    padding: 0 0.4rem;
+    border-radius: 0.6rem;
+}
+
+.calm-app .pz-mini .pz-row-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.45rem;
+    font-size: 0.9rem;
+}
+
+.calm-app .pz-mini .pz-row-title {
+    font-size: 0.72rem;
+}
+
+/* Once open, the panel stays up on your screen for the whole run: the point
+   is that several pastes go by and the shared screen never shows it. */
+.calm-app .pz-tile[data-step="1"] .pz-mini,
+.calm-app .pz-tile[data-step="2"] .pz-mini,
+.calm-app .pz-tile[data-step="3"] .pz-mini,
+.calm-app .pz-tile[data-step="4"] .pz-mini {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .pz-tile[data-step="1"] .pz-mini .pz-row:nth-child(1),
+.calm-app .pz-tile[data-step="3"] .pz-mini .pz-row:nth-child(2) {
+    background: rgba(235, 238, 255, 0.95);
+    border-color: #9fb0ee;
+}
+
+.calm-app .pz-tile[data-step="2"] .pz-paste-1,
+.calm-app .pz-tile[data-step="3"] .pz-paste-1,
+.calm-app .pz-tile[data-step="4"] .pz-paste-1,
+.calm-app .pz-tile[data-step="4"] .pz-paste-2 {
+    opacity: 1;
+}
+
+/* ---------- Demo: clean links ---------- */
+.calm-app .pz-url-tail {
+    transition: color 0.3s ease, opacity 0.4s ease;
+}
+
+.calm-app .pz-tile[data-step="1"] .pz-url-tail {
+    color: var(--pz-rose);
+    text-decoration: line-through;
+}
+
+.calm-app .pz-tile[data-step="2"] .pz-url-tail {
+    color: var(--pz-rose);
+    text-decoration: line-through;
+    opacity: 0;
+}
+
+.calm-app .pz-tile[data-step="3"] .pz-url-tail {
+    display: none;
+}
+
+.calm-app .pz-tile[data-demo="link"][data-step="3"] .pz-note,
+.calm-app .pz-tile[data-demo="photo"][data-step="3"] .pz-note,
+.calm-app .pz-tile[data-demo="shrink"][data-step="1"] .pz-note {
+    opacity: 1;
+}
+
+.calm-app .pz-tile[data-demo="link"] .pz-card {
+    min-height: 6.6rem;
+}
+
+/* ---------- Demo: clean photos ---------- */
+.calm-app .pz-photo-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.calm-app .pz-photo {
+    flex: none;
+    width: 7.5rem;
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    background:
+        radial-gradient(circle at 72% 30%, #fff3c9 0 9%, transparent 10%),
+        radial-gradient(ellipse 90% 50% at 20% 105%, #5d7f6a 0 60%, transparent 61%),
+        radial-gradient(ellipse 90% 45% at 85% 108%, #7fa184 0 60%, transparent 61%),
+        linear-gradient(180deg, #f6b8a8 0%, #f3d3b4 55%, #cfe0d2 100%);
+    box-shadow: 0 10px 24px -14px rgba(120, 40, 80, 0.45);
+}
+
+.calm-app .pz-exif-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.calm-app .pz-exif {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: opacity 0.35s ease, color 0.35s ease;
+}
+
+.calm-app .pz-tile[data-step="1"] .pz-exif-1,
+.calm-app .pz-tile[data-step="2"] .pz-exif-1,
+.calm-app .pz-tile[data-step="3"] .pz-exif-1,
+.calm-app .pz-tile[data-step="2"] .pz-exif-2,
+.calm-app .pz-tile[data-step="3"] .pz-exif-2 {
+    color: var(--pz-rose);
+    text-decoration: line-through;
+    opacity: 0.45;
+}
+
+/* ---------- Demo: rules ---------- */
+.calm-app .pz-rule {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.6rem 0.55rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.calm-app .pz-rule + .pz-rule {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.calm-app .pz-rule-name {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .pz-rule-fixed {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+    color: var(--pz-rose);
+}
+
+.calm-app .pz-btn[data-rule="never"] {
+    border-color: color-mix(in srgb, var(--pz-rose) 45%, transparent);
+    color: var(--pz-rose);
+}
+
+/* ---------- Statement tile ---------- */
+.calm-app .pz-tile-dark {
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    background: var(--pz-cocoa);
+    color: var(--pz-cream);
+}
+
+.calm-app .pz-tile-dark > i {
+    font-size: 2.5rem;
+    color: #dcc7aa;
+}
+
+.calm-app .pz-tile-dark h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+.calm-app .pz-tile-dark p {
+    margin-top: 0.9rem;
+    color: #dcc7aa;
+    line-height: 1.6;
+}
+
+/* ---------- Demo: search inside screenshots ---------- */
+.calm-app .pz-input {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    box-shadow: 0 10px 24px -16px rgba(120, 40, 80, 0.35);
+    color: var(--pz-muted);
+}
+
+.calm-app .pz-input input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: none;
+    color: var(--pz-ink);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.calm-app .pz-input input:focus-visible {
+    outline: none;
+}
+
+.calm-app .pz-input:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.calm-app .pz-row[hidden] {
+    display: none;
+}
+
+/* Non-matching rows dim instead of leaving, so the list never jumps. */
+.calm-app .pz-row.is-dim {
+    opacity: 0.25;
+}
+
+.calm-app .pz-empty {
+    font-size: 0.8rem;
+    color: var(--pz-muted);
+}
+
+.calm-app .pz-row-meta mark {
+    border-radius: 0.2rem;
+    background: #fde3a7;
+    color: inherit;
+}
+
+/* ---------- Demo: shrink images ---------- */
+.calm-app .pz-size {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+.calm-app .pz-size small {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--pz-muted);
+}
+
+.calm-app .pz-bar {
+    height: 0.7rem;
+    border-radius: var(--radius-pill);
+    background: rgba(120, 90, 110, 0.14);
+    overflow: hidden;
+}
+
+.calm-app .pz-bar span {
+    display: block;
+    height: 100%;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    transform-origin: left;
+    transition: transform 0.9s var(--pz-ease);
+}
+
+.calm-app .pz-tile[data-step="1"] .pz-bar span {
+    transform: scaleX(0.62);
+}
+
+/* ---------- Demo: collections ---------- */
+.calm-app .pz-tabs button.pz-tab {
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .pz-tab kbd {
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.calm-app .pz-tile[data-demo="collections"] .pz-card {
+    min-height: 19rem;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .pz-hero-stage *,
+    .calm-app .pz-tile * {
+        transition: none !important;
+    }
+
+    .calm-app .pz-replay {
+        display: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .calm-app .pz-hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .pz-hero-copy {
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .calm-app .pz-hero-stage {
+        min-height: 0;
+    }
+
+    .calm-app .pz-tile {
+        grid-column: 1 / -1;
+    }
+
+    .calm-app .pz-tile-split {
+        display: flex;
+    }
+}
+
+@media (max-width: 640px) {
+    .calm-app .pz-screens {
+        grid-template-columns: 1fr;
+    }
+
+    .calm-app .pz-footer span:nth-child(n+3):not(:last-child) {
+        display: none;
+    }
+
+    .calm-app .pz-photo {
+        width: 5.5rem;
+    }
+}

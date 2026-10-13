@@ -27,6 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <link rel="stylesheet" href="./pastry.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -71,18 +72,12 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero pz-hero">
+            <div class="pz-hero-copy">
                 <img src="../../images/pastry.png" alt="Pastry" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    A lean, mean<br>
-                    <span class="accent-line">clipboard manager.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">The clipboard manager that keeps a secret.</h1>
                 <p class="app-hero-subtitle wipe">
-                    Pastry is small, fast, and has just the features you need. Everything you copy stays on your Mac.
-                </p>
-                <p class="app-hero-subtitle wipe">
-                    Free with your five most recent items. One purchase unlocks the rest for good.
+                    Pastry notices when you copy something sensitive, cleans what you're about to share, and stays out of sight when your screen is shared. All of it happens on your Mac.
                 </p>
                 <div class="download-buttons">
                     <span class="btn-fill" aria-disabled="true" style="cursor: default;">
@@ -90,142 +85,436 @@
                         Coming soon to the Mac App Store
                     </span>
                 </div>
+                <p class="pz-hero-note">Free with your five most recent items. One purchase unlocks the rest for good.</p>
+            </div>
+
+            <div class="pz-hero-stage" role="img" aria-label="The Pastry panel. A one-time code at the top of the list is counting down and deletes itself when the timer runs out.">
+                <div class="pz-panel" aria-hidden="true">
+                    <div class="pz-search pz-glass">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <span>Search your clipboard</span>
+                        <kbd class="pz-kbd">esc</kbd>
+                    </div>
+                    <div class="pz-list pz-glass" data-hero-list>
+                        <div class="pz-tabs">
+                            <span class="pz-tab is-active">All</span>
+                            <span class="pz-tab">Snippets</span>
+                            <span class="pz-tab">Links</span>
+                        </div>
+                        <div class="pz-row is-selected" data-secs="20">
+                            <div class="pz-row-icon"><i class="ph ph-hash"></i></div>
+                            <div class="pz-row-body">
+                                <div class="pz-row-title">&bull;&bull;&bull; &bull;&bull;&bull;</div>
+                                <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #34c759"></span>Messages <i class="ph ph-timer"></i> deletes in <span data-countdown>0:20</span></div>
+                            </div>
+                            <span class="pz-row-key">&#8984;1</span>
+                        </div>
+                        <div class="pz-row">
+                            <div class="pz-row-icon pz-row-icon-swatch"></div>
+                            <div class="pz-row-body">
+                                <div class="pz-row-title">#D9728C</div>
+                                <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #a259ff"></span>Figma &middot; 8 seconds ago</div>
+                            </div>
+                            <span class="pz-row-key">&#8984;2</span>
+                        </div>
+                        <div class="pz-row">
+                            <div class="pz-row-icon"><i class="ph ph-envelope-simple"></i></div>
+                            <div class="pz-row-body">
+                                <div class="pz-row-title">hello@example.com</div>
+                                <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Mail &middot; 2 minutes ago</div>
+                            </div>
+                            <span class="pz-row-key">&#8984;3</span>
+                        </div>
+                        <div class="pz-row">
+                            <div class="pz-row-icon pz-row-icon-shot"><i class="ph ph-image"></i></div>
+                            <div class="pz-row-body">
+                                <div class="pz-row-title">Image 2880 &times; 1800</div>
+                                <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari &middot; 455 KB to 281 KB</div>
+                            </div>
+                            <span class="pz-row-key">&#8984;4</span>
+                        </div>
+                        <div class="pz-row">
+                            <div class="pz-row-icon"><i class="ph ph-text-align-left"></i></div>
+                            <div class="pz-row-body">
+                                <div class="pz-row-title">Remember to bring the good olive oil</div>
+                                <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #f5c542"></span>Notes &middot; 6 minutes ago</div>
+                            </div>
+                            <span class="pz-row-key">&#8984;5</span>
+                        </div>
+                        <div class="pz-row">
+                            <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                            <div class="pz-row-body">
+                                <div class="pz-row-title">https://birchtree.me/blog/a-clipboard-manager</div>
+                                <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari &middot; 9 minutes ago</div>
+                            </div>
+                            <span class="pz-row-key">&#8984;6</span>
+                        </div>
+                    </div>
+                    <div class="pz-footer pz-glass">
+                        <span><kbd class="pz-kbd">&crarr;</kbd> Paste</span>
+                        <span><kbd class="pz-kbd">&#8984;K</kbd> Actions</span>
+                        <span><kbd class="pz-kbd">&#8984;P</kbd> Collect</span>
+                        <span data-hero-count>6 items</span>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/pastry-hero.jpg" alt="The Pastry panel showing recent clipboard items" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Speed -->
+        <!-- Privacy -->
         <section id="features" class="section">
             <div class="section-header scroll-reveal">
-                <p class="section-label wipe">Fast</p>
-                <h2 class="section-title wipe">There before you finish the shortcut.</h2>
-                <p class="section-subtitle wipe">Press Command, Shift and V, type a few letters, press Return. Pastry appears at once, searches as you type, and pastes right where you were.</p>
-            </div>
-        </section>
-
-        <!-- Feature: Hidden from screen sharing -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Private from the first launch</p>
-                    <h2 class="feature-title">Out of your screenshots and meetings.</h2>
-                    <p class="feature-description">
-                        A clipboard manager sees everything you copy. Pastry is built around that fact, and every protection is on before you touch a setting.
-                    </p>
-                    <p class="feature-description">
-                        Your history stays out of screenshots, screen sharing and most recordings. On the left, your screen. On the right, a screenshot taken at the same moment.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/pastry-hidden.jpg" alt="Side by side: Pastry on screen, and the same moment in a screenshot where Pastry is absent">
-                </div>
-            </div>
-        </section>
-
-        <!-- Privacy grid -->
-        <section class="section">
-            <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Privacy</p>
-                <h2 class="section-title wipe">What you copy stays yours.</h2>
+                <h2 class="section-title wipe">Built for the sensitive things you copy.</h2>
+                <p class="section-subtitle wipe">A clipboard manager sees everything you copy. Pastry is designed around that fact, and every protection here is on from the first launch.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-timer"></i>
+
+            <div class="pz-bento">
+                <!-- Secrets expire -->
+                <article class="pz-tile" style="--span: 7" data-demo="expire" data-steps="1000,700,700,900">
+                    <div class="pz-stage">
+                        <div class="pz-card" aria-hidden="true">
+                            <div class="pz-row pz-secret">
+                                <div class="pz-row-icon"><i class="ph ph-key"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">sk_live_&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;p7dc</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3a3a3c"></span>Terminal <i class="ph ph-timer"></i> <span data-step-text="deletes in 5 min|deletes in 3 min|deletes in 1 min|deletes in 10 sec">deletes in 5 min</span></div>
+                                </div>
+                            </div>
+                            <div class="pz-row pz-secret">
+                                <div class="pz-row-icon"><i class="ph ph-credit-card"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari <i class="ph ph-timer"></i> <span data-step-text="deletes in 5 min|deletes in 3 min|deletes in 1 min|deletes in 10 sec">deletes in 5 min</span></div>
+                                </div>
+                            </div>
+                            <div class="pz-row pz-secret">
+                                <div class="pz-row-icon"><i class="ph ph-hash"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">&bull;&bull;&bull; &bull;&bull;&bull;</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #34c759"></span>Messages <i class="ph ph-timer"></i> <span data-step-text="deletes in 5 min|deletes in 3 min|deletes in 1 min|deletes in 10 sec">deletes in 5 min</span></div>
+                                </div>
+                            </div>
+                            <div class="pz-row">
+                                <div class="pz-row-icon"><i class="ph ph-envelope-simple"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">hello@example.com</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Mail &middot; <span data-step-text="just now|2 minutes ago|4 minutes ago|5 minutes ago">just now</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pz-stage-foot">
+                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> 3 secrets deleted</span>
+                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Secrets delete themselves</h3>
-                    <p class="feature-card-description">One-time codes, API keys and card numbers are gone five minutes after you copy them.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-eye-slash"></i>
+                    <div class="pz-copy">
+                        <h3>Secrets delete themselves.</h3>
+                        <p>Pastry recognizes API keys, card numbers and one-time codes as you copy them, and deletes each one five minutes later. Everything else stays. (Five minutes, played here in a few seconds.)</p>
                     </div>
-                    <h3 class="feature-card-title">Hidden in the list</h3>
-                    <p class="feature-card-description">Secrets show as dots until you ask to see one, so a glance over your shoulder gets nothing.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-link"></i>
+                </article>
+
+                <!-- Masked -->
+                <article class="pz-tile" style="--span: 5">
+                    <div class="pz-stage">
+                        <div class="pz-card" aria-hidden="true">
+                            <div class="pz-row is-selected">
+                                <div class="pz-row-icon"><i class="ph ph-credit-card"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari <i class="ph ph-timer"></i> deletes in 5 min</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pz-field">
+                            <div class="pz-field-body">
+                                <span class="pz-field-label">Card number</span>
+                                <span class="pz-field-value" id="pz-paste-out" aria-live="polite"></span>
+                            </div>
+                            <button type="button" class="pz-btn" data-paste="4242 4242 4242 4242" aria-controls="pz-paste-out"><i class="ph ph-clipboard-text"></i> <span>Paste</span></button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Clean links</h3>
-                    <p class="feature-card-description">Tracking codes are stripped from links the moment you copy them.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-map-pin"></i>
+                    <div class="pz-copy">
+                        <h3>Masked in the list. Whole when you paste.</h3>
+                        <p>Secrets show as dots while you scroll, so a glance over your shoulder gets nothing. Paste one and the real thing lands.</p>
                     </div>
-                    <h3 class="feature-card-title">Clean photos</h3>
-                    <p class="feature-card-description">Location and camera details are removed from every image, without touching the picture.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-key"></i>
+                </article>
+
+                <!-- Hidden from screen sharing -->
+                <article class="pz-tile" style="--span: 12" data-demo="share" data-steps="900,1100,1000,1100">
+                    <div class="pz-stage">
+                        <div class="pz-screens" aria-hidden="true">
+                            <div>
+                                <p class="pz-screen-label">Your screen</p>
+                                <div class="pz-screen">
+                                    <div class="pz-doc">
+                                        <p class="pz-doc-title">Launch checklist</p>
+                                        <p>Design file: <span class="pz-paste pz-paste-1">example.com/pastry-site</span></p>
+                                        <p>Budget sheet: <span class="pz-paste pz-paste-2">example.com/q4-budget</span></p>
+                                    </div>
+                                    <div class="pz-mini pz-glass">
+                                        <div class="pz-row">
+                                            <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                                            <div class="pz-row-body"><div class="pz-row-title">example.com/pastry-site</div></div>
+                                        </div>
+                                        <div class="pz-row">
+                                            <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                                            <div class="pz-row-body"><div class="pz-row-title">example.com/q4-budget</div></div>
+                                        </div>
+                                        <div class="pz-row">
+                                            <div class="pz-row-icon"><i class="ph ph-key"></i></div>
+                                            <div class="pz-row-body"><div class="pz-row-title">sk_live_&bull;&bull;&bull;&bull;p7dc</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="pz-screen-label">What the meeting sees</p>
+                                <div class="pz-screen">
+                                    <div class="pz-doc">
+                                        <p class="pz-doc-title">Launch checklist</p>
+                                        <p>Design file: <span class="pz-paste pz-paste-1">example.com/pastry-site</span></p>
+                                        <p>Budget sheet: <span class="pz-paste pz-paste-2">example.com/q4-budget</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pz-stage-foot">
+                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Password managers respected</h3>
-                    <p class="feature-card-description">Anything a password manager marks as private is never saved at all.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-wifi-slash"></i>
+                    <div class="pz-copy">
+                        <h3>Missing from screen shares and screenshots.</h3>
+                        <p>Pastry hides itself from screen sharing, screenshots and most recordings. Paste five things in a row during a meeting and nobody watching sees a clipboard manager at all.</p>
                     </div>
-                    <h3 class="feature-card-title">No network at all</h3>
-                    <p class="feature-card-description">Pastry never connects to the internet. No account, no analytics, no servers.</p>
-                </div>
+                </article>
+
+                <!-- Clean links -->
+                <article class="pz-tile" style="--span: 6" data-demo="link" data-steps="1100,900,450">
+                    <div class="pz-stage">
+                        <div class="pz-card" aria-hidden="true">
+                            <div class="pz-row pz-row-tall">
+                                <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">https://example.com/article?id=42<span class="pz-url-tail">&amp;utm_source=newsletter&amp;utm_campaign=fall&amp;fbclid=IwAR2x9</span></div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari &middot; just now</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pz-stage-foot">
+                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> 3 tracking codes removed</span>
+                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="pz-copy">
+                        <h3>Links lose their trackers.</h3>
+                        <p>Tracking codes are stripped the moment you copy a link. The parts that make the link work are left alone.</p>
+                    </div>
+                </article>
+
+                <!-- Clean photos -->
+                <article class="pz-tile" style="--span: 6" data-demo="photo" data-steps="1000,700,500">
+                    <div class="pz-stage">
+                        <div class="pz-photo-row" aria-hidden="true">
+                            <div class="pz-photo"></div>
+                            <div class="pz-exif-list">
+                                <span class="pz-exif pz-exif-1"><i class="ph ph-map-pin"></i> 41.8781&deg; N, 87.6298&deg; W</span>
+                                <span class="pz-exif pz-exif-2"><i class="ph ph-camera"></i> iPhone, 24 mm, f/1.8</span>
+                                <span class="pz-exif"><i class="ph ph-image"></i> 4032 &times; 3024</span>
+                            </div>
+                        </div>
+                        <div class="pz-stage-foot">
+                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> Picture untouched</span>
+                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="pz-copy">
+                        <h3>Photos lose their location.</h3>
+                        <p>Location and camera details are removed from every image you copy, so you never share where you were by accident.</p>
+                    </div>
+                </article>
+
+                <!-- Rules -->
+                <article class="pz-tile" style="--span: 7">
+                    <div class="pz-stage">
+                        <div class="pz-card">
+                            <div class="pz-rule">
+                                <span class="pz-app" style="--pz-app: #2b6cb0"></span>
+                                <span class="pz-rule-name">Password managers</span>
+                                <span class="pz-rule-fixed"><i class="ph ph-lock-simple"></i> Never saved</span>
+                            </div>
+                            <div class="pz-rule">
+                                <span class="pz-app" style="--pz-app: #3a3a3c"></span>
+                                <span class="pz-rule-name">Terminal</span>
+                                <button type="button" class="pz-btn" data-rule="1m" aria-label="Change the rule for Terminal">Delete after 1 minute</button>
+                            </div>
+                            <div class="pz-rule">
+                                <span class="pz-app" style="--pz-app: #34c759"></span>
+                                <span class="pz-rule-name">Messages</span>
+                                <button type="button" class="pz-btn" data-rule="1h" aria-label="Change the rule for Messages">Delete after 1 hour</button>
+                            </div>
+                            <div class="pz-rule">
+                                <span class="pz-app" style="--pz-app: #e0564a"></span>
+                                <span class="pz-rule-name">Banking</span>
+                                <button type="button" class="pz-btn" data-rule="never" aria-label="Change the rule for Banking">Never save</button>
+                            </div>
+                            <div class="pz-rule">
+                                <span class="pz-app" style="--pz-app: #f5c542"></span>
+                                <span class="pz-rule-name">Notes</span>
+                                <button type="button" class="pz-btn" data-rule="keep" aria-label="Change the rule for Notes">Keep</button>
+                            </div>
+                        </div>
+                        <div class="pz-stage-foot">
+                            <span>Click a rule to change it.</span>
+                        </div>
+                    </div>
+                    <div class="pz-copy">
+                        <h3>Your rules, app by app.</h3>
+                        <p>Block an app completely, or let its copies expire on a timer you choose. Password managers are already handled: anything they mark as private is never saved.</p>
+                    </div>
+                </article>
+
+                <!-- No network -->
+                <article class="pz-tile pz-tile-dark" style="--span: 5">
+                    <i class="ph ph-wifi-slash" aria-hidden="true"></i>
+                    <div>
+                    <h3>Pastry never connects to the internet.</h3>
+                    <p>No account, no analytics, no servers. Reading the text in a screenshot and naming it both happen on your Mac.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- More features -->
+        <!-- The rest -->
         <section class="section">
             <div class="section-header scroll-reveal">
-                <p class="section-label wipe">And More</p>
-                <h2 class="section-title wipe">Small, with the things you need.</h2>
+                <p class="section-label wipe">And the rest</p>
+                <h2 class="section-title wipe">Also a very good clipboard manager.</h2>
+                <p class="section-subtitle wipe">Press Command, Shift and V, type a few letters, press Return. Pastry opens at once and pastes right where you were.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-folders"></i>
+
+            <div class="pz-bento">
+                <!-- Search inside screenshots -->
+                <article class="pz-tile" style="--span: 7" data-demo="search">
+                    <div class="pz-stage">
+                        <label class="pz-input">
+                            <i class="ph ph-magnifying-glass"></i>
+                            <input type="text" placeholder="Search your clipboard" aria-label="Search the example clipboard" data-search-input data-autotype="total" autocomplete="off" spellcheck="false">
+                        </label>
+                        <div class="pz-card">
+                            <div class="pz-row pz-row-tall" data-search="Invoice from Birch Coffee Invoice 1042 Total due $18.50">
+                                <div class="pz-row-icon pz-row-icon-shot"><i class="ph ph-image"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Invoice from Birch Coffee</div>
+                                    <div class="pz-row-meta pz-row-meta-wrap">Text in screenshot: <span data-ocr="Invoice 1042, Total due $18.50">Invoice 1042, Total due $18.50</span></div>
+                                </div>
+                            </div>
+                            <div class="pz-row pz-row-tall" data-search="Boarding pass to Chicago Gate B12 Boards 7:40 AM Seat 14C">
+                                <div class="pz-row-icon pz-row-icon-shot"><i class="ph ph-image"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Boarding pass to Chicago</div>
+                                    <div class="pz-row-meta pz-row-meta-wrap">Text in screenshot: <span data-ocr="Gate B12, Boards 7:40 AM, Seat 14C">Gate B12, Boards 7:40 AM, Seat 14C</span></div>
+                                </div>
+                            </div>
+                            <div class="pz-row" data-search="Remember to bring the good olive oil Notes">
+                                <div class="pz-row-icon"><i class="ph ph-text-align-left"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Remember to bring the good olive oil</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #f5c542"></span>Notes &middot; 6 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="pz-row" data-search="https://birchtree.me/blog Safari">
+                                <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">https://birchtree.me/blog</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari &middot; 9 minutes ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="pz-empty" hidden>Nothing matches. Try "gate" or "olive".</p>
                     </div>
-                    <h3 class="feature-card-title">Collections</h3>
-                    <p class="feature-card-description">Keep links, snippets and addresses together, give items their own names, and open any collection with its own shortcut.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-palette"></i>
+                    <div class="pz-copy">
+                        <h3>Search the words inside your screenshots.</h3>
+                        <p>Pastry reads the text in every screenshot and gives it a sensible name, so you can find one by what it says. Try "gate" or "olive" above.</p>
                     </div>
-                    <h3 class="feature-card-title">It knows what you copied</h3>
-                    <p class="feature-card-description">Colors show as swatches and paste as hex or RGB. Codes, cards, addresses and dates each get their own look.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-arrows-in"></i>
+                </article>
+
+                <!-- Shrink images -->
+                <article class="pz-tile" style="--span: 5" data-demo="shrink" data-steps="900">
+                    <div class="pz-stage">
+                        <div class="pz-card" aria-hidden="true">
+                            <div class="pz-row">
+                                <div class="pz-row-icon pz-row-icon-shot"><i class="ph ph-image"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Image 2880 &times; 1800</div>
+                                    <div class="pz-row-meta"><span class="pz-app" style="--pz-app: #3b9bf5"></span>Safari &middot; just now</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pz-size" aria-hidden="true"><span><span data-count-from="455" data-count-to="281">455</span> KB</span> <small>was 455 KB</small></div>
+                        <div class="pz-bar" aria-hidden="true"><span></span></div>
+                        <div class="pz-stage-foot">
+                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> Still 2880 &times; 1800</span>
+                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Smaller images, same pixels</h3>
-                    <p class="feature-card-description">Screenshots shrink in the background at the same size and resolution, and Pastry tells you what it saved.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-text-aa"></i>
+                    <div class="pz-copy">
+                        <h3>Smaller screenshots, same pixels.</h3>
+                        <p>Images you copy are shrunk in the background at the same size and resolution, ready to post without the extra megabytes.</p>
                     </div>
-                    <h3 class="feature-card-title">Searchable screenshots</h3>
-                    <p class="feature-card-description">The text inside every screenshot is read on your Mac, so search finds it.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-sliders-horizontal"></i>
+                </article>
+
+                <!-- Collections -->
+                <article class="pz-tile pz-tile-split" style="--span: 12" data-demo="collections">
+                    <div class="pz-copy">
+                        <h3>Collections for the things you paste all the time.</h3>
+                        <p>Keep snippets, links and addresses together, give each item a name, and open any collection with its own keyboard shortcut.</p>
                     </div>
-                    <h3 class="feature-card-title">Rules for each app</h3>
-                    <p class="feature-card-description">Never save from one app, always paste plain text into another. Set it once.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-keyboard"></i>
+                    <div class="pz-stage">
+                        <div class="pz-card">
+                            <div class="pz-tabs">
+                                <button type="button" class="pz-tab is-active" data-collection="all" aria-pressed="true">All</button>
+                                <button type="button" class="pz-tab" data-collection="snippets" aria-pressed="false">Snippets <kbd>&#8997;S</kbd></button>
+                                <button type="button" class="pz-tab" data-collection="links" aria-pressed="false">Links <kbd>&#8997;L</kbd></button>
+                                <button type="button" class="pz-tab" data-collection="addresses" aria-pressed="false">Addresses <kbd>&#8997;A</kbd></button>
+                            </div>
+                            <div class="pz-row" data-in="snippets">
+                                <div class="pz-row-icon"><i class="ph ph-text-align-left"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Sign-off</div>
+                                    <div class="pz-row-meta">Thanks so much, talk soon!</div>
+                                </div>
+                            </div>
+                            <div class="pz-row" data-in="snippets">
+                                <div class="pz-row-icon"><i class="ph ph-text-align-left"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Bug report template</div>
+                                    <div class="pz-row-meta">What happened, what I expected, steps to reproduce</div>
+                                </div>
+                            </div>
+                            <div class="pz-row" data-in="links">
+                                <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Blog</div>
+                                    <div class="pz-row-meta">https://birchtree.me</div>
+                                </div>
+                            </div>
+                            <div class="pz-row" data-in="links">
+                                <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Press kit</div>
+                                    <div class="pz-row-meta">https://example.com/press-kit</div>
+                                </div>
+                            </div>
+                            <div class="pz-row" data-in="addresses">
+                                <div class="pz-row-icon"><i class="ph ph-map-pin"></i></div>
+                                <div class="pz-row-body">
+                                    <div class="pz-row-title">Office</div>
+                                    <div class="pz-row-meta">100 Main Street, Suite 4</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Keyboard first</h3>
-                    <p class="feature-card-description">Open, search, pick and paste without leaving the keys.</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -312,5 +601,6 @@
     </footer>
 
     <script src="../../app.js?v=15b52a66" defer></script>
+    <script src="./pastry.js" defer></script>
 </body>
 </html>
