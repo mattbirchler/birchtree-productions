@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./best-o-masto.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -72,13 +73,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/best-o-masto.png" alt="Best-o-Masto" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Catch up without<br>
-                    <span class="accent-line">getting sucked in.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Catch up without getting sucked in.</h1>
                 <p class="app-hero-subtitle wipe">
                     Best-o-Masto shows you the 20 most engaging posts from your Mastodon timeline, plus a dedicated feed for your favorite accounts. No infinite scroll, no algorithmic rage.
                 </p>
@@ -88,62 +86,252 @@
                         Download for iPhone
                     </a>
                 </div>
+                <p class="app-hero-note">100% free. No ads, no subscriptions.</p>
+            </div>
+
+            <div class="app-hero-stage" role="img" aria-label="The Best Posts list in Best-o-Masto. The top post has a rainbow edge, with reply, boost and like counts underneath.">
+                <div class="bm-phone" aria-hidden="true">
+                    <div class="bm-seg">
+                        <span class="is-active">Best Posts</span>
+                        <span>Top 8</span>
+                        <span>Hidden Gems</span>
+                    </div>
+                    <p class="bm-title">Best Posts</p>
+                    <div class="bm-feed">
+                        <div class="bm-glow">
+                            <div class="bm-post">
+                                <div class="bm-post-head">
+                                    <span class="bm-avatar" style="--bm-av: #0d9488">J<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span>
+                                    <div class="bm-who">
+                                        <div class="bm-name">Juniper Vale</div>
+                                        <div class="bm-handle">@juniper@example.social</div>
+                                    </div>
+                                    <span class="bm-time">15 hours ago</span>
+                                </div>
+                                <p class="bm-text">Reorganized my bookshelf by color. I can't find anything, but it looks incredible.</p>
+                                <div class="bm-photo"></div>
+                                <div class="bm-actions">
+                                    <span class="bm-pill"><i class="ph ph-chat"></i> 9</span>
+                                    <span class="bm-pill"><i class="ph ph-repeat"></i> 17</span>
+                                    <span class="bm-pill"><i class="ph ph-heart"></i> 100</span>
+                                    <span class="bm-pill bm-more"><i class="ph ph-dots-three"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bm-post">
+                            <div class="bm-post-head">
+                                <span class="bm-avatar" style="--bm-av: #1e3a8a">O</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Otto Marsh</div>
+                                    <div class="bm-handle">@otto</div>
+                                </div>
+                                <span class="bm-time">21 hours ago</span>
+                            </div>
+                            <p class="bm-text">The best part of a rainy Saturday is cancelling nothing, because you planned nothing.</p>
+                        </div>
+                    </div>
+                    <div class="bm-tabbar">
+                        <span class="is-active"><i class="ph ph-sparkle"></i> Best Posts</span>
+                        <span><i class="ph ph-pencil-simple-line"></i> Post</span>
+                        <span><i class="ph ph-gear"></i> Settings</span>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/best-o-masto-hero.jpeg" alt="Best-o-Masto app interface" data-drift="0.06">
-        </div>
-
-        <!-- Feature Grid -->
+        <!-- Features -->
         <section id="features" class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Features</p>
                 <h2 class="section-title wipe">Social media that respects your time.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>&#127919;</i>
+
+            <div class="bento">
+                <!-- Top 20 -->
+                <article class="tile" style="--span: 7" data-demo="rank" data-steps="900,1100,900">
+                    <div class="tile-stage">
+                        <div class="bm-rank-head" aria-hidden="true">
+                            <span class="bm-rank-count" data-count-from="312" data-count-to="20">312</span>
+                            <span data-step-text="posts in your timeline|best posts, ranked">posts in your timeline</span>
+                        </div>
+                        <div class="bm-rank" aria-hidden="true">
+                            <div class="bm-rank-row bm-cut" style="--bm-i: 0; --bm-r: 3">
+                                <span class="bm-avatar bm-avatar-sm" style="--bm-av: #ea580c">M</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Mabel</div>
+                                    <div class="bm-rank-text">2 minutes ago &middot; ok who moved my coffee</div>
+                                </div>
+                                <span class="bm-stat"><i class="ph ph-repeat"></i> 1</span>
+                                <span class="bm-stat"><i class="ph ph-heart"></i> 4</span>
+                            </div>
+                            <div class="bm-rank-row" style="--bm-i: 1; --bm-r: 1">
+                                <span class="bm-avatar bm-avatar-sm" style="--bm-av: #0d9488">J</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Juniper Vale</div>
+                                    <div class="bm-rank-text">14 minutes ago &middot; Reorganized my bookshelf by color</div>
+                                </div>
+                                <span class="bm-stat"><i class="ph ph-repeat"></i> 17</span>
+                                <span class="bm-stat"><i class="ph ph-heart"></i> 100</span>
+                            </div>
+                            <div class="bm-rank-row bm-cut" style="--bm-i: 2; --bm-r: 4">
+                                <span class="bm-avatar bm-avatar-sm" style="--bm-av: #64748b">K</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Kit</div>
+                                    <div class="bm-rank-text">38 minutes ago &middot; test post please ignore</div>
+                                </div>
+                                <span class="bm-stat"><i class="ph ph-repeat"></i> 0</span>
+                                <span class="bm-stat"><i class="ph ph-heart"></i> 2</span>
+                            </div>
+                            <div class="bm-rank-row" style="--bm-i: 3; --bm-r: 0">
+                                <span class="bm-avatar bm-avatar-sm" style="--bm-av: #be185d">I</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Ines Okoro</div>
+                                    <div class="bm-rank-text">1 hour ago &middot; We shipped it. Three years of work.</div>
+                                </div>
+                                <span class="bm-stat"><i class="ph ph-repeat"></i> 42</span>
+                                <span class="bm-stat"><i class="ph ph-heart"></i> 231</span>
+                            </div>
+                            <div class="bm-rank-row" style="--bm-i: 4; --bm-r: 2">
+                                <span class="bm-avatar bm-avatar-sm" style="--bm-av: #1e3a8a">O</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Otto Marsh</div>
+                                    <div class="bm-rank-text">3 hours ago &middot; The best part of a rainy Saturday</div>
+                                </div>
+                                <span class="bm-stat"><i class="ph ph-repeat"></i> 8</span>
+                                <span class="bm-stat"><i class="ph ph-heart"></i> 36</span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Only the top 20 make the list</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Top 20 Posts Only</h3>
-                    <p class="feature-card-description">No infinite scroll. Just the most engaging posts from your timeline, ranked by actual interaction.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>&#11088;</i>
+                    <div class="tile-copy">
+                        <h3>Top 20 posts only.</h3>
+                        <p>No infinite scroll. Just the most engaging posts from your timeline, ranked by actual interaction.</p>
                     </div>
-                    <h3 class="feature-card-title">Your Top 8</h3>
-                    <p class="feature-card-description">Select 8 accounts you never want to miss. Get a dedicated feed just for them. MySpace nostalgia, modern execution.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>&#9999;&#65039;</i>
+                </article>
+
+                <!-- Top 8 -->
+                <article class="tile" style="--span: 5">
+                    <div class="tile-stage">
+                        <div class="bm-pick-grid">
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="true"><span class="bm-avatar" style="--bm-av: #0d9488">J<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Juniper</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="true"><span class="bm-avatar" style="--bm-av: #1e3a8a">O<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Otto</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="false"><span class="bm-avatar" style="--bm-av: #ea580c">M<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Mabel</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="true"><span class="bm-avatar" style="--bm-av: #be185d">I<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Ines</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="false"><span class="bm-avatar" style="--bm-av: #64748b">K<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Kit</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="true"><span class="bm-avatar" style="--bm-av: #7c3aed">B<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Bram</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="true"><span class="bm-avatar" style="--bm-av: #15803d">T<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Tess</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="false"><span class="bm-avatar" style="--bm-av: #b45309">N<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Nico</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="true"><span class="bm-avatar" style="--bm-av: #0369a1">W<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Wren</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="false"><span class="bm-avatar" style="--bm-av: #9f1239">D<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Dov</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="false"><span class="bm-avatar" style="--bm-av: #4d7c0f">P<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Pia</span></button>
+                            <button type="button" class="bm-pick" data-bm-pick aria-pressed="false"><span class="bm-avatar" style="--bm-av: #475569">S<span class="bm-crown"><i class="ph ph-crown-simple"></i></span></span><span>Sol</span></button>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Tap accounts to add or remove them.</span>
+                            <span class="bm-pick-count" data-bm-count aria-live="polite">6 of 8 picked</span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Simple Posting</h3>
-                    <p class="feature-card-description">Share thoughts and photos with a clean compose interface. No threads, no complexity. Just post and go.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>&#127912;</i>
+                    <div class="tile-copy">
+                        <h3>Your Top 8.</h3>
+                        <p>Select 8 accounts you never want to miss. Get a dedicated feed just for them. MySpace nostalgia, modern execution.</p>
                     </div>
-                    <h3 class="feature-card-title">Your Style</h3>
-                    <p class="feature-card-description">Choose from 6 beautiful theme colors. Open links in Ivory or Mona for full interactions.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>&#10084;&#65039;</i>
+                </article>
+
+                <!-- Quick interactions -->
+                <article class="tile" style="--span: 5">
+                    <div class="tile-stage">
+                        <div class="bm-post">
+                            <div class="bm-post-head" aria-hidden="true">
+                                <span class="bm-avatar" style="--bm-av: #be185d">I</span>
+                                <div class="bm-who">
+                                    <div class="bm-name">Ines Okoro</div>
+                                    <div class="bm-handle">@ines@example.social</div>
+                                </div>
+                                <span class="bm-time">1 hour ago</span>
+                            </div>
+                            <p class="bm-text" aria-hidden="true">We shipped it. Three years of work, one very tired team, and a cake shaped like a rocket.</p>
+                            <div class="bm-actions">
+                                <span class="bm-pill" aria-hidden="true"><i class="ph ph-chat"></i> 12</span>
+                                <button type="button" class="bm-pill" data-bm-act="boost" aria-pressed="false" aria-label="Boost the example post"><i class="ph ph-repeat"></i> <span data-bm-num>42</span></button>
+                                <button type="button" class="bm-pill" data-bm-act="like" aria-pressed="false" aria-label="Like the example post"><i class="ph ph-heart"></i> <span data-bm-num>231</span></button>
+                                <span class="bm-pill bm-more" aria-hidden="true"><i class="ph ph-dots-three"></i></span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Tap the boost or the heart.</span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Quick Interactions</h3>
-                    <p class="feature-card-description">Like and boost posts directly from the app. See what matters, interact, and get on with your life.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>&#128274;</i>
+                    <div class="tile-copy">
+                        <h3>Quick interactions.</h3>
+                        <p>Like and boost posts directly from the app. See what matters, interact, and get on with your life.</p>
                     </div>
-                    <h3 class="feature-card-title">Secure & Native</h3>
-                    <p class="feature-card-description">OAuth authentication with keychain storage. Built with SwiftUI for a fast, native iOS experience.</p>
-                </div>
+                </article>
+
+                <!-- Themes and links -->
+                <article class="tile" style="--span: 7">
+                    <div class="tile-stage">
+                        <div class="demo-card bm-theme-preview" aria-hidden="true">
+                            <p class="bm-text">Worth your ten minutes: <span class="bm-link">example.com/the-slow-web</span></p>
+                            <div class="bm-tabbar">
+                                <span class="is-active"><i class="ph ph-sparkle"></i> Best Posts</span>
+                                <span><i class="ph ph-pencil-simple-line"></i> Post</span>
+                                <span><i class="ph ph-gear"></i> Settings</span>
+                            </div>
+                        </div>
+                        <div class="bm-setting">
+                            <span id="bm-theme-label">Theme color</span>
+                            <div class="bm-swatches" role="group" aria-labelledby="bm-theme-label">
+                                <button type="button" class="bm-swatch" style="--bm-swatch: #c026d3" data-bm-theme="#c026d3" aria-pressed="true" aria-label="Magenta"></button>
+                                <button type="button" class="bm-swatch" style="--bm-swatch: #7c3aed" data-bm-theme="#7c3aed" aria-pressed="false" aria-label="Purple"></button>
+                                <button type="button" class="bm-swatch" style="--bm-swatch: #2563eb" data-bm-theme="#2563eb" aria-pressed="false" aria-label="Blue"></button>
+                                <button type="button" class="bm-swatch" style="--bm-swatch: #0d9488" data-bm-theme="#0d9488" aria-pressed="false" aria-label="Teal"></button>
+                                <button type="button" class="bm-swatch" style="--bm-swatch: #ea580c" data-bm-theme="#ea580c" aria-pressed="false" aria-label="Orange"></button>
+                                <button type="button" class="bm-swatch" style="--bm-swatch: #e11d48" data-bm-theme="#e11d48" aria-pressed="false" aria-label="Red"></button>
+                            </div>
+                        </div>
+                        <div class="bm-setting">
+                            <span id="bm-open-label">Open links in</span>
+                            <div class="bm-choice" role="group" aria-labelledby="bm-open-label">
+                                <button type="button" class="demo-btn" data-bm-open aria-pressed="true">Ivory</button>
+                                <button type="button" class="demo-btn" data-bm-open aria-pressed="false">Mona</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Your style.</h3>
+                        <p>Choose from 6 beautiful theme colors. Open links in Ivory or Mona for full interactions.</p>
+                    </div>
+                </article>
+
+                <!-- Simple posting -->
+                <article class="tile tile-split" style="--span: 12" data-demo="compose" data-steps="800,500,500,600,900">
+                    <div class="tile-copy">
+                        <h3>Simple posting.</h3>
+                        <p>Share thoughts and photos with a clean compose interface. No threads, no complexity. Just post and go.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="demo-card bm-compose" aria-hidden="true">
+                            <div class="bm-compose-head">
+                                <span>Cancel</span>
+                                <span>New Post</span>
+                                <span class="bm-send" data-step-text="Post|Post|Post|Post|Post|Posted">Post</span>
+                            </div>
+                            <div class="bm-compose-body">
+                                <span class="bm-avatar" style="--bm-av: #7c3aed">B</span>
+                                <div class="bm-compose-main">
+                                    <p class="bm-compose-text" data-step-text="|Sunset from|Sunset from the ferry|Sunset from the ferry tonight."></p>
+                                    <div class="bm-photo bm-attach"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -153,33 +341,33 @@
                 <p class="section-label wipe">The Philosophy</p>
                 <h2 class="section-title wipe">The problem with social media</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-x-circle"></i>
+
+            <div class="bento">
+                <article class="tile tile-dark" style="--span: 12">
+                    <h3>No infinite scroll. No algorithmic rage.</h3>
+                    <div class="bm-versus">
+                        <div class="bm-versus-them">
+                            <h4>Traditional social media</h4>
+                            <ul>
+                                <li><i class="ph ph-x" aria-hidden="true"></i> Designed to keep you scrolling forever</li>
+                                <li><i class="ph ph-x" aria-hidden="true"></i> Algorithmic feeds prioritize engagement over quality</li>
+                                <li><i class="ph ph-x" aria-hidden="true"></i> Important updates from friends get buried</li>
+                                <li><i class="ph ph-x" aria-hidden="true"></i> Rage-inducing content gets promoted</li>
+                                <li><i class="ph ph-x" aria-hidden="true"></i> Hours disappear into the void</li>
+                            </ul>
+                        </div>
+                        <div class="bm-versus-us">
+                            <h4>Best-o-Masto</h4>
+                            <ul>
+                                <li><i class="ph ph-check" aria-hidden="true"></i> Fixed limit of 20 posts, no infinite scroll</li>
+                                <li><i class="ph ph-check" aria-hidden="true"></i> Chronological timeline sorted by real engagement</li>
+                                <li><i class="ph ph-check" aria-hidden="true"></i> Dedicated feed for your most important people</li>
+                                <li><i class="ph ph-check" aria-hidden="true"></i> Quality content that people actually interact with</li>
+                                <li><i class="ph ph-check" aria-hidden="true"></i> Check in, catch up, get on with your life</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Traditional Social Media</h3>
-                    <p class="feature-card-description">
-                        &#10060; Designed to keep you scrolling forever<br>
-                        &#10060; Algorithmic feeds prioritize engagement over quality<br>
-                        &#10060; Important updates from friends get buried<br>
-                        &#10060; Rage-inducing content gets promoted<br>
-                        &#10060; Hours disappear into the void
-                    </p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-check-circle"></i>
-                    </div>
-                    <h3 class="feature-card-title">Best-o-Masto</h3>
-                    <p class="feature-card-description">
-                        &#9989; Fixed limit of 20 posts, no infinite scroll<br>
-                        &#9989; Chronological timeline sorted by real engagement<br>
-                        &#9989; Dedicated feed for your most important people<br>
-                        &#9989; Quality content that people actually interact with<br>
-                        &#9989; Check in, catch up, get on with your life
-                    </p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -189,28 +377,28 @@
                 <p class="section-label wipe">Simple Setup</p>
                 <h2 class="section-title wipe">How it works</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>1</i>
-                    </div>
-                    <h3 class="feature-card-title">Connect your Mastodon</h3>
-                    <p class="feature-card-description">Secure OAuth login to any Mastodon instance. Your credentials stay safe.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>2</i>
-                    </div>
-                    <h3 class="feature-card-title">Pick your Top 8</h3>
-                    <p class="feature-card-description">Select up to 8 accounts you never want to miss. Create your personal priority feed.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i>3</i>
-                    </div>
-                    <h3 class="feature-card-title">Enjoy focused browsing</h3>
-                    <p class="feature-card-description">See the best content, interact with posts, and reclaim your time.</p>
-                </div>
+
+            <div class="bento">
+                <article class="tile bm-how" style="--span: 12">
+                    <ol>
+                        <li>
+                            <span class="bm-how-num" aria-hidden="true">1</span>
+                            <h3>Connect your Mastodon</h3>
+                            <p>Secure OAuth login to any Mastodon instance. Your credentials stay safe.</p>
+                        </li>
+                        <li>
+                            <span class="bm-how-num" aria-hidden="true">2</span>
+                            <h3>Pick your Top 8</h3>
+                            <p>Select up to 8 accounts you never want to miss. Create your personal priority feed.</p>
+                        </li>
+                        <li>
+                            <span class="bm-how-num" aria-hidden="true">3</span>
+                            <h3>Enjoy focused browsing</h3>
+                            <p>See the best content, interact with posts, and reclaim your time.</p>
+                        </li>
+                    </ol>
+                    <p class="bm-how-note"><i class="ph ph-lock-key" aria-hidden="true"></i> <span>Secure and native: OAuth authentication with keychain storage. Built with SwiftUI for a fast, native iOS experience.</span></p>
+                </article>
             </div>
         </section>
 
@@ -259,5 +447,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./best-o-masto.js" defer></script>
 </body>
 </html>
