@@ -1,0 +1,837 @@
+/* nonogame - page-local styles for the live feature demos.
+   Loaded only by apps/nonogame/index.html, on top of app.css. Every rule is
+   scoped under .calm-app and every class is prefixed ng- so nothing here can
+   collide with the shared calm components. The hero, tiles and stepped demo
+   runner come from app.css / app.js; this file overrides their colour tokens
+   and styles the replicas inside the stages.
+
+   The demos are small HTML replicas of the nonogame board. nonogame.js builds
+   each board from its solution, so the clues always describe the picture.
+   Stepped demos rest in their "before" state with no JS. */
+
+body.calm-app {
+    --stage-muted: #8a8377;
+    --stage-tint: #f3efe7;
+    --accent-ink: #a53317;
+    --tile-dark-bg: #23211d;
+    --tile-dark-ink: #f3ede0;
+    --tile-dark-muted: #b9b1a0;
+    --hero-wallpaper: radial-gradient(rgba(60, 50, 30, 0.07) 1px, transparent 1.2px) 0 0 / 7px 7px, #efe9dd;
+}
+
+/* Three tiers rather than the usual two, so the row needs a little more
+   room to keep them on one line. It still wraps on narrow screens. */
+.calm-app .pricing-cards {
+    max-width: 1120px;
+}
+
+/* ---------- Paper and ink ----------
+   The board's own palette: warm paper by day, deep ink by night. */
+.calm-app .ng-paper {
+    --ng-ground: #fbf9f3;
+    --ng-cell-bg: #fdfcf8;
+    --ng-line: #e4dfd3;
+    --ng-edge: #b9b1a0;
+    --ng-ink: #2a2723;
+    --ng-clue: #4a453d;
+    --ng-faint: #b5ad9c;
+    --ng-band: rgba(90, 75, 40, 0.1);
+    color: var(--ng-ink);
+}
+
+.calm-app .ng-paper.is-dark {
+    --ng-ground: #1a1915;
+    --ng-cell-bg: #1f1d19;
+    --ng-line: #34312a;
+    --ng-edge: #6b6455;
+    --ng-ink: #e6dfd2;
+    --ng-clue: #d8d0c0;
+    --ng-faint: #6f685b;
+    --ng-band: rgba(255, 240, 200, 0.08);
+}
+
+/* ---------- The board ---------- */
+.calm-app .ng-board {
+    --ng-cell: 1.6rem;
+    --ng-clue-size: 0.75rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    max-width: 100%;
+    font-family: var(--font-system);
+    font-variant-numeric: tabular-nums;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.calm-app .ng-cols,
+.calm-app .ng-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--ng-n), var(--ng-cell));
+    gap: 1px;
+}
+
+.calm-app .ng-cols {
+    padding: 0 2px;
+}
+
+.calm-app .ng-rows {
+    display: grid;
+    grid-template-rows: repeat(var(--ng-n), var(--ng-cell));
+    gap: 1px;
+    padding: 2px 0;
+}
+
+.calm-app .ng-clue {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 0.3rem;
+    color: var(--ng-clue);
+    font-size: var(--ng-clue-size);
+    font-weight: 500;
+    line-height: 1.25;
+    transition: opacity 0.3s ease, background-color 0.2s ease, color 0.4s ease;
+}
+
+.calm-app .ng-clue-col {
+    flex-direction: column;
+    padding-bottom: 0.35em;
+}
+
+.calm-app .ng-clue-row {
+    gap: 0.55em;
+    padding: 0 0.6em 0 0.4em;
+}
+
+.calm-app .ng-clue.is-active {
+    background: var(--ng-band);
+}
+
+.calm-app .ng-clue.is-done {
+    opacity: 0.4;
+}
+
+.calm-app .ng-grid {
+    border: 2px solid var(--ng-edge);
+    background: var(--ng-line);
+    touch-action: none;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.calm-app .ng-cell {
+    position: relative;
+    display: block;
+    width: var(--ng-cell);
+    height: var(--ng-cell);
+    border: 0;
+    border-radius: 0;
+    background: var(--ng-cell-bg);
+    color: var(--ng-faint);
+    font: inherit;
+    transition: background-color 0.4s ease;
+}
+
+.calm-app button.ng-cell {
+    cursor: pointer;
+}
+
+.calm-app button.ng-cell:focus-visible {
+    z-index: 2;
+    outline-offset: -3px;
+}
+
+/* Every fifth line is drawn heavier, as on the real board. The shadow only
+   shows through the 1px gap because the next cell paints over the rest. */
+.calm-app .ng-cell.ng-v5 { box-shadow: 1px 0 0 var(--ng-edge); }
+.calm-app .ng-cell.ng-h5 { box-shadow: 0 1px 0 var(--ng-edge); }
+.calm-app .ng-cell.ng-v5.ng-h5 { box-shadow: 1px 0 0 var(--ng-edge), 0 1px 0 var(--ng-edge); }
+
+/* The fill and the cross are both always present, and shown by state. */
+.calm-app .ng-cell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ng-ink);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.14s ease, transform 0.22s var(--ease-out), background-color 0.4s ease;
+}
+
+.calm-app .ng-cell.is-fill::before {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .ng-cell::after {
+    content: '';
+    position: absolute;
+    inset: 30%;
+    background:
+        linear-gradient(45deg, transparent 44%, currentColor 44%, currentColor 56%, transparent 56%),
+        linear-gradient(-45deg, transparent 44%, currentColor 44%, currentColor 56%, transparent 56%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.14s ease, transform 0.22s var(--ease-out);
+}
+
+.calm-app .ng-cell.is-cross::after {
+    opacity: 1;
+    transform: none;
+}
+
+/* A wrong square shows up in vermilion and bounces back out. */
+.calm-app .ng-cell.is-wrong::before {
+    background: var(--accent);
+    animation: ng-bounce 0.5s var(--ease-out);
+}
+
+@keyframes ng-bounce {
+    0% { opacity: 0; transform: scale(0.5); }
+    35% { opacity: 1; transform: scale(1); }
+    60% { opacity: 1; transform: scale(0.86); }
+    100% { opacity: 0; transform: scale(0.3); }
+}
+
+/* A hinted square lands with a vermilion ring. */
+.calm-app .ng-cell.is-hinted {
+    z-index: 1;
+    animation: ng-ring 1.1s ease-out;
+}
+
+@keyframes ng-ring {
+    0% { box-shadow: 0 0 0 0 var(--accent); }
+    25% { box-shadow: 0 0 0 3px var(--accent); }
+    100% { box-shadow: 0 0 0 3px transparent; }
+}
+
+/* The finished picture takes a small bow, one square after another. */
+.calm-app .ng-grid.is-solved .ng-cell.is-fill::before {
+    animation: ng-bow 0.5s var(--ease-out) backwards;
+    animation-delay: calc(var(--ng-i) * 28ms);
+}
+
+.calm-app .ng-grid.is-solved .ng-cell {
+    cursor: default;
+}
+
+@keyframes ng-bow {
+    0% { transform: scale(1); }
+    40% { transform: scale(0.72); }
+    100% { transform: scale(1); }
+}
+
+/* ---------- Hero: the practice puzzle ---------- */
+.calm-app .ng-howto {
+    width: 100%;
+    max-width: 26rem;
+    padding: clamp(1.1rem, 3vw, 1.75rem);
+    border: 1px solid #ddd6c8;
+    border-radius: 1.5rem;
+    background: var(--ng-ground);
+    box-shadow: 0 24px 50px -28px rgba(70, 55, 20, 0.45);
+    font-family: var(--font-system);
+    text-align: left;
+}
+
+.calm-app .ng-howto-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.calm-app .ng-howto-text {
+    margin-top: 0.3rem;
+    color: var(--stage-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.calm-app .ng-howto .ng-board {
+    --ng-cell: clamp(2.5rem, 11vw, 3.3rem);
+    --ng-clue-size: 1.05rem;
+    margin: 1.25rem 0 1.1rem;
+    /* Nudge left by roughly the clue gutter so the grid itself looks centred. */
+    padding-right: 1.5rem;
+}
+
+.calm-app .ng-howto .ng-grid {
+    gap: 2px;
+}
+
+.calm-app .ng-howto .ng-cols,
+.calm-app .ng-howto .ng-rows {
+    gap: 2px;
+}
+
+.calm-app .ng-howto .ng-clue {
+    color: var(--ng-faint);
+}
+
+.calm-app .ng-howto .ng-clue.is-active {
+    color: var(--ng-clue);
+}
+
+.calm-app .ng-fallback {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 1rem;
+}
+
+/* The toolbar from under the real board. */
+.calm-app .ng-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem 0.25rem;
+    padding: 0.4rem;
+    border: 1px solid #ddd6c8;
+    border-radius: 1.1rem;
+    background: #f3efe7;
+}
+
+.calm-app .ng-mode {
+    display: inline-flex;
+    padding: 0.15rem;
+    border-radius: var(--radius-pill);
+    background: #e6e0d3;
+}
+
+.calm-app .ng-tool {
+    padding: 0.4rem 0.8rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s var(--ease-out);
+}
+
+.calm-app .ng-tool:active {
+    transform: scale(0.96);
+}
+
+.calm-app .ng-tool:disabled {
+    color: #b5ad9c;
+    cursor: default;
+}
+
+.calm-app .ng-mode .ng-tool {
+    color: #8a8377;
+}
+
+.calm-app .ng-mode .ng-tool[aria-pressed="true"] {
+    background: #fdfcf8;
+    color: var(--color-text);
+    box-shadow: 0 1px 3px rgba(60, 50, 30, 0.2);
+}
+
+.calm-app .ng-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.7rem;
+    min-height: 3.4rem;
+    margin-top: 0.9rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--stage-muted);
+}
+
+.calm-app .ng-status-text {
+    flex: 1 1 11rem;
+    min-width: 0;
+}
+
+.calm-app .ng-check {
+    flex: none;
+    display: none;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.calm-app .ng-status.is-solved {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.calm-app .ng-status.is-solved .ng-check {
+    display: grid;
+}
+
+.calm-app .ng-play-link {
+    flex: none;
+    padding: 0.5rem 0.95rem;
+    border-radius: var(--radius-pill);
+    background: #2a2723;
+    color: #fdfcf8;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ---------- Demo: today's three ---------- */
+.calm-app .ng-today {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.calm-app .ng-today-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.calm-app .ng-today-title span {
+    margin-left: 0.5rem;
+    padding-bottom: 0.1rem;
+    border-bottom: 2px solid var(--accent);
+    color: var(--ng-clue);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.calm-app .ng-today-sub {
+    font-size: 0.82rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .ng-sizes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.calm-app .ng-size {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    min-width: 0;
+    padding: 0.75rem 0.25rem 0.6rem;
+    border: 1.5px solid transparent;
+    border-radius: 1rem;
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.calm-app .ng-size:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.calm-app .ng-size[aria-pressed="true"] {
+    border-color: var(--ng-edge);
+    background: #fdfcf8;
+}
+
+/* An empty grid, drawn with two sets of hairlines. */
+.calm-app .ng-size-grid {
+    --ng-u: clamp(0.28rem, 1.3vw, 0.5rem);
+    width: calc(var(--ng-s) * var(--ng-u));
+    height: calc(var(--ng-s) * var(--ng-u));
+    margin-bottom: 0.6rem;
+    border: 1.5px solid var(--ng-edge);
+    background:
+        linear-gradient(var(--ng-line) 1px, transparent 1px) 0 -1px / var(--ng-u) var(--ng-u),
+        linear-gradient(90deg, var(--ng-line) 1px, transparent 1px) -1px 0 / var(--ng-u) var(--ng-u),
+        var(--ng-cell-bg);
+    transition: transform 0.3s var(--ease-out);
+}
+
+.calm-app .ng-size[aria-pressed="true"] .ng-size-grid {
+    transform: translateY(-3px);
+}
+
+.calm-app .ng-size-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.calm-app .ng-size-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    max-width: 100%;
+    font-size: 0.75rem;
+    color: var(--stage-muted);
+    white-space: nowrap;
+}
+
+.calm-app .ng-dot {
+    flex: none;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--ng-dot, #5d7f5a);
+}
+
+/* The week: gentle on Monday, tougher every day after. */
+.calm-app .ng-week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+}
+
+.calm-app .ng-day {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--stage-muted);
+}
+
+.calm-app .ng-day i {
+    display: block;
+    height: calc(var(--ng-h) * 0.026rem);
+    border-radius: 0.25rem;
+    background: var(--ng-edge);
+    transform: scaleY(0.12);
+    transform-origin: bottom;
+    transition: transform 0.6s var(--ease-out);
+}
+
+.calm-app .ng-day:first-child {
+    color: var(--color-text);
+}
+
+.calm-app .ng-day:first-child i {
+    background: var(--ng-ink);
+}
+
+.calm-app .tile[data-demo="today"][data-step="1"] .ng-day i {
+    transform: none;
+    transition-delay: calc(var(--ng-d) * 70ms);
+}
+
+/* ---------- Demo: never a guess ---------- */
+.calm-app .ng-line {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto 0.9rem;
+}
+
+.calm-app .ng-line-clue {
+    flex: none;
+    width: 0.8rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: right;
+    color: var(--ng-clue);
+}
+
+.calm-app .ng-line-track {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .ng-line-cells {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 1px;
+    border: 2px solid var(--ng-edge);
+    background: var(--ng-line);
+}
+
+.calm-app .ng-line-cells span {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--ng-cell-bg);
+}
+
+.calm-app .ng-line-cells span:nth-child(5) {
+    box-shadow: 1px 0 0 var(--ng-edge);
+}
+
+.calm-app .ng-line-cells .ng-sure::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ng-ink);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s ease, transform 0.3s var(--ease-out);
+}
+
+/* Two ghosts of the same run: one pushed left, one pushed right. */
+.calm-app .ng-ghost {
+    position: absolute;
+    top: -0.3rem;
+    bottom: -0.3rem;
+    left: 0;
+    width: calc(var(--ng-run) * 10%);
+    border: 1.5px dashed var(--accent);
+    border-radius: 0.4rem;
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.calm-app .ng-ghost-right {
+    left: calc(100% - var(--ng-run) * 10%);
+}
+
+.calm-app .tile[data-demo="logic"][data-step="1"] .ng-ghost-left,
+.calm-app .tile[data-demo="logic"][data-step="2"] .ng-ghost,
+.calm-app .tile[data-demo="logic"][data-step="3"] .ng-ghost {
+    opacity: 1;
+}
+
+.calm-app .tile[data-demo="logic"][data-step="3"] .ng-sure::before {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .ng-line-caption {
+    min-height: 2.6em;
+    margin-top: 1.1rem;
+    font-size: 0.88rem;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--ng-clue);
+}
+
+.calm-app .tile[data-demo="logic"][data-step="3"] .demo-note,
+.calm-app .tile[data-demo="streak"][data-step="1"] .demo-note {
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+.calm-app .tile[data-demo="streak"][data-step="1"] .demo-note {
+    transition-delay: 1.1s;
+}
+
+/* ---------- Demo: hint, and day and night ---------- */
+.calm-app .ng-sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    padding: clamp(0.9rem, 2.5vw, 1.4rem) clamp(0.5rem, 2vw, 1.25rem);
+    border-radius: 1.1rem;
+    background: var(--ng-ground);
+    box-shadow: 0 10px 24px -16px rgba(70, 55, 20, 0.5);
+    transition: background-color 0.4s ease;
+}
+
+.calm-app .ng-sheet .ng-board {
+    --ng-cell: clamp(1.2rem, 5.2vw, 1.75rem);
+    --ng-clue-size: clamp(0.62rem, 2.6vw, 0.78rem);
+}
+
+.calm-app .ng-sheet .ng-clue-row {
+    gap: 0.4em;
+    padding: 0 0.5em 0 0.2em;
+}
+
+.calm-app .ng-foot-label {
+    min-width: 0;
+}
+
+.calm-app .ng-foot-buttons {
+    flex: none;
+    display: inline-flex;
+    gap: 0.35rem;
+    margin-left: auto;
+}
+
+.calm-app .ng-foot-buttons .demo-btn[aria-pressed="true"] {
+    border-color: #2a2723;
+    background: #2a2723;
+    color: #fdfcf8;
+}
+
+.calm-app .demo-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+/* ---------- Demo: streaks ---------- */
+.calm-app .ng-streak {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.3rem;
+    padding: 1rem 0.6rem;
+    border-radius: 1.1rem;
+    background: var(--ng-ground);
+    box-shadow: 0 10px 24px -16px rgba(70, 55, 20, 0.5);
+}
+
+.calm-app .ng-streak-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--stage-muted);
+}
+
+.calm-app .ng-streak-mark {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 2.3rem;
+    aspect-ratio: 1;
+    border: 1.5px solid var(--ng-line);
+    border-radius: 50%;
+    color: var(--ng-cell-bg);
+    font-size: 0.95rem;
+}
+
+.calm-app .ng-streak-mark::before {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 50%;
+    background: var(--ng-ink);
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.2s ease, transform 0.35s var(--ease-out);
+}
+
+.calm-app .ng-streak-mark i {
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.calm-app .ng-streak-day.is-grace .ng-streak-mark {
+    border-style: dashed;
+    border-color: var(--accent);
+}
+
+.calm-app .ng-streak-day.is-grace .ng-streak-mark::before {
+    display: none;
+}
+
+.calm-app .ng-streak-day.is-grace {
+    color: var(--accent-ink);
+}
+
+.calm-app .tile[data-demo="streak"][data-step="1"] .ng-streak-mark::before {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--ng-d) * 130ms);
+}
+
+.calm-app .tile[data-demo="streak"][data-step="1"] .ng-streak-mark i {
+    opacity: 1;
+    transition-delay: calc(var(--ng-d) * 130ms);
+}
+
+/* ---------- Demo: add to home screen ---------- */
+.calm-app .ng-home {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem 0.7rem;
+    width: 100%;
+    max-width: 13rem;
+    margin: 0 auto;
+}
+
+.calm-app .ng-home-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 0;
+    font-size: 0.62rem;
+    color: var(--ng-clue);
+}
+
+.calm-app .ng-home-app span {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 24%;
+    background: var(--ng-tint, #e1dacb);
+}
+
+.calm-app .ng-home-app img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 24%;
+    box-shadow: 0 6px 14px -8px rgba(70, 55, 20, 0.6);
+}
+
+.calm-app .ng-home-app em {
+    height: 1em;
+    font-style: normal;
+    line-height: 1;
+}
+
+.calm-app .ng-home-new {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.25s ease, transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.calm-app .tile[data-demo="home"][data-step="1"] .ng-home-new {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .ng-cell.is-hinted,
+    .calm-app .ng-grid.is-solved .ng-cell.is-fill::before {
+        animation: none;
+    }
+
+    /* Keep the wrong square readable without the bounce: it shows, then goes. */
+    .calm-app .ng-cell.is-wrong::before {
+        animation: ng-flash 0.6s steps(1, end);
+    }
+
+    .calm-app .ng-cell.is-hinted {
+        box-shadow: inset 0 0 0 2px var(--accent);
+    }
+}
+
+@keyframes ng-flash {
+    0% { opacity: 1; transform: none; }
+    100% { opacity: 0; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .calm-app .app-hero-stage {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .calm-app .ng-howto .ng-board {
+        padding-right: 0.5rem;
+    }
+
+    .calm-app .ng-tool {
+        padding: 0.4rem 0.6rem;
+    }
+}

@@ -28,14 +28,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./nonogame.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
-    <style>
-        /* Three tiers rather than the usual two, so the row needs a little more
-           room to keep them on one line. It still wraps on narrow screens. */
-        .calm-app .pricing-cards {
-            max-width: 1120px;
-        }
-    </style>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -80,13 +74,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/nonogame-icon.svg" alt="nonogame" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Three fresh nonograms.<br>
-                    <span class="accent-line">Every single day.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Three fresh nonograms. Every single day.</h1>
                 <p class="app-hero-subtitle wipe">
                     A quiet daily puzzle that lives in your browser. Fill the squares the numbers describe, watch a picture appear, and get on with your day. Nothing to install and no account needed.
                 </p>
@@ -96,110 +87,231 @@
                         Play today's puzzles
                     </a>
                 </div>
+                <p class="app-hero-note">Never played one before? You will get it in a minute. The five-by-five practice puzzle is right here, and it works: fill a run in one stroke, mark the blanks with crosses, and undo or redo anything, with a mouse or a thumb.</p>
+            </div>
+
+            <div class="app-hero-stage">
+                <div class="ng-howto ng-paper">
+                    <p class="ng-howto-title">How to play</p>
+                    <p class="ng-howto-text">Each number counts a run of filled squares in its row or column, in order. Click or drag to fill. Try this small one:</p>
+                    <div data-ng-play>
+                        <noscript><img class="ng-fallback" src="../../images/nonogame-howto.png" alt="The how to play tutorial with a solved heart puzzle"></noscript>
+                    </div>
+                    <div class="ng-toolbar" role="group" aria-label="Puzzle controls">
+                        <span class="ng-mode">
+                            <button type="button" class="ng-tool" data-ng-mode="fill" aria-pressed="true">Fill</button>
+                            <button type="button" class="ng-tool" data-ng-mode="cross" aria-pressed="false">Cross</button>
+                        </span>
+                        <button type="button" class="ng-tool" data-ng-undo disabled>Undo</button>
+                        <button type="button" class="ng-tool" data-ng-redo disabled>Redo</button>
+                        <button type="button" class="ng-tool" data-ng-reset>Reset</button>
+                    </div>
+                    <div class="ng-status">
+                        <span class="ng-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                        <span class="ng-status-text" role="status">Start with the 5s. Those two rows are full.</span>
+                        <a href="https://nonogame.app" target="_blank" rel="noopener noreferrer" class="ng-play-link" hidden>Play today's three</a>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/nonogame-board.png" alt="A 15x15 nonogame puzzle partway through being solved" data-drift="0.06">
-        </div>
-
-        <!-- Feature: The daily three -->
+        <!-- The daily three -->
         <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">The Daily Three</p>
-                    <h2 class="feature-title">A small one, a medium one, and a big one.</h2>
-                    <p class="feature-description">
-                        Every day brings three new puzzles: 10x10 for a coffee break, 15x15 for a proper sit down, and 20x20 for the evening. They start gentle on Monday and get tougher as the week goes on, so there's always one that fits the time you have.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/nonogame-today.png" alt="Today's three puzzles: small, medium, and large">
-                </div>
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">The Daily Three</p>
+                <h2 class="section-title wipe">A small one, a medium one, and a big one.</h2>
+            </div>
+
+            <div class="bento">
+                <!-- Three sizes, tougher through the week -->
+                <article class="tile" style="--span: 7" data-demo="today" data-steps="500">
+                    <div class="tile-stage ng-paper">
+                        <div class="ng-today" aria-hidden="true">
+                            <p class="ng-today-title">Today's puzzles <span>Day 7</span></p>
+                            <p class="ng-today-sub">Monday. Three sizes, and they get harder as the week goes on.</p>
+                        </div>
+                        <div class="ng-sizes" role="group" aria-label="Today's three sizes">
+                            <button type="button" class="ng-size" aria-pressed="true" data-ng-size="10x10 for a coffee break.">
+                                <span class="ng-size-grid" style="--ng-s: 10" aria-hidden="true"></span>
+                                <span class="ng-size-name">Small</span>
+                                <span class="ng-size-meta"><span class="ng-dot"></span>10x10, gentle</span>
+                            </button>
+                            <button type="button" class="ng-size" aria-pressed="false" data-ng-size="15x15 for a proper sit down.">
+                                <span class="ng-size-grid" style="--ng-s: 15" aria-hidden="true"></span>
+                                <span class="ng-size-name">Medium</span>
+                                <span class="ng-size-meta"><span class="ng-dot"></span>15x15, gentle</span>
+                            </button>
+                            <button type="button" class="ng-size" aria-pressed="false" data-ng-size="20x20 for the evening.">
+                                <span class="ng-size-grid" style="--ng-s: 20" aria-hidden="true"></span>
+                                <span class="ng-size-name">Large</span>
+                                <span class="ng-size-meta"><span class="ng-dot" style="--ng-dot: #9a9a4e"></span>20x20, easy</span>
+                            </button>
+                        </div>
+                        <div class="ng-week" aria-hidden="true">
+                            <span class="ng-day" style="--ng-h: 22; --ng-d: 0"><i></i>M</span>
+                            <span class="ng-day" style="--ng-h: 34; --ng-d: 1"><i></i>T</span>
+                            <span class="ng-day" style="--ng-h: 46; --ng-d: 2"><i></i>W</span>
+                            <span class="ng-day" style="--ng-h: 58; --ng-d: 3"><i></i>T</span>
+                            <span class="ng-day" style="--ng-h: 72; --ng-d: 4"><i></i>F</span>
+                            <span class="ng-day" style="--ng-h: 86; --ng-d: 5"><i></i>S</span>
+                            <span class="ng-day" style="--ng-h: 100; --ng-d: 6"><i></i>S</span>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="ng-foot-label" data-ng-size-caption role="status">10x10 for a coffee break.</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>One for every kind of day.</h3>
+                        <p>Every day brings three new puzzles: 10x10 for a coffee break, 15x15 for a proper sit down, and 20x20 for the evening. They start gentle on Monday and get tougher as the week goes on, so there's always one that fits the time you have.</p>
+                    </div>
+                </article>
+
+                <!-- Never a guess -->
+                <article class="tile" style="--span: 5" data-demo="logic" data-steps="900,1100,1100">
+                    <div class="tile-stage ng-paper">
+                        <div class="ng-lines" aria-hidden="true">
+                            <div class="ng-line" style="--ng-run: 9">
+                                <span class="ng-line-clue">9</span>
+                                <div class="ng-line-track">
+                                    <div class="ng-line-cells">
+                                        <span></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span></span>
+                                    </div>
+                                    <span class="ng-ghost ng-ghost-left"></span>
+                                    <span class="ng-ghost ng-ghost-right"></span>
+                                </div>
+                            </div>
+                            <div class="ng-line" style="--ng-run: 7">
+                                <span class="ng-line-clue">7</span>
+                                <div class="ng-line-track">
+                                    <div class="ng-line-cells">
+                                        <span></span><span></span><span></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span class="ng-sure"></span><span></span><span></span><span></span>
+                                    </div>
+                                    <span class="ng-ghost ng-ghost-left"></span>
+                                    <span class="ng-ghost ng-ghost-right"></span>
+                                </div>
+                            </div>
+                            <div class="ng-line" style="--ng-run: 6">
+                                <span class="ng-line-clue">6</span>
+                                <div class="ng-line-track">
+                                    <div class="ng-line-cells">
+                                        <span></span><span></span><span></span><span></span><span class="ng-sure"></span><span class="ng-sure"></span><span></span><span></span><span></span><span></span>
+                                    </div>
+                                    <span class="ng-ghost ng-ghost-left"></span>
+                                    <span class="ng-ghost ng-ghost-right"></span>
+                                </div>
+                            </div>
+                            <p class="ng-line-caption" data-step-text="Three rows of 10, each with one run to place.|Push each run as far left as it goes.|Now as far right as it goes.|Where the two overlap, the square is certain.">Three rows of 10, each with one run to place.</p>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Certain, not guessed</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Never a guess.</h3>
+                        <p>Every puzzle is checked by a solver before it ships. If it cannot be finished by logic alone, it does not make it in.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Learn in a minute -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Easy to Learn</p>
-                    <h2 class="feature-title">Never played one before? You will get it in a minute.</h2>
-                    <p class="feature-description">
-                        Each number counts a run of filled squares in its row or column. That's the whole game. A five-by-five practice puzzle walks you through it, wrong squares just bounce back out, and the first picture you draw is a heart.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/nonogame-howto.png" alt="The how to play tutorial with a solved heart puzzle">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Dark mode -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Day and Night</p>
-                    <h2 class="feature-title">Follows your system theme.</h2>
-                    <p class="feature-description">
-                        Warm paper by day, deep ink by night. The board picks up whichever one your device is already using, so a late night puzzle never blinds you.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/nonogame-dark.png" alt="A nonogame puzzle in dark mode">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature Grid -->
+        <!-- Everything you need -->
         <section class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Everything You Need</p>
                 <h2 class="section-title wipe">Built for people who just want a good puzzle.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-brain"></i>
+
+            <div class="bento">
+                <!-- Hints -->
+                <article class="tile" style="--span: 7">
+                    <div class="tile-stage">
+                        <div class="ng-sheet ng-paper" role="img" aria-label="A 10x10 puzzle partway solved. Each hint fills in one more square.">
+                            <div data-ng-hint-board aria-hidden="true"></div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="ng-foot-label" data-ng-hint-note role="status">Stuck? Ask for a hint.</span>
+                            <span class="ng-foot-buttons">
+                                <button type="button" class="demo-btn" data-ng-hint><i class="ph ph-lightbulb"></i> Hint</button>
+                                <button type="button" class="demo-btn" data-ng-hint-reset>Reset</button>
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Never a Guess</h3>
-                    <p class="feature-card-description">Every puzzle is checked by a solver before it ships. If it cannot be finished by logic alone, it does not make it in.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-cursor-click"></i>
+                    <div class="tile-copy">
+                        <h3>A nudge when you're stuck.</h3>
+                        <p>Hints fill in one square you could have worked out yourself, so you get unstuck without being handed the answer.</p>
                     </div>
-                    <h3 class="feature-card-title">Click or Drag</h3>
-                    <p class="feature-card-description">Fill a run in one stroke, mark the blanks with crosses, and undo or redo anything. It works the same with a mouse or a thumb.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-lightbulb"></i>
+                </article>
+
+                <!-- Day and night -->
+                <article class="tile" style="--span: 5">
+                    <div class="tile-stage">
+                        <div class="ng-sheet ng-paper" role="img" aria-label="A 10x10 puzzle partway solved, shown in the light or dark theme.">
+                            <div data-ng-theme-board aria-hidden="true"></div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="ng-foot-label">Your device is set to</span>
+                            <span class="ng-foot-buttons">
+                                <button type="button" class="demo-btn" data-ng-theme="light" aria-pressed="true"><i class="ph ph-sun"></i> Light</button>
+                                <button type="button" class="demo-btn" data-ng-theme="dark" aria-pressed="false"><i class="ph ph-moon"></i> Dark</button>
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">A Nudge When Stuck</h3>
-                    <p class="feature-card-description">Hints fill in one square you could have worked out yourself, so you get unstuck without being handed the answer.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-flame"></i>
+                    <div class="tile-copy">
+                        <h3>Follows your system theme.</h3>
+                        <p>Warm paper by day, deep ink by night. The board picks up whichever one your device is already using, so a late night puzzle never blinds you.</p>
                     </div>
-                    <h3 class="feature-card-title">Streaks and Stats</h3>
-                    <p class="feature-card-description">A free account keeps your solves, your times, and your daily streak, with a one day grace period for the day life gets in the way.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-device-mobile"></i>
+                </article>
+
+                <!-- Streaks and stats -->
+                <article class="tile" style="--span: 5" data-demo="streak" data-steps="500">
+                    <div class="tile-stage ng-paper">
+                        <div class="ng-streak" aria-hidden="true">
+                            <span class="ng-streak-day" style="--ng-d: 0"><span class="ng-streak-mark"><i class="ph ph-check"></i></span>M</span>
+                            <span class="ng-streak-day" style="--ng-d: 1"><span class="ng-streak-mark"><i class="ph ph-check"></i></span>T</span>
+                            <span class="ng-streak-day" style="--ng-d: 2"><span class="ng-streak-mark"><i class="ph ph-check"></i></span>W</span>
+                            <span class="ng-streak-day is-grace" style="--ng-d: 3"><span class="ng-streak-mark"></span>T</span>
+                            <span class="ng-streak-day" style="--ng-d: 4"><span class="ng-streak-mark"><i class="ph ph-check"></i></span>F</span>
+                            <span class="ng-streak-day" style="--ng-d: 5"><span class="ng-streak-mark"><i class="ph ph-check"></i></span>S</span>
+                            <span class="ng-streak-day" style="--ng-d: 6"><span class="ng-streak-mark"><i class="ph ph-check"></i></span>S</span>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-flame"></i> Missed Thursday. Streak kept.</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Add to Home Screen</h3>
-                    <p class="feature-card-description">Install it from your browser and it opens like an app, with its own icon and no address bar in the way.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-shield-check"></i>
+                    <div class="tile-copy">
+                        <h3>Streaks that forgive a day off.</h3>
+                        <p>A free account keeps your solves, your times, and your daily streak, with a one day grace period for the day life gets in the way.</p>
                     </div>
-                    <h3 class="feature-card-title">Nothing Creepy</h3>
-                    <p class="feature-card-description">No ads, no autocapture, no session recording. Sign in with an emailed link or a passkey: there are no passwords here at all.</p>
-                </div>
+                </article>
+
+                <!-- Add to home screen -->
+                <article class="tile" style="--span: 3" data-demo="home" data-steps="700">
+                    <div class="tile-stage ng-paper">
+                        <div class="ng-home" aria-hidden="true">
+                            <span class="ng-home-app"><span></span><em></em></span>
+                            <span class="ng-home-app"><span style="--ng-tint: #cfd6c4"></span><em></em></span>
+                            <span class="ng-home-app"><span style="--ng-tint: #d9cdb8"></span><em></em></span>
+                            <span class="ng-home-app"><span style="--ng-tint: #d6cfc7"></span><em></em></span>
+                            <span class="ng-home-app ng-home-new"><img src="../../images/nonogame-icon.svg" alt=""><em>nonogame</em></span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Add to Home Screen.</h3>
+                        <p>Install it from your browser and it opens like an app, with its own icon and no address bar in the way.</p>
+                    </div>
+                </article>
+
+                <!-- Nothing creepy -->
+                <article class="tile tile-dark" style="--span: 4">
+                    <i class="ph ph-shield-check" aria-hidden="true"></i>
+                    <div>
+                    <h3>No ads, no autocapture, no session recording.</h3>
+                    <p>Nothing creepy. Sign in with an emailed link or a passkey: there are no passwords here at all.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -330,5 +442,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./nonogame.js" defer></script>
 </body>
 </html>
