@@ -1,72 +1,22 @@
 /* Pastry - page-local styles for the live feature demos.
    Loaded only by apps/pastry/index.html, on top of app.css. Every rule is
    scoped under .calm-app and every class is prefixed pz- so nothing here can
-   collide with the shared calm components.
+   collide with the shared calm components. The hero, tiles and stepped demo
+   runner come from app.css / app.js; this file overrides their colour tokens
+   and styles the replicas inside the stages.
 
    The demos are small HTML replicas of the Pastry panel. Their state is a
-   data-step attribute that pastry.js advances on a timer; all the visual
+   data-step attribute that app.js advances on a timer; all the visual
    change lives here. With no JS the demos rest in their "before" state. */
 
 body.calm-app {
-    --pz-ink: #1d1d1f;
-    --pz-muted: #8a7f88;
-    --pz-stage: #f6eff2;
-    --pz-rose: #9c3d5f;
-    --pz-cocoa: #33241d;
-    --pz-cream: #fbead0;
-    --pz-wallpaper: linear-gradient(135deg, #ecc1b8 0%, #dd9db1 45%, #b796d8 100%);
-    --pz-system: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
-    --pz-ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* ---------- Hero: copy left, live panel right ---------- */
-.calm-app .pz-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: stretch;
-    padding: clamp(0.75rem, 1.5vw, 1rem);
-    text-align: left;
-}
-
-.calm-app .pz-hero-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1.25rem;
-    padding: clamp(1.5rem, 4vw, 3.5rem);
-    padding-right: 0;
-}
-
-.calm-app .pz-hero .app-hero-icon {
-    width: clamp(72px, 8vw, 104px);
-}
-
-.calm-app .pz-hero .app-hero-title {
-    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
-    line-height: 1.04;
-    text-wrap: balance;
-}
-
-.calm-app .pz-hero .download-buttons {
-    justify-content: flex-start;
-}
-
-.calm-app .pz-hero-note {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-    max-width: 30rem;
-}
-
-.calm-app .pz-hero-stage {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    place-items: center;
-    min-height: 35rem;
-    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 2.5rem);
-    border-radius: calc(var(--radius-panel) - 0.9rem);
-    background: var(--pz-wallpaper);
+    --stage-muted: #8a7f88;
+    --tile-dark-muted: #dcc7aa;
+    --stage-tint: #f6eff2;
+    --accent-ink: #9c3d5f;
+    --tile-dark-bg: #33241d;
+    --tile-dark-ink: #fbead0;
+    --hero-wallpaper: linear-gradient(135deg, #ecc1b8 0%, #dd9db1 45%, #b796d8 100%);
 }
 
 /* ---------- The panel replica ---------- */
@@ -76,8 +26,8 @@ body.calm-app {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    font-family: var(--pz-system);
-    color: var(--pz-ink);
+    font-family: var(--font-system);
+    color: var(--color-text);
     text-align: left;
 }
 
@@ -96,7 +46,7 @@ body.calm-app {
     padding: 0.85rem 1.1rem;
     border-radius: var(--radius-pill);
     font-size: 1.05rem;
-    color: var(--pz-muted);
+    color: var(--stage-muted);
 }
 
 .calm-app .pz-search span {
@@ -108,7 +58,7 @@ body.calm-app {
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 0.4rem;
     background: rgba(255, 255, 255, 0.6);
-    color: var(--pz-muted);
+    color: var(--stage-muted);
     font-family: inherit;
     font-size: 0.7rem;
 }
@@ -133,7 +83,7 @@ body.calm-app {
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-pill);
     background: rgba(255, 255, 255, 0.85);
-    color: var(--pz-ink);
+    color: var(--color-text);
     font-family: inherit;
     font-size: 0.8rem;
     font-weight: 600;
@@ -152,7 +102,7 @@ body.calm-app {
     padding: 0.55rem 1rem;
     border-radius: var(--radius-pill);
     font-size: 0.75rem;
-    color: var(--pz-muted);
+    color: var(--stage-muted);
     white-space: nowrap;
     overflow: hidden;
 }
@@ -173,7 +123,7 @@ body.calm-app {
     border: 1.5px solid transparent;
     border-radius: 0.9rem;
     overflow: hidden;
-    transition: height 0.45s var(--pz-ease), opacity 0.3s ease,
+    transition: height 0.45s var(--ease-out), opacity 0.3s ease,
                 background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -246,7 +196,7 @@ body.calm-app {
     overflow: hidden;
     font-size: 0.78rem;
     line-height: 1.4;
-    color: var(--pz-muted);
+    color: var(--stage-muted);
     white-space: nowrap;
 }
 
@@ -274,136 +224,21 @@ body.calm-app {
     font-weight: 600;
 }
 
-/* ---------- Bento ---------- */
-.calm-app .pz-bento {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.25rem);
-}
-
-.calm-app .pz-tile {
-    grid-column: span var(--span, 6);
-    display: flex;
-    flex-direction: column;
-    padding: clamp(0.6rem, 1.2vw, 0.9rem);
-    border-radius: var(--radius-card);
-    background: var(--color-card);
-}
-
-.calm-app .pz-tile-split {
-    display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    align-items: center;
-}
-
-.calm-app .pz-stage {
-    position: relative;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.75rem;
-    min-height: 16rem;
-    padding: clamp(1rem, 2.5vw, 1.75rem);
-    border-radius: calc(var(--radius-card) - 0.6rem);
-    background: var(--pz-stage);
-    font-family: var(--pz-system);
-    color: var(--pz-ink);
-}
-
-.calm-app .pz-card {
-    padding: 0.4rem;
-    border-radius: 1.1rem;
-    background: #fff;
-    box-shadow: 0 10px 24px -16px rgba(120, 40, 80, 0.35);
-}
-
-.calm-app .pz-copy {
-    padding: clamp(1rem, 2vw, 1.5rem) clamp(0.6rem, 1.5vw, 1.1rem) clamp(0.6rem, 1.5vw, 0.9rem);
-}
-
-.calm-app .pz-copy h3 {
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2vw, 1.6rem);
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.2;
-    text-wrap: balance;
-}
-
-.calm-app .pz-copy p {
-    max-width: 34rem;
-    margin-top: 0.5rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-}
-
-/* Caption and replay control under a demo */
-.calm-app .pz-stage-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    min-height: 2rem;
-    font-size: 0.8rem;
-    color: var(--pz-muted);
-}
-
-.calm-app .pz-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.8rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: var(--radius-pill);
-    background: #fff;
-    color: var(--pz-ink);
-    font-family: inherit;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.15s var(--pz-ease);
-}
-
-.calm-app .pz-btn:hover {
-    border-color: var(--accent);
-}
-
-.calm-app .pz-btn:active {
-    transform: scale(0.97);
-}
-
-.calm-app .pz-replay {
-    margin-left: auto;
-}
-
-.calm-app .pz-note {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--pz-rose);
-    font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
 /* ---------- Demo: secrets expire ---------- */
-.calm-app .pz-tile[data-step="4"] .pz-secret {
+.calm-app .tile[data-step="4"] .pz-secret {
     height: 0;
     opacity: 0;
 }
 
-.calm-app .pz-tile[data-step="4"] .pz-secret:nth-child(2) { transition-delay: 0.12s; }
-.calm-app .pz-tile[data-step="4"] .pz-secret:nth-child(3) { transition-delay: 0.24s; }
+.calm-app .tile[data-step="4"] .pz-secret:nth-child(2) { transition-delay: 0.12s; }
+.calm-app .tile[data-step="4"] .pz-secret:nth-child(3) { transition-delay: 0.24s; }
 
-.calm-app .pz-tile[data-demo="expire"][data-step="4"] .pz-note {
+.calm-app .tile[data-demo="expire"][data-step="4"] .demo-note {
     opacity: 1;
     transition-delay: 0.5s;
 }
 
-.calm-app .pz-tile[data-demo="expire"] .pz-card {
+.calm-app .tile[data-demo="expire"] .demo-card {
     min-height: 4.4rem;
 }
 
@@ -421,7 +256,7 @@ body.calm-app {
 .calm-app .pz-field-label {
     display: block;
     font-size: 0.7rem;
-    color: var(--pz-muted);
+    color: var(--stage-muted);
 }
 
 .calm-app .pz-field-value {
@@ -454,7 +289,7 @@ body.calm-app {
     position: relative;
     aspect-ratio: 16 / 10;
     border-radius: 1rem;
-    background: var(--pz-wallpaper);
+    background: var(--hero-wallpaper);
     overflow: hidden;
 }
 
@@ -495,7 +330,7 @@ body.calm-app {
     border-radius: 0.9rem;
     opacity: 0;
     transform: translateY(6px) scale(0.96);
-    transition: opacity 0.22s ease, transform 0.3s var(--pz-ease);
+    transition: opacity 0.22s ease, transform 0.3s var(--ease-out);
 }
 
 .calm-app .pz-mini .pz-row {
@@ -518,24 +353,24 @@ body.calm-app {
 
 /* Once open, the panel stays up on your screen for the whole run: the point
    is that several pastes go by and the shared screen never shows it. */
-.calm-app .pz-tile[data-step="1"] .pz-mini,
-.calm-app .pz-tile[data-step="2"] .pz-mini,
-.calm-app .pz-tile[data-step="3"] .pz-mini,
-.calm-app .pz-tile[data-step="4"] .pz-mini {
+.calm-app .tile[data-step="1"] .pz-mini,
+.calm-app .tile[data-step="2"] .pz-mini,
+.calm-app .tile[data-step="3"] .pz-mini,
+.calm-app .tile[data-step="4"] .pz-mini {
     opacity: 1;
     transform: none;
 }
 
-.calm-app .pz-tile[data-step="1"] .pz-mini .pz-row:nth-child(1),
-.calm-app .pz-tile[data-step="3"] .pz-mini .pz-row:nth-child(2) {
+.calm-app .tile[data-step="1"] .pz-mini .pz-row:nth-child(1),
+.calm-app .tile[data-step="3"] .pz-mini .pz-row:nth-child(2) {
     background: rgba(235, 238, 255, 0.95);
     border-color: #9fb0ee;
 }
 
-.calm-app .pz-tile[data-step="2"] .pz-paste-1,
-.calm-app .pz-tile[data-step="3"] .pz-paste-1,
-.calm-app .pz-tile[data-step="4"] .pz-paste-1,
-.calm-app .pz-tile[data-step="4"] .pz-paste-2 {
+.calm-app .tile[data-step="2"] .pz-paste-1,
+.calm-app .tile[data-step="3"] .pz-paste-1,
+.calm-app .tile[data-step="4"] .pz-paste-1,
+.calm-app .tile[data-step="4"] .pz-paste-2 {
     opacity: 1;
 }
 
@@ -544,28 +379,28 @@ body.calm-app {
     transition: color 0.3s ease, opacity 0.4s ease;
 }
 
-.calm-app .pz-tile[data-step="1"] .pz-url-tail {
-    color: var(--pz-rose);
+.calm-app .tile[data-step="1"] .pz-url-tail {
+    color: var(--accent-ink);
     text-decoration: line-through;
 }
 
-.calm-app .pz-tile[data-step="2"] .pz-url-tail {
-    color: var(--pz-rose);
+.calm-app .tile[data-step="2"] .pz-url-tail {
+    color: var(--accent-ink);
     text-decoration: line-through;
     opacity: 0;
 }
 
-.calm-app .pz-tile[data-step="3"] .pz-url-tail {
+.calm-app .tile[data-step="3"] .pz-url-tail {
     display: none;
 }
 
-.calm-app .pz-tile[data-demo="link"][data-step="3"] .pz-note,
-.calm-app .pz-tile[data-demo="photo"][data-step="3"] .pz-note,
-.calm-app .pz-tile[data-demo="shrink"][data-step="1"] .pz-note {
+.calm-app .tile[data-demo="link"][data-step="3"] .demo-note,
+.calm-app .tile[data-demo="photo"][data-step="3"] .demo-note,
+.calm-app .tile[data-demo="shrink"][data-step="1"] .demo-note {
     opacity: 1;
 }
 
-.calm-app .pz-tile[data-demo="link"] .pz-card {
+.calm-app .tile[data-demo="link"] .demo-card {
     min-height: 6.6rem;
 }
 
@@ -609,12 +444,12 @@ body.calm-app {
     transition: opacity 0.35s ease, color 0.35s ease;
 }
 
-.calm-app .pz-tile[data-step="1"] .pz-exif-1,
-.calm-app .pz-tile[data-step="2"] .pz-exif-1,
-.calm-app .pz-tile[data-step="3"] .pz-exif-1,
-.calm-app .pz-tile[data-step="2"] .pz-exif-2,
-.calm-app .pz-tile[data-step="3"] .pz-exif-2 {
-    color: var(--pz-rose);
+.calm-app .tile[data-step="1"] .pz-exif-1,
+.calm-app .tile[data-step="2"] .pz-exif-1,
+.calm-app .tile[data-step="3"] .pz-exif-1,
+.calm-app .tile[data-step="2"] .pz-exif-2,
+.calm-app .tile[data-step="3"] .pz-exif-2 {
+    color: var(--accent-ink);
     text-decoration: line-through;
     opacity: 0.45;
 }
@@ -644,41 +479,12 @@ body.calm-app {
     gap: 0.35rem;
     padding: 0.35rem 0.8rem;
     font-size: 0.8rem;
-    color: var(--pz-rose);
+    color: var(--accent-ink);
 }
 
-.calm-app .pz-btn[data-rule="never"] {
-    border-color: color-mix(in srgb, var(--pz-rose) 45%, transparent);
-    color: var(--pz-rose);
-}
-
-/* ---------- Statement tile ---------- */
-.calm-app .pz-tile-dark {
-    justify-content: space-between;
-    gap: 2rem;
-    padding: clamp(1.5rem, 3vw, 2.25rem);
-    background: var(--pz-cocoa);
-    color: var(--pz-cream);
-}
-
-.calm-app .pz-tile-dark > i {
-    font-size: 2.5rem;
-    color: #dcc7aa;
-}
-
-.calm-app .pz-tile-dark h3 {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 2.8vw, 2.3rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    text-wrap: balance;
-}
-
-.calm-app .pz-tile-dark p {
-    margin-top: 0.9rem;
-    color: #dcc7aa;
-    line-height: 1.6;
+.calm-app .demo-btn[data-rule="never"] {
+    border-color: color-mix(in srgb, var(--accent-ink) 45%, transparent);
+    color: var(--accent-ink);
 }
 
 /* ---------- Demo: search inside screenshots ---------- */
@@ -690,7 +496,7 @@ body.calm-app {
     border-radius: var(--radius-pill);
     background: #fff;
     box-shadow: 0 10px 24px -16px rgba(120, 40, 80, 0.35);
-    color: var(--pz-muted);
+    color: var(--stage-muted);
 }
 
 .calm-app .pz-input input {
@@ -698,7 +504,7 @@ body.calm-app {
     min-width: 0;
     border: 0;
     background: none;
-    color: var(--pz-ink);
+    color: var(--color-text);
     font-family: inherit;
     font-size: 1rem;
 }
@@ -723,7 +529,7 @@ body.calm-app {
 
 .calm-app .pz-empty {
     font-size: 0.8rem;
-    color: var(--pz-muted);
+    color: var(--stage-muted);
 }
 
 .calm-app .pz-row-meta mark {
@@ -747,7 +553,7 @@ body.calm-app {
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0;
-    color: var(--pz-muted);
+    color: var(--stage-muted);
 }
 
 .calm-app .pz-bar {
@@ -763,10 +569,10 @@ body.calm-app {
     border-radius: var(--radius-pill);
     background: var(--accent);
     transform-origin: left;
-    transition: transform 0.9s var(--pz-ease);
+    transition: transform 0.9s var(--ease-out);
 }
 
-.calm-app .pz-tile[data-step="1"] .pz-bar span {
+.calm-app .tile[data-step="1"] .pz-bar span {
     transform: scaleX(0.62);
 }
 
@@ -783,87 +589,11 @@ body.calm-app {
     opacity: 0.6;
 }
 
-.calm-app .pz-tile[data-demo="collections"] .pz-card {
+.calm-app .tile[data-demo="collections"] .demo-card {
     min-height: 19rem;
 }
 
-/* ---------- Headings: MonoLisa, not the shared Fraunces serif ----------
-   MonoLisa Text is the proportional cut. Bold only, subset to Latin,
-   self-hosted in /fonts. */
-@font-face {
-    font-family: 'MonoLisa Text';
-    src: url('../../fonts/MonoLisaText-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-body.calm-app {
-    --font-display: 'MonoLisa Text', var(--font-sans);
-}
-
-.calm-app .app-hero-title,
-.calm-app .section-title,
-.calm-app .pz-copy h3,
-.calm-app .pz-tile-dark h3 {
-    font-weight: 700;
-    letter-spacing: -0.03em;
-}
-
-.calm-app .pz-hero .app-hero-title {
-    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
-    line-height: 1.08;
-}
-
-.calm-app .section-title {
-    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
-}
-
-.calm-app .pz-copy h3 {
-    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-    line-height: 1.3;
-}
-
-.calm-app .pz-tile-dark h3 {
-    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-    line-height: 1.2;
-}
-
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-    .calm-app .pz-hero-stage *,
-    .calm-app .pz-tile * {
-        transition: none !important;
-    }
-
-    .calm-app .pz-replay {
-        display: none;
-    }
-}
-
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-    .calm-app .pz-hero {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .calm-app .pz-hero-copy {
-        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-    }
-
-    .calm-app .pz-hero-stage {
-        min-height: 0;
-    }
-
-    .calm-app .pz-tile {
-        grid-column: 1 / -1;
-    }
-
-    .calm-app .pz-tile-split {
-        display: flex;
-    }
-}
-
 @media (max-width: 640px) {
     .calm-app .pz-screens {
         grid-template-columns: 1fr;
