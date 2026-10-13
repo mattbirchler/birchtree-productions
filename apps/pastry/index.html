@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Pastry - A Private Clipboard Manager for Mac</title>
+    <meta name="description" content="A fast clipboard manager for Mac that keeps what you copy to yourself. Secrets delete themselves, links and photos are cleaned, and nothing leaves your Mac.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pastry - A Private Clipboard Manager for Mac">
+    <meta property="og:description" content="A fast clipboard manager for Mac that keeps what you copy to yourself.">
+    <meta property="og:image" content="https://birchtree.me/images/pastry-hero.jpg">
+    <meta property="og:url" content="https://birchtree.me/apps/pastry/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pastry - A Private Clipboard Manager for Mac">
+    <meta name="twitter:description" content="A fast clipboard manager for Mac that keeps what you copy to yourself.">
+    <meta name="twitter:image" content="https://birchtree.me/images/pastry-hero.jpg">
+
+    <link rel="canonical" href="https://birchtree.me/apps/pastry/">
+    <link rel="icon" href="../../images/pastry.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Pastry",
+        "description": "A fast clipboard manager for Mac that keeps what you copy to yourself.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "macOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Birchtree Productions, LLC"
+        }
+    }
+    </script>
+</head>
+<body class="calm-app" style="--app-accent: #c2567a;">
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Birchtree Productions</span>
+            </a>
+            <div class="app-nav-brand">
+                <img src="../../images/pastry.png" alt="Pastry" style="view-transition-name: pastry-icon;">
+                <span>Pastry</span>
+            </div>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <header class="app-hero">
+            <div class="app-hero-inner">
+                <img src="../../images/pastry.png" alt="Pastry" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">
+                    A lean, mean<br>
+                    <span class="accent-line">clipboard manager.</span>
+                </h1>
+                <p class="app-hero-subtitle wipe">
+                    Pastry is small, fast, and has just the features you need. Everything you copy stays on your Mac.
+                </p>
+                <p class="app-hero-subtitle wipe">
+                    Free with your five most recent items. One purchase unlocks the rest for good.
+                </p>
+                <div class="download-buttons">
+                    <span class="btn-fill" aria-disabled="true" style="cursor: default;">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Coming soon to the Mac App Store
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <div class="hero-screenshot">
+            <img src="../../images/pastry-hero.jpg" alt="The Pastry panel showing recent clipboard items" data-drift="0.06">
+        </div>
+
+        <!-- Feature: Speed -->
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Fast</p>
+                <h2 class="section-title wipe">There before you finish the shortcut.</h2>
+                <p class="section-subtitle wipe">Press Command, Shift and V, type a few letters, press Return. Pastry appears at once, searches as you type, and pastes right where you were.</p>
+            </div>
+        </section>
+
+        <!-- Feature: Hidden from screen sharing -->
+        <section class="section">
+            <div class="feature-row">
+                <div class="feature-row-copy">
+                    <p class="section-label">Private from the first launch</p>
+                    <h2 class="feature-title">Out of your screenshots and meetings.</h2>
+                    <p class="feature-description">
+                        A clipboard manager sees everything you copy. Pastry is built around that fact, and every protection is on before you touch a setting.
+                    </p>
+                    <p class="feature-description">
+                        Your history stays out of screenshots, screen sharing and most recordings. On the left, your screen. On the right, a screenshot taken at the same moment.
+                    </p>
+                </div>
+                <div class="feature-row-media" data-drift="0.05">
+                    <img src="../../images/pastry-hidden.jpg" alt="Side by side: Pastry on screen, and the same moment in a screenshot where Pastry is absent">
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy grid -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Privacy</p>
+                <h2 class="section-title wipe">What you copy stays yours.</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-timer"></i>
+                    </div>
+                    <h3 class="feature-card-title">Secrets delete themselves</h3>
+                    <p class="feature-card-description">One-time codes, API keys and card numbers are gone five minutes after you copy them.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-eye-slash"></i>
+                    </div>
+                    <h3 class="feature-card-title">Hidden in the list</h3>
+                    <p class="feature-card-description">Secrets show as dots until you ask to see one, so a glance over your shoulder gets nothing.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-link"></i>
+                    </div>
+                    <h3 class="feature-card-title">Clean links</h3>
+                    <p class="feature-card-description">Tracking codes are stripped from links the moment you copy them.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-map-pin"></i>
+                    </div>
+                    <h3 class="feature-card-title">Clean photos</h3>
+                    <p class="feature-card-description">Location and camera details are removed from every image, without touching the picture.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-key"></i>
+                    </div>
+                    <h3 class="feature-card-title">Password managers respected</h3>
+                    <p class="feature-card-description">Anything a password manager marks as private is never saved at all.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-wifi-slash"></i>
+                    </div>
+                    <h3 class="feature-card-title">No network at all</h3>
+                    <p class="feature-card-description">Pastry never connects to the internet. No account, no analytics, no servers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- More features -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">And More</p>
+                <h2 class="section-title wipe">Small, with the things you need.</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-folders"></i>
+                    </div>
+                    <h3 class="feature-card-title">Collections</h3>
+                    <p class="feature-card-description">Keep links, snippets and addresses together, give items their own names, and open any collection with its own shortcut.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-palette"></i>
+                    </div>
+                    <h3 class="feature-card-title">It knows what you copied</h3>
+                    <p class="feature-card-description">Colors show as swatches and paste as hex or RGB. Codes, cards, addresses and dates each get their own look.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-arrows-in"></i>
+                    </div>
+                    <h3 class="feature-card-title">Smaller images, same pixels</h3>
+                    <p class="feature-card-description">Screenshots shrink in the background at the same size and resolution, and Pastry tells you what it saved.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-text-aa"></i>
+                    </div>
+                    <h3 class="feature-card-title">Searchable screenshots</h3>
+                    <p class="feature-card-description">The text inside every screenshot is read on your Mac, so search finds it.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-sliders-horizontal"></i>
+                    </div>
+                    <h3 class="feature-card-title">Rules for each app</h3>
+                    <p class="feature-card-description">Never save from one app, always paste plain text into another. Set it once.</p>
+                </div>
+                <div class="feature-card scroll-reveal">
+                    <div class="feature-card-icon">
+                        <i class="ph ph-keyboard"></i>
+                    </div>
+                    <h3 class="feature-card-title">Keyboard first</h3>
+                    <p class="feature-card-description">Open, search, pick and paste without leaving the keys.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Pricing</p>
+                <h2 class="section-title wipe">Free to use. Pay once for everything.</h2>
+                <p class="section-subtitle wipe">Use Pastry free for as long as you like. A single in-app purchase unlocks your full history and collections, with no subscription.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">Free</div>
+                    <div class="pricing-card-price">$0</div>
+                    <div class="pricing-card-period">For as long as you like</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Your five most recent items
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Every privacy protection
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Image shrinking and screenshot search
+                        </li>
+                    </ul>
+                </div>
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-card-badge">Unlocked</div>
+                    <div class="pricing-card-price">One time</div>
+                    <div class="pricing-card-period">In-app purchase, yours forever</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Your full history, up to 2,000 items
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Collections and their shortcuts
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Every Mac on your Apple Account
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Copy freely.<br>Keep it private.</h2>
+                <p class="cta-copy">
+                    Pastry is on its way to the Mac App Store.
+                </p>
+                <div class="download-buttons">
+                    <span class="btn-fill" aria-disabled="true" style="cursor: default;">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Coming soon to the Mac App Store
+                    </span>
+                </div>
+                <p class="cta-copy">Requires macOS 26</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/pastry.png" alt="Pastry">
+                <span>Pastry</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span class="app-footer-sep">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../app.js?v=15b52a66" defer></script>
+</body>
+</html>
