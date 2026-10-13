@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./quick-reads.css">
     <script defer data-domain="quickreads.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -78,13 +79,13 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/quick-reads-icon.svg" alt="Quick Reads" class="app-hero-icon">
                 <h1 class="app-hero-title wipe">
                     Save articles.<br>
                     Read them later.<br>
-                    <span class="accent-line">Simple as that.</span>
+                    Simple as that.
                 </h1>
                 <p class="app-hero-subtitle wipe">
                     A beautiful, distraction-free space for the articles that matter. Save from anywhere, highlight what resonates, and build your personal library.
@@ -96,96 +97,263 @@
                     </a>
                 </div>
             </div>
+
+            <div class="app-hero-stage" role="img" aria-label="The Quick Reads queue: a list of saved articles, each with its author, source and reading time. Newly saved articles arrive at the top.">
+                <div class="qr-window" aria-hidden="true">
+                    <div class="qr-window-bar">
+                        <span class="qr-window-title">Queue</span>
+                        <span class="qr-add"><i class="ph ph-plus-circle"></i> Add</span>
+                    </div>
+                    <div class="qr-list" data-qr-queue>
+                        <div class="qr-item is-selected">
+                            <span class="qr-fav" style="--qr-fav: #2f6f5e">F</span>
+                            <div class="qr-item-body">
+                                <div class="qr-item-title">Why good maps leave things out</div>
+                                <div class="qr-item-meta"><span>Theo Park</span> &middot; <span class="qr-src">Field Notes</span> &middot; <span data-qr-when>1 day ago</span></div>
+                            </div>
+                            <span class="qr-min">9 min</span>
+                        </div>
+                        <div class="qr-item">
+                            <span class="qr-fav" style="--qr-fav: #c2410c">M</span>
+                            <div class="qr-item-body">
+                                <div class="qr-item-title">A week with a paper notebook</div>
+                                <div class="qr-item-meta"><span>June Abara</span> &middot; <span class="qr-src">The Margin</span> &middot; <span data-qr-when>2 days ago</span></div>
+                            </div>
+                            <span class="qr-min">4 min</span>
+                        </div>
+                        <div class="qr-item">
+                            <span class="qr-fav" style="--qr-fav: #1d4ed8">C</span>
+                            <div class="qr-item-body">
+                                <div class="qr-item-title">How lighthouses kept time</div>
+                                <div class="qr-item-meta"><span>Sam Ortega</span> &middot; <span class="qr-src">Coastline</span> &middot; <span data-qr-when>3 days ago</span></div>
+                            </div>
+                            <span class="qr-min">12 min</span>
+                        </div>
+                        <div class="qr-item">
+                            <span class="qr-fav" style="--qr-fav: #111827">S</span>
+                            <div class="qr-item-body">
+                                <div class="qr-item-title">What we lose when everything is a feed</div>
+                                <div class="qr-item-meta"><span>Ines Roy</span> &middot; <span class="qr-src">Slow Reader</span> &middot; <span data-qr-when>5 days ago</span></div>
+                            </div>
+                            <span class="qr-min">7 min</span>
+                        </div>
+                        <div class="qr-item">
+                            <span class="qr-fav" style="--qr-fav: #be185d">W</span>
+                            <div class="qr-item-body">
+                                <div class="qr-item-title">The quiet return of the personal website</div>
+                                <div class="qr-item-meta"><span>Mara Lindqvist</span> &middot; <span class="qr-src">Small Web Weekly</span> &middot; <span data-qr-when>6 days ago</span></div>
+                            </div>
+                            <span class="qr-min">6 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/quick-reads-queue.jpg" alt="Your reading queue in Quick Reads" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Beautiful Reading -->
+        <!-- Reading -->
         <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Reading Experience</p>
-                    <h2 class="feature-title">Beautiful reading experience.</h2>
-                    <p class="feature-description">
-                        Articles are stripped down to just the words and images. Highlight passages and read free from distractions.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-reads-reader.jpg" alt="Distraction-free article reader">
-                </div>
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Reading Experience</p>
+                <h2 class="section-title wipe">Beautiful reading experience.</h2>
+                <p class="section-subtitle wipe">Articles are stripped down to just the words and images. Highlight passages and read free from distractions.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Clean reader -->
+                <article class="tile" style="--span: 7" data-demo="clean" data-steps="1100,900">
+                    <div class="tile-stage">
+                        <div class="demo-card qr-page" aria-hidden="true">
+                            <div class="qr-ad qr-junk">Advertisement</div>
+                            <div class="qr-page-body">
+                                <div class="qr-article">
+                                    <p class="qr-art-title">Why good maps leave things out</p>
+                                    <p class="qr-art-meta"><span>Theo Park</span> &middot; <span class="qr-src">Field Notes</span> <span class="qr-read">9 min read</span></p>
+                                    <div class="qr-art-img"></div>
+                                    <p class="qr-art-text">Every map is an argument about what matters. The cartographer who draws each hedge and footpath has made a map nobody can read. The skill is in choosing what to leave out, and trusting the reader to fill in the rest.</p>
+                                    <p class="qr-art-text">A map that shows everything is as useless as one that shows nothing at all. What you leave off the page is what lets the rest be seen.</p>
+                                </div>
+                                <div class="qr-side qr-junk">
+                                    <span class="qr-side-head">Trending</span>
+                                    <span class="qr-bar"></span>
+                                    <span class="qr-bar"></span>
+                                    <span class="qr-bar qr-bar-short"></span>
+                                    <span class="qr-side-box">Subscribe</span>
+                                </div>
+                            </div>
+                            <div class="qr-cookie qr-junk">
+                                <span>We value your privacy</span>
+                                <span class="qr-cookie-btn">Accept all</span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Just the words and images</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>The article, and nothing else.</h3>
+                        <p>Save a page and Quick Reads strips it down to just the words and images, so you can read free from distractions.</p>
+                    </div>
+                </article>
+
+                <!-- Highlights -->
+                <article class="tile" style="--span: 5" data-demo="highlight">
+                    <div class="tile-stage">
+                        <div class="demo-card qr-reader">
+                            <button type="button" class="qr-para" aria-pressed="true">Every map is an argument about what matters.</button>
+                            <button type="button" class="qr-para" aria-pressed="false">The skill is in choosing what to leave out, and trusting the reader to fill in the rest.</button>
+                            <button type="button" class="qr-para" aria-pressed="false">A map that shows everything is as useless as one that shows nothing at all.</button>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Click a passage to highlight it.</span>
+                            <span class="qr-count" aria-live="polite"><i class="ph ph-bookmark-simple" aria-hidden="true"></i> <span data-qr-count>1 highlight</span></span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Mark the passages that matter.</h3>
+                        <p>Highlight as you read. All your highlights live in one place, easy to revisit.</p>
+                    </div>
+                </article>
+
+                <!-- Obsidian -->
+                <article class="tile tile-split" style="--span: 12" data-demo="obsidian" data-steps="900,1000,900">
+                    <div class="tile-copy">
+                        <h3>Highlights, synced to Obsidian.</h3>
+                        <p>Sync your highlights directly into Obsidian and connect them to your notes.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="qr-sync" aria-hidden="true">
+                            <div class="demo-card qr-pane">
+                                <div class="qr-pane-head"><img src="../../images/quick-reads-icon.svg" alt=""> Quick Reads</div>
+                                <p class="qr-art-title">Why good maps leave things out</p>
+                                <p class="qr-passage">The skill is in choosing what to leave out, and trusting the reader to fill in the rest.</p>
+                                <p class="qr-art-text">A map that shows everything is as useless as one that shows nothing at all.</p>
+                            </div>
+                            <i class="ph ph-arrow-right qr-sync-arrow"></i>
+                            <div class="demo-card qr-pane qr-pane-obsidian">
+                                <div class="qr-pane-head"><i class="ph ph-vault"></i> Obsidian</div>
+                                <div class="qr-folder"><i class="ph ph-folder-open"></i> Quick Reads</div>
+                                <div class="qr-note">
+                                    <p class="qr-note-title">2026-02-27 Why good maps leave things out</p>
+                                    <div class="qr-prop"><span>author</span><span>Theo Park</span></div>
+                                    <div class="qr-prop"><span>site</span><span>Field Notes</span></div>
+                                    <div class="qr-prop"><span>url</span><span class="qr-prop-link">example.com/good-maps</span></div>
+                                    <p class="qr-note-quote">The skill is in choosing what to leave out, and trusting the reader to fill in the rest.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Highlight synced</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Obsidian Plugin -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Obsidian Plugin</p>
-                    <h2 class="feature-title">Highlights, synced to Obsidian.</h2>
-                    <p class="feature-description">
-                        Sync your highlights directly into Obsidian and connect them to your notes.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-reads-obsidian.png" alt="Obsidian plugin for Quick Reads">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature Grid -->
+        <!-- Everything else -->
         <section class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Everything You Need</p>
                 <h2 class="section-title wipe">A focused set of features designed for thoughtful reading.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-queue"></i>
+
+            <div class="bento">
+                <!-- API -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-code" aria-hidden="true"></i>
+                    <div>
+                    <h3>A complete REST API.</h3>
+                    <p>Build your own tools, automations, and integrations. <a href="https://quickreads.app/docs" class="qr-link">Read the API docs</a></p>
                     </div>
-                    <h3 class="feature-card-title">Reading Queue</h3>
-                    <p class="feature-card-description">Save articles from anywhere and read them when you're ready, free from distractions.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-bookmark-simple"></i>
+                </article>
+
+                <!-- Chrome extension -->
+                <article class="tile" style="--span: 7" data-demo="save">
+                    <div class="tile-stage">
+                        <div class="demo-card qr-browser">
+                            <div class="qr-browser-bar">
+                                <span class="qr-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="qr-url" aria-hidden="true"><i class="ph ph-lock-simple"></i> <span>example.com/paper-notebook</span></span>
+                                <button type="button" class="qr-ext" aria-pressed="false" aria-label="Save this page to Quick Reads" data-qr-save>
+                                    <img src="../../images/quick-reads-icon.svg" alt="">
+                                    <i class="ph ph-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="qr-browser-page" aria-hidden="true">
+                                <p class="qr-art-title">A week with a paper notebook</p>
+                                <span class="qr-bar"></span>
+                                <span class="qr-bar"></span>
+                                <span class="qr-bar qr-bar-short"></span>
+                            </div>
+                        </div>
+                        <div class="demo-card qr-mini" aria-hidden="true">
+                            <div class="qr-mini-head">Queue</div>
+                            <div class="qr-item qr-item-new">
+                                <span class="qr-fav" style="--qr-fav: #c2410c">M</span>
+                                <div class="qr-item-body">
+                                    <div class="qr-item-title">A week with a paper notebook</div>
+                                    <div class="qr-item-meta"><span>June Abara</span> &middot; <span class="qr-src">The Margin</span> &middot; <span>Just now</span></div>
+                                </div>
+                                <span class="qr-min">4 min</span>
+                            </div>
+                            <div class="qr-item">
+                                <span class="qr-fav" style="--qr-fav: #2f6f5e">F</span>
+                                <div class="qr-item-body">
+                                    <div class="qr-item-title">Why good maps leave things out</div>
+                                    <div class="qr-item-meta"><span>Theo Park</span> &middot; <span class="qr-src">Field Notes</span> &middot; <span>1 day ago</span></div>
+                                </div>
+                                <span class="qr-min">9 min</span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span aria-live="polite" data-qr-save-status>Click the Quick Reads button in the toolbar.</span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Highlights</h3>
-                    <p class="feature-card-description">Mark the passages that matter. All your highlights in one place, easy to revisit.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-code"></i>
+                    <div class="tile-copy">
+                        <h3>Save with one click.</h3>
+                        <p>The Chrome extension saves articles directly from your browser as you browse the web.</p>
                     </div>
-                    <h3 class="feature-card-title">Full API</h3>
-                    <p class="feature-card-description">Build your own tools, automations, and integrations with a complete REST API.</p>
-                </div>
-                <a class="feature-card scroll-reveal" href="https://chromewebstore.google.com/detail/quick-reads/ldopokalpolaeofalkgkmeeofojlgifc" target="_blank" rel="noopener noreferrer">
-                    <span class="feature-card-badge">Available Now</span>
-                    <div class="feature-card-icon">
-                        <i class="ph ph-globe"></i>
+                </article>
+
+                <!-- The real queue -->
+                <article class="tile" style="--span: 7">
+                    <div class="tile-stage qr-shot-stage">
+                        <img class="qr-shot" src="../../images/quick-reads-queue.jpg" alt="Your reading queue in Quick Reads" loading="lazy">
                     </div>
-                    <h3 class="feature-card-title">Chrome Extension</h3>
-                    <p class="feature-card-description">Save articles with one click directly from your browser as you browse the web.</p>
-                </a>
-                <div class="feature-card scroll-reveal">
-                    <span class="feature-card-badge">TestFlight Beta</span>
-                    <div class="feature-card-icon">
-                        <i class="ph ph-device-mobile"></i>
+                    <div class="tile-copy">
+                        <h3>A queue that waits for you.</h3>
+                        <p>Save articles from anywhere and read them when you're ready.</p>
                     </div>
-                    <h3 class="feature-card-title">iOS App</h3>
-                    <p class="feature-card-description">Read anywhere with a native app designed for iPhone and iPad.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <span class="feature-card-badge">Available Now</span>
-                    <div class="feature-card-icon">
-                        <i class="ph ph-vault"></i>
+                </article>
+
+                <!-- Where it runs -->
+                <article class="tile" style="--span: 5">
+                    <div class="tile-stage">
+                        <div class="demo-card">
+                            <a class="qr-plat" href="https://chromewebstore.google.com/detail/quick-reads/ldopokalpolaeofalkgkmeeofojlgifc" target="_blank" rel="noopener noreferrer">
+                                <i class="ph ph-globe" aria-hidden="true"></i>
+                                <span class="qr-plat-name">Chrome Extension</span>
+                                <span class="feature-card-badge">Available Now</span>
+                                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                            </a>
+                            <div class="qr-plat">
+                                <i class="ph ph-vault" aria-hidden="true"></i>
+                                <span class="qr-plat-name">Obsidian Plugin</span>
+                                <span class="feature-card-badge">Available Now</span>
+                            </div>
+                            <div class="qr-plat">
+                                <i class="ph ph-device-mobile" aria-hidden="true"></i>
+                                <span class="qr-plat-name">iOS App</span>
+                                <span class="feature-card-badge">TestFlight Beta</span>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Obsidian Plugin</h3>
-                    <p class="feature-card-description">Sync your highlights directly into Obsidian and connect them to your notes.</p>
-                </div>
+                    <div class="tile-copy">
+                        <h3>Read anywhere.</h3>
+                        <p>A native app designed for iPhone and iPad, an extension for your browser, and a plugin for your notes.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -308,5 +476,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./quick-reads.js" defer></script>
 </body>
 </html>
