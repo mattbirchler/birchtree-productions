@@ -1,0 +1,755 @@
+/* Chapterize - page-local styles for the live feature demos.
+   Loaded only by apps/chapterpod/index.html, on top of app.css. Every rule is
+   scoped under .calm-app and every class is prefixed cp- so nothing here can
+   collide with the shared calm components. The hero, tiles and stepped demo
+   runner come from app.css / app.js; this file overrides their colour tokens
+   and styles the replicas inside the stages.
+
+   The demos are small HTML replicas of the Chapterize window: a player bar
+   over a list of chapters. Stepped demos follow the data-step attribute that
+   app.js advances; the clickable ones are driven by chapterpod.js. */
+
+body.calm-app {
+    --cp-blue: #0a7aff;
+    --cp-red: #ff453a;
+    --cp-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    --cp-line: rgba(0, 0, 0, 0.09);
+    --stage-muted: #7d848c;
+    --hero-wallpaper: linear-gradient(140deg, #14386b 0%, #2a8aa6 38%, #efc49a 68%, #f0643a 100%);
+}
+
+/* ---------- The window replica ---------- */
+.calm-app .cp-window {
+    width: 100%;
+    max-width: 31rem;
+    border-radius: 1.4rem;
+    background: #fff;
+    box-shadow: 0 30px 60px -28px rgba(10, 25, 60, 0.7);
+    font-family: var(--font-system);
+    color: var(--color-text);
+    text-align: left;
+    overflow: hidden;
+}
+
+.calm-app .cp-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--cp-line);
+}
+
+.calm-app .cp-lights {
+    flex: none;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.calm-app .cp-lights i {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #ff5f57;
+}
+
+.calm-app .cp-lights i:nth-child(2) { background: #febc2e; }
+.calm-app .cp-lights i:nth-child(3) { background: #28c840; }
+
+.calm-app .cp-tool {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    color: #3a3a3c;
+    font-size: 1rem;
+}
+
+.calm-app .cp-titlebar-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4a4a4e;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .cp-episode {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem;
+}
+
+/* A stand-in for the show artwork: three colour panels over a dark base. */
+.calm-app .cp-art,
+.calm-app .cp-thumb.is-set {
+    background:
+        linear-gradient(180deg, transparent 58%, #15131a 58%),
+        linear-gradient(90deg, #d8c6ef 0 34%, #c6ecee 34% 66%, #f5cb9b 66%);
+}
+
+.calm-app .cp-art {
+    flex: none;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 0.7rem;
+}
+
+.calm-app .cp-episode-body {
+    min-width: 0;
+}
+
+.calm-app .cp-episode-name {
+    overflow: hidden;
+    font-size: 0.95rem;
+    font-weight: 700;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .cp-episode-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .cp-episode-meta i:nth-child(2) {
+    margin-left: 0.5rem;
+}
+
+/* ---------- Player bar ---------- */
+.calm-app .cp-player {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 0.9rem;
+    background: #f1f1f2;
+}
+
+.calm-app .cp-skip {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1.5px solid #2c2c2e;
+    border-radius: 50%;
+    font-size: 0.55rem;
+    font-weight: 700;
+}
+
+/* Play triangle that becomes two pause bars while .is-playing. */
+.calm-app .cp-play {
+    position: relative;
+    flex: none;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 0;
+    border-radius: 0.4rem;
+    background: none;
+    color: #1d1d1f;
+}
+
+.calm-app .cp-play::before {
+    content: '';
+    position: absolute;
+    inset: 0.3rem 0.35rem;
+    background: currentColor;
+    clip-path: polygon(8% 0, 100% 50%, 8% 100%);
+}
+
+.calm-app .is-playing .cp-play::before,
+.calm-app .cp-play.is-playing::before {
+    clip-path: polygon(8% 0, 38% 0, 38% 100%, 62% 100%, 62% 0, 92% 0, 92% 100%, 8% 100%);
+}
+
+.calm-app button.cp-play,
+.calm-app button.cp-plus {
+    cursor: pointer;
+}
+
+.calm-app .cp-clock {
+    flex: none;
+    font-family: var(--cp-mono);
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.calm-app .cp-clock-total {
+    color: var(--stage-muted);
+}
+
+.calm-app .cp-track {
+    flex: 1;
+    min-width: 1.5rem;
+    height: 0.3rem;
+    border-radius: var(--radius-pill);
+    background: #d6d6d8;
+    overflow: hidden;
+}
+
+.calm-app .cp-track span {
+    display: block;
+    height: 100%;
+    background: var(--cp-blue);
+    transform-origin: left;
+    transition: transform 0.3s linear;
+}
+
+.calm-app .cp-plus {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0;
+    border-radius: 50%;
+    background: var(--cp-blue);
+    color: #fff;
+    font-size: 0.85rem;
+    transition: transform 0.15s var(--ease-out), opacity 0.2s ease;
+}
+
+.calm-app button.cp-plus:active {
+    transform: scale(0.9);
+}
+
+.calm-app button.cp-plus:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+/* ---------- Chapter rows ---------- */
+.calm-app .cp-chapters {
+    padding: 0.25rem 0.6rem;
+}
+
+.calm-app .cp-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 2.9rem;
+    transition: opacity 0.35s ease, transform 0.45s var(--ease-out);
+}
+
+.calm-app .cp-row + .cp-row {
+    box-shadow: inset 0 1px 0 var(--cp-line);
+}
+
+.calm-app .cp-row.is-entering {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+}
+
+.calm-app .cp-thumb {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: 0;
+    border-radius: 0.4rem;
+    background: #e9e9eb;
+    color: #a2a2a7;
+    font-size: 0.95rem;
+}
+
+.calm-app .cp-thumb.is-set i {
+    visibility: hidden;
+}
+
+.calm-app .cp-tri {
+    flex: none;
+    width: 0.5rem;
+    height: 0.6rem;
+    background: #77777c;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.calm-app .cp-time {
+    flex: none;
+    width: 3.1rem;
+    font-family: var(--cp-mono);
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.calm-app .cp-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .cp-link {
+    flex: none;
+    font-size: 1rem;
+    color: #9a9aa0;
+}
+
+.calm-app .cp-link.is-set {
+    color: var(--cp-blue);
+}
+
+.calm-app .cp-trash {
+    flex: none;
+    font-size: 1rem;
+    color: var(--cp-red);
+}
+
+/* ---------- Add row at the foot of the window ---------- */
+.calm-app .cp-add {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.9rem;
+    border-top: 1px solid var(--cp-line);
+    font-size: 0.82rem;
+}
+
+.calm-app .cp-add-time,
+.calm-app .cp-add-title {
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--cp-line);
+    border-radius: 0.5rem;
+}
+
+.calm-app .cp-add-time {
+    flex: none;
+    width: 4rem;
+    font-family: var(--cp-mono);
+}
+
+.calm-app .cp-add-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    color: #a2a2a7;
+    white-space: nowrap;
+}
+
+.calm-app .cp-add-btn {
+    flex: none;
+    padding: 0.35rem 0.8rem;
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--cp-blue) 35%, #fff);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ---------- Demo: mark chapters as you listen ---------- */
+.calm-app .cp-mini {
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Room for the three chapters the visitor can add, so the tile never grows. */
+.calm-app .cp-mini .cp-chapters {
+    min-height: 15rem;
+}
+
+.calm-app .cp-mini .cp-row.is-new .cp-time {
+    color: var(--cp-blue);
+    font-weight: 600;
+}
+
+/* ---------- Demo: titles, images, links ---------- */
+.calm-app .cp-row-edit {
+    height: auto;
+    padding: 0.5rem;
+}
+
+.calm-app .cp-row-edit .cp-thumb {
+    width: 2.6rem;
+    height: 2.6rem;
+    cursor: pointer;
+    transition: transform 0.15s var(--ease-out);
+}
+
+.calm-app .cp-row-edit .cp-thumb:active {
+    transform: scale(0.94);
+}
+
+.calm-app .cp-row-edit .cp-time {
+    width: auto;
+}
+
+.calm-app .cp-title-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-overflow: ellipsis;
+}
+
+.calm-app .cp-title-input:hover {
+    border-color: var(--cp-line);
+}
+
+.calm-app .cp-title-input:focus-visible {
+    outline: 2px solid var(--cp-blue);
+    outline-offset: 0;
+}
+
+.calm-app .cp-link-btn {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: #9a9aa0;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.calm-app .cp-link-btn[aria-pressed="true"] {
+    background: color-mix(in srgb, var(--cp-blue) 12%, #fff);
+    color: var(--cp-blue);
+}
+
+/* ---------- Demo: import chapters as text ---------- */
+.calm-app .cp-import {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 0;
+}
+
+.calm-app .cp-import-pane {
+    min-width: 0;
+    padding: 0.9rem;
+}
+
+.calm-app .cp-preview {
+    border-left: 1px solid var(--cp-line);
+}
+
+.calm-app .cp-import-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .cp-import-text {
+    display: block;
+    width: 100%;
+    min-height: 11rem;
+    padding: 0.4rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: none;
+    color: var(--color-text);
+    font-family: var(--cp-mono);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    resize: none;
+}
+
+.calm-app .cp-import-text:hover {
+    border-color: var(--cp-line);
+}
+
+.calm-app .cp-import-text:focus-visible {
+    outline: 2px solid var(--cp-blue);
+    outline-offset: 0;
+}
+
+.calm-app .cp-preview-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--cp-line);
+    font-size: 0.85rem;
+}
+
+.calm-app .cp-preview-head span {
+    font-size: 0.72rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .cp-preview-list {
+    padding-top: 0.4rem;
+    list-style: none;
+}
+
+.calm-app .cp-preview-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.75;
+}
+
+.calm-app .cp-preview-list .cp-time {
+    width: 2.6rem;
+    color: var(--stage-muted);
+    font-size: 0.78rem;
+    text-align: right;
+}
+
+.calm-app .cp-preview-list .cp-title {
+    font-size: 0.82rem;
+}
+
+.calm-app .cp-preview-empty {
+    font-size: 0.8rem;
+    color: var(--stage-muted);
+}
+
+/* ---------- Demo: file formats ---------- */
+.calm-app .cp-formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.calm-app .cp-format[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+}
+
+.calm-app .cp-convert {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.calm-app .cp-file {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--accent-ink) 30%, transparent);
+    transition: opacity 0.4s ease;
+}
+
+.calm-app .cp-file > i {
+    flex: none;
+    font-size: 1.7rem;
+    color: var(--accent);
+}
+
+.calm-app .cp-file-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .cp-file-name {
+    overflow: hidden;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .cp-file-meta {
+    font-size: 0.75rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .cp-flow {
+    height: 0.3rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--accent) 18%, #fff);
+    overflow: hidden;
+}
+
+.calm-app .cp-flow span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.calm-app .tile[data-step="1"] .cp-flow span,
+.calm-app .tile[data-step="2"] .cp-flow span,
+.calm-app .tile[data-step="3"] .cp-flow span {
+    transform: none;
+    transition: transform 0.9s var(--ease-out);
+}
+
+.calm-app .cp-file-out {
+    opacity: 0.4;
+}
+
+.calm-app .tile[data-step="2"] .cp-file-out,
+.calm-app .tile[data-step="3"] .cp-file-out {
+    opacity: 1;
+}
+
+/* The finished file as a track with a tick at each chapter. */
+.calm-app .cp-marks {
+    display: flex;
+    justify-content: space-between;
+    height: 0.75rem;
+    margin-top: 0.35rem;
+    padding: 0 6% 0 0;
+    border-radius: 0.2rem;
+    background: color-mix(in srgb, var(--accent) 14%, #fff);
+}
+
+.calm-app .cp-marks i {
+    width: 2px;
+    background: var(--accent-ink);
+    opacity: 0;
+    transform: scaleY(0.2);
+    transition: opacity 0.3s ease, transform 0.4s var(--ease-out);
+}
+
+.calm-app .cp-marks i:nth-child(2) { margin-left: 4%; }
+.calm-app .cp-marks i:nth-child(4) { margin-right: 9%; }
+
+.calm-app .tile[data-step="3"] .cp-marks i {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .tile[data-step="3"] .cp-marks i:nth-child(2) { transition-delay: 0.07s; }
+.calm-app .tile[data-step="3"] .cp-marks i:nth-child(3) { transition-delay: 0.14s; }
+.calm-app .tile[data-step="3"] .cp-marks i:nth-child(4) { transition-delay: 0.21s; }
+.calm-app .tile[data-step="3"] .cp-marks i:nth-child(5) { transition-delay: 0.28s; }
+
+.calm-app .tile[data-demo="convert"][data-step="3"] .demo-note,
+.calm-app .tile[data-demo="transcript"][data-step="4"] .demo-note {
+    opacity: 1;
+}
+
+/* ---------- Demo: transcript ---------- */
+.calm-app .cp-transcript {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #252833;
+    color: #d5d8e0;
+    font-family: var(--cp-mono);
+    font-size: 0.74rem;
+    line-height: 1.5;
+}
+
+.calm-app .cp-cue {
+    overflow-wrap: anywhere;
+    transition: opacity 0.4s ease, transform 0.5s var(--ease-out);
+}
+
+.calm-app .cp-cue span {
+    display: block;
+    color: #8f96a8;
+}
+
+/* Hidden only once app.js has armed the page, so with no JS the transcript
+   simply sits there complete. */
+.calm-app.is-armed .tile[data-demo="transcript"] .cp-cue {
+    opacity: 0;
+    transform: translateY(0.4rem);
+}
+
+.calm-app.is-armed .tile[data-step="1"] .cp-cue:nth-child(-n+1),
+.calm-app.is-armed .tile[data-step="2"] .cp-cue:nth-child(-n+2),
+.calm-app.is-armed .tile[data-step="3"] .cp-cue:nth-child(-n+3),
+.calm-app.is-armed .tile[data-step="4"] .cp-cue {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Devices ---------- */
+.calm-app .cp-devices {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(0.75rem, 2.5vw, 1.75rem);
+}
+
+.calm-app .cp-device {
+    min-width: 0;
+    font-size: 0.8rem;
+    color: var(--stage-muted);
+    text-align: center;
+}
+
+.calm-app .cp-device img {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 1rem;
+}
+
+.calm-app .cp-device-mac {
+    flex: 0 1 24rem;
+}
+
+.calm-app .cp-device-phone {
+    flex: 0 1 8.9rem;
+}
+
+.calm-app .cp-device-phone img {
+    border: 1px solid var(--cp-line);
+    border-radius: 1.2rem;
+}
+
+/* ---------- Links inside tiles ---------- */
+.calm-app .tile-copy a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+}
+
+.calm-app .tile-dark a {
+    color: var(--tile-dark-ink);
+    text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .calm-app .cp-tool-wide,
+    .calm-app .cp-window .cp-skip,
+    .calm-app .cp-clock-total,
+    .calm-app .cp-window .cp-trash {
+        display: none;
+    }
+
+    .calm-app .cp-import,
+    .calm-app .cp-convert {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .cp-preview {
+        border-top: 1px solid var(--cp-line);
+        border-left: 0;
+    }
+
+    /* 1rem keeps iOS from zooming the page when a field takes focus. */
+    .calm-app .cp-import-text {
+        min-height: 13.5rem;
+        font-size: 1rem;
+    }
+
+    .calm-app .cp-title-input {
+        font-size: 1rem;
+    }
+}
