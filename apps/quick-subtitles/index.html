@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./quick-subtitles.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -72,18 +73,12 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/quick subtitles.png" alt="Quick Subtitles" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Transcribe your podcast.<br>
-                    <span class="accent-line">In one minute.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Transcribe your podcast. In one minute.</h1>
                 <p class="app-hero-subtitle wipe">
                     Quick Subtitles turns your audio and video into clean text and SRT subtitles, 100% on your device. No uploads, no waiting.
-                </p>
-                <p class="app-hero-subtitle wipe">
-                    100% local processing. 1 hour audio in ~1 minute.
                 </p>
                 <div class="download-buttons">
                     <a href="https://apps.apple.com/us/app/quick-subtitles/id6747410609" target="_blank" rel="noopener noreferrer" class="btn-fill">
@@ -91,119 +86,216 @@
                         Download for iPhone, iPad & Mac
                     </a>
                 </div>
+                <p class="app-hero-note">100% local processing. 1 hour audio in ~1 minute.</p>
+            </div>
+
+            <div class="app-hero-stage" role="img" aria-label="The Quick Subtitles window transcribing a podcast episode. The progress bar fills in about thirty seconds, then the file is marked complete.">
+                <div class="qs-window" aria-hidden="true" data-hero data-state="working">
+                    <div class="qs-titlebar">
+                        <span class="qs-lights"><i></i><i></i><i></i></span>
+                        <div class="qs-seg">
+                            <span class="is-active">Transcribe</span>
+                            <span>Batch</span>
+                        </div>
+                    </div>
+                    <div class="qs-body">
+                        <div class="qs-file">
+                            <div class="qs-file-icon"><i class="ph ph-file-audio"></i></div>
+                            <div class="qs-file-name">Cozy Zone 19 - We roast more of your home screens.mp3</div>
+                            <span class="qs-cancel"><i class="ph ph-x"></i> Cancel</span>
+                        </div>
+                        <div class="qs-status">
+                            <div class="qs-status-head">
+                                <div class="qs-ring"><i class="ph ph-waveform"></i></div>
+                                <div class="qs-status-body">
+                                    <div class="qs-status-title" data-hero-title>Transcribing</div>
+                                    <div class="qs-status-sub">Processing your file...</div>
+                                </div>
+                                <span class="qs-pct" data-hero-pct>65%</span>
+                            </div>
+                            <div class="qs-progress"><span data-hero-bar style="transform: scaleX(0.65)"></span></div>
+                            <span class="qs-time"><i class="ph ph-clock"></i> <span data-hero-time>21.1 sec</span></span>
+                        </div>
+                        <div class="qs-tip">
+                            <i class="ph ph-brain"></i>
+                            <div>
+                                <strong>Did you know?</strong>
+                                Speech models use attention mechanisms to focus on relevant audio segments
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/quick-subtitles-hero.jpeg" alt="Quick Subtitles app showing transcription in progress" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Ultra-Fast Local Transcription -->
+        <!-- Features -->
         <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Powered by Apple Intelligence</p>
-                    <h2 class="feature-title">Ultra-fast, local transcriptions.</h2>
-                    <p class="feature-description">
-                        With Apple Intelligence built into the core experience, Quick Subtitles renders subtitles for an hour-long podcast in less than a minute on your iPhone. That's real-time transcription at 80x speed.
-                    </p>
-                    <p class="feature-description">
-                        Everything happens on-device. Your audio never touches the cloud, never gets uploaded to a server, and is never shared with anyone. Complete privacy, zero compromises.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-subtitles-speed.jpg" alt="Quick Subtitles ultra-fast transcription">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Benchmark Mode -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Performance Testing</p>
-                    <h2 class="feature-title">Benchmark your device.</h2>
-                    <p class="feature-description">
-                        Curious how fast your iPhone, iPad, or Mac can transcribe? Benchmark mode lets you test your device's transcription performance with quick tests or extended runs to see how much thermal throttling affects speed over time.
-                    </p>
-                    <p class="feature-description">
-                        Complete with a history log of all your benchmark runs and downloadable data so you can share results or analyze performance yourself.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-subtitles-benchmark.jpeg" alt="Quick Subtitles benchmark mode">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Analysis -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">AI-Powered Analysis</p>
-                    <h2 class="feature-title">Turn transcripts into show notes.</h2>
-                    <p class="feature-description">
-                        The analysis feature scans your subtitle files and extracts the good stuff: links you mentioned, products you talked about, and anything you said would be "linked in the description."
-                    </p>
-                    <p class="feature-description">
-                        Need something specific? Add custom commands to extract exactly what you're looking for from any transcript.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-subtitles-analysis.jpeg" alt="Quick Subtitles analysis feature">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature Grid -->
-        <section class="section">
             <div class="section-header scroll-reveal">
-                <p class="section-label wipe">And More</p>
-                <h2 class="section-title wipe">Everything you need to transcribe.</h2>
+                <p class="section-label wipe">Powered by Apple Intelligence</p>
+                <h2 class="section-title wipe">Ultra-fast, local transcriptions.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-shield-check"></i>
+
+            <div class="bento">
+                <!-- Speed -->
+                <article class="tile" style="--span: 7" data-demo="stats">
+                    <div class="tile-stage">
+                        <div class="qs-complete">
+                            <div class="qs-ring" aria-hidden="true"><i class="ph ph-check"></i></div>
+                            <div class="qs-status-title">Complete!</div>
+                            <button type="button" class="qs-stats-btn" data-stats-toggle aria-expanded="true" aria-controls="qs-stats"><i class="ph ph-chart-bar" aria-hidden="true"></i> Stats</button>
+                        </div>
+                        <div class="qs-stats" id="qs-stats">
+                            <p class="qs-stats-title">Transcription Stats</p>
+                            <dl>
+                                <div class="qs-stat"><dt>Processing Time</dt><dd>30.3 sec</dd></div>
+                                <div class="qs-stat"><dt>Words/Second</dt><dd>208.3</dd></div>
+                                <div class="qs-stat"><dt>Total Words</dt><dd>6,327</dd></div>
+                                <div class="qs-stat"><dt>Audio Duration</dt><dd>38:22</dd></div>
+                                <div class="qs-stat"><dt>Speaking Pace</dt><dd>164 WPM</dd></div>
+                                <div class="qs-stat"><dt>Processing Speed</dt><dd>75.8x real-time</dd></div>
+                            </dl>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Press Stats to close it and open it again.</span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">100% On-Device</h3>
-                    <p class="feature-card-description">Nothing ever leaves your device. No servers, no cloud, no data collection.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-lightning"></i>
+                    <div class="tile-copy">
+                        <h3>An hour-long podcast in less than a minute.</h3>
+                        <p>With Apple Intelligence built into the core experience, Quick Subtitles renders subtitles for an hour-long podcast in less than a minute on your iPhone. That's real-time transcription at 80x speed.</p>
                     </div>
-                    <h3 class="feature-card-title">80x Speed</h3>
-                    <p class="feature-card-description">Transcribe an hour of audio in under a minute with Apple Intelligence.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-chart-bar"></i>
+                </article>
+
+                <!-- On-device -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-wifi-slash" aria-hidden="true"></i>
+                    <div>
+                    <h3>Your audio never touches the cloud.</h3>
+                    <p>Everything happens on-device. Your audio never gets uploaded to a server and is never shared with anyone: no servers, no cloud, no data collection. After the initial model download, you can transcribe anywhere with no internet at all.</p>
                     </div>
-                    <h3 class="feature-card-title">Benchmark History</h3>
-                    <p class="feature-card-description">Track performance over time with detailed logs and exportable data.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-export"></i>
+                </article>
+
+                <!-- Analysis -->
+                <article class="tile" style="--span: 7" data-demo="analysis" data-steps="1200,800,800">
+                    <div class="tile-stage">
+                        <div class="qs-toolbar" aria-hidden="true">
+                            <div class="qs-tabs">
+                                <span class="qs-tab qs-tab-transcript">Transcript</span>
+                                <span class="qs-tab qs-tab-analysis">Analysis</span>
+                            </div>
+                            <span class="qs-analyze"><i class="ph ph-sparkle"></i> Analyze</span>
+                        </div>
+                        <div class="demo-card qs-pane" aria-hidden="true">
+                            <p class="qs-pane-transcript">So, uh, I wanted to chat with you guys and kind of maybe tackle again, uh, our listeners home screens. A few weeks ago, we roasted some of our listeners home screens, but we got a ton sent into us, and we just didn't have the ability to go over all of them. So I put in our dock, a bunch of links.</p>
+                            <div class="qs-pane-analysis">
+                                <div class="qs-group">
+                                    <p class="qs-pane-heading">Things Said to Be in the Show Notes</p>
+                                    <ul>
+                                        <li>Links to all listener home screens discussed</li>
+                                        <li>Chapter art images of the home screens</li>
+                                        <li>Feedback form for listeners</li>
+                                    </ul>
+                                </div>
+                                <div class="qs-group">
+                                    <p class="qs-pane-heading">Products Discussed</p>
+                                    <ul class="qs-two">
+                                        <li>Android devices (Pixel, Samsung)</li>
+                                        <li>iPhone</li>
+                                        <li>X (formerly Twitter)</li>
+                                        <li>Blue Sky</li>
+                                        <li>Mastodon</li>
+                                        <li>Open Vibe</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Show notes drafted</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Text & SRT Export</h3>
-                    <p class="feature-card-description">Copy clean text or export SRT subtitles for any editor or platform.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-pencil-simple"></i>
+                    <div class="tile-copy">
+                        <h3>Turn transcripts into show notes.</h3>
+                        <p>The analysis feature scans your subtitle files and extracts the good stuff: links you mentioned, products you talked about, and anything you said would be "linked in the description." Need something specific? Add custom commands to extract exactly what you're looking for from any transcript.</p>
                     </div>
-                    <h3 class="feature-card-title">Custom Commands</h3>
-                    <p class="feature-card-description">Create your own analysis prompts to extract exactly what you need.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-wifi-slash"></i>
+                </article>
+
+                <!-- Export -->
+                <article class="tile" style="--span: 5" data-demo="export">
+                    <div class="tile-stage">
+                        <div class="qs-seg" role="group" aria-label="Export format">
+                            <button type="button" data-format="text" aria-pressed="true">Text</button>
+                            <button type="button" data-format="srt" aria-pressed="false">SRT</button>
+                        </div>
+                        <div class="demo-card qs-pane qs-export">
+                            <p data-format-pane="text" aria-hidden="false">So, uh, I wanted to chat with you guys and kind of maybe tackle again, uh, our listeners home screens. A few weeks ago, we roasted some of our listeners home screens, but we got a ton sent into us, and we just didn't have the ability to go over all of them. So I put in our dock, a bunch of links.</p>
+                            <div class="qs-srt" data-format-pane="srt" aria-hidden="true">
+                                <p>1<span>00:00:00,000 --&gt; 00:00:04,300</span>So, uh, I wanted to chat with you guys</p>
+                                <p>2<span>00:00:04,300 --&gt; 00:00:09,100</span>and kind of maybe tackle again, uh, our listeners home screens.</p>
+                                <p>3<span>00:00:09,100 --&gt; 00:00:13,600</span>A few weeks ago, we roasted some of our listeners home screens,</p>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span data-format-note aria-live="polite">Clean text, ready to copy.</span>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Works Offline</h3>
-                    <p class="feature-card-description">Transcribe anywhere after the initial model download. No internet needed.</p>
-                </div>
+                    <div class="tile-copy">
+                        <h3>Clean text or SRT subtitles.</h3>
+                        <p>Copy clean text or export SRT subtitles for any editor or platform.</p>
+                    </div>
+                </article>
+
+                <!-- Benchmark -->
+                <article class="tile tile-split" style="--span: 12" data-demo="benchmark">
+                    <div class="tile-copy">
+                        <h3>Benchmark your device.</h3>
+                        <p>Curious how fast your iPhone, iPad, or Mac can transcribe? Benchmark mode tests your device's transcription performance with quick tests or extended runs, so you can see how much thermal throttling affects speed over time.</p>
+                        <p>It keeps a history log of all your benchmark runs, with downloadable data so you can share results or analyze performance yourself.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="demo-card qs-bench" aria-hidden="true">
+                            <div class="qs-bench-head">
+                                <span>Results</span>
+                                <span class="qs-csv">Export CSV</span>
+                            </div>
+                            <div class="qs-bench-stats">
+                                <div class="qs-bench-stat">Average<strong data-bench="avg">199.6</strong>words/sec</div>
+                                <div class="qs-bench-stat">Best<strong data-bench="best">206.1</strong>words/sec</div>
+                                <div class="qs-bench-stat">Worst<strong data-bench="worst">195.7</strong>words/sec</div>
+                            </div>
+                            <p class="qs-bench-sub">Performance Over Runs</p>
+                            <svg class="qs-chart" viewBox="0 0 320 172" role="presentation">
+                                <line x1="16" y1="12" x2="284" y2="12"/>
+                                <line x1="16" y1="58.7" x2="284" y2="58.7"/>
+                                <line x1="16" y1="105.3" x2="284" y2="105.3"/>
+                                <line x1="16" y1="152" x2="284" y2="152"/>
+                                <line class="qs-chart-v" x1="16" y1="12" x2="16" y2="152"/>
+                                <line class="qs-chart-v" x1="83" y1="12" x2="83" y2="152"/>
+                                <line class="qs-chart-v" x1="150" y1="12" x2="150" y2="152"/>
+                                <line class="qs-chart-v" x1="217" y1="12" x2="217" y2="152"/>
+                                <line class="qs-chart-v" x1="284" y1="12" x2="284" y2="152"/>
+                                <text x="290" y="15">300</text>
+                                <text x="290" y="61.7">200</text>
+                                <text x="290" y="108.3">100</text>
+                                <text x="290" y="155">0</text>
+                                <text x="16" y="166" text-anchor="middle">1</text>
+                                <text x="83" y="166" text-anchor="middle">2</text>
+                                <text x="150" y="166" text-anchor="middle">3</text>
+                                <text x="217" y="166" text-anchor="middle">4</text>
+                                <text x="284" y="166" text-anchor="middle">5</text>
+                                <polyline pathLength="4" points="16,55.8 83,56.8 150,60.7 217,60.6 284,60.3"/>
+                                <circle cx="16" cy="55.8" r="4.5"/>
+                                <circle cx="83" cy="56.8" r="4.5"/>
+                                <circle cx="150" cy="60.7" r="4.5"/>
+                                <circle cx="217" cy="60.6" r="4.5"/>
+                                <circle cx="284" cy="60.3" r="4.5"/>
+                            </svg>
+                        </div>
+                        <div class="stage-foot">
+                            <span data-bench-note aria-live="polite">5 runs complete</span>
+                            <button type="button" class="demo-btn demo-replay" data-bench-run><i class="ph ph-gauge" aria-hidden="true"></i> <span>Run again</span></button>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -213,28 +305,37 @@
                 <p class="section-label wipe">Simple Workflow</p>
                 <h2 class="section-title wipe">How it works</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-upload-simple"></i>
-                    </div>
-                    <h3 class="feature-card-title">1. Drop your file</h3>
-                    <p class="feature-card-description">Audio or video, Quick Subtitles handles it.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-cpu"></i>
-                    </div>
-                    <h3 class="feature-card-title">2. On-device transcription</h3>
-                    <p class="feature-card-description">Watch real-time progress. Nothing leaves your device.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-share-network"></i>
-                    </div>
-                    <h3 class="feature-card-title">3. Export & share</h3>
-                    <p class="feature-card-description">Copy text or export SRT. Optionally generate show notes with AI.</p>
-                </div>
+
+            <div class="bento">
+                <article class="tile" style="--span: 7">
+                    <ol class="qs-steps">
+                        <li>
+                            <i class="ph ph-upload-simple" aria-hidden="true"></i>
+                            <div>
+                                <h3>1. Drop your file</h3>
+                                <p>Audio or video, Quick Subtitles handles it.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="ph ph-cpu" aria-hidden="true"></i>
+                            <div>
+                                <h3>2. On-device transcription</h3>
+                                <p>Watch real-time progress. Nothing leaves your device.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="ph ph-share-network" aria-hidden="true"></i>
+                            <div>
+                                <h3>3. Export & share</h3>
+                                <p>Copy text or export SRT. Optionally generate show notes with AI.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </article>
+
+                <figure class="tile qs-shot" style="--span: 5">
+                    <img src="../../images/quick-subtitles-speed.jpg" alt="Quick Subtitles on iPhone showing transcription stats: 38 minutes of audio processed in 30.3 seconds">
+                </figure>
             </div>
         </section>
 
@@ -313,5 +414,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./quick-subtitles.js" defer></script>
 </body>
 </html>
