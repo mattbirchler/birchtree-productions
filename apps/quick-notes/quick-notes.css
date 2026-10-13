@@ -1,0 +1,663 @@
+/* Quick Notes - page-local styles for the live feature demos.
+   Loaded only by apps/quick-notes/index.html, on top of app.css. Every rule
+   is scoped under .calm-app and every class is prefixed qn- so nothing here
+   can collide with the shared calm components. The hero, tiles and stepped
+   demo runner come from app.css / app.js; this file styles the replicas
+   inside the stages.
+
+   The replicas are drawn from the app's own screens: the My Notes list, the
+   Recording screen, a note with its Processed / Original switch, and
+   Lifetime Stats. With no JS every demo rests in a complete, readable state. */
+
+body.calm-app {
+    --qn-orange: #e9913a;
+    --qn-blue: #5b8ff7;
+    --qn-purple: #a021d6;
+    --qn-ground: #f2f2f7;
+    --qn-muted: #8a8a8f;
+    --stage-tint: #f6f1eb;
+    --hero-wallpaper: linear-gradient(150deg, #f3dcc0 0%, #e9b98c 55%, #d99a6c 100%);
+}
+
+/* ---------- The phone ---------- */
+.calm-app .qn-phone {
+    width: 100%;
+    max-width: 17.5rem;
+    padding: 0.45rem;
+    border-radius: 2.9rem;
+    background: #1c1c1e;
+    box-shadow: 0 30px 60px -28px rgba(90, 45, 10, 0.7);
+    font-family: var(--font-system);
+    color: #000;
+    text-align: left;
+}
+
+.calm-app .qn-screen {
+    position: relative;
+    height: 34rem;
+    border-radius: 2.45rem;
+    background: var(--qn-ground);
+    overflow: hidden;
+}
+
+.calm-app .qn-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.5rem 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.calm-app .qn-island {
+    width: 5rem;
+    height: 1.5rem;
+    border-radius: var(--radius-pill);
+    background: #000;
+}
+
+.calm-app .qn-status-icons {
+    display: inline-flex;
+    gap: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.calm-app .qn-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1rem 0;
+}
+
+.calm-app .qn-pill,
+.calm-app .qn-round {
+    display: grid;
+    place-items: center;
+    height: 2.2rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.25);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.calm-app .qn-pill {
+    padding: 0 0.9rem;
+}
+
+.calm-app .qn-round {
+    width: 2.2rem;
+    font-size: 1.15rem;
+}
+
+.calm-app .qn-large-title {
+    padding: 0.7rem 1.1rem 0.5rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.calm-app .qn-phone .qn-list {
+    margin: 0 0.8rem;
+    border-radius: 1.3rem;
+    background: #fff;
+}
+
+/* ---------- Note rows ---------- */
+.calm-app .qn-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 4.5rem;
+    padding: 0 0.7rem 0 0.9rem;
+    overflow: hidden;
+    transition: height 0.45s var(--ease-out), opacity 0.35s ease;
+}
+
+.calm-app .qn-row + .qn-row {
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.calm-app .qn-row.is-entering {
+    height: 0;
+    opacity: 0;
+}
+
+.calm-app .qn-row-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .qn-row-title,
+.calm-app .qn-row-preview {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qn-row-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.calm-app .qn-row-preview {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--qn-muted);
+}
+
+.calm-app .qn-row-meta {
+    margin-top: 0.1rem;
+    font-size: 0.66rem;
+    color: var(--qn-muted);
+}
+
+.calm-app .qn-row > i {
+    flex: none;
+    font-size: 0.8rem;
+    color: #c4c4c9;
+}
+
+/* The note that was just dictated glows for a moment as it lands. */
+@media (prefers-reduced-motion: no-preference) {
+    .calm-app .qn-row.is-new {
+        animation: qn-land 2.4s ease-out both;
+    }
+}
+
+@keyframes qn-land {
+    from { background-color: rgba(233, 145, 58, 0.28); }
+    to { background-color: rgba(233, 145, 58, 0); }
+}
+
+/* ---------- Floating buttons ---------- */
+.calm-app .qn-fabs {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+}
+
+.calm-app .qn-fab-chat,
+.calm-app .qn-fab-record {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    height: 2.7rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.45);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.calm-app .qn-fab-chat {
+    width: 2.7rem;
+    background: var(--qn-blue);
+    font-size: 1.2rem;
+}
+
+.calm-app .qn-fab-record {
+    padding: 0 1rem;
+    background: var(--qn-orange);
+}
+
+/* ---------- The Recording screen ---------- */
+.calm-app .qn-rec {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border-radius: inherit;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+}
+
+.calm-app .is-recording > .qn-rec,
+.calm-app .is-recording .qn-screen > .qn-rec {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.calm-app .qn-bars {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 2.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.calm-app .qn-bars span {
+    width: 0.5rem;
+    height: 1.4rem;
+    border-radius: var(--radius-pill);
+    background: var(--qn-orange);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .calm-app .is-recording .qn-bars span {
+        animation: qn-bar 0.9s ease-in-out infinite alternate;
+    }
+
+    .calm-app .qn-bars span:nth-child(2) { animation-delay: -0.75s; }
+    .calm-app .qn-bars span:nth-child(3) { animation-delay: -0.3s; }
+    .calm-app .qn-bars span:nth-child(4) { animation-delay: -0.55s; }
+    .calm-app .qn-bars span:nth-child(5) { animation-delay: -0.1s; }
+    .calm-app .qn-bars span:nth-child(6) { animation-delay: -0.65s; }
+    .calm-app .qn-bars span:nth-child(7) { animation-delay: -0.4s; }
+}
+
+@keyframes qn-bar {
+    from { transform: scaleY(0.45); }
+    to { transform: scaleY(1.5); }
+}
+
+.calm-app .qn-rec-label {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.calm-app .qn-rec-time {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 2.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.calm-app .qn-rec-mic {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--qn-muted);
+}
+
+/* ---------- Demo: Processed / Original ---------- */
+.calm-app .qn-note {
+    position: relative;
+    padding: 1.2rem 1.2rem 1.3rem;
+}
+
+.calm-app .qn-note-title {
+    font-family: "New York", ui-serif, Georgia, serif;
+    font-size: 1.45rem;
+    line-height: 1.2;
+    color: #3a3d5c;
+}
+
+.calm-app .qn-note-date {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.35rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.8rem;
+    color: #5b5e73;
+}
+
+.calm-app .qn-seg {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0.9rem auto;
+    padding: 0.15rem;
+    border-radius: var(--radius-pill);
+    background: #e3e3e8;
+}
+
+.calm-app .qn-seg-btn {
+    min-width: 6.2rem;
+    padding: 0.35rem 0.9rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: #000;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calm-app .qn-seg-btn.is-active {
+    background: #fff;
+    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+}
+
+/* Both versions share one grid cell, so switching never changes the height. */
+.calm-app .qn-note-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding-right: 3.2rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.calm-app .qn-pane {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: opacity 0.12s ease, transform 0s linear 0.12s, visibility 0s linear 0.12s;
+}
+
+/* The outgoing version clears before the incoming one fades up, so the two
+   never overprint each other. */
+.calm-app .qn-pane.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.3s ease 0.12s, transform 0.35s var(--ease-out) 0.12s, visibility 0s;
+}
+
+.calm-app .qn-pane p + p,
+.calm-app .qn-pane ol {
+    margin-top: 0.5rem;
+}
+
+.calm-app .qn-pane ol {
+    padding-left: 1.4rem;
+}
+
+.calm-app .qn-pane-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.calm-app .qn-copy {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 8px 18px -8px rgba(234, 88, 12, 0.8);
+    color: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.15s var(--ease-out);
+}
+
+.calm-app .qn-copy:active {
+    transform: scale(0.94);
+}
+
+.calm-app .demo-note.is-shown {
+    opacity: 1;
+}
+
+/* ---------- Demo: record a note ---------- */
+.calm-app .qn-recorder {
+    position: relative;
+    height: 14.3rem;
+    overflow: hidden;
+}
+
+.calm-app .qn-record-btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.6rem 1.1rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--qn-orange);
+    box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s var(--ease-out);
+}
+
+.calm-app .qn-record-btn:active {
+    transform: scale(0.96);
+}
+
+.calm-app .qn-record-btn[aria-pressed="true"] {
+    background: #1c1c1e;
+}
+
+.calm-app .tile[data-qn-demo="record"] .stage-foot span {
+    min-width: 0;
+}
+
+/* ---------- Tile: the real thing ---------- */
+.calm-app .qn-shot {
+    padding: 0;
+    overflow: hidden;
+}
+
+.calm-app .qn-shot img {
+    width: 100%;
+    height: 100%;
+    min-height: 16rem;
+    object-fit: cover;
+    object-position: 60% 50%;
+}
+
+/* ---------- Demo: Lifetime Stats ---------- */
+.calm-app .qn-stats {
+    padding: 0.9rem;
+}
+
+.calm-app .qn-stat-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.6rem;
+}
+
+.calm-app .qn-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-radius: 0.9rem;
+    background: #fdf1e4;
+}
+
+.calm-app .qn-stat-cleaned {
+    background: #f4e6fb;
+}
+
+.calm-app .qn-stat-num {
+    font-family: ui-rounded, "SF Pro Rounded", var(--font-system);
+    font-size: 2rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    color: var(--qn-orange);
+}
+
+.calm-app .qn-stat-cleaned .qn-stat-num {
+    color: var(--qn-purple);
+}
+
+.calm-app .qn-stat-name {
+    font-size: 0.78rem;
+    color: var(--qn-muted);
+}
+
+.calm-app .qn-stats-head {
+    margin: 0.8rem 0 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.calm-app .qn-active {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.8rem;
+    background: var(--qn-ground);
+}
+
+.calm-app .qn-active i {
+    flex: none;
+    font-size: 1.3rem;
+    color: var(--qn-orange);
+}
+
+.calm-app .qn-active-month i {
+    color: var(--qn-blue);
+}
+
+.calm-app .qn-active span {
+    min-width: 0;
+}
+
+.calm-app .qn-active strong,
+.calm-app .qn-active small {
+    display: block;
+    line-height: 1.25;
+}
+
+.calm-app .qn-active strong {
+    font-size: 0.88rem;
+}
+
+.calm-app .qn-active small {
+    font-size: 0.72rem;
+    color: var(--qn-muted);
+}
+
+.calm-app .qn-chart {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.35rem;
+    align-items: end;
+    padding: 0.7rem 0.6rem 0.5rem;
+    border-radius: 0.9rem;
+    background: var(--qn-ground);
+}
+
+.calm-app .qn-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.68rem;
+    color: var(--qn-muted);
+}
+
+.calm-app .qn-col em {
+    font-style: normal;
+}
+
+.calm-app .qn-col small {
+    font-size: inherit;
+    transition: opacity 0.3s ease 0.5s;
+}
+
+.calm-app .qn-col span {
+    width: 100%;
+    height: calc(var(--qn-v) / 13 * 5.5rem);
+    border-radius: 0.35rem;
+    background: var(--qn-orange);
+    transform-origin: bottom;
+    transition: transform 0.7s var(--ease-out);
+}
+
+.calm-app .qn-col:nth-child(2) span { transition-delay: 0.05s; }
+.calm-app .qn-col:nth-child(3) span { transition-delay: 0.1s; }
+.calm-app .qn-col:nth-child(4) span { transition-delay: 0.15s; }
+.calm-app .qn-col:nth-child(5) span { transition-delay: 0.2s; }
+.calm-app .qn-col:nth-child(6) span { transition-delay: 0.25s; }
+.calm-app .qn-col:nth-child(7) span { transition-delay: 0.3s; }
+
+/* The chart is complete by default; only step 0 empties it, so the bars
+   grow when the runner moves on to step 1. */
+.calm-app .tile[data-step="0"] .qn-col span {
+    transform: scaleY(0);
+    transition: none;
+}
+
+.calm-app .tile[data-step="0"] .qn-col small {
+    opacity: 0;
+    transition: none;
+}
+
+/* ---------- Tile: the small things ---------- */
+.calm-app .qn-facts-tile {
+    justify-content: center;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.calm-app .qn-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.calm-app .qn-facts li {
+    display: flex;
+    gap: 0.9rem;
+}
+
+.calm-app .qn-facts li > div {
+    min-width: 0;
+}
+
+.calm-app .qn-facts i {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.8rem;
+    background: var(--stage-tint);
+    color: var(--accent-ink);
+    font-size: 1.3rem;
+}
+
+.calm-app .qn-facts h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+.calm-app .qn-facts p {
+    margin-top: 0.2rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .calm-app .qn-screen {
+        height: 31rem;
+    }
+
+    .calm-app .qn-note-body {
+        padding-right: 0;
+        padding-bottom: 3.2rem;
+    }
+
+    .calm-app .qn-seg-btn {
+        min-width: 0;
+    }
+}

@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./quick-notes.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -72,13 +73,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/quick notes.png" alt="Quick Notes" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Dictate notes while<br>
-                    <span class="accent-line">you live your life.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Dictate notes while you live your life.</h1>
                 <p class="app-hero-subtitle wipe">
                     Quick Notes uses Apple's on-device AI to turn your voice into high-quality text. Perfect for capturing ideas while walking, commuting, or doing chores.
                 </p>
@@ -88,119 +86,278 @@
                         Download for iPhone & iPad
                     </a>
                 </div>
+                <p class="app-hero-note">Free to use. Requires iOS 26 or iPadOS 26.</p>
+            </div>
+
+            <div class="app-hero-stage" role="img" aria-label="Quick Notes on an iPhone. A short voice recording finishes and appears at the top of the My Notes list as text.">
+                <div class="qn-phone" aria-hidden="true" data-qn-hero>
+                    <div class="qn-screen">
+                        <div class="qn-status">
+                            <span>6:12</span>
+                            <span class="qn-island"></span>
+                            <span class="qn-status-icons"><i class="ph ph-cell-signal-high"></i><i class="ph ph-wifi-high"></i><i class="ph ph-battery-full"></i></span>
+                        </div>
+                        <div class="qn-toolbar">
+                            <span class="qn-pill">Edit</span>
+                            <span class="qn-round"><i class="ph ph-gear-six"></i></span>
+                        </div>
+                        <p class="qn-large-title">My Notes</p>
+                        <div class="qn-list">
+                            <div class="qn-row">
+                                <div class="qn-row-body">
+                                    <div class="qn-row-title">Exploring New Test Ideas</div>
+                                    <div class="qn-row-preview">This is a test note where I'm trying something new</div>
+                                    <div class="qn-row-meta">Jan 6 at 5:47 AM &bull; 0:03</div>
+                                </div>
+                                <i class="ph ph-caret-right"></i>
+                            </div>
+                            <div class="qn-row">
+                                <div class="qn-row-body">
+                                    <div class="qn-row-title">Local Stat Tracking For Year-In-Review</div>
+                                    <div class="qn-row-preview">I'd like to add some local stat tracking to this</div>
+                                    <div class="qn-row-meta">Jan 6 at 5:29 AM &bull; 0:59</div>
+                                </div>
+                                <i class="ph ph-caret-right"></i>
+                            </div>
+                            <div class="qn-row">
+                                <div class="qn-row-body">
+                                    <div class="qn-row-title">Disappointing Story Progression</div>
+                                    <div class="qn-row-preview">Yeah, this is exactly, I think, what I'm feeling</div>
+                                    <div class="qn-row-meta">Jan 4 at 3:28 PM &bull; 0:22</div>
+                                </div>
+                                <i class="ph ph-caret-right"></i>
+                            </div>
+                            <div class="qn-row">
+                                <div class="qn-row-body">
+                                    <div class="qn-row-title">Annoyance Over Repeated Conflict</div>
+                                    <div class="qn-row-preview">I'm mostly annoyed, they introduced a cool idea</div>
+                                    <div class="qn-row-meta">Jan 4 at 3:27 PM &bull; 0:15</div>
+                                </div>
+                                <i class="ph ph-caret-right"></i>
+                            </div>
+                            <div class="qn-row">
+                                <div class="qn-row-body">
+                                    <div class="qn-row-title">Movie Experience Reflects</div>
+                                    <div class="qn-row-preview">I loved the spectacle of it. And I really did enjoy it</div>
+                                    <div class="qn-row-meta">Jan 4 at 3:26 PM &bull; 0:16</div>
+                                </div>
+                                <i class="ph ph-caret-right"></i>
+                            </div>
+                            <div class="qn-row">
+                                <div class="qn-row-body">
+                                    <div class="qn-row-title">Movie Theaters: Surviving and Thriving</div>
+                                    <div class="qn-row-preview">I personally don't think movie theaters are at risk</div>
+                                    <div class="qn-row-meta">Jan 4 at 11:03 AM &bull; 9:24</div>
+                                </div>
+                                <i class="ph ph-caret-right"></i>
+                            </div>
+                        </div>
+                        <div class="qn-fabs">
+                            <span class="qn-fab-chat"><i class="ph ph-chat-circle"></i></span>
+                            <span class="qn-fab-record"><i class="ph ph-microphone"></i> Record</span>
+                        </div>
+                        <div class="qn-rec">
+                            <div class="qn-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                            <p class="qn-rec-label">Recording...</p>
+                            <p class="qn-rec-time" data-qn-time>00:01</p>
+                            <p class="qn-rec-mic"><i class="ph ph-microphone"></i> Matt's AirPods #2</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/quick-notes-hero.jpg" alt="Quick Notes app interface" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Apple Intelligence -->
+        <!-- Apple Intelligence -->
         <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Apple Intelligence</p>
-                    <h2 class="feature-title">Better than built-in dictation.</h2>
-                    <p class="feature-description">
-                        Powered by Apple's latest on-device language models, Quick Notes delivers superior transcription quality compared to iOS's standard dictation.
-                    </p>
-                    <p class="feature-description">
-                        Get cleaner punctuation, better formatting, and fewer errors, all processed entirely on your device.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-notes-ai.jpg" alt="Quick Notes Apple Intelligence cleanup">
-                </div>
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Apple Intelligence</p>
+                <h2 class="section-title wipe">Better than built-in dictation.</h2>
+                <p class="section-subtitle wipe">Powered by Apple's latest on-device language models, Quick Notes delivers superior transcription quality compared to iOS's standard dictation.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Cleanup: Processed / Original -->
+                <article class="tile" style="--span: 7" data-qn-demo="cleanup">
+                    <div class="tile-stage">
+                        <div class="demo-card qn-note">
+                            <p class="qn-note-title">Chapter Two Opening</p>
+                            <p class="qn-note-date"><i class="ph ph-calendar-blank" aria-hidden="true"></i> January 14, 2026 at 8:14 PM</p>
+                            <div class="qn-seg" role="group" aria-label="Version of the note">
+                                <button type="button" class="qn-seg-btn" data-qn-version="processed" aria-pressed="false">Processed</button>
+                                <button type="button" class="qn-seg-btn is-active" data-qn-version="original" aria-pressed="true">Original</button>
+                            </div>
+                            <div class="qn-note-body">
+                                <div class="qn-pane is-active" data-qn-pane="original">
+                                    <p>I think chapter two should open at the train station, not the apartment. That's where Maya first sees the letter and it lets us skip the hole morning routine. Two things to fix first, the timeline and Maya's reason for leaving.</p>
+                                </div>
+                                <div class="qn-pane" data-qn-pane="processed">
+                                    <p class="qn-pane-heading">Chapter Two Opening</p>
+                                    <p>I think chapter two should open at the train station, not the apartment. That's where Maya first sees the letter, and it lets us skip the whole morning routine.</p>
+                                    <p>Two things to fix first:</p>
+                                    <ol>
+                                        <li>The timeline</li>
+                                        <li>Maya's reason for leaving</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <button type="button" class="qn-copy" data-qn-copy aria-label="Copy this note to the clipboard"><i class="ph ph-copy" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Switch between Processed and Original.</span>
+                            <span class="demo-note" role="status" data-qn-copied></span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Cleaned up by Apple Intelligence.</h3>
+                        <p>Get cleaner punctuation, better formatting, and fewer errors, all processed entirely on your device. Your original words stay one tap away, and the finished note copies to the clipboard instantly.</p>
+                    </div>
+                </article>
+
+                <!-- Private -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-lock" aria-hidden="true"></i>
+                    <div>
+                        <h3>Your words never leave your iPhone.</h3>
+                        <p>100% private. All processing happens on your device. None of your data is sent to the cloud.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Writer Focused -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Built for Writers</p>
-                    <h2 class="feature-title">Capture ideas anywhere.</h2>
-                    <p class="feature-description">
-                        Whether you're walking the dog, on your morning run, doing the dishes, or commuting to work, Quick Notes is ready when inspiration strikes.
-                    </p>
-                    <p class="feature-description">
-                        Built for authors, journalists, and content creators who think best when they're moving.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-notes-writer.jpg" alt="Quick Notes for capturing ideas on the go">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Metrics -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Your Stats</p>
-                    <h2 class="feature-title">Track your note-taking habits.</h2>
-                    <p class="feature-description">
-                        See how many notes you've created, which days of the week you're most productive, and other stats about your voice note habits.
-                    </p>
-                    <p class="feature-description">
-                        A fun way to watch your ideas add up over time.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/metrics.jpg" alt="Quick Notes metrics and statistics">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature Grid -->
+        <!-- Built for writers -->
         <section class="section">
             <div class="section-header scroll-reveal">
-                <p class="section-label wipe">Features</p>
-                <h2 class="section-title wipe">Simple, fast, and private.</h2>
+                <p class="section-label wipe">Built for Writers</p>
+                <h2 class="section-title wipe">Capture ideas anywhere.</h2>
+                <p class="section-subtitle wipe">Whether you're walking the dog, on your morning run, doing the dishes, or commuting to work, Quick Notes is ready when inspiration strikes.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-sparkle"></i>
+
+            <div class="bento">
+                <!-- Record a note -->
+                <article class="tile" style="--span: 5" data-qn-demo="record">
+                    <div class="tile-stage">
+                        <div class="demo-card qn-recorder">
+                            <div class="qn-list" data-qn-list aria-hidden="true">
+                                <div class="qn-row">
+                                    <div class="qn-row-body">
+                                        <div class="qn-row-title">Disappointing Story Progression</div>
+                                        <div class="qn-row-preview">Yeah, this is exactly, I think, what I'm feeling</div>
+                                        <div class="qn-row-meta">Jan 4 at 3:28 PM &bull; 0:22</div>
+                                    </div>
+                                    <i class="ph ph-caret-right"></i>
+                                </div>
+                                <div class="qn-row">
+                                    <div class="qn-row-body">
+                                        <div class="qn-row-title">Movie Experience Reflects</div>
+                                        <div class="qn-row-preview">I loved the spectacle of it. And I really did enjoy it</div>
+                                        <div class="qn-row-meta">Jan 4 at 3:26 PM &bull; 0:16</div>
+                                    </div>
+                                    <i class="ph ph-caret-right"></i>
+                                </div>
+                                <div class="qn-row">
+                                    <div class="qn-row-body">
+                                        <div class="qn-row-title">Movie Theaters: Surviving and Thriving</div>
+                                        <div class="qn-row-preview">I personally don't think movie theaters are at risk</div>
+                                        <div class="qn-row-meta">Jan 4 at 11:03 AM &bull; 9:24</div>
+                                    </div>
+                                    <i class="ph ph-caret-right"></i>
+                                </div>
+                            </div>
+                            <div class="qn-rec" aria-hidden="true">
+                                <div class="qn-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                                <p class="qn-rec-label">Recording...</p>
+                                <p class="qn-rec-time" data-qn-time>00:00</p>
+                                <p class="qn-rec-mic"><i class="ph ph-microphone"></i> iPhone Microphone</p>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span role="status" data-qn-status>Press Record. This demo never uses your microphone.</span>
+                            <button type="button" class="qn-record-btn" data-qn-record aria-pressed="false"><i class="ph ph-microphone" aria-hidden="true"></i> <span>Record</span></button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Apple Intelligence</h3>
-                    <p class="feature-card-description">Powered by Apple's latest on-device AI models for superior transcription quality.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-lock"></i>
+                    <div class="tile-copy">
+                        <h3>Talk, and it becomes a note.</h3>
+                        <p>Quick Notes turns your voice into high-quality text, then keeps it in your list for later reference.</p>
                     </div>
-                    <h3 class="feature-card-title">100% Private</h3>
-                    <p class="feature-card-description">All processing happens on your device. None of your data is sent to the cloud.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-lightning"></i>
+                </article>
+
+                <!-- On the go -->
+                <article class="tile" style="--span: 7">
+                    <div class="tile-stage qn-shot">
+                        <img src="../../images/quick-notes-writer.jpg" alt="A Quick Note control with a microphone icon in Control Center on an iPhone" loading="lazy">
                     </div>
-                    <h3 class="feature-card-title">Lightning Fast</h3>
-                    <p class="feature-card-description">On-device processing means instant transcription with no network delays.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-pen-nib"></i>
+                    <div class="tile-copy">
+                        <h3>For people who think on their feet.</h3>
+                        <p>Built for authors, journalists, and content creators who think best when they're moving.</p>
                     </div>
-                    <h3 class="feature-card-title">Writer-Focused</h3>
-                    <p class="feature-card-description">Built for authors, journalists, and content creators who think on their feet.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-copy"></i>
+                </article>
+
+                <!-- Stats -->
+                <article class="tile" style="--span: 7" data-qn-demo="stats" data-steps="500">
+                    <div class="tile-stage">
+                        <div class="demo-card qn-stats" role="img" aria-label="Lifetime Stats: 48 notes created, 43 notes cleaned. Most active on Sunday with 13 notes, and in December with 32 notes. A chart of notes for each day of the week.">
+                            <div class="qn-stat-pair">
+                                <div class="qn-stat qn-stat-created">
+                                    <span class="qn-stat-num" data-count-from="0" data-count-to="48">48</span>
+                                    <span class="qn-stat-name">Notes Created</span>
+                                </div>
+                                <div class="qn-stat qn-stat-cleaned">
+                                    <span class="qn-stat-num" data-count-from="0" data-count-to="43">43</span>
+                                    <span class="qn-stat-name">Notes Cleaned</span>
+                                </div>
+                            </div>
+                            <p class="qn-stats-head">Most Active</p>
+                            <div class="qn-stat-pair">
+                                <div class="qn-active"><i class="ph ph-calendar-blank"></i><span><strong>Sunday</strong><small>13 notes</small></span></div>
+                                <div class="qn-active qn-active-month"><i class="ph ph-calendar-blank"></i><span><strong>December</strong><small>32 notes</small></span></div>
+                            </div>
+                            <p class="qn-stats-head">Notes by Day</p>
+                            <div class="qn-chart">
+                                <div class="qn-col" style="--qn-v: 13"><small>13</small><span></span><em>Sun</em></div>
+                                <div class="qn-col" style="--qn-v: 3"><small>3</small><span></span><em>Mon</em></div>
+                                <div class="qn-col" style="--qn-v: 9"><small>9</small><span></span><em>Tue</em></div>
+                                <div class="qn-col" style="--qn-v: 6"><small>6</small><span></span><em>Wed</em></div>
+                                <div class="qn-col" style="--qn-v: 4"><small>4</small><span></span><em>Thu</em></div>
+                                <div class="qn-col" style="--qn-v: 6"><small>6</small><span></span><em>Fri</em></div>
+                                <div class="qn-col" style="--qn-v: 7"><small>7</small><span></span><em>Sat</em></div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Quick Copy & Save</h3>
-                    <p class="feature-card-description">Copy to clipboard instantly or save notes for later reference.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-device-mobile"></i>
+                    <div class="tile-copy">
+                        <h3>Track your note-taking habits.</h3>
+                        <p>See how many notes you've created, which days of the week you're most productive, and other stats about your voice note habits. A fun way to watch your ideas add up over time.</p>
                     </div>
-                    <h3 class="feature-card-title">Native & Elegant</h3>
-                    <p class="feature-card-description">Built with SwiftUI for a beautiful, native iOS experience.</p>
-                </div>
+                </article>
+
+                <!-- The small things -->
+                <article class="tile qn-facts-tile" style="--span: 5">
+                    <ul class="qn-facts">
+                        <li>
+                            <i class="ph ph-lightning" aria-hidden="true"></i>
+                            <div>
+                                <h3>Lightning fast</h3>
+                                <p>On-device processing means instant transcription with no network delays.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="ph ph-copy" aria-hidden="true"></i>
+                            <div>
+                                <h3>Quick copy and save</h3>
+                                <p>Copy to clipboard instantly or save notes for later reference.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="ph ph-device-mobile" aria-hidden="true"></i>
+                            <div>
+                                <h3>Native and elegant</h3>
+                                <p>Built with SwiftUI for a beautiful, native iOS experience.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
             </div>
         </section>
 
@@ -297,5 +454,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./quick-notes.js" defer></script>
 </body>
 </html>
