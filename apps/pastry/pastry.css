@@ -787,6 +787,21 @@ body.calm-app {
     min-height: 19rem;
 }
 
+/* ---------- Headings: sans, not the shared Fraunces serif ----------
+   The --pz-display* properties are also what font-preview.js swaps while a
+   font is being chosen. */
+body.calm-app {
+    --font-display: var(--pz-display, var(--font-sans));
+}
+
+.calm-app .app-hero-title,
+.calm-app .section-title,
+.calm-app .pz-copy h3,
+.calm-app .pz-tile-dark h3 {
+    font-weight: var(--pz-display-weight, 700);
+    letter-spacing: var(--pz-display-tracking, -0.03em);
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     .calm-app .pz-hero-stage *,
