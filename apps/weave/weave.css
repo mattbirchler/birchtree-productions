@@ -1,0 +1,880 @@
+/* Weave - page-local styles for the live feature demos.
+   Loaded only by apps/weave/index.html, on top of app.css. Every rule is
+   scoped under .calm-app and every class is prefixed wv- so nothing here can
+   collide with the shared calm components. The hero, tiles and stepped demo
+   runner come from app.css / app.js; this file overrides a few colour tokens
+   and styles the replicas inside the stages.
+
+   The demos are small HTML replicas of Weave's compose, publish and schedule
+   screens. With no JS they rest in a sensible static state. */
+
+body.calm-app {
+    --hero-wallpaper: linear-gradient(140deg, #c3ecb4 0%, #7fcaa6 50%, #58bcc4 100%);
+    --stage-tint: #eef6ea;
+    --tile-dark-bg: #1c2a14;
+    --tile-dark-muted: #c5dbb4;
+
+    /* Weave's own UI colours, sampled from the screenshots */
+    --wv-green: #4caf0a;
+    --wv-green-deep: #3a8a07;
+    --wv-green-soft: #a5dc7c;
+    --wv-warn: #e8890c;
+    --wv-over: #e5484d;
+}
+
+/* ---------- The compose screen replica ---------- */
+.calm-app .wv-phone {
+    --wv-bg: #ffffff;
+    --wv-canvas: #efeff4;
+    --wv-card: #ffffff;
+    --wv-ink: #111113;
+    --wv-muted: #9a9aa3;
+    --wv-chip: #efeff4;
+
+    position: relative;
+    width: 100%;
+    max-width: 23rem;
+    border-radius: 2.2rem;
+    background: var(--wv-bg);
+    box-shadow: 0 30px 60px -30px rgba(20, 70, 50, 0.55),
+                0 0 0 1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    font-family: var(--font-system);
+    color: var(--wv-ink);
+    text-align: left;
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.calm-app .wv-phone.is-dark {
+    --wv-bg: #000000;
+    --wv-canvas: #1c1c1e;
+    --wv-card: #2c2c2e;
+    --wv-ink: #f5f5f7;
+    --wv-muted: #8e8e93;
+    --wv-chip: #3a3a3c;
+}
+
+.calm-app .wv-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.calm-app .wv-round {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--wv-card);
+    box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.3);
+    color: var(--wv-green);
+    font-size: 1.25rem;
+}
+
+.calm-app .wv-accounts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 0 0.8rem 0.9rem;
+}
+
+.calm-app .wv-account {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.5rem 0.55rem;
+    border: 1.5px solid transparent;
+    border-radius: 0.9rem;
+    background: var(--wv-card);
+    box-shadow: 0 4px 14px -8px rgba(0, 0, 0, 0.25);
+}
+
+.calm-app .wv-account.is-on {
+    border-color: var(--wv-green-soft);
+}
+
+.calm-app .wv-avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 2px solid var(--wv-green);
+    border-radius: 50%;
+    background: #33402c;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+}
+
+.calm-app .wv-avatar-alt {
+    border-color: transparent;
+    background: #c9d3e6;
+    color: #5f6f8f;
+}
+
+.calm-app .wv-account-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .wv-account-name,
+.calm-app .wv-account-handle {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .wv-account-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.calm-app .wv-account-handle {
+    font-size: 0.65rem;
+    color: var(--wv-muted);
+}
+
+.calm-app .wv-account > i {
+    flex: none;
+    color: var(--wv-green);
+    font-size: 0.85rem;
+}
+
+.calm-app .wv-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem 0.8rem;
+    background: var(--wv-canvas);
+    transition: background-color 0.35s ease;
+}
+
+.calm-app .wv-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem;
+    border: 1.5px dashed var(--wv-green-soft);
+    border-radius: 0.9rem;
+    font-size: 0.8rem;
+    color: var(--wv-muted);
+}
+
+.calm-app .wv-add i {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--wv-green) 22%, transparent);
+    color: var(--wv-green);
+}
+
+.calm-app .wv-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 0.9rem 0.8rem 1.1rem;
+}
+
+.calm-app .wv-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: 0;
+    padding: 0.75rem 0.5rem;
+    border: 0;
+    border-radius: 0.9rem;
+    background: var(--wv-chip);
+    color: var(--wv-ink);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calm-app .wv-action-go {
+    background: linear-gradient(180deg, #58b80c 0%, var(--wv-green-deep) 100%);
+    color: #fff;
+}
+
+.calm-app button.wv-action {
+    cursor: pointer;
+    transition: transform 0.35s var(--ease-out);
+}
+
+.calm-app button.wv-action:active {
+    transform: scale(0.94);
+}
+
+/* ---------- A post in the composer ---------- */
+.calm-app .wv-post {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+}
+
+.calm-app .wv-num {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--wv-green);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.calm-app .wv-post-card {
+    flex: 1;
+    min-width: 0;
+    padding: 0.8rem 0.85rem 0.7rem;
+    border: 1.5px solid transparent;
+    border-radius: 1.1rem;
+    background: var(--wv-card, #fff);
+    box-shadow: 0 6px 18px -12px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.2s ease, background-color 0.35s ease;
+}
+
+.calm-app .wv-post.is-active .wv-post-card,
+.calm-app .wv-post-card:focus-within {
+    border-color: var(--wv-green-soft);
+}
+
+.calm-app .wv-post-text {
+    min-height: 3.9em;
+    font-size: 0.92rem;
+    line-height: 1.3;
+}
+
+.calm-app .wv-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.05em;
+    margin-left: 1px;
+    background: var(--wv-green);
+    vertical-align: text-bottom;
+}
+
+.calm-app .wv-post-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+}
+
+.calm-app .wv-media {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.6rem;
+    background: var(--wv-chip, #efeff4);
+    color: var(--wv-muted, #9a9aa3);
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+/* Character counter: remaining count plus a progress ring that shifts from
+   gray to accent to orange to red as the post nears the limit. */
+.calm-app .wv-count {
+    --wv-level: #c4c4cc;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.35rem 0.25rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: var(--wv-chip, #efeff4);
+    color: var(--wv-muted, #8e8e96);
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.calm-app .wv-count[data-level="mid"] { --wv-level: var(--wv-green); }
+.calm-app .wv-count[data-level="high"] { --wv-level: var(--wv-warn); }
+.calm-app .wv-count[data-level="over"] { --wv-level: var(--wv-over); color: var(--wv-over); }
+
+.calm-app .wv-dot {
+    flex: none;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--wv-plat, #b9b9c2);
+}
+
+.calm-app .wv-ring {
+    flex: none;
+    width: 1.3rem;
+    height: 1.3rem;
+    transform: rotate(-90deg);
+}
+
+.calm-app .wv-ring circle {
+    fill: none;
+    stroke-width: 3;
+}
+
+.calm-app .wv-ring-track {
+    stroke: rgba(120, 120, 135, 0.25);
+}
+
+.calm-app .wv-ring-fill {
+    stroke: var(--wv-level);
+    stroke-linecap: round;
+    stroke-dasharray: 56.5;
+    stroke-dashoffset: 56.5;
+    transition: stroke-dashoffset 0.35s var(--ease-out), stroke 0.3s ease;
+}
+
+/* ---------- Hero ambient: the caret blinks ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    .calm-app .wv-caret {
+        animation: wv-blink 1.1s steps(1) infinite;
+    }
+}
+
+@keyframes wv-blink {
+    50% { opacity: 0; }
+}
+
+/* ---------- Demo: platform picker ---------- */
+.calm-app .wv-publish {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.9rem;
+    align-items: start;
+}
+
+.calm-app .wv-label {
+    padding: 0 0.2rem 0.45rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stage-muted);
+}
+
+.calm-app .wv-plats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.calm-app .wv-plat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1.5px solid transparent;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.35);
+    color: var(--color-text);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.3s var(--ease-out);
+}
+
+.calm-app .wv-plat:active {
+    transform: scale(0.97);
+}
+
+.calm-app .wv-plat.is-on,
+.calm-app .wv-plat[aria-pressed="true"] {
+    border-color: color-mix(in srgb, var(--wv-plat) 50%, #fff);
+}
+
+.calm-app .wv-plat-mark {
+    flex: none;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: var(--wv-plat);
+}
+
+.calm-app .wv-plat-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .wv-plat-handle,
+.calm-app .wv-plat-name {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .wv-plat-handle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.calm-app .wv-plat-name {
+    font-size: 0.72rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .wv-check {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 1.5px solid #d2d2d8;
+    border-radius: 50%;
+    color: transparent;
+    font-size: 0.75rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.calm-app .wv-plat.is-on .wv-check,
+.calm-app .wv-plat[aria-pressed="true"] .wv-check {
+    border-color: var(--wv-plat);
+    background: var(--wv-plat);
+    color: #fff;
+}
+
+.calm-app .wv-draft {
+    padding: 0.85rem;
+}
+
+.calm-app .wv-draft-text {
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.calm-app .wv-limit {
+    margin-top: 0.6rem;
+    padding: 0 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--stage-muted);
+}
+
+.calm-app .wv-limit.is-over {
+    color: var(--wv-over);
+}
+
+/* ---------- Demo: thread composer ---------- */
+.calm-app .wv-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    min-height: 17rem;
+}
+
+/* The connector runs from one number down to the next. */
+.calm-app .wv-thread .wv-post:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 1.6rem;
+    bottom: -0.7rem;
+    left: calc(0.8rem - 1px);
+    width: 2px;
+    background: var(--wv-green-soft);
+}
+
+.calm-app .wv-post-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.calm-app .wv-post-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9a9aa3;
+}
+
+.calm-app .wv-remove {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 0;
+    border-radius: 50%;
+    background: #f2f2f6;
+    color: #8e8e96;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.calm-app .wv-remove[hidden] {
+    display: none;
+}
+
+.calm-app .wv-input {
+    display: block;
+    width: 100%;
+    min-height: 2.8em;
+    border: 0;
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.35;
+    resize: none;
+    overflow: hidden;
+}
+
+.calm-app .wv-input:focus-visible {
+    outline: none;
+}
+
+.calm-app .wv-post-card:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.calm-app .wv-keys {
+    min-width: 0;
+}
+
+.calm-app .wv-keys kbd {
+    display: inline-block;
+    margin: 0 0.1rem;
+    padding: 0.05rem 0.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 0.4rem;
+    background: #fff;
+    font-family: inherit;
+    font-size: 0.72rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.calm-app .wv-keys kbd.is-hit {
+    background: var(--wv-green);
+    border-color: var(--wv-green);
+    color: #fff;
+}
+
+/* ---------- Demo: natural language scheduling ---------- */
+.calm-app .wv-nl {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 8px 20px -14px rgba(0, 0, 0, 0.35);
+    color: var(--wv-green);
+    font-size: 1.1rem;
+}
+
+.calm-app .wv-nl input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.calm-app .wv-nl input::placeholder {
+    color: #a9a9b2;
+}
+
+.calm-app .wv-nl input:focus-visible {
+    outline: none;
+}
+
+.calm-app .wv-nl:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.calm-app .wv-phrases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.calm-app .wv-go {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.9rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.9rem;
+    background: linear-gradient(180deg, #58b80c 0%, var(--wv-green-deep) 100%);
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-align: center;
+    transition: opacity 0.25s ease;
+}
+
+.calm-app .wv-go.is-idle {
+    background: #e3e6e0;
+    color: #7c8377;
+}
+
+/* ---------- Demo: queue and date picker ---------- */
+.calm-app .wv-queue {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1.5px solid transparent;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 8px 20px -14px rgba(0, 0, 0, 0.35);
+    color: var(--color-text);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.3s var(--ease-out);
+}
+
+.calm-app .wv-queue:active {
+    transform: scale(0.97);
+}
+
+.calm-app .wv-queue[aria-pressed="true"] {
+    border-color: var(--wv-green-soft);
+}
+
+.calm-app .wv-queue-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.6rem;
+    background: #e3f4d6;
+    color: var(--wv-green);
+    font-size: 1.15rem;
+}
+
+.calm-app .wv-queue-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .wv-queue-title {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.calm-app .wv-queue-sub {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .wv-queue > i {
+    flex: none;
+    color: #b4b4bc;
+}
+
+.calm-app .wv-cal {
+    padding: 0.8rem 0.6rem 0.6rem;
+}
+
+.calm-app .wv-cal-month {
+    padding: 0 0.4rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.calm-app .wv-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    row-gap: 0.1rem;
+    justify-items: center;
+}
+
+.calm-app .wv-cal-grid > * {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 2rem;
+    aspect-ratio: 1;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.calm-app .wv-cal-grid .wv-dow {
+    aspect-ratio: auto;
+    padding-bottom: 0.2rem;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #a9a9b2;
+}
+
+.calm-app .wv-cal-grid .wv-past {
+    color: #c9c9d0;
+}
+
+.calm-app .wv-cal-grid button {
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .wv-cal-grid button:hover {
+    background: #e3f4d6;
+}
+
+.calm-app .wv-cal-grid button[aria-pressed="true"] {
+    background: var(--wv-green);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ---------- Demo: native feel (appearance and sheet) ---------- */
+.calm-app .wv-native {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.calm-app .wv-seg {
+    display: inline-flex;
+    padding: 0.2rem;
+    border-radius: var(--radius-pill);
+    background: rgba(118, 128, 110, 0.16);
+}
+
+.calm-app .wv-seg button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.calm-app .wv-seg button[aria-pressed="true"] {
+    background: #fff;
+    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.25);
+}
+
+.calm-app .wv-phone-mini {
+    max-width: 20rem;
+    border-radius: 1.8rem;
+    box-shadow: 0 20px 40px -26px rgba(20, 70, 50, 0.5),
+                0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.calm-app .wv-phone-mini .wv-post-text {
+    min-height: 2.8em;
+}
+
+/* The publish sheet springs up over the composer. */
+.calm-app .wv-sheet {
+    position: absolute;
+    inset: 2.6rem 0 0;
+    z-index: 2;
+    padding: 0.8rem;
+    border-radius: 1.4rem 1.4rem 0 0;
+    background: var(--wv-canvas);
+    box-shadow: 0 -12px 30px -12px rgba(0, 0, 0, 0.35);
+    visibility: hidden;
+    transform: translateY(105%);
+    transition: transform 0.5s var(--ease-out),
+                visibility 0s linear 0.5s;
+}
+
+.calm-app .wv-phone.is-sheet .wv-sheet {
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+}
+
+.calm-app .wv-sheet-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.2rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.calm-app .wv-cancel {
+    position: absolute;
+    left: 0;
+    padding: 0.4rem 0.8rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--wv-card);
+    color: var(--wv-muted);
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.calm-app .wv-sheet .wv-label {
+    color: var(--wv-muted);
+}
+
+.calm-app .wv-sheet .wv-plat {
+    background: var(--wv-card);
+    color: var(--wv-ink);
+    cursor: default;
+}
+
+.calm-app .wv-sheet .wv-plat-name {
+    color: var(--wv-muted);
+}
+
+.calm-app .wv-sheet .wv-plat-mark {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+    .calm-app .wv-publish {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .wv-action {
+        font-size: 0.82rem;
+    }
+}

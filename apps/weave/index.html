@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=0a7e2e36">
+    <link rel="stylesheet" href="./weave.css">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -72,13 +73,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/typefully-icon.png" alt="Weave" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    A native<br>
-                    <span class="accent-line">Typefully experience.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">A native Typefully experience.</h1>
                 <p class="app-hero-subtitle wipe">
                     A proper iOS app for <a href="https://typefully.com/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Typefully</a>. Write threads, schedule posts with natural language, and publish to every platform in one tap.
                 </p>
@@ -89,104 +87,284 @@
                     </a>
                 </div>
             </div>
-        </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/weave-hero.jpg" alt="Weave app showing the compose screen with multi-platform publishing" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Cross-Platform Publishing -->
-        <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Multi-Platform</p>
-                    <h2 class="feature-title">Write once, publish everywhere.</h2>
-                    <p class="feature-description">
-                        Publish to Mastodon, Threads, Bluesky, X, and LinkedIn simultaneously. The platform picker shows your actual @username for each connected account and uses each platform's real brand colors.
-                    </p>
-                    <p class="feature-description">
-                        Weave warns you if you've exceeded the most restrictive character limit across your selected platforms. No switching between apps, no copy-pasting.
-                    </p>
-                    <div class="chip-row" style="justify-content: flex-start; margin-top: 1.25rem;">
-                        <span class="chip"><span class="chip-dot" style="--chip-dot: #6364ff;"></span>Mastodon</span>
-                        <span class="chip"><span class="chip-dot" style="--chip-dot: #101010;"></span>Threads</span>
-                        <span class="chip"><span class="chip-dot" style="--chip-dot: #0085ff;"></span>Bluesky</span>
-                        <span class="chip"><span class="chip-dot" style="--chip-dot: #101010;"></span>X</span>
-                        <span class="chip"><span class="chip-dot" style="--chip-dot: #0a66c2;"></span>LinkedIn</span>
+            <div class="app-hero-stage" role="img" aria-label="The Weave compose screen. A post is being written and the character counter counts down as it grows.">
+                <div class="wv-phone" aria-hidden="true">
+                    <div class="wv-bar">
+                        <span class="wv-round"><i class="ph ph-calendar-dots"></i></span>
+                        <span>Compose</span>
+                        <span class="wv-round"><i class="ph ph-gear"></i></span>
+                    </div>
+                    <div class="wv-accounts">
+                        <div class="wv-account is-on">
+                            <span class="wv-avatar">MB</span>
+                            <span class="wv-account-body">
+                                <span class="wv-account-name">Personal</span>
+                                <span class="wv-account-handle">@matt_birchler</span>
+                            </span>
+                            <i class="ph ph-check"></i>
+                        </div>
+                        <div class="wv-account">
+                            <span class="wv-avatar wv-avatar-alt">TA</span>
+                            <span class="wv-account-body">
+                                <span class="wv-account-name">Testing Account</span>
+                                <span class="wv-account-handle">@4564567262462</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="wv-canvas">
+                        <div class="wv-post is-active">
+                            <span class="wv-num">1</span>
+                            <div class="wv-post-card">
+                                <p class="wv-post-text"><span data-hero-type>You can write amazing (or not so amazing) threads for Weave!</span><span class="wv-caret"></span></p>
+                                <div class="wv-post-foot">
+                                    <span class="wv-media"><i class="ph ph-image"></i> Add Media</span>
+                                    <span class="wv-count" data-level="low" data-hero-count>
+                                        <span class="wv-dot" style="--wv-plat: #0085ff"></span><span data-num>240</span>
+                                        <svg class="wv-ring" viewBox="0 0 24 24"><circle class="wv-ring-track" cx="12" cy="12" r="9"/><circle class="wv-ring-fill" cx="12" cy="12" r="9" style="stroke-dashoffset: 45.2"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wv-add"><i class="ph ph-plus"></i> Add to thread</div>
+                    </div>
+                    <div class="wv-actions">
+                        <span class="wv-action"><i class="ph ph-clock"></i> Schedule</span>
+                        <span class="wv-action wv-action-go"><i class="ph ph-paper-plane-tilt"></i> Publish</span>
                     </div>
                 </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/weave-platforms.png" alt="Weave app showing platform picker with connected accounts">
-                </div>
+            </div>
+        </header>
+
+        <!-- Publishing and threads -->
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Multi-Platform</p>
+                <h2 class="section-title wipe">Write once, publish everywhere.</h2>
+                <p class="section-subtitle wipe">Publish to Mastodon, Threads, Bluesky, X, and LinkedIn simultaneously.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Platform picker -->
+                <article class="tile" style="--span: 7" data-demo="platforms">
+                    <div class="tile-stage">
+                        <div class="wv-publish">
+                            <div>
+                                <p class="wv-label" aria-hidden="true">Publish to</p>
+                                <div class="wv-plats">
+                                    <button type="button" class="wv-plat" style="--wv-plat: #6364ff" data-name="Mastodon" data-limit="500" aria-pressed="true">
+                                        <span class="wv-plat-mark" aria-hidden="true"></span>
+                                        <span class="wv-plat-body"><span class="wv-plat-handle">@matt_birchler</span><span class="wv-plat-name">Mastodon</span></span>
+                                        <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                    </button>
+                                    <button type="button" class="wv-plat" style="--wv-plat: #101010" data-name="Threads" data-limit="500" aria-pressed="true">
+                                        <span class="wv-plat-mark" aria-hidden="true"></span>
+                                        <span class="wv-plat-body"><span class="wv-plat-handle">@mattbirchler</span><span class="wv-plat-name">Threads</span></span>
+                                        <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                    </button>
+                                    <button type="button" class="wv-plat" style="--wv-plat: #0085ff" data-name="Bluesky" data-limit="300" aria-pressed="true">
+                                        <span class="wv-plat-mark" aria-hidden="true"></span>
+                                        <span class="wv-plat-body"><span class="wv-plat-handle">@birchtree.me</span><span class="wv-plat-name">Bluesky</span></span>
+                                        <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                    </button>
+                                    <button type="button" class="wv-plat" style="--wv-plat: #101010" data-name="X" data-limit="280" aria-pressed="false">
+                                        <span class="wv-plat-mark" aria-hidden="true"></span>
+                                        <span class="wv-plat-body"><span class="wv-plat-handle">@mattbirchler</span><span class="wv-plat-name">X</span></span>
+                                        <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                    </button>
+                                    <button type="button" class="wv-plat" style="--wv-plat: #0a66c2" data-name="LinkedIn" data-limit="3000" aria-pressed="false">
+                                        <span class="wv-plat-mark" aria-hidden="true"></span>
+                                        <span class="wv-plat-body"><span class="wv-plat-handle">Matt Birchler</span><span class="wv-plat-name">LinkedIn</span></span>
+                                        <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="demo-card wv-draft">
+                                    <p class="wv-draft-text">Spent the morning rewriting a post I thought was finished. Cut the intro, moved the best line to the top, and deleted two paragraphs I loved but nobody needed. It is shorter now and it says more. Editing is mostly deciding what the reader can live without. Posting it before I change my mind.</p>
+                                    <div class="wv-post-foot">
+                                        <span class="wv-media" aria-hidden="true"><i class="ph ph-image"></i> Add Media</span>
+                                        <span class="wv-count" data-level="high" aria-hidden="true">
+                                            <span class="wv-dot" style="--wv-plat: #0085ff"></span><span data-num>8</span>
+                                            <svg class="wv-ring" viewBox="0 0 24 24"><circle class="wv-ring-track" cx="12" cy="12" r="9"/><circle class="wv-ring-fill" cx="12" cy="12" r="9" style="stroke-dashoffset: 1.5"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                                <p class="wv-limit" aria-live="polite">Tightest limit: Bluesky, 300 characters.</p>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Tap a platform to add or remove it. Try X.</span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Pick your platforms. Weave watches the limit.</h3>
+                        <p>The platform picker shows your actual @username for each connected account and uses each platform's real brand colors. Weave warns you if you've exceeded the most restrictive character limit across your selected platforms.</p>
+                    </div>
+                </article>
+
+                <!-- One tap -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+                    <div>
+                        <h3>Every platform in one tap.</h3>
+                        <p>No switching between apps, no copy-pasting.</p>
+                    </div>
+                </article>
+
+                <!-- Thread composer -->
+                <article class="tile tile-split" style="--span: 12" data-demo="thread">
+                    <div class="tile-copy">
+                        <h3>Threads that just work.</h3>
+                        <p>Triple-newline to split a post into a new thread item. No buttons, no drag-and-drop, just write naturally. A visual thread connector makes the structure obvious at a glance.</p>
+                        <p>Each post gets its own character counter that's aware of which platform has the tightest limit, and its progress ring shifts from gray to accent to orange to red as you approach the limit.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="wv-thread" data-thread>
+                            <div class="wv-post">
+                                <span class="wv-num" aria-hidden="true">1</span>
+                                <div class="wv-post-card">
+                                    <div class="wv-post-head"><span class="wv-post-label">Post 1</span></div>
+                                    <textarea class="wv-input" rows="1" aria-label="Post 1" spellcheck="false">Here&rsquo;s your first post.</textarea>
+                                </div>
+                            </div>
+                            <div class="wv-post">
+                                <span class="wv-num" aria-hidden="true">2</span>
+                                <div class="wv-post-card">
+                                    <div class="wv-post-head"><span class="wv-post-label">Post 2</span></div>
+                                    <textarea class="wv-input" rows="1" aria-label="Post 2" spellcheck="false">And here&rsquo;s the second.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="wv-keys">Type in a post, then press <kbd>&crarr;</kbd><kbd>&crarr;</kbd><kbd>&crarr;</kbd> to start the next.</span>
+                            <button type="button" class="demo-btn demo-replay" data-wv-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Thread Composition -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Thread Composer</p>
-                    <h2 class="feature-title">Threads that just work.</h2>
-                    <p class="feature-description">
-                        Triple-newline to split a post into a new thread item. No buttons, no drag-and-drop, just write naturally. Each post gets its own character counter that's aware of which platform has the tightest limit.
-                    </p>
-                    <p class="feature-description">
-                        A visual thread connector between posts makes the structure obvious at a glance, and the character counter's progress ring shifts from gray to accent to orange to red as you approach the limit.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/weave-threads.png" alt="Weave app showing thread composition with visual connectors">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Natural Language Scheduling -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Smart Scheduling</p>
-                    <h2 class="feature-title">Schedule in plain English.</h2>
-                    <p class="feature-description">
-                        "Tomorrow at 3pm", "in 2 hours", "next tuesday at 9am": type it in plain English and it parses on-device using Apple Foundation Models. No network call, no privacy concern.
-                    </p>
-                    <p class="feature-description">
-                        There's also a graphical date picker as a fallback, plus "Add to Queue" to let Typefully auto-schedule your post in the next available slot.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/weave-scheduling.png" alt="Weave app showing natural language scheduling">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature Grid -->
+        <!-- Scheduling and polish -->
         <section class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">The Details</p>
                 <h2 class="section-title wipe">Polish you can feel.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-device-mobile"></i>
+
+            <div class="bento">
+                <!-- Natural language scheduling -->
+                <article class="tile" style="--span: 7" data-demo="schedule">
+                    <div class="tile-stage">
+                        <p class="wv-label" aria-hidden="true">Schedule for...</p>
+                        <label class="wv-nl">
+                            <i class="ph ph-sparkle" aria-hidden="true"></i>
+                            <input type="text" placeholder="e.g., &quot;in 2 hours&quot; or &quot;tomorrow at 3pm&quot;" aria-label="When to schedule the example post" data-when-input data-autotype="tomorrow at 3pm" autocomplete="off" spellcheck="false">
+                        </label>
+                        <div class="wv-phrases">
+                            <button type="button" class="demo-btn" data-phrase="tomorrow at 3pm">tomorrow at 3pm</button>
+                            <button type="button" class="demo-btn" data-phrase="in 2 hours">in 2 hours</button>
+                            <button type="button" class="demo-btn" data-phrase="next tuesday at 9am">next tuesday at 9am</button>
+                        </div>
+                        <div class="wv-go is-idle" aria-live="polite"><i class="ph ph-clock" aria-hidden="true"></i> <span>Type a time</span></div>
                     </div>
-                    <h3 class="feature-card-title">Truly Native iOS App</h3>
-                    <p class="feature-card-description">Built with SwiftUI. Spring animations, haptic feedback, dynamic sheets, and system colors that adapt to light and dark mode.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-chat-centered-text"></i>
+                    <div class="tile-copy">
+                        <h3>Schedule in plain English.</h3>
+                        <p>"Tomorrow at 3pm", "in 2 hours", "next tuesday at 9am": type it in plain English and it parses on-device using Apple Foundation Models. No network call, no privacy concern.</p>
                     </div>
-                    <h3 class="feature-card-title">Outstanding Threading</h3>
-                    <p class="feature-card-description">Triple-newline to split posts into threads. Visual connectors and per-post character counters make composing threads effortless.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-calendar-check"></i>
+                </article>
+
+                <!-- Queue and date picker -->
+                <article class="tile" style="--span: 5" data-demo="picker">
+                    <div class="tile-stage">
+                        <button type="button" class="wv-queue" aria-pressed="false">
+                            <span class="wv-queue-icon" aria-hidden="true"><i class="ph ph-list-bullets"></i></span>
+                            <span class="wv-queue-body">
+                                <span class="wv-queue-title">Add to Queue</span>
+                                <span class="wv-queue-sub">Schedule for next available slot</span>
+                            </span>
+                            <i class="ph ph-caret-right" aria-hidden="true"></i>
+                        </button>
+                        <div class="demo-card wv-cal">
+                            <p class="wv-cal-month">February 2026</p>
+                            <div class="wv-cal-grid">
+                                <span class="wv-dow">MON</span><span class="wv-dow">TUE</span><span class="wv-dow">WED</span><span class="wv-dow">THU</span><span class="wv-dow">FRI</span><span class="wv-dow">SAT</span><span class="wv-dow">SUN</span>
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span class="wv-past">1</span>
+                                <span class="wv-past">2</span><span class="wv-past">3</span><span class="wv-past">4</span><span class="wv-past">5</span><span class="wv-past">6</span><span class="wv-past">7</span><span class="wv-past">8</span>
+                                <span class="wv-past">9</span><span class="wv-past">10</span><span class="wv-past">11</span><span class="wv-past">12</span><span class="wv-past">13</span><span class="wv-past">14</span><span class="wv-past">15</span>
+                                <button type="button" data-day="16" aria-pressed="true" aria-label="February 16">16</button><button type="button" data-day="17" aria-pressed="false" aria-label="February 17">17</button><button type="button" data-day="18" aria-pressed="false" aria-label="February 18">18</button><button type="button" data-day="19" aria-pressed="false" aria-label="February 19">19</button><button type="button" data-day="20" aria-pressed="false" aria-label="February 20">20</button><button type="button" data-day="21" aria-pressed="false" aria-label="February 21">21</button><button type="button" data-day="22" aria-pressed="false" aria-label="February 22">22</button>
+                                <button type="button" data-day="23" aria-pressed="false" aria-label="February 23">23</button><button type="button" data-day="24" aria-pressed="false" aria-label="February 24">24</button><button type="button" data-day="25" aria-pressed="false" aria-label="February 25">25</button><button type="button" data-day="26" aria-pressed="false" aria-label="February 26">26</button><button type="button" data-day="27" aria-pressed="false" aria-label="February 27">27</button><button type="button" data-day="28" aria-pressed="false" aria-label="February 28">28</button>
+                            </div>
+                        </div>
+                        <div class="wv-go" aria-live="polite"><i class="ph ph-clock" aria-hidden="true"></i> <span>Schedule for 2/16/26, 8:48 AM</span></div>
                     </div>
-                    <h3 class="feature-card-title">Schedule & Queue</h3>
-                    <p class="feature-card-description">Schedule posts with natural language like "tomorrow at 3pm", use the graphical date picker, or add to your Typefully queue.</p>
-                </div>
+                    <div class="tile-copy">
+                        <h3>Or pick a date, or join the queue.</h3>
+                        <p>There's also a graphical date picker as a fallback, plus "Add to Queue" to let Typefully auto-schedule your post in the next available slot.</p>
+                    </div>
+                </article>
+
+                <!-- Native feel -->
+                <article class="tile tile-split" style="--span: 12" data-demo="native">
+                    <div class="tile-copy">
+                        <h3>A truly native iOS app.</h3>
+                        <p>Built with SwiftUI. Spring animations, haptic feedback, dynamic sheets, and system colors that adapt to light and dark mode. Switch the appearance, then tap Publish.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="wv-native">
+                            <div class="wv-seg" role="group" aria-label="Appearance of the example screen">
+                                <button type="button" data-mode="light" aria-pressed="true"><i class="ph ph-sun" aria-hidden="true"></i> Light</button>
+                                <button type="button" data-mode="dark" aria-pressed="false"><i class="ph ph-moon" aria-hidden="true"></i> Dark</button>
+                            </div>
+                            <div class="wv-phone wv-phone-mini">
+                                <div class="wv-bar" aria-hidden="true">
+                                    <span class="wv-round"><i class="ph ph-calendar-dots"></i></span>
+                                    <span>Compose</span>
+                                    <span class="wv-round"><i class="ph ph-gear"></i></span>
+                                </div>
+                                <div class="wv-canvas" aria-hidden="true">
+                                    <div class="wv-post is-active">
+                                        <span class="wv-num">1</span>
+                                        <div class="wv-post-card">
+                                            <p class="wv-post-text">You can write amazing (or not so amazing) threads for Weave!</p>
+                                            <div class="wv-post-foot">
+                                                <span class="wv-media"><i class="ph ph-image"></i> Add Media</span>
+                                                <span class="wv-count" data-level="low">
+                                                    <span class="wv-dot" style="--wv-plat: #0085ff"></span><span>240</span>
+                                                    <svg class="wv-ring" viewBox="0 0 24 24"><circle class="wv-ring-track" cx="12" cy="12" r="9"/><circle class="wv-ring-fill" cx="12" cy="12" r="9" style="stroke-dashoffset: 45.2"/></svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wv-add"><i class="ph ph-plus"></i> Add to thread</div>
+                                </div>
+                                <div class="wv-actions">
+                                    <span class="wv-action" aria-hidden="true"><i class="ph ph-clock"></i> Schedule</span>
+                                    <button type="button" class="wv-action wv-action-go" data-sheet-open aria-expanded="false"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> Publish</button>
+                                </div>
+                                <div class="wv-sheet">
+                                    <div class="wv-sheet-bar">
+                                        <button type="button" class="wv-cancel" data-sheet-close>Cancel</button>
+                                        <span>Publish</span>
+                                    </div>
+                                    <p class="wv-label">Publish to</p>
+                                    <div class="wv-plats">
+                                        <div class="wv-plat is-on" style="--wv-plat: #6364ff">
+                                            <span class="wv-plat-mark" aria-hidden="true"></span>
+                                            <span class="wv-plat-body"><span class="wv-plat-handle">@matt_birchler</span><span class="wv-plat-name">Mastodon</span></span>
+                                            <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                        </div>
+                                        <div class="wv-plat is-on" style="--wv-plat: #0085ff">
+                                            <span class="wv-plat-mark" aria-hidden="true"></span>
+                                            <span class="wv-plat-body"><span class="wv-plat-handle">@birchtree.me</span><span class="wv-plat-name">Bluesky</span></span>
+                                            <span class="wv-check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -233,5 +411,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./weave.js" defer></script>
 </body>
 </html>
