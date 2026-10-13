@@ -1,0 +1,836 @@
+/* Quick Reviews - page-local styles for the live feature demos.
+   Loaded only by apps/quick-reviews/index.html, on top of app.css. Every rule
+   is scoped under .calm-app and every class is prefixed qv- so nothing here
+   can collide with the shared calm components. The hero, tiles and stepped
+   demo runner come from app.css / app.js; this file styles the replicas
+   inside the stages.
+
+   The main replica is the review card the app exports. It is sized in em
+   against its own width (container query units), so it scales like the
+   image it stands in for. Its look is driven by custom properties
+   (--qv-bg, --qv-ink, --qv-score) and data-layout / data-font attributes
+   that quick-reviews.js sets. With no JS every demo rests in its "before"
+   state. */
+
+body.calm-app {
+    --stage-tint: #f4f1f1;
+    --hero-wallpaper: linear-gradient(140deg, #f6d9d2 0%, #eda7a2 55%, #d9777c 100%);
+    --tile-dark-bg: #26304a;
+    --tile-dark-muted: #c3cbe0;
+}
+
+/* ---------- The review card ---------- */
+.calm-app .qv-card {
+    container-type: inline-size;
+    width: 100%;
+    font-family: var(--font-system);
+    text-align: left;
+    transition: width 0.45s var(--ease-out);
+}
+
+.calm-app .qv-card-in {
+    --qv-display: 'Avenir Next Condensed', 'Arial Narrow', var(--font-system);
+    position: relative;
+    display: grid;
+    grid-template-columns: 7.6em minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+        "poster head"
+        "poster text"
+        "scores scores";
+    gap: 0.5em 1.1em;
+    padding: 1em;
+    border-radius: 1.1em;
+    background: var(--qv-bg, #2b3650);
+    color: var(--qv-ink, #fff);
+    font-size: clamp(9px, 3.4cqw, 18px);
+    overflow: hidden;
+    box-shadow: 0 1.4em 2.6em -1.6em rgba(40, 10, 20, 0.7);
+    transition: background-color 1.2s ease, color 0.3s ease;
+}
+
+.calm-app .qv-poster {
+    grid-area: poster;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    aspect-ratio: 2 / 3;
+    padding: 0.5em;
+    border-radius: 0.55em;
+    overflow: hidden;
+    color: #fff;
+    font-family: var(--qv-display);
+    font-size: 0.78em;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.calm-app .qv-head {
+    grid-area: head;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6em;
+    min-width: 0;
+}
+
+.calm-app .qv-head-text {
+    min-width: 0;
+}
+
+.calm-app .qv-title {
+    font-family: var(--qv-display);
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.calm-app .qv-meta {
+    font-family: var(--qv-display);
+    font-size: 0.95em;
+    font-weight: 600;
+    opacity: 0.72;
+}
+
+.calm-app .qv-badge {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: 0.3em;
+    padding: 0.2em 0.6em 0.2em 0.3em;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 0.62em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calm-app .qv-badge b {
+    display: grid;
+    place-items: center;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #fff;
+    color: #1d1d1f;
+    font-size: 0.85em;
+}
+
+.calm-app .qv-text {
+    grid-area: text;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    align-self: start;
+    overflow: hidden;
+    font-size: 0.82em;
+    line-height: 1.5;
+}
+
+.calm-app .qv-scores {
+    grid-area: scores;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 0.4em;
+    padding: 0.2em;
+    border-radius: var(--radius-pill);
+    box-shadow: inset 0 0 0 0.12em rgba(0, 0, 0, 0.16);
+}
+
+.calm-app .qv-score {
+    padding: 0.35em 0.2em;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: inherit;
+    font-family: var(--qv-display);
+    font-size: 0.85em;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.calm-app .qv-score:not(.is-active) {
+    opacity: 0.6;
+}
+
+.calm-app .qv-score.is-active {
+    background: var(--qv-score, #b4fd8c);
+    color: #111;
+}
+
+.calm-app button.qv-score {
+    cursor: pointer;
+}
+
+.calm-app button.qv-score:hover {
+    opacity: 1;
+}
+
+/* Layout: Square. The same pieces in a 1:1 frame. */
+.calm-app .qv-card[data-layout="square"] {
+    width: 62%;
+}
+
+.calm-app .qv-card[data-layout="square"] .qv-card-in {
+    aspect-ratio: 1;
+    grid-template-columns: 5.4em minmax(0, 1fr);
+    grid-template-areas:
+        "poster head"
+        "text text"
+        "scores scores";
+    font-size: clamp(9px, 4.8cqw, 18px);
+}
+
+.calm-app .qv-card[data-layout="square"] .qv-head {
+    flex-direction: column;
+    gap: 0;
+}
+
+.calm-app .qv-card[data-layout="square"] .qv-text {
+    -webkit-line-clamp: 5;
+}
+
+/* Layout: Showcase. The artwork fills the card and the words sit on it. */
+.calm-app .qv-card[data-layout="showcase"] .qv-card-in {
+    aspect-ratio: 40 / 21;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "head"
+        "text";
+    padding: 1.4em;
+}
+
+.calm-app .qv-card[data-layout="showcase"] .qv-poster {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    border-radius: 0;
+    font-size: 0;
+}
+
+.calm-app .qv-card[data-layout="showcase"] .qv-poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.calm-app .qv-card[data-layout="showcase"] .qv-head,
+.calm-app .qv-card[data-layout="showcase"] .qv-text {
+    position: relative;
+    color: #fff;
+    text-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.6);
+}
+
+.calm-app .qv-card[data-layout="showcase"] .qv-meta {
+    opacity: 1;
+}
+
+.calm-app .qv-card[data-layout="showcase"] .qv-text {
+    align-self: end;
+    -webkit-line-clamp: 2;
+    font-size: 0.95em;
+}
+
+.calm-app .qv-card[data-layout="showcase"] .qv-scores {
+    display: none;
+}
+
+/* Fonts */
+.calm-app .qv-card[data-font="serif"] .qv-card-in,
+.calm-app .qv-font[data-qv-font="serif"] {
+    --qv-display: 'New York', ui-serif, Georgia, serif;
+    font-family: 'New York', ui-serif, Georgia, serif;
+}
+
+.calm-app .qv-card[data-font="rounded"] .qv-card-in,
+.calm-app .qv-font[data-qv-font="rounded"] {
+    --qv-display: ui-rounded, 'SF Pro Rounded', 'Arial Rounded MT Bold', var(--font-system);
+    font-family: ui-rounded, 'SF Pro Rounded', 'Arial Rounded MT Bold', var(--font-system);
+}
+
+.calm-app .qv-card[data-font="marker"] .qv-card-in,
+.calm-app .qv-font[data-qv-font="marker"] {
+    --qv-display: 'Marker Felt', 'Chalkboard SE', 'Comic Sans MS', cursive;
+    font-family: 'Marker Felt', 'Chalkboard SE', 'Comic Sans MS', cursive;
+}
+
+/* ---------- Painted stand-ins for poster art ---------- */
+.calm-app .qv-art-battle {
+    background:
+        radial-gradient(circle at 78% 78%, #ffe9a8 0 7%, transparent 8%),
+        linear-gradient(180deg, #6b3a1c 0%, #d9742e 42%, #f2b25a 74%, #8a4a22 100%);
+}
+
+.calm-app .qv-art-bugonia {
+    background: linear-gradient(180deg, #8f1d1d 0 26%, #e0a52e 26% 44%, #efd9c3 44% 100%);
+    color: #141414;
+}
+
+.calm-app .qv-art-28 {
+    background:
+        radial-gradient(circle at 50% 38%, transparent 0 24%, #c8202a 25% 31%, transparent 32%),
+        linear-gradient(180deg, #cdd3cd 0%, #7d8a80 62%, #2c302d 100%);
+}
+
+.calm-app .qv-art-marty {
+    background: linear-gradient(165deg, #2f4a66 0%, #8fa6b8 46%, #e6c64a 47% 58%, #3a4750 59% 100%);
+}
+
+.calm-app .qv-art-sentimental,
+.calm-app .qv-art-sentimental-1 {
+    background: linear-gradient(160deg, #b98a6a 0%, #7a4a34 55%, #3c241b 100%);
+}
+
+.calm-app .qv-art-sentimental-2 {
+    background: linear-gradient(180deg, #e9dfd0 0 48%, #a9623f 48% 100%);
+    color: #2a1a12;
+}
+
+.calm-app .qv-art-sentimental-3 {
+    background:
+        radial-gradient(circle at 50% 36%, #f1c9a0 0 22%, transparent 23%),
+        #1f2a33;
+}
+
+.calm-app .qv-art-sentimental-4 {
+    background: linear-gradient(135deg, #d8b25a 0%, #c0633c 50%, #5a2030 100%);
+}
+
+.calm-app .qv-art-hollow {
+    background:
+        radial-gradient(ellipse 60% 120% at 100% 50%, #0b0b0b 0 62%, transparent 63%),
+        radial-gradient(circle at 46% 54%, #e2e2e2 0 22%, #cfcfcf 31%, rgba(207, 207, 207, 0) 32%),
+        #1b1b1b;
+}
+
+.calm-app .qv-art-tv {
+    background: linear-gradient(180deg, #dfe8ee 0 52%, #1f5d7a 52% 100%);
+    color: #fff;
+}
+
+.calm-app .qv-art-game {
+    background:
+        radial-gradient(circle at 50% 100%, #f2a33a 0 34%, transparent 35%),
+        linear-gradient(180deg, #2a1846 0%, #7c2a5a 100%);
+}
+
+.calm-app .qv-art-book {
+    background:
+        radial-gradient(circle at 60% 34%, #f6d776 0 12%, transparent 13%),
+        linear-gradient(180deg, #0c1a33 0%, #1d3f6e 100%);
+}
+
+.calm-app .qv-art-music {
+    background:
+        radial-gradient(circle at 50% 50%, #f3ead8 0 9%, #1a1a1a 10% 44%, transparent 45%),
+        #d8c9a8;
+}
+
+/* ---------- Hero: two finished reviews ---------- */
+.calm-app .qv-hero-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 31rem;
+}
+
+.calm-app .qv-hero-stack .qv-card:first-child {
+    transform: rotate(-1.4deg);
+}
+
+.calm-app .qv-hero-stack .qv-card:last-child {
+    transform: rotate(1.2deg);
+}
+
+/* ---------- Demo: style ---------- */
+.calm-app .qv-style-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Holds its shape while the card inside changes layout. */
+.calm-app .qv-frame {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    aspect-ratio: 100 / 64;
+}
+
+.calm-app .qv-style {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1rem;
+}
+
+.calm-app .qv-group-label {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.calm-app .qv-seg {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.3rem;
+}
+
+.calm-app .qv-seg-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.5rem 0.2rem;
+    border: 0;
+    border-radius: 0.7rem;
+    background: transparent;
+    color: var(--stage-muted);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .qv-seg-btn i {
+    font-size: 1.4rem;
+}
+
+.calm-app .qv-seg-btn.is-active {
+    background: color-mix(in srgb, var(--accent) 16%, #fff);
+    color: var(--accent-ink);
+}
+
+.calm-app .qv-row-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.calm-app .qv-shade {
+    flex: 1;
+    padding: 0.45rem 0.6rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s var(--ease-out), opacity 0.2s ease;
+}
+
+.calm-app .qv-shade:active {
+    transform: scale(0.97);
+}
+
+.calm-app .qv-shade:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.calm-app .qv-swatch {
+    flex: none;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 0;
+    border-radius: 50%;
+    background: var(--qv-swatch);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: transform 0.15s var(--ease-out);
+}
+
+.calm-app .qv-swatch.is-active {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12), 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+}
+
+.calm-app .qv-swatch:active {
+    transform: scale(0.92);
+}
+
+.calm-app .qv-font {
+    flex: 1;
+    padding: 0.3rem 0.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.6rem;
+    background: #fff;
+    color: var(--color-text);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.calm-app .qv-font.is-active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, #fff);
+}
+
+/* ---------- Demo: choose poster ---------- */
+.calm-app .qv-sheet {
+    padding: 0.8rem;
+}
+
+.calm-app .qv-sheet-title {
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.calm-app .qv-posters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.calm-app .qv-pick {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--stage-muted);
+    font-family: inherit;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    text-align: center;
+    cursor: pointer;
+}
+
+.calm-app .qv-pick .qv-poster {
+    margin-bottom: 0.35rem;
+    font-size: 0.5rem;
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s ease;
+}
+
+.calm-app .qv-pick:hover .qv-poster {
+    transform: translateY(-2px);
+}
+
+.calm-app .qv-pick.is-active .qv-poster {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+}
+
+.calm-app .qv-pick small {
+    display: block;
+    font-size: 0.62rem;
+    opacity: 0.7;
+}
+
+/* ---------- Rows from the Reviews list ---------- */
+.calm-app .qv-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background: var(--qv-bg, #26304a);
+    color: var(--qv-ink, #fff);
+    transition: background-color 0.3s ease;
+}
+
+.calm-app .qv-row .qv-poster {
+    flex: none;
+    width: 3.1rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.42rem;
+}
+
+.calm-app .qv-row .qv-poster.qv-art-music {
+    aspect-ratio: 1;
+    font-size: 0;
+}
+
+.calm-app .qv-row-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .qv-row-title {
+    padding-right: 1.4rem;
+    overflow: hidden;
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qv-row-meta,
+.calm-app .qv-row-text {
+    overflow: hidden;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qv-row-meta {
+    opacity: 0.72;
+}
+
+.calm-app .qv-row-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+}
+
+.calm-app .qv-row-foot span:last-child {
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+.calm-app .qv-pill {
+    padding: 0.1rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: var(--qv-score, #fff);
+    color: var(--qv-score-ink, #111);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.calm-app .qv-row-kind {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.75rem;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* ---------- Demo: media types ---------- */
+.calm-app .qv-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.calm-app .qv-chips .demo-btn.is-active {
+    border-color: var(--color-text);
+    background: var(--color-text);
+    color: #fff;
+}
+
+.calm-app .qv-chips-more {
+    padding: 0 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--stage-muted);
+}
+
+/* The lone row in this tile is shown larger than in the list. */
+.calm-app .tile[data-demo="media"] .qv-row {
+    font-size: 1.15rem;
+    padding: 1rem;
+}
+
+.calm-app .tile[data-demo="media"] .qv-row .qv-poster {
+    width: 4.4rem;
+    font-size: 0.55rem;
+}
+
+.calm-app .tile[data-demo="media"] .qv-row-title {
+    font-size: 1.15rem;
+}
+
+.calm-app .tile[data-demo="media"] .qv-row-meta,
+.calm-app .tile[data-demo="media"] .qv-row-text {
+    font-size: 0.85rem;
+}
+
+.calm-app .tile[data-demo="media"] .qv-row-text {
+    white-space: normal;
+}
+
+.calm-app .tile[data-demo="media"] .qv-row-foot {
+    font-size: 0.8rem;
+}
+
+/* ---------- Demo: Magic Mode ---------- */
+.calm-app .qv-magic-field {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    box-shadow: 0 10px 24px -16px rgba(120, 30, 40, 0.4);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.calm-app .qv-magic-field i {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.calm-app .qv-magic-typed:empty::before {
+    content: "Movie or show title";
+    color: var(--stage-muted);
+    font-weight: 400;
+}
+
+.calm-app .tile[data-demo="magic"] .qv-card-in {
+    --qv-bg: #3d3f47;
+    transition: background-color 0.6s ease;
+}
+
+.calm-app .qv-slot {
+    border-radius: 0.4em;
+    background: rgba(255, 255, 255, 0.14);
+    transition: background-color 0.4s ease;
+}
+
+.calm-app .qv-slot > * {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.calm-app .qv-poster-slot {
+    grid-area: poster;
+    border-radius: 0.55em;
+}
+
+.calm-app .qv-slot + .qv-slot {
+    margin-top: 0.3em;
+}
+
+.calm-app .qv-text-blank {
+    font-style: italic;
+    opacity: 0.55;
+}
+
+.calm-app .tile[data-step="4"] .qv-slot-1,
+.calm-app .tile[data-step="5"] .qv-slot {
+    background-color: transparent;
+}
+
+.calm-app .tile[data-step="4"] .qv-slot-1 > *,
+.calm-app .tile[data-step="5"] .qv-slot > * {
+    opacity: 1;
+}
+
+.calm-app .tile[data-demo="magic"][data-step="5"] .qv-card-in {
+    --qv-bg: #26304a;
+}
+
+.calm-app .tile[data-demo="magic"][data-step="5"] .demo-note,
+.calm-app .tile[data-demo="history"][data-step="1"] .demo-note {
+    opacity: 1;
+}
+
+/* ---------- Demo: copy review text ---------- */
+.calm-app .qv-alt {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.9rem;
+    background: #fff;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.calm-app .qv-alt-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .qv-alt-value {
+    display: block;
+    min-height: 4.5em;
+}
+
+/* ---------- Demo: review history ---------- */
+.calm-app .qv-history {
+    padding: 0.9rem 0.7rem 0.2rem;
+}
+
+.calm-app .qv-history-title {
+    margin: 0 0.2rem 0.6rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.calm-app .qv-history .qv-row {
+    margin-bottom: 0.5rem;
+}
+
+.calm-app .tile[data-demo="history"] .tile-stage {
+    min-height: 27rem;
+}
+
+/* A new review opens a space at the top of the list. */
+.calm-app .qv-arrive {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.5s var(--ease-out), opacity 0.4s ease;
+}
+
+.calm-app .qv-arrive > div {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.calm-app .tile[data-step="1"] .qv-arrive {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+/* ---------- Real examples ---------- */
+.calm-app .qv-examples {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.2vw, 1rem);
+}
+
+.calm-app .qv-examples img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+}
+
+.calm-app .tile[data-demo="examples"] .tile-stage {
+    min-height: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .calm-app .qv-style-stage {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .calm-app .qv-examples {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .qv-card[data-layout="square"] {
+        width: 72%;
+    }
+
+    .calm-app .qv-frame {
+        aspect-ratio: 100 / 74;
+    }
+}
