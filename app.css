@@ -39,7 +39,21 @@ body.calm-app {
 
     /* Type */
     --font-sans: 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-display: 'Fraunces', Georgia, serif;
+    --font-display: 'MonoLisa Text', var(--font-sans);
+    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+
+    /* Live demo surfaces, derived from the app accent. A page can override
+       any of these on body.calm-app in its own stylesheet. */
+    --accent-ink: color-mix(in srgb, var(--accent) 78%, #000);
+    --stage-tint: color-mix(in srgb, var(--accent) 6%, #f6f6f7);
+    --stage-muted: #85808a;
+    --hero-wallpaper: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent) 28%, #fff) 0%,
+        color-mix(in srgb, var(--accent) 55%, #fff) 100%);
+    --tile-dark-bg: color-mix(in srgb, var(--accent) 22%, #17171a);
+    --tile-dark-ink: #fff;
+    --tile-dark-muted: rgba(255, 255, 255, 0.72);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
     background-color: var(--color-ground);
     color: var(--color-text);
@@ -812,5 +826,283 @@ body.calm-app {
     .calm-app .pricing-cards {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+/* ==========================================================================
+   Live demo system
+   A split hero (copy left, live stage right) and a bento of tiles. Each tile
+   pairs a stage, where a small working replica of the app plays, with a line
+   of copy. Stepped demos set data-steps on the tile; app.js advances a
+   data-step attribute on a timer and the page's own stylesheet
+   (apps/<app>/<app>.css) reacts to it. With no JS a demo rests in its
+   "before" state. apps/pastry is the reference implementation.
+   ========================================================================== */
+
+/* ---------- Hero: copy left, live panel right ---------- */
+.calm-app .app-hero-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: stretch;
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    text-align: left;
+}
+
+.calm-app .app-hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    padding-right: 0;
+}
+
+.calm-app .app-hero-split .app-hero-icon {
+    width: clamp(72px, 8vw, 104px);
+}
+
+.calm-app .app-hero-split .app-hero-title {
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    line-height: 1.04;
+    text-wrap: balance;
+}
+
+.calm-app .app-hero-split .download-buttons {
+    justify-content: flex-start;
+}
+
+.calm-app .app-hero-note {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    max-width: 30rem;
+}
+
+.calm-app .app-hero-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    min-height: 35rem;
+    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 2.5rem);
+    border-radius: calc(var(--radius-panel) - 0.9rem);
+    background: var(--hero-wallpaper);
+}
+
+/* ---------- Bento ---------- */
+.calm-app .bento {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+.calm-app .tile {
+    grid-column: span var(--span, 6);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(0.6rem, 1.2vw, 0.9rem);
+    border-radius: var(--radius-card);
+    background: var(--color-card);
+}
+
+.calm-app .tile-split {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+}
+
+.calm-app .tile-stage {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 16rem;
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    border-radius: calc(var(--radius-card) - 0.6rem);
+    background: var(--stage-tint);
+    font-family: var(--font-system);
+    color: var(--color-text);
+}
+
+.calm-app .demo-card {
+    padding: 0.4rem;
+    border-radius: 1.1rem;
+    background: #fff;
+    box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--accent-ink) 30%, transparent);
+}
+
+.calm-app .tile-copy {
+    padding: clamp(1rem, 2vw, 1.5rem) clamp(0.6rem, 1.5vw, 1.1rem) clamp(0.6rem, 1.5vw, 0.9rem);
+}
+
+.calm-app .tile-copy h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.calm-app .tile-copy p {
+    max-width: 34rem;
+    margin-top: 0.5rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* Caption and replay control under a demo */
+.calm-app .stage-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 2rem;
+    font-size: 0.8rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .demo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s var(--ease-out);
+}
+
+.calm-app .demo-btn:hover {
+    border-color: var(--accent);
+}
+
+.calm-app .demo-btn:active {
+    transform: scale(0.97);
+}
+
+.calm-app .demo-replay {
+    margin-left: auto;
+}
+
+.calm-app .demo-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--accent-ink);
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* ---------- Statement tile ---------- */
+.calm-app .tile-dark {
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    background: var(--tile-dark-bg);
+    color: var(--tile-dark-ink);
+}
+
+.calm-app .tile-dark > i {
+    font-size: 2.5rem;
+    color: var(--tile-dark-muted);
+}
+
+.calm-app .tile-dark h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+.calm-app .tile-dark p {
+    margin-top: 0.9rem;
+    color: var(--tile-dark-muted);
+    line-height: 1.6;
+}
+
+/* ---------- Headings: MonoLisa Text ----------
+   The proportional cut. Bold only, subset to Latin, self-hosted in /fonts. */
+@font-face {
+    font-family: 'MonoLisa Text';
+    src: url('fonts/MonoLisaText-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+.calm-app .app-hero-title,
+.calm-app .section-title,
+.calm-app .feature-title,
+.calm-app .tile-copy h3,
+.calm-app .tile-dark h3 {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.calm-app .app-hero-split .app-hero-title {
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    line-height: 1.08;
+}
+
+.calm-app .section-title {
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+}
+
+.calm-app .tile-copy h3 {
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    line-height: 1.3;
+}
+
+.calm-app .tile-dark h3 {
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    line-height: 1.2;
+}
+
+/* ---------- Live demo reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .app-hero-stage *,
+    .calm-app .tile * {
+        transition: none !important;
+    }
+
+    .calm-app .demo-replay {
+        display: none;
+    }
+}
+
+/* ---------- Live demo responsive ---------- */
+@media (max-width: 900px) {
+    .calm-app .app-hero-split {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .app-hero-copy {
+        padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .calm-app .app-hero-stage {
+        min-height: 0;
+    }
+
+    .calm-app .tile {
+        grid-column: 1 / -1;
+    }
+
+    .calm-app .tile-split {
+        display: flex;
+        align-items: stretch;
     }
 }

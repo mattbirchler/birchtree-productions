@@ -271,6 +271,10 @@ def main():
     root_index = ROOT / "index.html"
     managed = ("home.css", "home.js", "app.css", "app.js")
     for html in sorted(ROOT.rglob("*.html")):
+        # Dot-directories (.git, .superpowers, ...) hold tooling scratch, not
+        # pages the site serves.
+        if any(part.startswith(".") for part in html.relative_to(ROOT).parts):
+            continue
         text = html.read_text()
         rel = str(html.relative_to(ROOT))
         is_index = html == root_index

@@ -193,6 +193,93 @@
         });
     }
 
+    function all(root, selector) {
+        return Array.prototype.slice.call(root.querySelectorAll(selector));
+    }
+
+    // ---------- Stepped demos ----------
+    // data-steps="900,700" means: rest at step 0, step 1 after 900ms, step 2
+    // 700ms later. Children can follow along with data-step-text="a|b|c" and
+    // data-count-from / data-count-to (tweened when step 1 starts).
+
+    function tweenCount(el) {
+        var from = parseFloat(el.getAttribute('data-count-from'));
+        var to = parseFloat(el.getAttribute('data-count-to'));
+        if (reduceMotion.matches) {
+            el.textContent = to;
+            return;
+        }
+        var start = null;
+        var DURATION = 900;
+
+        function frame(now) {
+            if (start === null) { start = now; }
+            var t = Math.min((now - start) / DURATION, 1);
+            var eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.round(from + (to - from) * eased);
+            if (t < 1) { window.requestAnimationFrame(frame); }
+        }
+
+        window.requestAnimationFrame(frame);
+    }
+
+    function setStep(tile, step) {
+        tile.setAttribute('data-step', step);
+        all(tile, '[data-step-text]').forEach(function (el) {
+            var parts = el.getAttribute('data-step-text').split('|');
+            el.textContent = parts[Math.min(step, parts.length - 1)];
+        });
+        all(tile, '[data-count-to]').forEach(function (el) {
+            if (step === 0) {
+                el.textContent = el.getAttribute('data-count-from');
+            } else if (step === 1) {
+                tweenCount(el);
+            }
+        });
+    }
+
+    function play(tile) {
+        var delays = tile.getAttribute('data-steps').split(',').map(Number);
+        (tile._pzTimers || []).forEach(window.clearTimeout);
+        tile._pzTimers = [];
+
+        if (reduceMotion.matches) {
+            setStep(tile, 1);
+            setStep(tile, delays.length);
+            return;
+        }
+
+        setStep(tile, 0);
+        var elapsed = 0;
+        delays.forEach(function (delay, i) {
+            elapsed += delay;
+            tile._pzTimers.push(window.setTimeout(function () {
+                setStep(tile, i + 1);
+            }, elapsed));
+        });
+    }
+
+    function initSteppedDemos() {
+        var tiles = all(document, '[data-steps]');
+        if (!tiles.length) { return; }
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    play(entry.target);
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.6 });
+
+        tiles.forEach(function (tile) {
+            io.observe(tile);
+            all(tile, '[data-replay]').forEach(function (btn) {
+                btn.addEventListener('click', function () { play(tile); });
+            });
+        });
+    }
+
     function initYear() {
         var el = document.getElementById('current-year');
         if (el) { el.textContent = new Date().getFullYear(); }
@@ -202,6 +289,7 @@
     initShuffle();
     initDrift();
     initPricingToggle();
+    initSteppedDemos();
     initYear();
 
     window.__calmAppReduceMotion = reduceMotion;

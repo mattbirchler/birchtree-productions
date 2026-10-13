@@ -1,0 +1,697 @@
+/* Best-o-Masto - page-local styles for the live feature demos.
+   Loaded only by apps/best-o-masto/index.html, on top of app.css. Every rule
+   is scoped under .calm-app and every class is prefixed bm- so nothing here
+   can collide with the shared calm components. The hero, tiles and stepped
+   demo runner come from app.css / app.js; this file styles the replicas
+   inside the stages.
+
+   The demos are small HTML replicas of the app's post list. Stepped demos
+   read a data-step attribute that app.js advances on a timer; the clickable
+   ones are wired up in best-o-masto.js. With no JS every demo rests in its
+   "before" state. */
+
+body.calm-app {
+    /* The app's own highlight colour (tab bar, links). The theme demo
+       overrides it on its stage. */
+    --bm-theme: #c026d3;
+    --bm-line: #e6e6ea;
+    --bm-chip: #f1f1f3;
+}
+
+/* ---------- The phone replica (hero) ---------- */
+.calm-app .bm-phone {
+    position: relative;
+    width: 100%;
+    max-width: 19.5rem;
+    height: 32rem;
+    padding: 1.3rem 0.7rem 0;
+    border: 0.4rem solid #1c1b22;
+    border-radius: 2.7rem;
+    background: #fff;
+    box-shadow: 0 30px 60px -30px rgba(50, 15, 90, 0.6);
+    overflow: hidden;
+    font-family: var(--font-system);
+    color: var(--color-text);
+    text-align: left;
+}
+
+.calm-app .bm-seg {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 2px;
+    border-radius: var(--radius-pill);
+    background: #ececee;
+    font-size: 0.76rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.calm-app .bm-seg span {
+    padding: 0.4rem 0.15rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+}
+
+.calm-app .bm-seg .is-active {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.calm-app .bm-title {
+    margin: 0.85rem 0.3rem 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.calm-app .bm-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ---------- Posts ---------- */
+.calm-app .bm-post {
+    padding: 0.8rem;
+    border: 1px solid var(--bm-line);
+    border-radius: 1.2rem;
+    background: #fff;
+}
+
+/* The top post wears a slowly turning rainbow edge. The gradient is an
+   oversized layer behind the card, so only a transform animates. */
+.calm-app .bm-glow {
+    position: relative;
+    padding: 2px;
+    border-radius: 1.3rem;
+    overflow: hidden;
+}
+
+.calm-app .bm-glow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    aspect-ratio: 1;
+    margin: -100% 0 0 -100%;
+    background: conic-gradient(#f472d0, #fb923c, #fde047, #67e8f9, #c084fc, #f472d0);
+    animation: bm-turn 16s linear infinite;
+}
+
+.calm-app .bm-glow .bm-post {
+    position: relative;
+    border: 0;
+    border-radius: calc(1.3rem - 2px);
+}
+
+@keyframes bm-turn {
+    to { transform: rotate(360deg); }
+}
+
+.calm-app .bm-post-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.calm-app .bm-avatar {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--bm-av, #8b5cf6);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.calm-app .bm-avatar-sm {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 0.78rem;
+}
+
+.calm-app .bm-crown {
+    position: absolute;
+    top: -0.3rem;
+    left: -0.3rem;
+    display: grid;
+    place-items: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    background: #2a2a2e;
+    color: #f5c518;
+    font-size: 0.72rem;
+}
+
+.calm-app .bm-who {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .bm-name,
+.calm-app .bm-handle {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .bm-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.calm-app .bm-handle {
+    font-size: 0.72rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .bm-time {
+    flex: none;
+    font-size: 0.7rem;
+    color: #a5a3ab;
+}
+
+.calm-app .bm-text {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.calm-app .bm-link {
+    color: var(--bm-theme);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.calm-app .bm-photo {
+    height: 7.5rem;
+    margin-top: 0.6rem;
+    border-radius: 0.7rem;
+    background:
+        radial-gradient(circle at 76% 28%, #fff6d6 0 8%, transparent 9%),
+        radial-gradient(ellipse 80% 50% at 15% 108%, #4c3a8a 0 60%, transparent 61%),
+        radial-gradient(ellipse 90% 45% at 85% 112%, #6d55b8 0 60%, transparent 61%),
+        linear-gradient(180deg, #f9a8d4 0%, #fcd9b6 55%, #d8ccf5 100%);
+}
+
+.calm-app .bm-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.65rem;
+}
+
+.calm-app .bm-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.65rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--bm-chip);
+    color: #6b6a72;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.3;
+}
+
+.calm-app .bm-pill i {
+    font-size: 1rem;
+    transition: transform 0.3s var(--ease-out);
+}
+
+.calm-app .bm-more {
+    margin-left: auto;
+    padding: 0.3rem 0.45rem;
+}
+
+.calm-app button.bm-pill {
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app button.bm-pill:hover {
+    background: #e7e7ea;
+}
+
+.calm-app button.bm-pill[aria-pressed="true"] {
+    font-weight: 700;
+}
+
+.calm-app button.bm-pill[aria-pressed="true"] i {
+    transform: scale(1.2);
+}
+
+.calm-app button.bm-pill[data-bm-act="like"][aria-pressed="true"] {
+    background: #fde7ec;
+    color: #d61f4c;
+}
+
+.calm-app button.bm-pill[data-bm-act="boost"][aria-pressed="true"] {
+    background: #e2f6e9;
+    color: #15803d;
+}
+
+/* ---------- Floating tab bar ---------- */
+.calm-app .bm-tabbar {
+    position: absolute;
+    left: 50%;
+    bottom: 0.8rem;
+    display: flex;
+    gap: 0.2rem;
+    padding: 0.3rem;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.86);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px -10px rgba(40, 20, 70, 0.4),
+                inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    transform: translateX(-50%);
+}
+
+.calm-app .bm-tabbar span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.62rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calm-app .bm-tabbar i {
+    font-size: 1.25rem;
+}
+
+.calm-app .bm-tabbar .is-active {
+    background: #f0eef3;
+    color: var(--bm-theme);
+    transition: color 0.3s ease;
+}
+
+/* ---------- Demo: the top 20 ---------- */
+.calm-app .bm-rank-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--stage-muted);
+}
+
+.calm-app .bm-rank-count {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--color-text);
+}
+
+.calm-app .bm-rank {
+    position: relative;
+    height: 17.1rem;
+}
+
+/* Rows sit in time order (--bm-i) and slide to their engagement rank
+   (--bm-r) once the demo starts. */
+.calm-app .bm-rank-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 3.1rem;
+    padding: 0 0.7rem;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 8px 18px -14px color-mix(in srgb, var(--accent-ink) 40%, transparent);
+    transform: translateY(calc(var(--bm-i) * 3.5rem));
+    transition: transform 0.8s var(--ease-out), opacity 0.4s ease;
+}
+
+.calm-app .tile[data-demo="rank"][data-step="1"] .bm-rank-row,
+.calm-app .tile[data-demo="rank"][data-step="2"] .bm-rank-row,
+.calm-app .tile[data-demo="rank"][data-step="3"] .bm-rank-row {
+    transform: translateY(calc(var(--bm-r) * 3.5rem));
+}
+
+.calm-app .tile[data-demo="rank"][data-step="2"] .bm-cut,
+.calm-app .tile[data-demo="rank"][data-step="3"] .bm-cut {
+    opacity: 0.3;
+}
+
+.calm-app .tile[data-demo="rank"][data-step="3"] .demo-note {
+    opacity: 1;
+}
+
+.calm-app .bm-rank-text {
+    overflow: hidden;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: var(--stage-muted);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .bm-stat {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: #6b6a72;
+}
+
+.calm-app .bm-stat i {
+    font-size: 0.95rem;
+}
+
+/* ---------- Demo: your Top 8 ---------- */
+.calm-app .bm-pick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.calm-app .bm-pick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 0;
+    padding: 0.6rem 0.2rem 0.45rem;
+    border: 1.5px solid transparent;
+    border-radius: 0.9rem;
+    background: #fff;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease,
+                opacity 0.2s ease, transform 0.15s var(--ease-out);
+}
+
+.calm-app .bm-pick:active {
+    transform: scale(0.96);
+}
+
+.calm-app .bm-pick > span:last-child {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calm-app .bm-pick .bm-crown {
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.2s ease, transform 0.3s var(--ease-out);
+}
+
+.calm-app .bm-pick[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, #fff);
+}
+
+.calm-app .bm-pick[aria-pressed="true"] .bm-crown {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .bm-pick[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.calm-app .bm-pick-count {
+    font-weight: 600;
+    color: var(--accent-ink);
+}
+
+/* ---------- Demo: themes and links ---------- */
+.calm-app .bm-theme-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.8rem;
+}
+
+.calm-app .bm-theme-preview .bm-text {
+    margin: 0 0.2rem;
+}
+
+.calm-app .bm-theme-preview .bm-tabbar {
+    position: static;
+    align-self: center;
+    transform: none;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07);
+}
+
+.calm-app .bm-setting {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.calm-app .bm-swatches,
+.calm-app .bm-choice {
+    display: flex;
+    gap: 0.45rem;
+}
+
+.calm-app .bm-swatch {
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 3px solid var(--stage-tint);
+    border-radius: 50%;
+    background: var(--bm-swatch);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.15s var(--ease-out);
+}
+
+.calm-app .bm-swatch:active {
+    transform: scale(0.92);
+}
+
+.calm-app .bm-swatch[aria-pressed="true"] {
+    box-shadow: 0 0 0 2px var(--bm-swatch);
+}
+
+.calm-app .bm-choice .demo-btn[aria-pressed="true"] {
+    border-color: var(--bm-theme);
+    background: var(--bm-theme);
+    color: #fff;
+}
+
+/* ---------- Demo: simple posting ---------- */
+.calm-app .bm-compose {
+    padding: 0.8rem 0.9rem 0.9rem;
+}
+
+.calm-app .bm-compose-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--bm-line);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.calm-app .bm-compose-head > span:first-child {
+    font-weight: 400;
+    color: var(--stage-muted);
+}
+
+.calm-app .bm-send {
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--radius-pill);
+    background: var(--bm-theme);
+    color: #fff;
+    font-size: 0.82rem;
+    transition: background-color 0.3s ease;
+}
+
+.calm-app .tile[data-demo="compose"][data-step="5"] .bm-send {
+    background: #15803d;
+}
+
+.calm-app .bm-compose-body {
+    display: flex;
+    gap: 0.7rem;
+    padding-top: 0.8rem;
+}
+
+.calm-app .bm-compose-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .bm-compose-text {
+    min-height: 2.9rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.calm-app .bm-compose-text:empty::before {
+    content: "What's on your mind?";
+    color: #a5a3ab;
+}
+
+.calm-app .bm-attach {
+    width: 6.5rem;
+    height: 4.4rem;
+    margin-top: 0.6rem;
+    opacity: 0;
+    transform: scale(0.85);
+    transform-origin: left center;
+    transition: opacity 0.3s ease, transform 0.4s var(--ease-out);
+}
+
+.calm-app .tile[data-demo="compose"][data-step="4"] .bm-attach,
+.calm-app .tile[data-demo="compose"][data-step="5"] .bm-attach {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Statement tile: the two lists ---------- */
+.calm-app .bm-versus {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem clamp(1.5rem, 4vw, 3rem);
+}
+
+.calm-app .bm-versus h4 {
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.calm-app .bm-versus ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    list-style: none;
+}
+
+.calm-app .bm-versus li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.45;
+}
+
+.calm-app .bm-versus li i {
+    flex: none;
+    margin-top: 0.2rem;
+    font-size: 1.05rem;
+}
+
+.calm-app .bm-versus-them {
+    color: var(--tile-dark-muted);
+}
+
+.calm-app .bm-versus-us li i {
+    color: #d8b4fe;
+}
+
+/* ---------- How it works ---------- */
+.calm-app .bm-how {
+    gap: 1.75rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.calm-app .bm-how ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem clamp(1.25rem, 3vw, 2.5rem);
+    list-style: none;
+}
+
+.calm-app .bm-how-num {
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 12%, #fff);
+    color: var(--accent-ink);
+    font-family: var(--font-system);
+    font-weight: 700;
+}
+
+.calm-app .bm-how h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+}
+
+.calm-app .bm-how li p {
+    margin-top: 0.4rem;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .bm-how-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .bm-how-note i {
+    flex: none;
+    margin-top: 0.15rem;
+    font-size: 1.2rem;
+    color: var(--accent-ink);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .bm-glow::before {
+        animation: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .calm-app .bm-how ol {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .calm-app .bm-versus {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .bm-phone {
+        height: 30rem;
+    }
+}

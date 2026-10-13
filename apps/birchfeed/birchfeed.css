@@ -1,0 +1,790 @@
+/* Birchfeed - page-local styles for the live feature demos.
+   Loaded only by apps/birchfeed/index.html, on top of app.css. Every rule is
+   scoped under .calm-app and every class is prefixed bf- so nothing here can
+   collide with the shared calm components. The hero, tiles and stepped demo
+   runner come from app.css / app.js; this file overrides their colour tokens
+   and styles the replicas inside the stages.
+
+   The demos are small HTML replicas of the Birchfeed web app: near-black ink
+   on white, with a black pill for whatever is selected. Stepped state is a
+   data-step attribute that app.js advances on a timer; all the visual change
+   lives here. With no JS the demos rest in their "before" state. */
+
+body.calm-app {
+    --bf-ink: #17181b;
+    --bf-line: #e6e7ea;
+    --bf-wash: #f5f5f6;
+    --stage-muted: #74767d;
+    --stage-tint: #eef0f3;
+    --accent-ink: #2f3238;
+    --tile-dark-bg: #17181b;
+    --hero-wallpaper: linear-gradient(135deg, #eceef2 0%, #d5d9e0 55%, #c2c7d1 100%);
+}
+
+/* A feed's favicon: a plain coloured square, never a real logo. */
+.calm-app .bf-fav {
+    flex: none;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.22rem;
+    background: var(--bf-fav, #9a9ca3);
+}
+
+/* ---------- Hero: the web reader ---------- */
+.calm-app .bf-reader {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    width: 100%;
+    max-width: 34rem;
+    height: 28rem;
+    border-radius: 1.1rem;
+    background: #fff;
+    box-shadow: 0 30px 60px -30px rgba(23, 24, 27, 0.55),
+                0 0 0 1px rgba(23, 24, 27, 0.06);
+    font-family: var(--font-system);
+    color: var(--bf-ink);
+    text-align: left;
+    overflow: hidden;
+}
+
+.calm-app .bf-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+    padding: 0.9rem 0.6rem;
+    border-right: 1px solid var(--bf-line);
+    background: var(--bf-wash);
+}
+
+.calm-app .bf-side-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.calm-app .bf-side-head i {
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.calm-app .bf-nav > span:last-child:not(.bf-nav-name),
+.calm-app .bf-nav > i {
+    flex: none;
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-nav-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .bf-nav.is-active {
+    background: var(--bf-ink);
+    color: #fff;
+    font-weight: 700;
+}
+
+.calm-app .bf-nav.is-active > span:last-child {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.calm-app .bf-nav-quiet {
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-feeds {
+    margin-top: 0.15rem;
+    padding-left: 0.5rem;
+}
+
+.calm-app .bf-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.calm-app .bf-main-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 0.9rem 0.5rem;
+    font-size: 0.9rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-main-head strong {
+    flex: 1;
+    color: var(--bf-ink);
+}
+
+/* Segmented control, used in the hero (static) and the roundup tile (live) */
+.calm-app .bf-seg {
+    display: inline-flex;
+    align-self: flex-start;
+    gap: 0.15rem;
+    padding: 0.18rem;
+    border-radius: 0.6rem;
+    background: #ececee;
+}
+
+.calm-app .bf-main > .bf-seg {
+    margin: 0 0.9rem 0.6rem;
+}
+
+.calm-app .bf-seg > * {
+    padding: 0.22rem 0.7rem;
+    border: 0;
+    border-radius: 0.45rem;
+    background: none;
+    color: var(--stage-muted);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.calm-app .bf-seg > .is-active {
+    background: #fff;
+    color: var(--bf-ink);
+    box-shadow: 0 1px 2px rgba(23, 24, 27, 0.14);
+}
+
+.calm-app .bf-seg > button {
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .bf-articles {
+    flex: 1;
+    min-height: 0;
+    border-top: 1px solid var(--bf-line);
+    overflow: hidden;
+}
+
+.calm-app .bf-article {
+    max-height: 7rem;
+    padding: 0.65rem 0.9rem 0;
+    overflow: hidden;
+    transition: max-height 0.6s var(--ease-out), opacity 0.5s ease,
+                padding-top 0.6s var(--ease-out);
+}
+
+.calm-app .bf-article.is-new {
+    max-height: 0;
+    padding-top: 0;
+    opacity: 0;
+}
+
+.calm-app .bf-article-feed {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-article-time {
+    margin-left: auto;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.calm-app .bf-article-title {
+    margin-top: 0.2rem;
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.calm-app .bf-article-excerpt {
+    display: -webkit-box;
+    margin-top: 0.1rem;
+    font-size: 0.76rem;
+    line-height: 1.4;
+    color: var(--stage-muted);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/* ---------- Demo: which option to choose ---------- */
+.calm-app .bf-apps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.calm-app .bf-app {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid rgba(23, 24, 27, 0.12);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--bf-ink);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.calm-app .bf-app:hover {
+    border-color: var(--bf-ink);
+}
+
+.calm-app .bf-app.is-active {
+    background: var(--bf-ink);
+    border-color: var(--bf-ink);
+    color: #fff;
+}
+
+.calm-app .bf-choice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.7rem;
+    min-height: 17rem;
+    padding: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.calm-app .bf-choice-lead {
+    font-size: 0.95rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-choice-lead strong {
+    color: var(--bf-ink);
+}
+
+.calm-app .bf-choice-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.calm-app .bf-pill {
+    padding: 0.35rem 0.9rem;
+    border-radius: 0.7rem;
+    background: var(--bf-ink);
+    color: #fff;
+    font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.calm-app .bf-or {
+    font-size: 0.85rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-choice-note {
+    max-width: 30rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-choice-shot {
+    width: 100%;
+    height: 8.5rem;
+    border: 1px solid var(--bf-line);
+    border-radius: 0.7rem;
+    object-fit: cover;
+    object-position: top left;
+}
+
+.calm-app .bf-choice-shot[hidden] {
+    display: none;
+}
+
+/* ---------- Demo: the News Stream ---------- */
+.calm-app .bf-stream {
+    flex: 1 1 19rem;
+    max-height: 26rem;
+    padding: 0;
+    overflow: hidden;
+}
+
+.calm-app .bf-stream-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--bf-line);
+    background: var(--bf-wash);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stage-muted);
+    white-space: nowrap;
+}
+
+.calm-app .bf-stream-bar b {
+    color: var(--bf-ink);
+    letter-spacing: 0.18em;
+}
+
+.calm-app .bf-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.calm-app .bf-live i {
+    flex: none;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: #1f8a3b;
+}
+
+.calm-app .bf-stream-body {
+    padding: 0 0.9rem;
+}
+
+/* Each row is a one-row grid so it can open from 0fr to 1fr without a
+   guessed max-height. */
+.calm-app .bf-item {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.55s var(--ease-out), opacity 0.45s ease;
+}
+
+.calm-app .bf-item-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.calm-app .bf-in-1,
+.calm-app .bf-in-2,
+.calm-app .bf-in-3 {
+    grid-template-rows: 0fr;
+    opacity: 0;
+}
+
+.calm-app .tile[data-step="1"] .bf-in-1,
+.calm-app .tile[data-step="2"] .bf-in-1,
+.calm-app .tile[data-step="3"] .bf-in-1,
+.calm-app .tile[data-step="2"] .bf-in-2,
+.calm-app .tile[data-step="3"] .bf-in-2,
+.calm-app .tile[data-step="3"] .bf-in-3 {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.calm-app .tile[data-demo="stream"][data-step="3"] .demo-note {
+    opacity: 1;
+    transition-delay: 0.4s;
+}
+
+.calm-app .bf-stream-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 0 0.2rem;
+}
+
+.calm-app .bf-stream-mark::before,
+.calm-app .bf-stream-mark::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--bf-line);
+}
+
+.calm-app .bf-stream-mark span {
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: var(--bf-ink);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.calm-app .bf-item-feed {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.6rem;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-item-title {
+    margin-top: 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.calm-app .bf-item-excerpt {
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--bf-line);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--stage-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ---------- Demo: daily roundup ---------- */
+.calm-app .bf-times {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.calm-app .bf-times .bf-seg {
+    align-self: auto;
+    background: #dfe2e7;
+}
+
+.calm-app .bf-times .bf-seg > button {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.calm-app .bf-mail {
+    padding: 0;
+    overflow: hidden;
+}
+
+.calm-app .bf-mail-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid var(--bf-line);
+}
+
+.calm-app .bf-mail-head img {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+
+.calm-app .bf-mail-who {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .bf-mail-from {
+    font-size: 0.72rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-mail-subject {
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.calm-app .bf-mail-time {
+    flex: none;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-mail-body {
+    min-height: 13.5rem;
+    padding: 0.8rem 0.9rem 0.9rem;
+    transition: opacity 0.18s ease;
+}
+
+.calm-app .bf-mail-body.is-swapping {
+    opacity: 0;
+}
+
+.calm-app .bf-mail-label {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--bf-line);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-brief {
+    margin-top: 0.7rem;
+}
+
+.calm-app .bf-brief strong {
+    display: block;
+    font-size: 0.88rem;
+    line-height: 1.3;
+}
+
+.calm-app .bf-brief p {
+    margin-top: 0.15rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #44464c;
+}
+
+.calm-app .bf-brief span {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stage-muted);
+}
+
+/* ---------- Demo: automations ---------- */
+.calm-app .bf-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.calm-app .bf-rule {
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--bf-line);
+    border-radius: 0.9rem;
+    background: #fff;
+}
+
+.calm-app .bf-rule-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.calm-app .bf-rule-name {
+    min-width: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.calm-app .bf-rule-head input {
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: #0a6cff;
+    cursor: pointer;
+}
+
+.calm-app .bf-rule-text {
+    margin-top: 0.15rem;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: #44464c;
+}
+
+.calm-app .bf-rule-hit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.4rem 0.4rem 0.7rem;
+    border-radius: 0.6rem;
+    background: var(--bf-wash);
+    font-size: 0.8rem;
+}
+
+.calm-app .bf-rule-article {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .bf-chip {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: var(--bf-ink);
+    color: #fff;
+    font-size: 0.74rem;
+    font-weight: 600;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.calm-app .bf-rule.is-off .bf-chip {
+    background: #e4e5e8;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-rule.is-off .bf-chip i {
+    display: none;
+}
+
+.calm-app .bf-rule.is-off .bf-rule-text {
+    color: var(--stage-muted);
+}
+
+/* ---------- Demo: keys ---------- */
+.calm-app .bf-key {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.6rem 0.6rem 0.7rem;
+}
+
+.calm-app .bf-key + .bf-key {
+    border-top: 1px solid var(--bf-line);
+}
+
+.calm-app .bf-key-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.6rem;
+    background: var(--bf-wash);
+    font-size: 1.1rem;
+    transition: opacity 0.25s ease;
+}
+
+.calm-app .bf-key-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .bf-key-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.calm-app .bf-key-meta {
+    font-size: 0.78rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .bf-key.is-revoked .bf-key-icon {
+    opacity: 0.35;
+}
+
+.calm-app .bf-key.is-revoked .bf-key-name {
+    color: var(--stage-muted);
+    text-decoration: line-through;
+}
+
+.calm-app .bf-key .demo-btn:disabled {
+    border-color: transparent;
+    background: none;
+    color: var(--stage-muted);
+    cursor: default;
+}
+
+.calm-app [data-key-reset][hidden] {
+    display: none;
+}
+
+/* ---------- The small things, sharing one tile ---------- */
+.calm-app .bf-details {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    padding: clamp(1rem, 2.2vw, 1.6rem);
+}
+
+.calm-app .bf-detail > i {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 1.5rem;
+}
+
+.calm-app .bf-detail h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+.calm-app .bf-detail p {
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+    .calm-app .bf-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    /* The sidebar goes, as it does in the real reader on a phone. */
+    .calm-app .bf-reader {
+        grid-template-columns: minmax(0, 1fr);
+        height: 25rem;
+    }
+
+    .calm-app .bf-side {
+        display: none;
+    }
+
+    .calm-app .bf-details {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .bf-rule-hit {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .calm-app .bf-rule-article {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .calm-app .bf-stream-bar {
+        letter-spacing: 0.06em;
+    }
+}

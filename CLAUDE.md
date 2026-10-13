@@ -89,6 +89,29 @@ Note that `styles.css` has several unscoped rules (`img`, `.app-icon`,
 `.app-screenshot { max-width: 280px }` exists because most app screenshots are
 tall portrait iPhone captures. The homepage caps them by height instead.
 
+## App Page Live Demos
+
+App sub-pages use the calm system in `app.css` / `app.js` (scoped under
+`body.calm-app`, themed per page with `--app-accent`). Each page shows its
+features working instead of describing them:
+
+- **Split hero** (`.app-hero.app-hero-split`): copy on the left, a live
+  replica of the app on the right in `.app-hero-stage`.
+- **Bento of tiles** (`.bento` > `.tile`, width set with `style="--span: 7"`
+  out of 12): each tile is a `.tile-stage` holding a small working replica,
+  plus a `.tile-copy` heading and one paragraph.
+- **Stepped demos**: put `data-steps="900,700"` on a tile and `app.js`
+  advances its `data-step` attribute when it scrolls into view. Children can
+  follow with `data-step-text="a|b|c"` and `data-count-from` / `data-count-to`.
+  A `[data-replay]` button replays it.
+- **Page-local files**: the replicas themselves are styled in
+  `apps/<app>/<app>.css` and any bespoke interaction lives in
+  `apps/<app>/<app>.js`, with classes prefixed per app. Add both to
+  `cache-bust.sh`.
+- Headings are MonoLisa Text, self-hosted from `fonts/`.
+
+`apps/pastry/` is the reference implementation.
+
 ## File Organization
 
 ```

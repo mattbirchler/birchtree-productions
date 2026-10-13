@@ -24,9 +24,11 @@
     <link rel="icon" href="../../images/birchfeed-icon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../../app.css?v=297c1aa9">
+    <link rel="stylesheet" href="./birchfeed.css?v=8388a27f">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -72,13 +74,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/birchfeed-icon.svg" alt="Birchfeed" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    RSS made by someone<br>
-                    <span class="accent-line">obsessed with RSS.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">RSS made by someone obsessed with RSS.</h1>
                 <p class="app-hero-subtitle wipe">
                     Rock solid sync, works in the best RSS clients out there, and a few other clever things.
                 </p>
@@ -89,11 +88,63 @@
                     </a>
                 </div>
             </div>
-        </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/birchfeed-reader.jpg" alt="The Birchfeed web reader: a three-pane view with feeds on the left, an article list in the middle, and the open article on the right" data-drift="0.06">
-        </div>
+            <div class="app-hero-stage" role="img" aria-label="The Birchfeed web reader, with feeds and unread counts on the left and a list of unread articles on the right. New articles arrive at the top of the list.">
+                <div class="bf-reader" aria-hidden="true">
+                    <div class="bf-side">
+                        <div class="bf-side-head"><span>Birchfeed</span><i class="ph ph-plus"></i></div>
+                        <div class="bf-nav is-active"><span class="bf-nav-name">All Articles</span><span data-hero-count>29</span></div>
+                        <div class="bf-nav"><span class="bf-nav-name">Starred</span><span>2</span></div>
+                        <div class="bf-nav bf-nav-quiet"><span class="bf-nav-name">Search</span></div>
+                        <div class="bf-nav"><span class="bf-nav-name">Today</span></div>
+                        <div class="bf-nav"><span class="bf-nav-name">News Stream</span><i class="ph ph-arrow-square-out"></i></div>
+                        <div class="bf-feeds">
+                            <div class="bf-nav bf-nav-feed"><span class="bf-fav" style="--bf-fav: #8839ef"></span><span class="bf-nav-name">Birchtree</span><span data-hero-feed="birchtree">2</span></div>
+                            <div class="bf-nav bf-nav-feed"><span class="bf-fav" style="--bf-fav: #e0564a"></span><span class="bf-nav-name">Pixel Notes</span><span data-hero-feed="pixel">11</span></div>
+                            <div class="bf-nav bf-nav-feed"><span class="bf-fav" style="--bf-fav: #2f7d5b"></span><span class="bf-nav-name">Slow Web Weekly</span><span data-hero-feed="slow">9</span></div>
+                            <div class="bf-nav bf-nav-feed"><span class="bf-fav" style="--bf-fav: #3b82c4"></span><span class="bf-nav-name">The Tinkerer</span><span data-hero-feed="tinkerer">7</span></div>
+                            <div class="bf-nav bf-nav-feed"><span class="bf-fav" style="--bf-fav: #d9912b"></span><span class="bf-nav-name">Indie Dispatch</span><span data-hero-feed="indie"></span></div>
+                        </div>
+                    </div>
+                    <div class="bf-main">
+                        <div class="bf-main-head">
+                            <i class="ph ph-list"></i>
+                            <strong>All Articles</strong>
+                            <i class="ph ph-check"></i>
+                            <i class="ph ph-arrow-counter-clockwise"></i>
+                        </div>
+                        <div class="bf-seg"><span class="is-active">Unread</span><span>All</span></div>
+                        <div class="bf-articles" data-hero-list>
+                            <div class="bf-article">
+                                <div class="bf-article-feed"><span class="bf-fav" style="--bf-fav: #8839ef"></span>Birchtree<span class="bf-article-time">1h</span></div>
+                                <div class="bf-article-title">Why I still open my feed reader first</div>
+                                <div class="bf-article-excerpt">Every morning starts the same way: coffee, then a few hundred headlines from people I chose to follow.</div>
+                            </div>
+                            <div class="bf-article">
+                                <div class="bf-article-feed"><span class="bf-fav" style="--bf-fav: #e0564a"></span>Pixel Notes<span class="bf-article-time">3h</span></div>
+                                <div class="bf-article-title">A small app that does one thing well</div>
+                                <div class="bf-article-excerpt">There is a certain kind of software that never asks for your attention and earns it anyway.</div>
+                            </div>
+                            <div class="bf-article">
+                                <div class="bf-article-feed"><span class="bf-fav" style="--bf-fav: #2f7d5b"></span>Slow Web Weekly<span class="bf-article-time">5h</span></div>
+                                <div class="bf-article-title">The case for boring, open standards</div>
+                                <div class="bf-article-excerpt">Formats that outlive the companies that made them are worth more than they look.</div>
+                            </div>
+                            <div class="bf-article">
+                                <div class="bf-article-feed"><span class="bf-fav" style="--bf-fav: #3b82c4"></span>The Tinkerer<span class="bf-article-time">7h</span></div>
+                                <div class="bf-article-title">Notes from a week with a new keyboard</div>
+                                <div class="bf-article-excerpt">It took three days to stop missing the old one, and two more to stop thinking about it.</div>
+                            </div>
+                            <div class="bf-article">
+                                <div class="bf-article-feed"><span class="bf-fav" style="--bf-fav: #e0564a"></span>Pixel Notes<span class="bf-article-time">9h</span></div>
+                                <div class="bf-article-title">What a good settings screen looks like</div>
+                                <div class="bf-article-excerpt">Fewer switches, better defaults, and words a person would actually say.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <!-- Works with your reader -->
         <section id="features" class="section">
@@ -102,150 +153,285 @@
                 <h2 class="section-title wipe">If you like your RSS app, you can keep your RSS app.*</h2>
                 <p class="section-subtitle wipe">Thanks to open industry standards (remember those?), Birchfeed probably works in the RSS app you already use. If your app shows a Google Reader, FreshRSS, or Fever option, you're in! These are the ones it's tested with, and what to pick in each.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-device-mobile"></i>
+
+            <div class="bento">
+                <!-- App picker -->
+                <article class="tile tile-split" style="--span: 12" data-demo="apps">
+                    <div class="tile-copy">
+                        <h3>Pick your app, see what to choose.</h3>
+                        <p>Add Birchfeed as an account in your reader and choose the option shown here. The web reader is built in, with nothing to set up.</p>
                     </div>
-                    <h3 class="feature-card-title">Reeder Classic</h3>
-                    <p class="feature-card-description">Choose Reader or FreshRSS, depending on the version you have. This is the reader Birchfeed is tested against most.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-desktop"></i>
+                    <div class="tile-stage">
+                        <div class="bf-apps" role="group" aria-label="Reader apps">
+                            <button type="button" class="bf-app is-active" aria-pressed="true" data-app="Reeder Classic" data-choose="Reader|FreshRSS" data-note="Depending on the version you have. This is the reader Birchfeed is tested against most."><i class="ph ph-device-mobile" aria-hidden="true"></i> Reeder Classic</button>
+                            <button type="button" class="bf-app" aria-pressed="false" data-app="NetNewsWire" data-choose="FreshRSS" data-note="Pick it when adding an account."><i class="ph ph-desktop" aria-hidden="true"></i> NetNewsWire</button>
+                            <button type="button" class="bf-app" aria-pressed="false" data-app="Current" data-choose="FreshRSS|Google Reader" data-note="Either one works."><i class="ph ph-lightning" aria-hidden="true"></i> Current</button>
+                            <button type="button" class="bf-app" aria-pressed="false" data-app="Unread" data-choose="Fever" data-note="Pick it when adding an account."><i class="ph ph-book-open" aria-hidden="true"></i> Unread</button>
+                            <button type="button" class="bf-app" aria-pressed="false" data-app="Web Reader" data-choose="Nothing to set up" data-note="Built in. A full three-pane reader in any browser." data-shot><i class="ph ph-browser" aria-hidden="true"></i> Web Reader</button>
+                            <button type="button" class="bf-app" aria-pressed="false" data-app="Something Else?" data-choose="Google Reader|FreshRSS|Fever" data-note="Any app with one of these options should work. Pick whichever one it offers."><i class="ph ph-plugs-connected" aria-hidden="true"></i> Something Else?</button>
+                        </div>
+                        <div class="demo-card bf-choice" aria-live="polite">
+                            <p class="bf-choice-lead">In <strong data-choice-app>Reeder Classic</strong>, choose</p>
+                            <div class="bf-choice-pills" data-choice-pills><span class="bf-pill">Reader</span><span class="bf-or">or</span><span class="bf-pill">FreshRSS</span></div>
+                            <p class="bf-choice-note" data-choice-note>Depending on the version you have. This is the reader Birchfeed is tested against most.</p>
+                            <img class="bf-choice-shot" data-choice-shot hidden src="../../images/birchfeed-reader.jpg" alt="The Birchfeed web reader: a three-pane view with feeds on the left, an article list in the middle, and the open article on the right" loading="lazy">
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">NetNewsWire</h3>
-                    <p class="feature-card-description">Choose FreshRSS when adding an account.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-lightning"></i>
-                    </div>
-                    <h3 class="feature-card-title">Current</h3>
-                    <p class="feature-card-description">Choose FreshRSS or Google Reader.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-book-open"></i>
-                    </div>
-                    <h3 class="feature-card-title">Unread</h3>
-                    <p class="feature-card-description">Choose Fever.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-browser"></i>
-                    </div>
-                    <h3 class="feature-card-title">Web Reader</h3>
-                    <p class="feature-card-description">Built in, nothing to set up. A full three-pane reader in any browser.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-plugs-connected"></i>
-                    </div>
-                    <h3 class="feature-card-title">Something Else?</h3>
-                    <p class="feature-card-description">Any app with a Google Reader, FreshRSS, or Fever option should work. Pick whichever one it offers.</p>
-                </div>
+                </article>
             </div>
             <p class="section-subtitle scroll-reveal" style="text-align: center; margin: 2rem auto 0; max-width: 40rem;">*Okay, yeah, some apps don't support those, but the good ones do!</p>
         </section>
 
-        <!-- Feature: News Stream -->
+        <!-- The clever things -->
         <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">The News Stream</p>
-                    <h2 class="feature-title">Big news day? Open a window and watch it roll in.</h2>
-                    <p class="feature-description">
-                        Open it up in a new window and watch the news of the day stream by in real time. Perfect for those big news days or the generally news-obsessed.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/birchfeed-stream.jpg" alt="The News Stream: a single live column of arriving articles with a freshness indicator at the top">
-                </div>
+            <div class="section-header scroll-reveal">
+                <h2 class="section-title wipe">And a few other clever things.</h2>
+            </div>
+
+            <div class="bento">
+                <!-- News Stream -->
+                <article class="tile" style="--span: 7" data-demo="stream" data-steps="900,1300,1300">
+                    <div class="tile-stage">
+                        <div class="demo-card bf-stream" aria-hidden="true">
+                            <div class="bf-stream-bar">
+                                <span><b>Birchfeed</b> News Stream</span>
+                                <span class="bf-live"><i></i><span data-step-text="Updated 15 minutes ago|Updated just now">Updated 15 minutes ago</span></span>
+                            </div>
+                            <div class="bf-stream-body">
+                                <div class="bf-item bf-in-1"><div class="bf-item-inner"><div class="bf-stream-mark"><span>Just now</span></div></div></div>
+                                    <div class="bf-item bf-in-3">
+                                        <div class="bf-item-inner">
+                                            <div class="bf-item-feed"><span class="bf-fav" style="--bf-fav: #3b82c4"></span>The Tinkerer</div>
+                                            <div class="bf-item-title">Hands on with the thing everyone is talking about</div>
+                                            <div class="bf-item-excerpt">First impressions after an hour, with more to come as the day goes on.</div>
+                                        </div>
+                                    </div>
+                                    <div class="bf-item bf-in-2">
+                                        <div class="bf-item-inner">
+                                            <div class="bf-item-feed"><span class="bf-fav" style="--bf-fav: #e0564a"></span>Pixel Notes</div>
+                                            <div class="bf-item-title">Everything announced this morning, in one place</div>
+                                            <div class="bf-item-excerpt">A running list of the news as it lands, updated through the keynote.</div>
+                                        </div>
+                                    </div>
+                                    <div class="bf-item bf-in-1">
+                                        <div class="bf-item-inner">
+                                            <div class="bf-item-feed"><span class="bf-fav" style="--bf-fav: #2f7d5b"></span>Slow Web Weekly</div>
+                                            <div class="bf-item-title">The keynote is starting: what to expect</div>
+                                            <div class="bf-item-excerpt">Doors are open and the stream is live. Here is what the rumors say is coming.</div>
+                                        </div>
+                                    </div>
+                                <div class="bf-item"><div class="bf-item-inner"><div class="bf-stream-mark"><span>15 minutes ago</span></div></div></div>
+                                    <div class="bf-item">
+                                        <div class="bf-item-inner">
+                                            <div class="bf-item-feed"><span class="bf-fav" style="--bf-fav: #8839ef"></span>Birchtree</div>
+                                            <div class="bf-item-title">Why I still open my feed reader first</div>
+                                            <div class="bf-item-excerpt">Every morning starts the same way: coffee, then a few hundred headlines.</div>
+                                        </div>
+                                    </div>
+                                    <div class="bf-item">
+                                        <div class="bf-item-inner">
+                                            <div class="bf-item-feed"><span class="bf-fav" style="--bf-fav: #d9912b"></span>Indie Dispatch</div>
+                                            <div class="bf-item-title">Three small apps worth your weekend</div>
+                                            <div class="bf-item-excerpt">None of them want an account, and all of them do one thing well.</div>
+                                        </div>
+                                    </div>
+                                    <div class="bf-item">
+                                        <div class="bf-item-inner">
+                                            <div class="bf-item-feed"><span class="bf-fav" style="--bf-fav: #e0564a"></span>Pixel Notes</div>
+                                            <div class="bf-item-title">A small app that does one thing well</div>
+                                            <div class="bf-item-excerpt">There is a certain kind of software that never asks for your attention.</div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> 3 new articles, no refresh</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Big news day? Open a window and watch it roll in.</h3>
+                        <p>Open the News Stream in a new window and watch the news of the day stream by in real time. Perfect for those big news days or the generally news-obsessed.</p>
+                    </div>
+                </article>
+
+                <!-- Daily Roundups -->
+                <article class="tile" style="--span: 5" data-demo="roundup">
+                    <div class="tile-stage">
+                        <div class="bf-times">
+                            <span id="bf-times-label">Send it at</span>
+                            <div class="bf-seg" role="group" aria-labelledby="bf-times-label">
+                                <button type="button" class="is-active" aria-pressed="true" data-roundup="am">6:00 AM</button>
+                                <button type="button" aria-pressed="false" data-roundup="pm">5:00 PM</button>
+                            </div>
+                        </div>
+                        <div class="demo-card bf-mail" aria-live="polite">
+                            <div class="bf-mail-head">
+                                <img src="../../images/birchfeed-icon.svg" alt="">
+                                <div class="bf-mail-who">
+                                    <div class="bf-mail-from">Birchfeed</div>
+                                    <div class="bf-mail-subject" data-roundup-subject>What happened overnight</div>
+                                </div>
+                                <span class="bf-mail-time" data-roundup-time>6:00 AM</span>
+                            </div>
+                            <div class="bf-mail-body" data-roundup-body>
+                                <p class="bf-mail-label">The Briefing</p>
+                                <div class="bf-brief">
+                                    <strong>The keynote has a date</strong>
+                                    <p>Invitations went out late last night. Two of your feeds already have guesses about what is coming.</p>
+                                    <span>Pixel Notes &middot; The Tinkerer</span>
+                                </div>
+                                <div class="bf-brief">
+                                    <strong>A quiet update worth installing</strong>
+                                    <p>A small release fixed the sync bug people had been grumbling about all week.</p>
+                                    <span>Slow Web Weekly</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>One email a day with what you missed.</h3>
+                        <p>Schedule a daily email that summarizes what happened while you were away. Make it 6AM and wake up to what happened overnight, or 5PM and see what happened while you were working. It's always 100% personalized to you.</p>
+                    </div>
+                </article>
+
+                <!-- Automations -->
+                <article class="tile tile-split" style="--span: 12" data-demo="rules">
+                    <div class="tile-copy">
+                        <h3>Simple rules that act on new articles the moment they arrive.</h3>
+                        <p>Get a push or an email when something you care about pops up, star it for later, or mark the noise as read so you never even see it. Rules can watch one feed, a folder, or everything you follow. Switch one off to see what changes.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="bf-rules">
+                            <div class="bf-rule" data-rule>
+                                <label class="bf-rule-head">
+                                    <span class="bf-rule-name">Keynote alerts</span>
+                                    <input type="checkbox" checked>
+                                </label>
+                                <p class="bf-rule-text">In the Tech folder, when the title has "keynote": push me</p>
+                                <div class="bf-rule-hit">
+                                    <span class="bf-rule-article">The keynote is starting: what to expect</span>
+                                    <span class="bf-chip" data-on="Push sent" data-off="No action"><i class="ph ph-bell" aria-hidden="true"></i> <span>Push sent</span></span>
+                                </div>
+                            </div>
+                            <div class="bf-rule" data-rule>
+                                <label class="bf-rule-head">
+                                    <span class="bf-rule-name">Skip sponsor posts</span>
+                                    <input type="checkbox" checked>
+                                </label>
+                                <p class="bf-rule-text">In all feeds, when the title has "[Sponsor]": mark it read</p>
+                                <div class="bf-rule-hit">
+                                    <span class="bf-rule-article">[Sponsor] A very nice keyboard</span>
+                                    <span class="bf-chip" data-on="Marked read" data-off="No action"><i class="ph ph-check" aria-hidden="true"></i> <span>Marked read</span></span>
+                                </div>
+                            </div>
+                            <div class="bf-rule" data-rule>
+                                <label class="bf-rule-head">
+                                    <span class="bf-rule-name">RSS watch</span>
+                                    <input type="checkbox" checked>
+                                </label>
+                                <p class="bf-rule-text">In Birchtree, when anywhere has "RSS": email me, star it</p>
+                                <div class="bf-rule-hit">
+                                    <span class="bf-rule-article">Why I still open my feed reader first</span>
+                                    <span class="bf-chip" data-on="Emailed and starred" data-off="No action"><i class="ph ph-star" aria-hidden="true"></i> <span>Emailed and starred</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Daily Roundups -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Daily Roundups</p>
-                    <h2 class="feature-title">One email a day with what you missed.</h2>
-                    <p class="feature-description">
-                        Schedule a daily email that summarizes what happened while you were away. Schedule it for 6AM and wake up to what happened overnight, or make it 5PM and see what happened while you were working. It's always 100% personalized to you.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/birchfeed-today.jpg" alt="The Today page: the day's date, a written briefing, and the last 24 hours of arrivals grouped by feed">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Automations -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Automations</p>
-                    <h2 class="feature-title">Simple rules that act on new articles the moment they arrive.</h2>
-                    <p class="feature-description">
-                        Get a push or an email when something you care about pops up, star it for later, or mark the noise as read so you never even see it. Rules can watch one feed, a folder, or everything you follow.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/birchfeed-automations.jpg" alt="Three automation rules written as plain sentences, each with a toggle and a matched-this-week count">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature Grid -->
+        <!-- The details -->
         <section class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">The Details</p>
                 <h2 class="section-title wipe">All the small things.</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-arrows-left-right"></i>
+
+            <div class="bento">
+                <!-- Keys -->
+                <article class="tile" style="--span: 7" data-demo="keys">
+                    <div class="tile-stage">
+                        <div class="demo-card">
+                            <div class="bf-key" data-key>
+                                <div class="bf-key-icon"><i class="ph ph-key" aria-hidden="true"></i></div>
+                                <div class="bf-key-body">
+                                    <div class="bf-key-name">Reeder Classic</div>
+                                    <div class="bf-key-meta" data-used="Last used today">Last used today</div>
+                                </div>
+                                <button type="button" class="demo-btn" data-revoke aria-label="Revoke the key for Reeder Classic">Revoke</button>
+                            </div>
+                            <div class="bf-key" data-key>
+                                <div class="bf-key-icon"><i class="ph ph-key" aria-hidden="true"></i></div>
+                                <div class="bf-key-body">
+                                    <div class="bf-key-name">NetNewsWire</div>
+                                    <div class="bf-key-meta" data-used="Last used yesterday">Last used yesterday</div>
+                                </div>
+                                <button type="button" class="demo-btn" data-revoke aria-label="Revoke the key for NetNewsWire">Revoke</button>
+                            </div>
+                            <div class="bf-key" data-key>
+                                <div class="bf-key-icon"><i class="ph ph-key" aria-hidden="true"></i></div>
+                                <div class="bf-key-body">
+                                    <div class="bf-key-name">Unread</div>
+                                    <div class="bf-key-meta" data-used="Last used 3 months ago">Last used 3 months ago</div>
+                                </div>
+                                <button type="button" class="demo-btn" data-revoke aria-label="Revoke the key for Unread">Revoke</button>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span data-key-status aria-live="polite">3 apps connected</span>
+                            <button type="button" class="demo-btn" data-key-reset hidden><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i> Reset</button>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">OPML Import and Export</h3>
-                    <p class="feature-card-description">Got feeds already? Bring them over! Ever want to leave? Take them with you.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-fingerprint"></i>
+                    <div class="tile-copy">
+                        <h3>Keys you control.</h3>
+                        <p>Each reader app gets its own key, revocable on its own, with a last-used date so you can see what is still connected.</p>
                     </div>
-                    <h3 class="feature-card-title">Passkey-Only</h3>
-                    <p class="feature-card-description">Passkeys are more secure and impossible to forget. There's also 0% chance of me leaking a password if it never exists at all.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-key"></i>
+                </article>
+
+                <!-- Passkeys -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-fingerprint" aria-hidden="true"></i>
+                    <div>
+                    <h3>Passkey-only. No password to leak.</h3>
+                    <p>Passkeys are more secure and impossible to forget. There's also 0% chance of me leaking a password if it never exists at all.</p>
                     </div>
-                    <h3 class="feature-card-title">Keys You Control</h3>
-                    <p class="feature-card-description">Each reader app gets its own key, revocable on its own, with a last-used date so you can see what is still connected.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-star"></i>
+                </article>
+
+                <!-- The rest -->
+                <article class="tile" style="--span: 12">
+                    <div class="bf-details">
+                        <div class="bf-detail">
+                            <i class="ph ph-arrows-left-right" aria-hidden="true"></i>
+                            <div>
+                                <h3>OPML import and export</h3>
+                                <p>Got feeds already? Bring them over! Ever want to leave? Take them with you.</p>
+                            </div>
+                        </div>
+                        <div class="bf-detail">
+                            <i class="ph ph-star" aria-hidden="true"></i>
+                            <div>
+                                <h3>Starred means kept</h3>
+                                <p>Old articles age out on a schedule to keep things fast. Anything you star is kept for good.</p>
+                            </div>
+                        </div>
+                        <div class="bf-detail">
+                            <i class="ph ph-code" aria-hidden="true"></i>
+                            <div>
+                                <h3>Open to developers</h3>
+                                <p>A documented Reader API, so any app can add Birchfeed directly instead of going through a FreshRSS or Fever setting.</p>
+                            </div>
+                        </div>
+                        <div class="bf-detail">
+                            <i class="ph ph-shield-check" aria-hidden="true"></i>
+                            <div>
+                                <h3>No ads, no tracking</h3>
+                                <p>We don't really need to know who you are or what you're doing, so we don't.</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card-title">Starred Means Kept</h3>
-                    <p class="feature-card-description">Old articles age out on a schedule to keep things fast. Anything you star is kept for good.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-code"></i>
-                    </div>
-                    <h3 class="feature-card-title">Open to Developers</h3>
-                    <p class="feature-card-description">A documented Reader API, so any app can add Birchfeed directly instead of going through a FreshRSS or Fever setting.</p>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon">
-                        <i class="ph ph-shield-check"></i>
-                    </div>
-                    <h3 class="feature-card-title">No Ads, No Tracking</h3>
-                    <p class="feature-card-description">We don't really need to know who you are or what you're doing, so we don't.</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -332,6 +518,7 @@
         </div>
     </footer>
 
-    <script src="../../app.js?v=15b52a66" defer></script>
+    <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./birchfeed.js?v=69f7843f" defer></script>
 </body>
 </html>

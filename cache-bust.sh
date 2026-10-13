@@ -1,7 +1,7 @@
 #!/bin/bash
 # Updates all HTML files with cache-busting hashes for the CSS and JS assets.
 # Run this after making changes to styles.css, home.css, home.js, app.css, app.js,
-# or a page-local asset such as apps/pastry/pastry.css.
+# or any page-local asset under apps/<app>/.
 
 set -e
 
@@ -22,7 +22,10 @@ bust home.css
 bust home.js
 bust app.css
 bust app.js
-bust apps/pastry/pastry.css
-bust apps/pastry/pastry.js
+
+# Page-local demo assets (apps/<app>/<app>.css and .js).
+for asset in apps/*/*.css apps/*/*.js; do
+    bust "$asset"
+done
 
 echo "Done. Updated all HTML files."

@@ -1,0 +1,778 @@
+/* Quick Subtitles - page-local styles for the live feature demos.
+   Loaded only by apps/quick-subtitles/index.html, on top of app.css. Every
+   rule is scoped under .calm-app and every class is prefixed qs- so nothing
+   here can collide with the shared calm components. The hero, tiles and
+   stepped demo runner come from app.css / app.js; this file overrides a few
+   colour tokens and styles the replicas inside the stages.
+
+   The demos are small HTML replicas of the Quick Subtitles window. With no
+   JS (or with reduced motion) each one rests in a finished, readable state. */
+
+body.calm-app {
+    --hero-wallpaper: linear-gradient(160deg, #2a3aa8 0%, #6f63cf 48%, #e183cb 100%);
+    --qs-card: #f2f2f4;
+    --qs-line: rgba(0, 0, 0, 0.08);
+    --qs-slate: #5b6673;
+    --qs-green: #1f9254;
+    --qs-green-tint: #e4efe7;
+    --qs-red: #c0392b;
+    --qs-blue: #0a7aff;
+}
+
+/* ---------- The window replica (hero) ---------- */
+.calm-app .qs-window {
+    width: 100%;
+    max-width: 31rem;
+    border-radius: 1.4rem;
+    background: #fff;
+    box-shadow: 0 30px 60px -28px rgba(20, 10, 60, 0.7);
+    font-family: var(--font-system);
+    color: var(--color-text);
+    text-align: left;
+    overflow: hidden;
+}
+
+.calm-app .qs-titlebar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--qs-line);
+}
+
+.calm-app .qs-lights {
+    position: absolute;
+    left: 1rem;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.calm-app .qs-lights i {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #fe5f57;
+}
+
+.calm-app .qs-lights i:nth-child(2) { background: #febc2e; }
+.calm-app .qs-lights i:nth-child(3) { background: #28c840; }
+
+/* Segmented control: the window's Transcribe / Batch switch, and the
+   Text / SRT switch in the export demo. */
+.calm-app .qs-seg {
+    display: inline-flex;
+    align-self: flex-start;
+    gap: 0.15rem;
+    padding: 0.2rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.25), inset 0 0 0 1px var(--qs-line);
+}
+
+.calm-app .qs-seg > * {
+    padding: 0.25rem 0.85rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: #3a3a3c;
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+
+.calm-app .qs-seg > .is-active,
+.calm-app .qs-seg > [aria-pressed="true"] {
+    background: #e4e4e7;
+}
+
+.calm-app .qs-seg > button {
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.calm-app .qs-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem) clamp(0.9rem, 3vw, 1.75rem);
+}
+
+.calm-app .qs-file,
+.calm-app .qs-status,
+.calm-app .qs-tip {
+    border-radius: 1.1rem;
+    background: var(--qs-card);
+}
+
+.calm-app .qs-file {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 0.75rem;
+}
+
+.calm-app .qs-file-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--qs-line);
+    border-radius: 0.65rem;
+    background: #e3e4e7;
+    color: var(--qs-slate);
+    font-size: 1.2rem;
+}
+
+.calm-app .qs-file-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qs-cancel {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid #f0c4c0;
+    border-radius: var(--radius-pill);
+    background: #fbe8e6;
+    color: var(--qs-red);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.calm-app .qs-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.85rem 0.9rem;
+    border: 1px solid var(--qs-line);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.calm-app .qs-status-head {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.calm-app .qs-ring {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--qs-slate);
+    font-size: 1.1rem;
+}
+
+/* The one ambient thing: the ring turns while a file is being transcribed. */
+.calm-app .qs-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 3px solid #d5d8dd;
+    border-top-color: var(--qs-slate);
+    border-right-color: var(--qs-slate);
+    border-radius: 50%;
+}
+
+.calm-app [data-state="working"] .qs-ring::before {
+    animation: qs-spin 1.6s linear infinite;
+}
+
+@keyframes qs-spin {
+    to { transform: rotate(360deg); }
+}
+
+.calm-app .qs-status-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .qs-status-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.calm-app .qs-status-sub {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .qs-pct {
+    flex: none;
+    min-width: 3.4rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--qs-line);
+    border-radius: var(--radius-pill);
+    background: #e3e4e7;
+    color: var(--qs-slate);
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.calm-app .qs-progress {
+    height: 0.4rem;
+    border-radius: var(--radius-pill);
+    background: #e6e7ea;
+    overflow: hidden;
+}
+
+.calm-app .qs-progress span {
+    display: block;
+    height: 100%;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(90deg, #5b6673, #8a929c 55%, #6b7480);
+    transform-origin: left;
+}
+
+.calm-app .qs-time {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 0.45rem;
+    background: #e6e7ea;
+    color: var(--qs-slate);
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Finished: the same card turns green, as it does in the app. */
+.calm-app [data-state="done"] .qs-status {
+    border-color: #b5d6c0;
+    background: var(--qs-green-tint);
+}
+
+.calm-app [data-state="done"] .qs-status-title {
+    color: var(--qs-green);
+}
+
+.calm-app [data-state="done"] .qs-ring {
+    border-radius: 50%;
+    background: var(--qs-green);
+    box-shadow: 0 0 0 5px rgba(31, 146, 84, 0.18);
+    color: #fff;
+}
+
+.calm-app [data-state="done"] .qs-ring::before,
+.calm-app [data-state="done"] .qs-status-sub {
+    display: none;
+}
+
+.calm-app [data-state="done"] .qs-pct,
+.calm-app .qs-stats-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 0;
+    background: var(--qs-green);
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.calm-app [data-state="done"] .qs-progress span {
+    background: var(--qs-green);
+}
+
+.calm-app [data-state="done"] .qs-time {
+    background: rgba(31, 146, 84, 0.14);
+    color: var(--qs-green);
+}
+
+.calm-app .qs-tip {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--qs-line);
+}
+
+.calm-app .qs-tip > i {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: #dfe1e5;
+    color: var(--qs-slate);
+    font-size: 1.15rem;
+}
+
+.calm-app .qs-tip div {
+    min-width: 0;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .qs-tip strong {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text);
+}
+
+/* ---------- Demo: transcription stats ---------- */
+.calm-app .qs-complete {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid #b5d6c0;
+    border-radius: 1.1rem;
+    background: var(--qs-green-tint);
+}
+
+.calm-app .qs-complete .qs-ring {
+    border-radius: 50%;
+    background: var(--qs-green);
+    box-shadow: 0 0 0 5px rgba(31, 146, 84, 0.18);
+    color: #fff;
+}
+
+.calm-app .qs-complete .qs-ring::before {
+    display: none;
+}
+
+.calm-app .qs-complete .qs-status-title {
+    flex: 1;
+    min-width: 0;
+    color: var(--qs-green);
+}
+
+.calm-app .qs-stats-btn {
+    padding: 0.45rem 0.95rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 8px 16px -8px rgba(31, 146, 84, 0.8);
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s var(--ease-out);
+}
+
+.calm-app .qs-stats-btn:active {
+    transform: scale(0.96);
+}
+
+.calm-app .qs-stats-btn:focus-visible,
+.calm-app .qs-seg > button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.calm-app .qs-stats {
+    padding: 1rem 1.15rem;
+    border-radius: 1.4rem;
+    background: #fff;
+    box-shadow: 0 16px 34px -20px rgba(20, 60, 40, 0.5);
+    transform-origin: top right;
+    transition: opacity 0.25s ease, transform 0.35s var(--ease-out), visibility 0s;
+}
+
+.calm-app .qs-stats-title {
+    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.calm-app .qs-stat {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.22rem 0;
+    font-size: 0.92rem;
+    transition: opacity 0.3s ease, transform 0.4s var(--ease-out);
+}
+
+.calm-app .qs-stat dt {
+    min-width: 0;
+    color: #7c8087;
+}
+
+.calm-app .qs-stat dd {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Rows arrive one after another when the popover opens. */
+.calm-app .qs-stat:nth-child(2) { transition-delay: 0.06s; }
+.calm-app .qs-stat:nth-child(3) { transition-delay: 0.12s; }
+.calm-app .qs-stat:nth-child(4) { transition-delay: 0.18s; }
+.calm-app .qs-stat:nth-child(5) { transition-delay: 0.24s; }
+.calm-app .qs-stat:nth-child(6) { transition-delay: 0.3s; }
+
+.calm-app .qs-stats.is-closed {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+}
+
+.calm-app .qs-stats.is-closed .qs-stat {
+    opacity: 0;
+    transform: translateY(5px);
+    transition-delay: 0s;
+}
+
+/* ---------- Demo: analysis ---------- */
+.calm-app .qs-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.calm-app .qs-tabs {
+    display: inline-flex;
+    border-radius: 0.5rem;
+    background: #e6e7ea;
+    overflow: hidden;
+}
+
+.calm-app .qs-tab {
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .qs-analyze {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    background: #e6e7ea;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease, transform 0.2s var(--ease-out);
+}
+
+/* Both panes share one grid cell, so the card never changes height. */
+.calm-app .qs-pane {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1rem 1.1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.calm-app .qs-pane > * {
+    grid-area: 1 / 1;
+    min-width: 0;
+    transition: opacity 0.3s ease;
+}
+
+.calm-app .qs-pane-heading {
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.calm-app .qs-group + .qs-group {
+    margin-top: 0.8rem;
+}
+
+.calm-app .qs-group {
+    transition: opacity 0.35s ease, transform 0.45s var(--ease-out);
+}
+
+.calm-app .qs-group ul {
+    list-style: none;
+}
+
+.calm-app .qs-group li {
+    position: relative;
+    padding-left: 0.8rem;
+}
+
+.calm-app .qs-group li::before {
+    content: "";
+    position: absolute;
+    left: 0.1rem;
+    top: 0.62em;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.calm-app .qs-two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.75rem;
+}
+
+/* Step 0: the transcript. Step 1: Analyze is pressed. Steps 2 and 3: the
+   two lists arrive on the Analysis tab. */
+.calm-app .tile[data-demo="analysis"] .qs-pane-analysis,
+.calm-app .tile[data-demo="analysis"][data-step="1"] .qs-pane-transcript,
+.calm-app .tile[data-demo="analysis"][data-step="2"] .qs-pane-transcript,
+.calm-app .tile[data-demo="analysis"][data-step="3"] .qs-pane-transcript {
+    opacity: 0;
+}
+
+.calm-app .tile[data-demo="analysis"][data-step="1"] .qs-pane-analysis,
+.calm-app .tile[data-demo="analysis"][data-step="2"] .qs-pane-analysis,
+.calm-app .tile[data-demo="analysis"][data-step="3"] .qs-pane-analysis {
+    opacity: 1;
+}
+
+.calm-app .tile[data-demo="analysis"] .qs-tab-transcript,
+.calm-app .tile[data-demo="analysis"][data-step="1"] .qs-tab-analysis,
+.calm-app .tile[data-demo="analysis"][data-step="2"] .qs-tab-analysis,
+.calm-app .tile[data-demo="analysis"][data-step="3"] .qs-tab-analysis {
+    background: var(--qs-blue);
+    color: #fff;
+}
+
+.calm-app .tile[data-demo="analysis"][data-step="1"] .qs-tab-transcript,
+.calm-app .tile[data-demo="analysis"][data-step="2"] .qs-tab-transcript,
+.calm-app .tile[data-demo="analysis"][data-step="3"] .qs-tab-transcript {
+    background: none;
+    color: inherit;
+}
+
+.calm-app .tile[data-demo="analysis"][data-step="1"] .qs-analyze {
+    background: #d3d5da;
+    transform: scale(0.95);
+}
+
+.calm-app .tile[data-demo="analysis"][data-step="1"] .qs-group,
+.calm-app .tile[data-demo="analysis"][data-step="2"] .qs-group:nth-child(2) {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.calm-app .tile[data-demo="analysis"][data-step="3"] .demo-note {
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+/* ---------- Demo: text and SRT export ---------- */
+.calm-app .qs-export > * {
+    transition: opacity 0.25s ease, transform 0.35s var(--ease-out);
+}
+
+.calm-app .qs-export > [aria-hidden="true"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+}
+
+.calm-app .qs-srt {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.74rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.calm-app .qs-srt p + p {
+    margin-top: 0.6rem;
+}
+
+.calm-app .qs-srt span {
+    display: block;
+    color: var(--stage-muted);
+}
+
+/* ---------- Demo: benchmark ---------- */
+.calm-app .qs-bench {
+    padding: 1rem;
+}
+
+.calm-app .qs-bench-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.calm-app .qs-csv {
+    padding: 0.25rem 0.7rem;
+    border-radius: 0.45rem;
+    background: #dfe1e5;
+    color: var(--qs-slate);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.calm-app .qs-bench-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.calm-app .qs-bench-stat {
+    padding: 0.7rem 0.3rem;
+    border-radius: 0.8rem;
+    background: #f5f5f7;
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+.calm-app .qs-bench-stat strong {
+    display: block;
+    color: #4a5462;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.3;
+}
+
+.calm-app .qs-bench-sub {
+    margin: 0.9rem 0 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.calm-app .qs-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+    background: #f9f9fb;
+}
+
+.calm-app .qs-chart line {
+    stroke: #d9dbe0;
+    stroke-width: 1;
+}
+
+.calm-app .qs-chart .qs-chart-v {
+    stroke-dasharray: 3 3;
+}
+
+.calm-app .qs-chart text {
+    fill: #8a8d93;
+    font-size: 9px;
+}
+
+.calm-app .qs-chart polyline {
+    fill: none;
+    stroke: #556170;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* pathLength is 4 (one unit per segment), so the offset is the number
+       of segments still to draw. */
+    stroke-dasharray: 4 8;
+    stroke-dashoffset: calc(5 - max(var(--qs-runs, 5), 1));
+    transition: stroke-dashoffset 0.5s var(--ease-out);
+}
+
+.calm-app .demo-btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.calm-app .qs-chart circle {
+    fill: #556170;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 0.2s ease, transform 0.35s var(--ease-out);
+}
+
+.calm-app .qs-chart circle.is-off {
+    opacity: 0;
+    transform: scale(0.3);
+}
+
+/* ---------- How it works ---------- */
+.calm-app .qs-steps {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: clamp(1rem, 2.5vw, 2rem);
+    list-style: none;
+}
+
+.calm-app .qs-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.calm-app .qs-steps i {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: var(--stage-tint);
+    color: var(--accent-ink);
+    font-size: 1.4rem;
+}
+
+.calm-app .qs-steps div {
+    min-width: 0;
+}
+
+.calm-app .qs-steps h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.3;
+}
+
+.calm-app .qs-steps p {
+    margin-top: 0.2rem;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .qs-shot img {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 14rem;
+    border-radius: calc(var(--radius-card) - 0.6rem);
+    object-fit: cover;
+    object-position: 50% 40%;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .calm-app [data-state="working"] .qs-ring::before {
+        animation: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    .calm-app .qs-cancel {
+        padding: 0.3rem 0.5rem;
+    }
+
+    .calm-app .qs-two {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .qs-stat {
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,752 @@
+/* Quick Reads - page-local styles for the live feature demos.
+   Loaded only by apps/quick-reads/index.html, on top of app.css. Every rule
+   is scoped under .calm-app and every class is prefixed qr- so nothing here
+   can collide with the shared calm components. The hero, tiles and stepped
+   demo runner come from app.css / app.js; this file styles the replicas
+   inside the stages.
+
+   The demos are small HTML replicas of the Quick Reads web app. Stepped ones
+   follow a data-step attribute that app.js advances on a timer; clickable
+   ones follow aria-pressed, set by quick-reads.js. With no JS the demos rest
+   in their "before" state. */
+
+body.calm-app {
+    --qr-ink: #1f1b2e;
+    --qr-purple: #7c3aed;
+    --qr-wash: #efeafd;
+    --qr-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+}
+
+/* ---------- The queue window (hero) ---------- */
+.calm-app .qr-window {
+    width: 100%;
+    max-width: 30rem;
+    border-radius: 1.4rem;
+    background: #f9f9fb;
+    box-shadow: 0 24px 50px -24px rgba(60, 30, 130, 0.55),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    font-family: var(--font-system);
+    color: var(--qr-ink);
+    text-align: left;
+    overflow: hidden;
+}
+
+.calm-app .qr-window-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.1rem 0.9rem 1.3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.calm-app .qr-window-title {
+    font-family: var(--qr-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.calm-app .qr-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.7rem;
+    background: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.calm-app .qr-list {
+    padding: 0.5rem;
+    /* Five rows, held open so an arriving article never resizes the hero. */
+    height: 21rem;
+    overflow: hidden;
+}
+
+/* ---------- Queue rows ---------- */
+.calm-app .qr-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 4rem;
+    padding: 0 0.7rem;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    transition: height 0.45s var(--ease-out), opacity 0.35s ease,
+                background-color 0.3s ease;
+}
+
+.calm-app .qr-item.is-selected {
+    background: var(--qr-wash);
+}
+
+.calm-app .qr-item.is-selected .qr-item-title {
+    color: var(--qr-purple);
+}
+
+.calm-app .qr-item.is-leaving {
+    height: 0;
+    opacity: 0;
+}
+
+.calm-app .qr-fav {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: var(--qr-fav, #6b7280);
+    color: #fff;
+    font-family: var(--qr-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.calm-app .qr-item-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .qr-item-title {
+    overflow: hidden;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+}
+
+.calm-app .qr-item-meta {
+    overflow: hidden;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    color: var(--stage-muted);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qr-src {
+    color: var(--qr-purple);
+}
+
+.calm-app .qr-min {
+    flex: none;
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-pill);
+    background: rgba(31, 27, 46, 0.06);
+    font-size: 0.72rem;
+    color: var(--stage-muted);
+    white-space: nowrap;
+}
+
+/* ---------- Shared article type ---------- */
+.calm-app .qr-art-title {
+    font-family: var(--qr-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--qr-ink);
+}
+
+.calm-app .qr-art-meta {
+    margin-top: 0.3rem;
+    font-size: 0.72rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .qr-read {
+    margin-left: 0.3rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: var(--radius-pill);
+    background: rgba(31, 27, 46, 0.06);
+}
+
+.calm-app .qr-art-text {
+    font-family: var(--qr-serif);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--qr-ink);
+}
+
+.calm-app .qr-art-text + .qr-art-text {
+    margin-top: 0.6rem;
+}
+
+.calm-app .qr-bar {
+    display: block;
+    height: 0.5rem;
+    border-radius: var(--radius-pill);
+    background: rgba(31, 27, 46, 0.1);
+}
+
+.calm-app .qr-bar-short {
+    width: 60%;
+}
+
+/* ---------- Demo: a cluttered page becomes an article ---------- */
+.calm-app .qr-page {
+    position: relative;
+    height: 17.5rem;
+    padding: 0.7rem;
+    overflow: hidden;
+}
+
+.calm-app .qr-junk {
+    transition: opacity 0.45s ease, transform 0.45s var(--ease-out);
+}
+
+.calm-app .qr-ad {
+    display: grid;
+    place-items: center;
+    height: 2.6rem;
+    margin-bottom: 0.7rem;
+    border-radius: 0.5rem;
+    background: repeating-linear-gradient(135deg, #fde9a8 0 10px, #fbd975 10px 20px);
+    color: #7a5a00;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: opacity 0.45s ease, height 0.6s var(--ease-out),
+                margin 0.6s var(--ease-out);
+}
+
+.calm-app .qr-page-body {
+    position: relative;
+}
+
+.calm-app .qr-article {
+    padding: 0.2rem 34% 0 0.5rem;
+    transition: padding 0.6s var(--ease-out);
+}
+
+.calm-app .qr-art-img {
+    height: 3.6rem;
+    margin: 0.6rem 0;
+    border-radius: 0.5rem;
+    background:
+        radial-gradient(ellipse 80% 60% at 25% 110%, #5f8f7c 0 60%, transparent 61%),
+        radial-gradient(ellipse 70% 55% at 80% 115%, #86ad97 0 60%, transparent 61%),
+        linear-gradient(180deg, #cfe0f5 0%, #f1e4d2 100%);
+}
+
+.calm-app .qr-side {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    background: #f1f1f4;
+}
+
+.calm-app .qr-side-head {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--stage-muted);
+}
+
+.calm-app .qr-side-box {
+    margin-top: 0.3rem;
+    padding: 0.4rem 0.2rem;
+    border-radius: 0.4rem;
+    background: #e0564a;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.calm-app .qr-cookie {
+    position: absolute;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.6rem 0.6rem 0.6rem 0.9rem;
+    border-radius: 0.7rem;
+    background: #26232e;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.5);
+}
+
+.calm-app .qr-cookie-btn {
+    flex: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: #26232e;
+    font-size: 0.72rem;
+}
+
+/* Step 1: the clutter fades. Step 2: the article takes the room it left. */
+.calm-app .tile[data-step="1"] .qr-junk,
+.calm-app .tile[data-step="2"] .qr-junk {
+    opacity: 0;
+}
+
+.calm-app .tile[data-step="1"] .qr-cookie,
+.calm-app .tile[data-step="2"] .qr-cookie {
+    transform: translateY(0.6rem);
+}
+
+.calm-app .tile[data-step="1"] .qr-side { transition-delay: 0.12s; }
+.calm-app .tile[data-step="1"] .qr-cookie { transition-delay: 0.24s; }
+
+.calm-app .tile[data-step="2"] .qr-ad {
+    height: 0;
+    margin-bottom: 0;
+}
+
+.calm-app .tile[data-step="2"] .qr-article {
+    padding: 0.6rem 0.8rem 0;
+}
+
+.calm-app .tile[data-demo="clean"][data-step="2"] .demo-note,
+.calm-app .tile[data-demo="obsidian"][data-step="3"] .demo-note {
+    opacity: 1;
+}
+
+/* ---------- Demo: highlights ---------- */
+.calm-app .qr-reader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.9rem 0.9rem 0.9rem 0.6rem;
+}
+
+.calm-app .qr-para {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 0;
+    border-left: 3px solid transparent;
+    border-radius: 0 0.5rem 0.5rem 0;
+    background: none;
+    color: var(--qr-ink);
+    font-family: var(--qr-serif);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.calm-app .qr-para:hover {
+    background: rgba(124, 58, 237, 0.06);
+}
+
+.calm-app .qr-para[aria-pressed="true"] {
+    border-left-color: var(--accent);
+    background: var(--qr-wash);
+}
+
+.calm-app .qr-para:focus-visible {
+    outline-offset: 1px;
+}
+
+.calm-app .qr-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--qr-purple);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ---------- Demo: highlights sync to Obsidian ---------- */
+.calm-app .qr-sync {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.15fr);
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.calm-app .qr-pane {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 15rem;
+    padding: 0.9rem 1rem 1rem;
+}
+
+.calm-app .qr-pane-head {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--stage-muted);
+}
+
+.calm-app .qr-pane-head img {
+    width: 1rem;
+    height: 1rem;
+}
+
+.calm-app .qr-pane-head i {
+    font-size: 1rem;
+}
+
+.calm-app .qr-passage {
+    margin-left: -0.5rem;
+    padding: 0.4rem 0.5rem;
+    border-left: 3px solid transparent;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-family: var(--qr-serif);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--qr-ink);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.calm-app .tile[data-step="1"] .qr-passage,
+.calm-app .tile[data-step="2"] .qr-passage,
+.calm-app .tile[data-step="3"] .qr-passage {
+    border-left-color: var(--accent);
+    background: var(--qr-wash);
+}
+
+.calm-app .qr-sync-arrow {
+    font-size: 1.3rem;
+    color: var(--stage-muted);
+    transition: color 0.3s ease, transform 0.4s var(--ease-out);
+}
+
+.calm-app .tile[data-step="2"] .qr-sync-arrow,
+.calm-app .tile[data-step="3"] .qr-sync-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+}
+
+.calm-app .qr-folder {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #4a4a55;
+}
+
+.calm-app .qr-note {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.45s var(--ease-out);
+}
+
+.calm-app .tile[data-step="2"] .qr-note,
+.calm-app .tile[data-step="3"] .qr-note {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .qr-note-title {
+    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1d1d1f;
+}
+
+.calm-app .qr-prop {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: 0.5rem;
+    font-size: 0.76rem;
+    line-height: 1.5;
+}
+
+.calm-app .qr-prop span:first-child {
+    color: var(--stage-muted);
+}
+
+.calm-app .qr-prop span:last-child {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qr-prop-link {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.calm-app .qr-note-quote {
+    margin-top: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    border-left: 3px solid #4f63d2;
+    background: #f4f4f6;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #1d1d1f;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.35s ease, transform 0.45s var(--ease-out);
+}
+
+.calm-app .tile[data-step="3"] .qr-note-quote {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Statement tile link ---------- */
+.calm-app .tile-dark .qr-link {
+    color: var(--tile-dark-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    white-space: nowrap;
+}
+
+.calm-app .tile-dark .qr-link:focus-visible {
+    outline-color: var(--tile-dark-ink);
+}
+
+/* ---------- Demo: save from the browser ---------- */
+.calm-app .qr-browser {
+    padding: 0;
+    overflow: hidden;
+}
+
+.calm-app .qr-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem 0.5rem 0.8rem;
+    background: #ececf0;
+}
+
+.calm-app .qr-dots {
+    flex: none;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.calm-app .qr-dots i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #c9c9d1;
+}
+
+.calm-app .qr-url {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    font-size: 0.76rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .qr-url span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calm-app .qr-ext {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: 0;
+    border-radius: 0.6rem;
+    background: #fff;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.15s var(--ease-out);
+}
+
+.calm-app .qr-ext:hover {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.calm-app .qr-ext:active {
+    transform: scale(0.94);
+}
+
+.calm-app .qr-ext img {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+/* The tick that confirms the save, pinned to the corner of the button. */
+.calm-app .qr-ext i {
+    position: absolute;
+    right: -0.3rem;
+    bottom: -0.3rem;
+    display: grid;
+    place-items: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #16a34a;
+    color: #fff;
+    font-size: 0.65rem;
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.2s ease, transform 0.3s var(--ease-out);
+}
+
+.calm-app .qr-ext[aria-pressed="true"] {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.calm-app .qr-ext[aria-pressed="true"] i {
+    opacity: 1;
+    transform: none;
+}
+
+.calm-app .qr-browser-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.1rem 1.2rem;
+}
+
+.calm-app .qr-mini-head {
+    padding: 0.4rem 0.7rem 0.3rem;
+    font-family: var(--qr-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--qr-ink);
+}
+
+.calm-app .qr-mini .qr-item {
+    height: 3.5rem;
+}
+
+.calm-app .qr-mini .qr-item-new {
+    height: 0;
+    opacity: 0;
+}
+
+.calm-app .tile.is-saved .qr-mini .qr-item-new {
+    height: 3.5rem;
+    opacity: 1;
+    background: var(--qr-wash);
+}
+
+/* Hold the stage at its saved height so the click never moves the page. */
+.calm-app .qr-mini {
+    min-height: 9.8rem;
+}
+
+/* ---------- The real queue ---------- */
+.calm-app .tile-stage.qr-shot-stage {
+    justify-content: flex-start;
+    height: 19rem;
+    padding-right: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+/* Wider than its stage and cropped, so the rows stay readable. */
+.calm-app .qr-shot {
+    width: 170%;
+    max-width: none;
+    border-radius: 0.9rem 0 0 0;
+    box-shadow: 0 16px 36px -18px rgba(60, 30, 130, 0.5);
+}
+
+/* ---------- Where it runs ---------- */
+.calm-app .qr-plat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--qr-ink);
+}
+
+.calm-app .qr-plat + .qr-plat {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.calm-app .qr-plat > i:first-child {
+    flex: none;
+    font-size: 1.2rem;
+    color: var(--qr-purple);
+}
+
+.calm-app .qr-plat-name {
+    flex: 1;
+    min-width: 0;
+}
+
+.calm-app .qr-plat .feature-card-badge {
+    white-space: nowrap;
+}
+
+.calm-app a.qr-plat {
+    border-radius: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.calm-app a.qr-plat:hover {
+    background: var(--qr-wash);
+}
+
+.calm-app a.qr-plat > i:last-child {
+    color: var(--stage-muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .calm-app .qr-sync {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .qr-sync-arrow {
+        justify-self: center;
+        transform: rotate(90deg);
+    }
+
+    .calm-app .tile[data-step="2"] .qr-sync-arrow,
+    .calm-app .tile[data-step="3"] .qr-sync-arrow {
+        transform: rotate(90deg) translateX(3px);
+    }
+
+    .calm-app .qr-pane {
+        min-height: 0;
+    }
+
+    .calm-app .qr-pane-obsidian {
+        min-height: 14rem;
+    }
+
+    .calm-app .qr-page {
+        height: 21.5rem;
+    }
+
+    .calm-app .tile-stage.qr-shot-stage {
+        height: 14rem;
+    }
+
+    .calm-app .qr-shot {
+        width: 220%;
+    }
+}

@@ -27,8 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
-    <link rel="stylesheet" href="./pastry.css?v=6b7f0e1a">
+    <link rel="stylesheet" href="../../app.css?v=297c1aa9">
+    <link rel="stylesheet" href="./pastry.css?v=42aebd71">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -73,8 +73,8 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero pz-hero">
-            <div class="pz-hero-copy">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/pastry.png" alt="Pastry" class="app-hero-icon">
                 <h1 class="app-hero-title wipe">The privacy-focused clipboard manager.</h1>
                 <p class="app-hero-subtitle wipe">
@@ -86,10 +86,10 @@
                         Coming soon to the Mac App Store
                     </span>
                 </div>
-                <p class="pz-hero-note">Free with your five most recent items. One purchase unlocks the rest for good.</p>
+                <p class="app-hero-note">Free with your five most recent items. One purchase unlocks the rest for good.</p>
             </div>
 
-            <div class="pz-hero-stage" role="img" aria-label="The Pastry panel. A one-time code at the top of the list is counting down and deletes itself when the timer runs out.">
+            <div class="app-hero-stage" role="img" aria-label="The Pastry panel. A one-time code at the top of the list is counting down and deletes itself when the timer runs out.">
                 <div class="pz-panel" aria-hidden="true">
                     <div class="pz-search pz-glass">
                         <i class="ph ph-magnifying-glass"></i>
@@ -169,11 +169,11 @@
                 <p class="section-subtitle wipe">A clipboard manager sees everything you copy. Pastry is designed around that fact, and every protection here is on from the first launch.</p>
             </div>
 
-            <div class="pz-bento">
+            <div class="bento">
                 <!-- Secrets expire -->
-                <article class="pz-tile" style="--span: 7" data-demo="expire" data-steps="1000,700,700,900">
-                    <div class="pz-stage">
-                        <div class="pz-card" aria-hidden="true">
+                <article class="tile" style="--span: 7" data-demo="expire" data-steps="1000,700,700,900">
+                    <div class="tile-stage">
+                        <div class="demo-card" aria-hidden="true">
                             <div class="pz-row pz-secret">
                                 <div class="pz-row-icon"><i class="ph ph-key"></i></div>
                                 <div class="pz-row-body">
@@ -203,21 +203,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pz-stage-foot">
-                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> 3 secrets deleted</span>
-                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> 3 secrets deleted</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Secrets delete themselves.</h3>
                         <p>Pastry recognizes API keys, card numbers and one-time codes as you copy them, and deletes each one five minutes later. Everything else stays. (Five minutes, played here in a few seconds.)</p>
                     </div>
                 </article>
 
                 <!-- Masked -->
-                <article class="pz-tile" style="--span: 5">
-                    <div class="pz-stage">
-                        <div class="pz-card" aria-hidden="true">
+                <article class="tile" style="--span: 5">
+                    <div class="tile-stage">
+                        <div class="demo-card" aria-hidden="true">
                             <div class="pz-row is-selected">
                                 <div class="pz-row-icon"><i class="ph ph-credit-card"></i></div>
                                 <div class="pz-row-body">
@@ -231,18 +231,18 @@
                                 <span class="pz-field-label">Card number</span>
                                 <span class="pz-field-value" id="pz-paste-out" aria-live="polite"></span>
                             </div>
-                            <button type="button" class="pz-btn" data-paste="4242 4242 4242 4242" aria-controls="pz-paste-out"><i class="ph ph-clipboard-text"></i> <span>Paste</span></button>
+                            <button type="button" class="demo-btn" data-paste="4242 4242 4242 4242" aria-controls="pz-paste-out"><i class="ph ph-clipboard-text"></i> <span>Paste</span></button>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Masked in the list. Whole when you paste.</h3>
                         <p>Secrets show as dots while you scroll, so a glance over your shoulder gets nothing. Paste one and the real thing lands.</p>
                     </div>
                 </article>
 
                 <!-- Hidden from screen sharing -->
-                <article class="pz-tile" style="--span: 12" data-demo="share" data-steps="900,1100,1000,1100">
-                    <div class="pz-stage">
+                <article class="tile" style="--span: 12" data-demo="share" data-steps="900,1100,1000,1100">
+                    <div class="tile-stage">
                         <div class="pz-screens" aria-hidden="true">
                             <div>
                                 <p class="pz-screen-label">Your screen</p>
@@ -279,20 +279,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pz-stage-foot">
-                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Missing from screen shares and screenshots.</h3>
                         <p>Pastry hides itself from screen sharing, screenshots and most recordings. Paste five things in a row during a meeting and nobody watching sees a clipboard manager at all.</p>
                     </div>
                 </article>
 
                 <!-- Clean links -->
-                <article class="pz-tile" style="--span: 6" data-demo="link" data-steps="1100,900,450">
-                    <div class="pz-stage">
-                        <div class="pz-card" aria-hidden="true">
+                <article class="tile" style="--span: 6" data-demo="link" data-steps="1100,900,450">
+                    <div class="tile-stage">
+                        <div class="demo-card" aria-hidden="true">
                             <div class="pz-row pz-row-tall">
                                 <div class="pz-row-icon pz-row-icon-link"><i class="ph ph-link"></i></div>
                                 <div class="pz-row-body">
@@ -301,20 +301,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pz-stage-foot">
-                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> 3 tracking codes removed</span>
-                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> 3 tracking codes removed</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Links lose their trackers.</h3>
                         <p>Tracking codes are stripped the moment you copy a link. The parts that make the link work are left alone.</p>
                     </div>
                 </article>
 
                 <!-- Clean photos -->
-                <article class="pz-tile" style="--span: 6" data-demo="photo" data-steps="1000,700,500">
-                    <div class="pz-stage">
+                <article class="tile" style="--span: 6" data-demo="photo" data-steps="1000,700,500">
+                    <div class="tile-stage">
                         <div class="pz-photo-row" aria-hidden="true">
                             <div class="pz-photo"></div>
                             <div class="pz-exif-list">
@@ -323,21 +323,21 @@
                                 <span class="pz-exif"><i class="ph ph-image"></i> 4032 &times; 3024</span>
                             </div>
                         </div>
-                        <div class="pz-stage-foot">
-                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> Picture untouched</span>
-                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Picture untouched</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Photos lose their location.</h3>
                         <p>Location and camera details are removed from every image you copy, so you never share where you were by accident.</p>
                     </div>
                 </article>
 
                 <!-- Rules -->
-                <article class="pz-tile" style="--span: 7">
-                    <div class="pz-stage">
-                        <div class="pz-card">
+                <article class="tile" style="--span: 7">
+                    <div class="tile-stage">
+                        <div class="demo-card">
                             <div class="pz-rule">
                                 <span class="pz-app" style="--pz-app: #2b6cb0"></span>
                                 <span class="pz-rule-name">Password managers</span>
@@ -346,36 +346,36 @@
                             <div class="pz-rule">
                                 <span class="pz-app" style="--pz-app: #3a3a3c"></span>
                                 <span class="pz-rule-name">Terminal</span>
-                                <button type="button" class="pz-btn" data-rule="1m" aria-label="Change the rule for Terminal">Delete after 1 minute</button>
+                                <button type="button" class="demo-btn" data-rule="1m" aria-label="Change the rule for Terminal">Delete after 1 minute</button>
                             </div>
                             <div class="pz-rule">
                                 <span class="pz-app" style="--pz-app: #34c759"></span>
                                 <span class="pz-rule-name">Messages</span>
-                                <button type="button" class="pz-btn" data-rule="1h" aria-label="Change the rule for Messages">Delete after 1 hour</button>
+                                <button type="button" class="demo-btn" data-rule="1h" aria-label="Change the rule for Messages">Delete after 1 hour</button>
                             </div>
                             <div class="pz-rule">
                                 <span class="pz-app" style="--pz-app: #e0564a"></span>
                                 <span class="pz-rule-name">Banking</span>
-                                <button type="button" class="pz-btn" data-rule="never" aria-label="Change the rule for Banking">Never save</button>
+                                <button type="button" class="demo-btn" data-rule="never" aria-label="Change the rule for Banking">Never save</button>
                             </div>
                             <div class="pz-rule">
                                 <span class="pz-app" style="--pz-app: #f5c542"></span>
                                 <span class="pz-rule-name">Notes</span>
-                                <button type="button" class="pz-btn" data-rule="keep" aria-label="Change the rule for Notes">Keep</button>
+                                <button type="button" class="demo-btn" data-rule="keep" aria-label="Change the rule for Notes">Keep</button>
                             </div>
                         </div>
-                        <div class="pz-stage-foot">
+                        <div class="stage-foot">
                             <span>Click a rule to change it.</span>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Your rules, app by app.</h3>
                         <p>Block an app completely, or let its copies expire on a timer you choose. Password managers are already handled: anything they mark as private is never saved.</p>
                     </div>
                 </article>
 
                 <!-- No network -->
-                <article class="pz-tile pz-tile-dark" style="--span: 5">
+                <article class="tile tile-dark" style="--span: 5">
                     <i class="ph ph-wifi-slash" aria-hidden="true"></i>
                     <div>
                     <h3>Pastry never connects to the internet.</h3>
@@ -393,15 +393,15 @@
                 <p class="section-subtitle wipe">Press Command, Shift and V, type a few letters, press Return. Pastry opens at once and pastes right where you were.</p>
             </div>
 
-            <div class="pz-bento">
+            <div class="bento">
                 <!-- Search inside screenshots -->
-                <article class="pz-tile" style="--span: 7" data-demo="search">
-                    <div class="pz-stage">
+                <article class="tile" style="--span: 7" data-demo="search">
+                    <div class="tile-stage">
                         <label class="pz-input">
                             <i class="ph ph-magnifying-glass"></i>
                             <input type="text" placeholder="Search your clipboard" aria-label="Search the example clipboard" data-search-input data-autotype="total" autocomplete="off" spellcheck="false">
                         </label>
-                        <div class="pz-card">
+                        <div class="demo-card">
                             <div class="pz-row pz-row-tall" data-search="Invoice from Birch Coffee Invoice 1042 Total due $18.50">
                                 <div class="pz-row-icon pz-row-icon-shot"><i class="ph ph-image"></i></div>
                                 <div class="pz-row-body">
@@ -433,16 +433,16 @@
                         </div>
                         <p class="pz-empty" hidden>Nothing matches. Try "gate" or "olive".</p>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Search the words inside your screenshots.</h3>
                         <p>Pastry reads the text in every screenshot and gives it a sensible name, so you can find one by what it says. Try "gate" or "olive" above.</p>
                     </div>
                 </article>
 
                 <!-- Shrink images -->
-                <article class="pz-tile" style="--span: 5" data-demo="shrink" data-steps="900">
-                    <div class="pz-stage">
-                        <div class="pz-card" aria-hidden="true">
+                <article class="tile" style="--span: 5" data-demo="shrink" data-steps="900">
+                    <div class="tile-stage">
+                        <div class="demo-card" aria-hidden="true">
                             <div class="pz-row">
                                 <div class="pz-row-icon pz-row-icon-shot"><i class="ph ph-image"></i></div>
                                 <div class="pz-row-body">
@@ -453,25 +453,25 @@
                         </div>
                         <div class="pz-size" aria-hidden="true"><span><span data-count-from="455" data-count-to="281">455</span> KB</span> <small>was 455 KB</small></div>
                         <div class="pz-bar" aria-hidden="true"><span></span></div>
-                        <div class="pz-stage-foot">
-                            <span class="pz-note" aria-hidden="true"><i class="ph ph-check"></i> Still 2880 &times; 1800</span>
-                            <button type="button" class="pz-btn pz-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Still 2880 &times; 1800</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
                         </div>
                     </div>
-                    <div class="pz-copy">
+                    <div class="tile-copy">
                         <h3>Smaller screenshots, same pixels.</h3>
                         <p>Images you copy are shrunk in the background at the same size and resolution, ready to post without the extra megabytes.</p>
                     </div>
                 </article>
 
                 <!-- Collections -->
-                <article class="pz-tile pz-tile-split" style="--span: 12" data-demo="collections">
-                    <div class="pz-copy">
+                <article class="tile tile-split" style="--span: 12" data-demo="collections">
+                    <div class="tile-copy">
                         <h3>Collections for the things you paste all the time.</h3>
                         <p>Keep snippets, links and addresses together, give each item a name, and open any collection with its own keyboard shortcut.</p>
                     </div>
-                    <div class="pz-stage">
-                        <div class="pz-card">
+                    <div class="tile-stage">
+                        <div class="demo-card">
                             <div class="pz-tabs">
                                 <button type="button" class="pz-tab is-active" data-collection="all" aria-pressed="true">All</button>
                                 <button type="button" class="pz-tab" data-collection="snippets" aria-pressed="false">Snippets <kbd>&#8997;S</kbd></button>
@@ -601,7 +601,7 @@
         </div>
     </footer>
 
-    <script src="../../app.js?v=15b52a66" defer></script>
-    <script src="./pastry.js?v=46d25527" defer></script>
+    <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./pastry.js?v=0ff016d8" defer></script>
 </body>
 </html>

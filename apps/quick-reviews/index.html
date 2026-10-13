@@ -24,9 +24,11 @@
     <link rel="icon" href="../../images/quick-reviews.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../../app.css?v=297c1aa9">
+    <link rel="stylesheet" href="./quick-reviews.css?v=3a10b4a9">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -71,12 +73,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/quick-reviews.png" alt="Quick Reviews" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Turn your opinions into <span class="accent-line">stunning visuals.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Turn your opinions into stunning visuals.</h1>
                 <p class="app-hero-subtitle wipe">
                     Quick Reviews creates beautiful, shareable review images for movies, TV shows, games, books, and music that stand out on social media.
                 </p>
@@ -91,92 +91,368 @@
                     </a>
                 </div>
             </div>
+
+            <div class="app-hero-stage" role="img" aria-label="Two review images made with Quick Reviews. One pairs a poster with the written review and a Loved It score, and slowly tries different background colors. The other sets the review over full artwork.">
+                <div class="qv-hero-stack" aria-hidden="true">
+                    <div class="qv-card" data-layout="standard">
+                        <div class="qv-card-in" data-qv-hero>
+                            <div class="qv-poster qv-art-battle"><span>One Battle After Another</span></div>
+                            <div class="qv-head">
+                                <div class="qv-head-text">
+                                    <div class="qv-title">One Battle After Another</div>
+                                    <div class="qv-meta">2025 &bull; Paul Thomas Anderson</div>
+                                </div>
+                                <span class="qv-badge"><b>1</b> First Time</span>
+                            </div>
+                            <p class="qv-text">First off, this movie is great. Gripping from the jump and the best sort of long movie that you don&rsquo;t pray will just get on with it.<br><br>Second, shout of to Leo, who continues to be a movie star who exclusively does interesting projects with the most talented writers and directors in the business, not mindless Netflix-style action slop like...well I won&rsquo;t name names, but you can guess.</p>
+                            <div class="qv-scores">
+                                    <span class="qv-score">Didn't Like It</span>
+                                    <span class="qv-score">Decent</span>
+                                    <span class="qv-score">Liked It</span>
+                                    <span class="qv-score is-active">Loved It!</span>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="qv-card" data-layout="showcase" data-font="marker">
+                        <div class="qv-card-in">
+                            <div class="qv-poster qv-art-hollow"></div>
+                            <div class="qv-head">
+                                <div class="qv-head-text">
+                                    <div class="qv-title">Sleepy Hollow</div>
+                                    <div class="qv-meta">1999 &bull; Tim Burton</div>
+                                </div>
+                                <span class="qv-badge"><b>1</b> First Time</span>
+                            </div>
+                            <p class="qv-text">Really good!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/quick-reviews-example-1.jpg" alt="Example movie review created with Quick Reviews" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Beautiful Customization -->
+        <!-- Customization -->
         <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Beautiful Customization</p>
-                    <h2 class="feature-title">Make every review uniquely yours.</h2>
-                    <p class="feature-description">
-                        Customize colors, scoring systems, fonts, and layouts to create review images that match your personal style. Every review can look exactly how you want it. Customize colors and themes, choose from multiple layout options, and add alternate posters and cover art <span class="badge-accent">Premium</span>.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-reviews-screen-N.png" alt="Quick Reviews app showing customization options">
-                </div>
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Beautiful Customization</p>
+                <h2 class="section-title wipe">Make every review uniquely yours.</h2>
+                <p class="section-subtitle wipe">Customize colors, scoring systems, fonts, and layouts to create review images that match your personal style. Every review can look exactly how you want it.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Style -->
+                <article class="tile" style="--span: 12" data-demo="style">
+                    <div class="tile-stage qv-style-stage">
+                        <div class="qv-frame">
+                            <div class="qv-card" data-layout="standard" data-font="sans">
+                                <div class="qv-card-in" style="--qv-bg: #651519; --qv-score: #fdd9cd;">
+                                    <div class="qv-poster qv-art-bugonia"><span>Bugonia</span></div>
+                                    <div class="qv-head">
+                                        <div class="qv-head-text">
+                                            <div class="qv-title">Bugonia</div>
+                                            <div class="qv-meta">2025 &bull; Yorgos Lanthimos</div>
+                                        </div>
+                                        <span class="qv-badge"><b>1</b> First Time</span>
+                                    </div>
+                                    <p class="qv-text">A well-made film from top to bottom, although I think the ending lets it down.<br><br>Vague spoilers, but this feels like the sort of movie that is trying to deliver a specific message, but has an ending that will lead to those who should be receiving that message to go &quot;see...see!&quot;</p>
+                                    <div class="qv-scores" data-qv-scores role="group" aria-label="Score">
+                                    <button type="button" class="qv-score" aria-pressed="false">Didn't Like It</button>
+                                    <button type="button" class="qv-score" aria-pressed="false">Decent</button>
+                                    <button type="button" class="qv-score is-active" aria-pressed="true">Liked It</button>
+                                    <button type="button" class="qv-score" aria-pressed="false">Loved It!</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qv-style demo-card">
+                            <div>
+                                <p class="qv-group-label">Layout</p>
+                                <div class="qv-seg" role="group" aria-label="Layout">
+                                    <button type="button" class="qv-seg-btn is-active" data-qv-layout="standard" aria-pressed="true"><i class="ph ph-cards" aria-hidden="true"></i>Standard</button>
+                                    <button type="button" class="qv-seg-btn" data-qv-layout="square" aria-pressed="false"><i class="ph ph-square" aria-hidden="true"></i>Square</button>
+                                    <button type="button" class="qv-seg-btn" data-qv-layout="showcase" aria-pressed="false"><i class="ph ph-image" aria-hidden="true"></i>Showcase</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="qv-group-label">Background</p>
+                                <div class="qv-row-controls" role="group" aria-label="Background">
+                                    <button type="button" class="qv-shade" data-qv-shade="-1">Darker</button>
+                                    <button type="button" class="qv-swatch is-active" style="--qv-swatch: #651519" data-qv-bg="#651519" aria-pressed="true" aria-label="Dark red background"></button>
+                                    <button type="button" class="qv-swatch" style="--qv-swatch: #c4a472" data-qv-bg="#c4a472" data-qv-ink="#1d1d1f" aria-pressed="false" aria-label="Tan background"></button>
+                                    <button type="button" class="qv-swatch" style="--qv-swatch: #96392a" data-qv-bg="#96392a" aria-pressed="false" aria-label="Rust background"></button>
+                                    <button type="button" class="qv-shade" data-qv-shade="1">Brighter</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="qv-group-label">Score Color</p>
+                                <div class="qv-row-controls" role="group" aria-label="Score color">
+                                    <button type="button" class="qv-swatch is-active" style="--qv-swatch: #fdd9cd" data-qv-score="#fdd9cd" aria-pressed="true" aria-label="Peach score color"></button>
+                                    <button type="button" class="qv-swatch" style="--qv-swatch: #b4fd8c" data-qv-score="#b4fd8c" aria-pressed="false" aria-label="Green score color"></button>
+                                    <button type="button" class="qv-swatch" style="--qv-swatch: #ffd66b" data-qv-score="#ffd66b" aria-pressed="false" aria-label="Yellow score color"></button>
+                                    <button type="button" class="qv-swatch" style="--qv-swatch: #ffffff" data-qv-score="#ffffff" aria-pressed="false" aria-label="White score color"></button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="qv-group-label">Font</p>
+                                <div class="qv-row-controls" role="group" aria-label="Font">
+                                    <button type="button" class="qv-font is-active" data-qv-font="sans" aria-pressed="true" aria-label="Sans serif font">Aa</button>
+                                    <button type="button" class="qv-font" data-qv-font="serif" aria-pressed="false" aria-label="Serif font">Aa</button>
+                                    <button type="button" class="qv-font" data-qv-font="rounded" aria-pressed="false" aria-label="Rounded font">Aa</button>
+                                    <button type="button" class="qv-font" data-qv-font="marker" aria-pressed="false" aria-label="Marker font">Aa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Restyle it until it looks like you.</h3>
+                        <p>Choose from multiple layout options, then customize colors and themes. Try the controls: change the layout, the background, the score color, the font, and the score itself.</p>
+                    </div>
+                </article>
+
+                <!-- Alternate posters -->
+                <article class="tile" style="--span: 7" data-demo="posters">
+                    <div class="tile-stage">
+                        <div class="qv-card" data-layout="standard" aria-hidden="true">
+                            <div class="qv-card-in" style="--qv-bg: #5b3a2c; --qv-score: #ffffff;">
+                                <div class="qv-poster qv-art-sentimental-1"><span>Sentimental Value</span></div>
+                                <div class="qv-head">
+                                    <div class="qv-head-text">
+                                        <div class="qv-title">Sentimental Value</div>
+                                        <div class="qv-meta">2025 &bull; Joachim Trier</div>
+                                    </div>
+                                </div>
+                                <p class="qv-text">Yuuuuup, it&rsquo;s very good.</p>
+                                <div class="qv-scores">
+                                    <span class="qv-score">Didn't Like It</span>
+                                    <span class="qv-score">Decent</span>
+                                    <span class="qv-score is-active">Liked It</span>
+                                    <span class="qv-score">Loved It!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qv-sheet demo-card">
+                            <p class="qv-sheet-title">Choose Poster</p>
+                            <div class="qv-posters" role="group" aria-label="Choose a poster">
+                                <button type="button" class="qv-pick is-active" data-qv-poster="qv-art-sentimental-1" aria-pressed="true" aria-label="Poster 1">
+                                    <div class="qv-poster qv-art-sentimental-1"><span>Sentimental Value</span></div>
+                                    Rating: 8.3 <small>39 votes</small>
+                                </button>
+                                <button type="button" class="qv-pick" data-qv-poster="qv-art-sentimental-2" aria-pressed="false" aria-label="Poster 2">
+                                    <div class="qv-poster qv-art-sentimental-2"><span>Sentimental Value</span></div>
+                                    Rating: 6.7 <small>6 votes</small>
+                                </button>
+                                <button type="button" class="qv-pick" data-qv-poster="qv-art-sentimental-3" aria-pressed="false" aria-label="Poster 3">
+                                    <div class="qv-poster qv-art-sentimental-3"><span>Sentimental Value</span></div>
+                                    Rating: 6.6 <small>17 votes</small>
+                                </button>
+                                <button type="button" class="qv-pick" data-qv-poster="qv-art-sentimental-4" aria-pressed="false" aria-label="Poster 4">
+                                    <div class="qv-poster qv-art-sentimental-4"><span>Sentimental Value</span></div>
+                                    Rating: 5.7 <small>11 votes</small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Pick the poster you actually like.</h3>
+                        <p>Add alternate posters and cover art <span class="badge-accent">Premium</span>. Tap one above to swap it into the review.</p>
+                    </div>
+                </article>
+
+                <!-- Media types -->
+                <article class="tile" style="--span: 5" data-demo="media">
+                    <div class="tile-stage">
+                        <div class="qv-chips" role="group" aria-label="Media type">
+                            <button type="button" class="demo-btn is-active" data-qv-media="movies" aria-pressed="true">Movies</button>
+                            <button type="button" class="demo-btn" data-qv-media="tv" aria-pressed="false">TV Shows</button>
+                            <button type="button" class="demo-btn" data-qv-media="games" aria-pressed="false">Games</button>
+                            <button type="button" class="demo-btn" data-qv-media="books" aria-pressed="false">Books</button>
+                            <button type="button" class="demo-btn" data-qv-media="music" aria-pressed="false">Music</button>
+                            <span class="qv-chips-more">And more</span>
+                        </div>
+                        <div class="qv-row" style="--qv-bg: #17252a; --qv-score: #ffffff;" aria-live="polite">
+                            <div class="qv-poster qv-art-marty" aria-hidden="true"><span>Marty Supreme</span></div>
+                            <div class="qv-row-body">
+                                <div class="qv-row-title">Marty Supreme</div>
+                                <div class="qv-row-meta">2025 &bull; Josh Safdie</div>
+                                <div class="qv-row-text">One of those movies that I can admire for its craft.</div>
+                                <div class="qv-row-foot"><span class="qv-pill">Liked It</span><span>Jan 3, 2026</span></div>
+                            </div>
+                            <i class="ph ph-film-strip qv-row-kind" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Review everything you love.</h3>
+                        <p>Movies, TV shows, games, books, music, and more. Quick Reviews supports all the media you consume.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Smart Features -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Smart Features</p>
-                    <h2 class="feature-title">Let the app do the work.</h2>
-                    <p class="feature-description">
-                        Magic Mode automatically pulls in movie and show data, posters, and metadata so you can focus on what matters: your opinion. Magic Mode auto-completion <span class="badge-accent">Premium</span> and Letterboxd integration <span class="badge-accent">Premium</span> make it effortless.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-reviews-screen-2.png" alt="Quick Reviews app showing Magic Mode">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Multi-Media Support -->
+        <!-- Smart features -->
         <section class="section">
             <div class="section-header scroll-reveal">
-                <p class="section-label wipe">Multi-Media Support</p>
-                <h2 class="section-title wipe">Review everything you love.</h2>
-                <p class="section-subtitle wipe">Movies, TV shows, games, books, music, and more. Quick Reviews supports all the media you consume.</p>
+                <p class="section-label wipe">Smart Features</p>
+                <h2 class="section-title wipe">Let the app do the work.</h2>
+                <p class="section-subtitle wipe">Track your reviews. Share them anywhere. Review History, Auto Backups, and Easy Sharing, all built in.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon"><i class="ph ph-film-slate"></i></div>
-                    <h3 class="feature-card-title">Movies</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon"><i class="ph ph-television-simple"></i></div>
-                    <h3 class="feature-card-title">TV Shows</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon"><i class="ph ph-game-controller"></i></div>
-                    <h3 class="feature-card-title">Games</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon"><i class="ph ph-book-open-text"></i></div>
-                    <h3 class="feature-card-title">Books</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon"><i class="ph ph-music-notes"></i></div>
-                    <h3 class="feature-card-title">Music</h3>
-                </div>
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-card-icon"><i class="ph ph-sparkle"></i></div>
-                    <h3 class="feature-card-title">And More</h3>
-                </div>
-            </div>
-        </section>
 
-        <!-- Feature: Seamless Experience -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Seamless Experience</p>
-                    <h2 class="feature-title">Track your reviews. Share them anywhere.</h2>
-                    <p class="feature-description">
-                        Keep a full history of everything you've reviewed. Daily automated backups ensure you never lose your data. Copy review text for alt-text accessibility. Review History, Auto Backups, and Easy Sharing, all built in.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/quick-reviews-screen-3.png" alt="Quick Reviews app showing review history">
-                </div>
+            <div class="bento">
+                <!-- Magic Mode -->
+                <article class="tile" style="--span: 7" data-demo="magic" data-steps="900,350,350,500,600">
+                    <div class="tile-stage">
+                        <div class="qv-magic-field" aria-hidden="true">
+                            <i class="ph ph-sparkle"></i>
+                            <span class="qv-magic-typed" data-step-text="|28|28 Years|28 Years Later"></span>
+                        </div>
+                        <div class="qv-card" data-layout="standard" aria-hidden="true">
+                            <div class="qv-card-in">
+                                <div class="qv-slot qv-slot-1 qv-poster-slot">
+                                    <div class="qv-poster qv-art-28"><span>28 Years Later</span></div>
+                                </div>
+                                <div class="qv-head">
+                                    <div class="qv-head-text">
+                                        <div class="qv-slot qv-slot-1"><div class="qv-title">28 Years Later</div></div>
+                                        <div class="qv-slot"><div class="qv-meta">2025 &bull; Danny Boyle</div></div>
+                                    </div>
+                                </div>
+                                <p class="qv-text qv-text-blank">Your review goes here.</p>
+                                <div class="qv-scores">
+                                    <span class="qv-score">Didn't Like It</span>
+                                    <span class="qv-score">Decent</span>
+                                    <span class="qv-score">Liked It</span>
+                                    <span class="qv-score">Loved It!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Poster and details filled in</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Magic Mode fills in the rest.</h3>
+                        <p>Magic Mode automatically pulls in movie and show data, posters, and metadata so you can focus on what matters: your opinion. Magic Mode auto-completion <span class="badge-accent">Premium</span> and Letterboxd integration <span class="badge-accent">Premium</span> make it effortless.</p>
+                    </div>
+                </article>
+
+                <!-- Copy review text -->
+                <article class="tile" style="--span: 5" data-demo="copy">
+                    <div class="tile-stage">
+                        <div class="qv-card" data-layout="standard" aria-hidden="true">
+                            <div class="qv-card-in">
+                                <div class="qv-poster qv-art-battle"><span>One Battle After Another</span></div>
+                                <div class="qv-head">
+                                    <div class="qv-head-text">
+                                        <div class="qv-title">One Battle After Another</div>
+                                        <div class="qv-meta">2025 &bull; Paul Thomas Anderson</div>
+                                    </div>
+                                </div>
+                                <p class="qv-text">First off, this movie is great. Gripping from the jump and the best sort of long movie that you don&rsquo;t pray will just get on with it.</p>
+                                <div class="qv-scores">
+                                    <span class="qv-score">Didn't Like It</span>
+                                    <span class="qv-score">Decent</span>
+                                    <span class="qv-score">Liked It</span>
+                                    <span class="qv-score is-active">Loved It!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qv-alt">
+                            <span class="qv-alt-label">Alt text</span>
+                            <span class="qv-alt-value" id="qv-alt-out" aria-live="polite"></span>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn" data-qv-copy="One Battle After Another (2025). Loved It! First off, this movie is great. Gripping from the jump and the best sort of long movie that you don&rsquo;t pray will just get on with it." aria-controls="qv-alt-out"><i class="ph ph-copy" aria-hidden="true"></i> <span>Copy review text</span></button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Share them anywhere, alt text included.</h3>
+                        <p>Copy review text for alt-text accessibility, so the words in your image reach everyone.</p>
+                    </div>
+                </article>
+
+                <!-- Review history -->
+                <article class="tile" style="--span: 7" data-demo="history" data-steps="900">
+                    <div class="tile-stage">
+                        <div class="qv-history demo-card" aria-hidden="true">
+                            <p class="qv-history-title">Reviews</p>
+                            <div class="qv-arrive">
+                                <div>
+                                    <div class="qv-row" style="--qv-bg: #26304a; --qv-score: #b4fd8c;">
+                                        <div class="qv-poster qv-art-28"><span>28 Years Later</span></div>
+                                        <div class="qv-row-body">
+                                            <div class="qv-row-title">28 Years Later</div>
+                                            <div class="qv-row-meta">2025 &bull; Danny Boyle</div>
+                                            <div class="qv-row-text">This must be the most surprised I was by any 2025 film.</div>
+                                            <div class="qv-row-foot"><span class="qv-pill">Loved It!</span><span>Jan 10, 2026</span></div>
+                                        </div>
+                                        <i class="ph ph-film-strip qv-row-kind"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="qv-row" style="--qv-bg: #17252a; --qv-score: #ffffff;">
+                                <div class="qv-poster qv-art-marty"><span>Marty Supreme</span></div>
+                                <div class="qv-row-body">
+                                    <div class="qv-row-title">Marty Supreme</div>
+                                    <div class="qv-row-meta">2025 &bull; Josh Safdie</div>
+                                    <div class="qv-row-text">One of those movies that I can admire for its craft.</div>
+                                    <div class="qv-row-foot"><span class="qv-pill">Liked It</span><span>Jan 3, 2026</span></div>
+                                </div>
+                                <i class="ph ph-film-strip qv-row-kind"></i>
+                            </div>
+                            <div class="qv-row" style="--qv-bg: #651519; --qv-score: #fdd9cd;">
+                                <div class="qv-poster qv-art-bugonia"><span>Bugonia</span></div>
+                                <div class="qv-row-body">
+                                    <div class="qv-row-title">Bugonia</div>
+                                    <div class="qv-row-meta">2025 &bull; Yorgos Lanthimos</div>
+                                    <div class="qv-row-text">A well-made film from top to bottom, although I think the ending lets it down.</div>
+                                    <div class="qv-row-foot"><span class="qv-pill">Liked It</span><span>Jan 2, 2026</span></div>
+                                </div>
+                                <i class="ph ph-film-strip qv-row-kind"></i>
+                            </div>
+                            <div class="qv-row" style="--qv-bg: #5b3a2c; --qv-score: #ffffff;">
+                                <div class="qv-poster qv-art-sentimental"><span>Sentimental Value</span></div>
+                                <div class="qv-row-body">
+                                    <div class="qv-row-title">Sentimental Value</div>
+                                    <div class="qv-row-meta">2025 &bull; Joachim Trier</div>
+                                    <div class="qv-row-text">Yuuuuup, it&rsquo;s very good.</div>
+                                    <div class="qv-row-foot"><span class="qv-pill">Liked It</span><span>Jan 1, 2026</span></div>
+                                </div>
+                                <i class="ph ph-film-strip qv-row-kind"></i>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Added to your history</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Track your reviews.</h3>
+                        <p>Keep a full history of everything you&rsquo;ve reviewed.</p>
+                    </div>
+                </article>
+
+                <!-- Backups -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>
+                    <div>
+                    <h3>Backed up automatically, every day.</h3>
+                    <p>Daily automated backups ensure you never lose your data.</p>
+                    </div>
+                </article>
+
+                <!-- Real examples -->
+                <article class="tile" style="--span: 12" data-demo="examples">
+                    <div class="tile-stage">
+                        <div class="qv-examples">
+                            <img src="../../images/quick-reviews-example-1.jpg" alt="Example movie review created with Quick Reviews: One Battle After Another, rated Loved It" loading="lazy" width="1920" height="1008">
+                            <img src="../../images/quick-reviews-example-2.jpg" alt="Example movie review created with Quick Reviews: Sleepy Hollow, set over full artwork" loading="lazy" width="1920" height="1008">
+                            <img src="../../images/quick-reviews-example-3.jpg" alt="Example movie review created with Quick Reviews: Bugonia, rated Liked It" loading="lazy" width="1920" height="1008">
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>The real thing.</h3>
+                        <p>Example reviews created with Quick Reviews, ready to post.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -278,6 +554,7 @@
         </div>
     </footer>
 
-    <script src="../../app.js?v=15b52a66" defer></script>
+    <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./quick-reviews.js?v=d79d7625" defer></script>
 </body>
 </html>

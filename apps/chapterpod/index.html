@@ -24,9 +24,11 @@
     <link rel="icon" href="../../images/chapterpod.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="../../app.css?v=2ce1b5c6">
+    <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../../app.css?v=297c1aa9">
+    <link rel="stylesheet" href="./chapterpod.css?v=8d66c000">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -71,13 +73,10 @@
 
     <main>
         <!-- Hero -->
-        <header class="app-hero">
-            <div class="app-hero-inner">
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
                 <img src="../../images/chapterpod.png" alt="Chapterize" class="app-hero-icon">
-                <h1 class="app-hero-title wipe">
-                    Add chapters to your podcast<br>
-                    <span class="accent-line">with ease.</span>
-                </h1>
+                <h1 class="app-hero-title wipe">Add chapters to your podcast with ease.</h1>
                 <p class="app-hero-subtitle wipe">
                     Chapterize makes it simple to create professional podcast chapters.
                 </p>
@@ -87,131 +86,298 @@
                         Download for iPhone, iPad & Mac
                     </a>
                 </div>
+                <p class="app-hero-note">Try it free. One $19.99 purchase unlocks everything, with no subscription.</p>
             </div>
-        </header>
 
-        <div class="hero-screenshot">
-            <img src="../../images/hero-screenshot.jpg" alt="Chapterize main interface showing playback controls and chapter list" data-drift="0.06">
-        </div>
-
-        <!-- Feature: Listen & Edit Together -->
-        <section id="features" class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Unified Workflow</p>
-                    <h2 class="feature-title">Listen and edit.<br>All in one place.</h2>
-                    <p class="feature-description">
-                        No more switching between your podcast player (or QuickTime) and a separate chapter editor. Chapterize puts playback and chapter creation in the same interface, so you can mark chapters as you listen.
-                    </p>
-                    <p class="feature-description">
-                        My podcast, <a href="https://www.macstories.net/comfort-zone/" target="_blank" rel="noopener noreferrer">Comfort Zone</a>, uses Chapterize to add chapters to each episode. It's battle tested!
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/playback-chapters.jpg" alt="Playback controls alongside the chapter list">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Rich Chapter Support -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Complete Chapter Support</p>
-                    <h2 class="feature-title">Everything a chapter needs.</h2>
-                    <p class="feature-description">
-                        Create rich chapters with all the metadata your listeners expect.
-                    </p>
-                    <ul style="margin-top: 0.75rem; padding-left: 1.25rem; color: var(--color-text-secondary);">
-                        <li>Titles</li>
-                        <li>Images</li>
-                        <li>Links</li>
-                    </ul>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/chapter-details.jpg" alt="Chapter editing view showing title, image, and link fields">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: Cross Platform -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Cross-Platform</p>
-                    <h2 class="feature-title">Works on all your Apple devices.</h2>
-                    <p class="feature-description">
-                        Whether you're at your desk or on the go, Chapterize is there for you.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <div style="display: flex; gap: 1.5rem; align-items: flex-end; justify-content: center; flex-wrap: wrap;">
-                        <div style="text-align: center;">
-                            <img src="../../images/mac.png" alt="Chapterize on Mac and iPad" style="max-width: 320px; width: 100%;">
-                            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--color-text-secondary);">Mac & iPad</p>
+            <div class="app-hero-stage" role="img" aria-label="The Chapterize window. An episode is playing above its list of chapters, each with a timestamp, a title, an image and a link.">
+                <div class="cp-window" aria-hidden="true" data-hero-player data-time="4173" data-total="5772">
+                    <div class="cp-titlebar">
+                        <span class="cp-lights"><i></i><i></i><i></i></span>
+                        <span class="cp-tool"><i class="ph ph-x"></i></span>
+                        <span class="cp-titlebar-name">You Should be Listening to Comfort Zone</span>
+                        <span class="cp-tool cp-tool-wide"><i class="ph ph-gear"></i></span>
+                        <span class="cp-tool cp-tool-wide"><i class="ph ph-chat-text"></i><i class="ph ph-export"></i></span>
+                    </div>
+                    <div class="cp-episode">
+                        <span class="cp-art"></span>
+                        <div class="cp-episode-body">
+                            <div class="cp-episode-name">You Should be Listening to Comfort Zone</div>
+                            <div class="cp-episode-meta"><i class="ph ph-clock"></i> 1h 36m <i class="ph ph-list"></i> 11 chapters</div>
                         </div>
-                        <div style="text-align: center;">
-                            <img src="../../images/iphone.png" alt="Chapterize on iPhone" style="max-width: 160px; width: 100%;">
-                            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--color-text-secondary);">iPhone</p>
+                    </div>
+                    <div class="cp-player">
+                        <span class="cp-skip">15</span>
+                        <span class="cp-play"></span>
+                        <span class="cp-skip">30</span>
+                        <span class="cp-clock" data-clock>1:09:33</span>
+                        <span class="cp-track"><span data-fill style="transform: scaleX(0.723)"></span></span>
+                        <span class="cp-clock cp-clock-total">1:36:12</span>
+                        <span class="cp-plus"><i class="ph ph-plus"></i></span>
+                    </div>
+                    <div class="cp-chapters">
+                        <div class="cp-row">
+                            <span class="cp-thumb is-set"><i class="ph ph-image"></i></span>
+                            <span class="cp-tri"></span>
+                            <span class="cp-time">0:00</span>
+                            <span class="cp-title">New year new us (again)</span>
+                            <i class="ph ph-link cp-link"></i>
+                            <i class="ph ph-trash cp-trash"></i>
                         </div>
+                        <div class="cp-row">
+                            <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                            <span class="cp-tri"></span>
+                            <span class="cp-time">1:42</span>
+                            <span class="cp-title">Last.fm does year in review right</span>
+                            <i class="ph ph-link cp-link is-set"></i>
+                            <i class="ph ph-trash cp-trash"></i>
+                        </div>
+                        <div class="cp-row">
+                            <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                            <span class="cp-tri"></span>
+                            <span class="cp-time">4:27</span>
+                            <span class="cp-title">Liquid plastic. You're going to love it</span>
+                            <i class="ph ph-link cp-link"></i>
+                            <i class="ph ph-trash cp-trash"></i>
+                        </div>
+                        <div class="cp-row">
+                            <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                            <span class="cp-tri"></span>
+                            <span class="cp-time">7:29</span>
+                            <span class="cp-title">Our tech white whales</span>
+                            <i class="ph ph-link cp-link"></i>
+                            <i class="ph ph-trash cp-trash"></i>
+                        </div>
+                        <div class="cp-row">
+                            <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                            <span class="cp-tri"></span>
+                            <span class="cp-time">8:49</span>
+                            <span class="cp-title">The Browser Podcast goes main topic</span>
+                            <i class="ph ph-link cp-link"></i>
+                            <i class="ph ph-trash cp-trash"></i>
+                        </div>
+                        <div class="cp-row">
+                            <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                            <span class="cp-tri"></span>
+                            <span class="cp-time">43:30</span>
+                            <span class="cp-title">The Birchleys</span>
+                            <i class="ph ph-link cp-link"></i>
+                            <i class="ph ph-trash cp-trash"></i>
+                        </div>
+                    </div>
+                    <div class="cp-add">
+                        <span class="cp-add-time">0:00</span>
+                        <span class="cp-add-title">New chapter title</span>
+                        <span class="cp-add-btn">Add</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- Feature: Transcripts -->
-        <section class="section">
-            <div class="feature-row feature-flip">
-                <div class="feature-row-copy">
-                    <p class="section-label">Simple Transcripts</p>
-                    <h2 class="feature-title">Generate transcripts locally.</h2>
-                    <p class="feature-description">
-                        Chapterize can generate a transcript of your podcast.
-                    </p>
-                    <p class="feature-description">
-                        If you need more powerful transcription options, check out <a href="../quick-subtitles/">Quick Subtitles</a>.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/transcript-view.jpg" alt="Transcript panel with text">
-                </div>
+        <!-- Making chapters -->
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Unified Workflow</p>
+                <h2 class="section-title wipe">Listen and edit. All in one place.</h2>
+                <p class="section-subtitle wipe">No more switching between your podcast player (or QuickTime) and a separate chapter editor. Chapterize puts playback and chapter creation in the same interface.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Mark chapters as you listen -->
+                <article class="tile" style="--span: 7" data-demo="mark">
+                    <div class="tile-stage">
+                        <div class="demo-card cp-mini">
+                            <div class="cp-player">
+                                <button type="button" class="cp-play" data-mark-play aria-label="Play the example episode" aria-pressed="false"></button>
+                                <span class="cp-clock" data-mark-clock>1:42</span>
+                                <span class="cp-track" aria-hidden="true"><span data-mark-fill style="transform: scaleX(0.018)"></span></span>
+                                <span class="cp-clock cp-clock-total" aria-hidden="true">1:36:12</span>
+                                <button type="button" class="cp-plus" data-mark-add aria-label="Add a chapter at the current time"><i class="ph ph-plus"></i></button>
+                            </div>
+                            <div class="cp-chapters" data-mark-list aria-live="polite">
+                                <div class="cp-row">
+                                    <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                                    <span class="cp-tri"></span>
+                                    <span class="cp-time">0:00</span>
+                                    <span class="cp-title">New year new us (again)</span>
+                                </div>
+                                <div class="cp-row">
+                                    <span class="cp-thumb"><i class="ph ph-image"></i></span>
+                                    <span class="cp-tri"></span>
+                                    <span class="cp-time">1:42</span>
+                                    <span class="cp-title">Last.fm does year in review right</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span data-mark-hint>Press play, then + when the topic changes.</span>
+                            <button type="button" class="demo-btn" data-mark-reset><i class="ph ph-arrow-counter-clockwise"></i> Reset</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Mark chapters as you listen.</h3>
+                        <p>The player and the chapter list share one window, so a new chapter lands right where you are in the episode. (The example plays much faster than real time.)</p>
+                    </div>
+                </article>
+
+                <!-- Titles, images, links -->
+                <article class="tile" style="--span: 5" data-demo="details">
+                    <div class="tile-stage">
+                        <div class="demo-card cp-details">
+                            <div class="cp-row cp-row-edit">
+                                <button type="button" class="cp-thumb" data-detail="image" aria-pressed="false" aria-label="Image for the chapter at 0:00"><i class="ph ph-image"></i></button>
+                                <span class="cp-time">0:00</span>
+                                <input type="text" class="cp-title-input" value="New year new us (again)" aria-label="Title of the chapter at 0:00" autocomplete="off" spellcheck="false">
+                                <button type="button" class="cp-link-btn" data-detail="link" aria-pressed="false" aria-label="Link for the chapter at 0:00"><i class="ph ph-link"></i></button>
+                            </div>
+                            <div class="cp-row cp-row-edit">
+                                <button type="button" class="cp-thumb" data-detail="image" aria-pressed="false" aria-label="Image for the chapter at 1:42"><i class="ph ph-image"></i></button>
+                                <span class="cp-time">1:42</span>
+                                <input type="text" class="cp-title-input" value="Last.fm does year in review right" aria-label="Title of the chapter at 1:42" autocomplete="off" spellcheck="false">
+                                <button type="button" class="cp-link-btn" data-detail="link" aria-pressed="false" aria-label="Link for the chapter at 1:42"><i class="ph ph-link"></i></button>
+                            </div>
+                            <div class="cp-row cp-row-edit">
+                                <button type="button" class="cp-thumb" data-detail="image" aria-pressed="false" aria-label="Image for the chapter at 4:27"><i class="ph ph-image"></i></button>
+                                <span class="cp-time">4:27</span>
+                                <input type="text" class="cp-title-input" value="Liquid plastic. You're going to love it" aria-label="Title of the chapter at 4:27" autocomplete="off" spellcheck="false">
+                                <button type="button" class="cp-link-btn" data-detail="link" aria-pressed="false" aria-label="Link for the chapter at 4:27"><i class="ph ph-link"></i></button>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Click an image or a link, or retype a title.</span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Everything a chapter needs.</h3>
+                        <p>Create rich chapters with all the metadata your listeners expect: titles, images and links.</p>
+                    </div>
+                </article>
+
+                <!-- Battle tested -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-headphones" aria-hidden="true"></i>
+                    <div>
+                    <h3>It's battle tested.</h3>
+                    <p>My podcast, <a href="https://www.macstories.net/comfort-zone/" target="_blank" rel="noopener noreferrer">Comfort Zone</a>, uses Chapterize to add chapters to each episode.</p>
+                    </div>
+                </article>
+
+                <!-- Import and export text -->
+                <article class="tile" style="--span: 7" data-demo="import">
+                    <div class="tile-stage">
+                        <div class="demo-card cp-import">
+                            <div class="cp-import-pane">
+                                <label class="cp-import-label" for="cp-import-text">Paste chapters in YouTube format:</label>
+                                <textarea id="cp-import-text" class="cp-import-text" rows="6" spellcheck="false" autocomplete="off" data-import-text data-autotype="8:49 - The Browser Podcast goes main topic">0:00 - New year new us (again)
+1:42 - Last.fm does year in review right
+4:27 - Liquid plastic. You're going to love it
+7:29 - Our tech white whales</textarea>
+                            </div>
+                            <div class="cp-import-pane cp-preview">
+                                <div class="cp-preview-head"><strong>Preview</strong> <span data-import-count>4 chapters</span></div>
+                                <ul class="cp-preview-list" data-import-list>
+                                    <li><span class="cp-time">0:00</span><span class="cp-title">New year new us (again)</span></li>
+                                    <li><span class="cp-time">1:42</span><span class="cp-title">Last.fm does year in review right</span></li>
+                                    <li><span class="cp-time">4:27</span><span class="cp-title">Liquid plastic. You're going to love it</span></li>
+                                    <li><span class="cp-time">7:29</span><span class="cp-title">Our tech white whales</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Edit the text and the preview follows.</span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Import text. Export text.</h3>
+                        <p>Write your chapters somewhere else? Import them as text in a click. Need to share your chapter list somewhere else (like YouTube)? Export it.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Feature: Import/Export -->
-        <section class="section">
-            <div class="feature-row">
-                <div class="feature-row-copy">
-                    <p class="section-label">Chapters as Text</p>
-                    <h2 class="feature-title">Import text. Export text.</h2>
-                    <p class="feature-description">
-                        <strong>Import from Text</strong><br>Write your chapters somewhere else? Import them as text in a click.
-                    </p>
-                    <p class="feature-description">
-                        <strong>Export as Text</strong><br>Need to share your chapter list somewhere else (like YouTube)? Export it.
-                    </p>
-                </div>
-                <div class="feature-row-media" data-drift="0.05">
-                    <img src="../../images/import-export.jpg" alt="Import or export dialog">
-                </div>
-            </div>
-        </section>
-
-        <!-- Feature: File Formats -->
+        <!-- Files, transcripts, devices -->
         <section class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Wide Compatibility</p>
                 <h2 class="section-title wipe">Works with most podcast audio file types.</h2>
-                <p class="section-subtitle wipe">
-                    Drop in your podcast audio: MP3, M4A, or AIF. Chapterize handles the conversion and always outputs an MP3 with your chapters embedded.
-                </p>
+                <p class="section-subtitle wipe">Drop in your podcast audio: MP3, M4A, or AIF. Chapterize handles the conversion and always outputs an MP3 with your chapters embedded.</p>
             </div>
-            <div class="chip-row">
-                <span class="chip">MP3</span>
-                <span class="chip">M4A</span>
-                <span class="chip">AIF</span>
-                <span class="chip-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
-                <span class="chip">MP3 with Chapters</span>
+
+            <div class="bento">
+                <!-- File formats -->
+                <article class="tile" style="--span: 7" data-demo="convert" data-steps="700,900,500">
+                    <div class="tile-stage">
+                        <div class="cp-formats" role="group" aria-label="Choose the kind of file to drop in">
+                            <button type="button" class="demo-btn cp-format" data-format="mp3" aria-pressed="false">MP3</button>
+                            <button type="button" class="demo-btn cp-format" data-format="m4a" aria-pressed="true">M4A</button>
+                            <button type="button" class="demo-btn cp-format" data-format="aif" aria-pressed="false">AIF</button>
+                        </div>
+                        <div class="cp-convert" aria-hidden="true">
+                            <div class="cp-file">
+                                <i class="ph ph-file-audio"></i>
+                                <div class="cp-file-body">
+                                    <div class="cp-file-name">episode.<span data-format-ext>m4a</span></div>
+                                    <div class="cp-file-meta">Your podcast audio</div>
+                                </div>
+                            </div>
+                            <div class="cp-flow"><span></span></div>
+                            <div class="cp-file cp-file-out">
+                                <i class="ph ph-file-audio"></i>
+                                <div class="cp-file-body">
+                                    <div class="cp-file-name">episode.mp3</div>
+                                    <div class="cp-marks"><i></i><i></i><i></i><i></i><i></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> MP3 with chapters</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>MP3, M4A or AIF in. MP3 with chapters out.</h3>
+                        <p>Pick a format above to drop it in. Whatever you start with, what comes out is an MP3 with your chapters embedded.</p>
+                    </div>
+                </article>
+
+                <!-- Transcripts -->
+                <article class="tile" style="--span: 5" data-demo="transcript" data-steps="600,700,700,700">
+                    <div class="tile-stage">
+                        <div class="cp-transcript" aria-hidden="true">
+                            <div class="cp-cue"><span>00:00:00,000 &rarr; 00:00:03,899</span>Welcome to Comfort Zone, a podcast, all about pushing your hosts.</div>
+                            <div class="cp-cue"><span>00:00:12,419 &rarr; 00:00:12,539</span>As always, I'm joined by Matt Birchler.</div>
+                            <div class="cp-cue"><span>00:00:14,580 &rarr; 00:00:14,820</span>Matt, how are you?</div>
+                            <div class="cp-cue"><span>00:00:15,240 &rarr; 00:00:15,779</span>doing great.</div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="demo-note" aria-hidden="true"><i class="ph ph-check"></i> Generated locally</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Generate transcripts locally.</h3>
+                        <p>Chapterize can generate a transcript of your podcast. If you need more powerful transcription options, check out <a href="../quick-subtitles/">Quick Subtitles</a>.</p>
+                    </div>
+                </article>
+
+                <!-- Devices -->
+                <article class="tile tile-split" style="--span: 12">
+                    <div class="tile-copy">
+                        <h3>Works on all your Apple devices.</h3>
+                        <p>Whether you're at your desk or on the go, Chapterize is there for you.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="cp-devices">
+                            <figure class="cp-device cp-device-mac">
+                                <img src="../../images/mac.png" alt="Chapterize on Mac and iPad" loading="lazy">
+                                <figcaption>Mac &amp; iPad</figcaption>
+                            </figure>
+                            <figure class="cp-device cp-device-phone">
+                                <img src="../../images/iphone.png" alt="Chapterize on iPhone" loading="lazy">
+                                <figcaption>iPhone</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -281,6 +447,7 @@
         </div>
     </footer>
 
-    <script src="../../app.js?v=15b52a66" defer></script>
+    <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./chapterpod.js?v=587d7bf9" defer></script>
 </body>
 </html>
