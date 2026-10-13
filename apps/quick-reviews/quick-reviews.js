@@ -24,20 +24,6 @@
         });
     }
 
-    // ---------- Hero: the top card tries on other backgrounds ----------
-    // Slow and quiet. With reduced motion the card keeps its first colour.
-    function initHero() {
-        var card = document.querySelector('[data-qv-hero]');
-        if (!card || reduceMotion.matches) { return; }
-        var colors = ['#2b3650', '#5a2a1c', '#2f3d2c'];
-        var index = 0;
-
-        window.setInterval(function () {
-            index = (index + 1) % colors.length;
-            card.style.setProperty('--qv-bg', colors[index]);
-        }, 4500);
-    }
-
     // ---------- Score bars ----------
     function initScores() {
         all(document, '[data-qv-scores]').forEach(function (bar) {
@@ -196,7 +182,6 @@
         });
     }
 
-    initHero();
     initScores();
     initStyle();
     initPosters();

@@ -333,7 +333,7 @@ body.calm-app {
         #d8c9a8;
 }
 
-/* ---------- Hero: two finished reviews ---------- */
+/* ---------- Hero: two real exported reviews ---------- */
 .calm-app .qv-hero-stack {
     display: flex;
     flex-direction: column;
@@ -342,11 +342,18 @@ body.calm-app {
     max-width: 31rem;
 }
 
-.calm-app .qv-hero-stack .qv-card:first-child {
+.calm-app .qv-hero-stack img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.9rem;
+    box-shadow: 0 18px 40px -20px rgba(60, 10, 20, 0.55);
+}
+
+.calm-app .qv-hero-stack img:first-child {
     transform: rotate(-1.4deg);
 }
 
-.calm-app .qv-hero-stack .qv-card:last-child {
+.calm-app .qv-hero-stack img:last-child {
     transform: rotate(1.2deg);
 }
 
@@ -812,6 +819,18 @@ body.calm-app {
 
 .calm-app .tile[data-demo="examples"] .tile-stage {
     min-height: 0;
+}
+
+/* ---------- Real app screenshots ---------- */
+.calm-app .qv-phones {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.calm-app .qv-phones img {
+    width: 100%;
+    height: auto;
 }
 
 /* ---------- Responsive ---------- */
