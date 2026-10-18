@@ -265,13 +265,13 @@ body.calm {
     }
 
     .calm .springboard-mark {
-        animation: home-pop 0.7s cubic-bezier(0.34, 1.3, 0.5, 1) 0.1s both,
+        animation: home-pop 0.7s var(--ease-out) 0.1s both,
                    home-beat 6s ease-in-out 1.6s infinite;
     }
 
     .calm .springboard-icon,
     .calm .springboard-slot {
-        animation: home-pop 0.6s cubic-bezier(0.34, 1.3, 0.5, 1) both;
+        animation: home-pop 0.6s var(--ease-out) both;
         animation-delay: calc(0.3s + var(--i) * 45ms);
     }
 }
@@ -599,7 +599,7 @@ body.calm {
 .calm .creative-stage-mark img {
     width: clamp(5rem, 9vw, 7rem);
     filter: drop-shadow(0 16px 22px rgba(240, 40, 122, 0.3));
-    transition: scale 0.6s cubic-bezier(0.34, 1.3, 0.5, 1);
+    transition: scale 0.6s var(--ease-out);
 }
 
 @media (prefers-reduced-motion: no-preference) {
