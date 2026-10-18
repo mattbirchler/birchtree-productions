@@ -75,19 +75,34 @@ After making changes to `styles.css`, **always run `./cache-bust.sh`** before co
 ## Homepage Styles
 
 The homepage uses its own `home.css` and `home.js`, loaded only by
-`index.html`, with every CSS rule scoped under `body.calm`. This keeps the
-calm card architecture off the app sub-pages, which still use the original
-`styles.css` treatment.
+`index.html`, with every CSS rule scoped under `body.calm`. `index.html` does
+not load `styles.css`, so `home.css` is the whole homepage design.
 
 **Never modify `styles.css` when working on the homepage.** Run
 `python3 tools/check-isolation.py` to verify isolation holds. It fails if any
 rule in `home.css` is unscoped or if either homepage asset is referenced by a
 sub-page.
 
-Note that `styles.css` has several unscoped rules (`img`, `.app-icon`,
-`.app-screenshot`, `.hero`) that leak onto the homepage. Some are load-bearing:
-`.app-screenshot { max-width: 280px }` exists because most app screenshots are
-tall portrait iPhone captures. The homepage caps them by height instead.
+The homepage follows the app pages' look (white cards on `#f7f7f7`, MonoLisa
+headings) and has no gradients:
+
+- **Hero**: title and tagline beside `.springboard`, a home screen of every
+  app icon around the Birchtree mark. Add a new app's icon there (the empty
+  `.springboard-slot` is the next free spot).
+- **Apps bento** (`.bento` > `.app-tile`, width via `style="--span: 4"` out of
+  12, tinted via `--tint`, which should match that app's `--app-accent`).
+  Each tile's `.app-tile-stage` uses one treatment: `stage-phone` (one framed
+  iPhone), `stage-pair` (a `.shot-front` phone with a `.shot-back` screen
+  behind it), `stage-mac-phone` (a `.shot-mac` window with a `.shot-front`
+  phone), `stage-window` (Mac or web capture bleeding off the corner; add
+  `stage-window-wide` to zoom in), or `stage-cover` (art with its own
+  backdrop). The whole tile is clickable through its "Learn more" link.
+- **Images**: resized WebP copies in `images/home/`, about 640px wide for
+  phones. Phones come from each app's raw App Store captures (e.g.
+  `~/Apps/<App>/scripts/listing-screenshots/shots/` or
+  `fastlane/screenshots_raw/`), not the captioned listing images, framed with
+  the `frames` CLI in Silver: `frames -c Silver -d "iPhone 17 Pro Max
+  Portrait" shot.png`.
 
 ## App Page Live Demos
 
@@ -118,6 +133,7 @@ features working instead of describing them:
 /
 ├── index.html              # Main landing page
 ├── home.css                # Homepage-only styles (scoped under body.calm)
+├── images/home/            # Resized WebP screenshots used by the homepage
 ├── home.js                 # Homepage-only behavior
 ├── styles.css              # Shared styles (app sub-pages)
 ├── cache-bust.sh           # Run after changing styles.css, home.css, or home.js
