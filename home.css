@@ -441,6 +441,13 @@ body.calm {
     object-position: center top;
 }
 
+/* Runs to the right edge without bleeding past it, for captures whose
+   right side carries the point (Birchfeed's reader headline). */
+.calm .stage-window-flush img {
+    width: calc(100% - clamp(1.25rem, 2.4vw, 2rem));
+    border-top-right-radius: 0;
+}
+
 /* Wide web captures zoom in so the text stays readable. */
 .calm .stage-window-wide img {
     width: 150%;
@@ -851,6 +858,10 @@ body.calm {
     .calm .stage-window img {
         width: 108%;
     }
+
+    .calm .stage-window-flush img {
+        width: calc(100% - 1.25rem);
+    }
 }
 
 @media (max-width: 860px) {
@@ -906,6 +917,10 @@ body.calm {
 
     .calm .stage-window img {
         width: 125%;
+    }
+
+    .calm .stage-window-flush img {
+        width: calc(100% - 1.25rem);
     }
 
     .calm .stage-pair img {
