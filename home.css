@@ -410,8 +410,8 @@ body.calm {
 .calm .stage-phone img {
     position: absolute;
     left: 50%;
-    top: 1.75rem;
-    width: clamp(9.5rem, 40%, 12.5rem);
+    top: 1.5rem;
+    width: clamp(10.5rem, 52%, 14rem);
     transform: translateX(-50%);
     filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.2));
 }
@@ -441,34 +441,59 @@ body.calm {
     object-position: center top;
 }
 
-/* Quick Reviews: the app, plus a review it made. */
-.calm .stage-duo .shot-phone {
+/* Wide web captures zoom in so the text stays readable. */
+.calm .stage-window-wide img {
+    width: 150%;
+}
+
+/* Two phones: one in front, a second screen peeking from behind. */
+.calm .stage-pair img {
     position: absolute;
-    left: 12%;
-    top: 1.75rem;
-    width: clamp(9.5rem, 28%, 13rem);
+    left: 50%;
+    width: clamp(8.5rem, 36%, 12rem);
     filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.2));
 }
 
-.calm .stage-duo .shot-card {
+.calm .stage-pair .shot-back {
+    top: 3.25rem;
+    transform: translateX(-88%) scale(0.92);
+    transform-origin: top center;
+    opacity: 0.96;
+}
+
+.calm .stage-pair .shot-front {
+    top: 1.5rem;
+    transform: translateX(-8%);
+}
+
+/* Mac window with the iPhone app in front of it. */
+.calm .stage-mac-phone .shot-mac {
     position: absolute;
-    right: -4%;
-    top: 22%;
-    width: 60%;
-    border-radius: 0.9rem;
-    box-shadow: 0 30px 50px -24px rgba(80, 10, 20, 0.55);
-    rotate: -3deg;
+    top: clamp(1.25rem, 2.4vw, 2rem);
+    left: clamp(1.25rem, 2.4vw, 2rem);
+    width: 112%;
+    max-width: none;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.18));
+}
+
+.calm .stage-mac-phone .shot-front {
+    position: absolute;
+    right: 7%;
+    top: 3.5rem;
+    width: clamp(7rem, 25%, 9.5rem);
+    filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.25));
 }
 
 @media (prefers-reduced-motion: no-preference) {
     .calm .app-tile:hover .stage-phone img,
     .calm .app-tile:hover .stage-window img,
-    .calm .app-tile:hover .stage-duo .shot-phone {
+    .calm .app-tile:hover .shot-front {
         translate: 0 -10px;
     }
 
-    .calm .app-tile:hover .stage-duo .shot-card {
-        translate: -6px -4px;
+    .calm .app-tile:hover .shot-back,
+    .calm .app-tile:hover .shot-mac {
+        translate: 0 -5px;
     }
 
     .calm .app-tile:hover .stage-cover img {
@@ -883,15 +908,8 @@ body.calm {
         width: 125%;
     }
 
-    .calm .stage-duo .shot-phone {
-        left: 6%;
-        width: 40%;
-    }
-
-    .calm .stage-duo .shot-card {
-        width: 70%;
-        right: -14%;
-        top: 30%;
+    .calm .stage-pair img {
+        width: clamp(8.5rem, 40%, 11rem);
     }
 
     .calm .nav-logo span {

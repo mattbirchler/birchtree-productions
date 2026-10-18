@@ -91,12 +91,18 @@ headings) and has no gradients:
   `.springboard-slot` is the next free spot).
 - **Apps bento** (`.bento` > `.app-tile`, width via `style="--span: 4"` out of
   12, tinted via `--tint`, which should match that app's `--app-accent`).
-  Each tile's `.app-tile-stage` holds a screenshot in one of three treatments:
-  `stage-phone` (framed iPhone capture), `stage-window` (Mac or web capture
-  that bleeds off the corner), or `stage-cover` (art with its own backdrop).
-  The whole tile is clickable through its "Learn more" link.
-- **Images**: use resized WebP copies in `images/home/`, not the full-size
-  originals.
+  Each tile's `.app-tile-stage` uses one treatment: `stage-phone` (one framed
+  iPhone), `stage-pair` (a `.shot-front` phone with a `.shot-back` screen
+  behind it), `stage-mac-phone` (a `.shot-mac` window with a `.shot-front`
+  phone), `stage-window` (Mac or web capture bleeding off the corner; add
+  `stage-window-wide` to zoom in), or `stage-cover` (art with its own
+  backdrop). The whole tile is clickable through its "Learn more" link.
+- **Images**: resized WebP copies in `images/home/`, about 640px wide for
+  phones. Phones come from each app's raw App Store captures (e.g.
+  `~/Apps/<App>/scripts/listing-screenshots/shots/` or
+  `fastlane/screenshots_raw/`), not the captioned listing images, framed with
+  the `frames` CLI in Silver: `frames -c Silver -d "iPhone 17 Pro Max
+  Portrait" shot.png`.
 
 ## App Page Live Demos
 
