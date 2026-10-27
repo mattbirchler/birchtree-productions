@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Bench - A Home for Your Claude Code Sessions</title>
+    <meta name="description" content="Bench is a free Mac app for Claude Code. Run Claude in tabs across all your projects, watch every change as it lands, hand work to agents on their own branches, and keep tabs on it all from your iPhone.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bench - A Home for Your Claude Code Sessions">
+    <meta property="og:description" content="Run Claude in tabs, watch every change as it lands, and keep tabs on it all from your iPhone. Free for Mac.">
+    <meta property="og:image" content="https://birchtree.me/images/bench-hero.jpg">
+    <meta property="og:url" content="https://birchtree.me/apps/bench/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bench - A Home for Your Claude Code Sessions">
+    <meta name="twitter:description" content="Run Claude in tabs, watch every change as it lands, and keep tabs on it all from your iPhone. Free for Mac.">
+    <meta name="twitter:image" content="https://birchtree.me/images/bench-hero.jpg">
+
+    <link rel="canonical" href="https://birchtree.me/apps/bench/">
+    <link rel="icon" href="../../images/bench.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../../app.css?v=297c1aa9">
+    <link rel="stylesheet" href="./bench.css?v=87b60754">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Bench",
+        "description": "A home for your Claude Code sessions on the Mac.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS",
+        "downloadUrl": "https://github.com/mattbirchler/bench-releases",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Birchtree Productions, LLC"
+        }
+    }
+    </script>
+</head>
+<body class="calm-app" style="--app-accent: #d97757;">
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Birchtree Productions</span>
+            </a>
+            <div class="app-nav-brand">
+                <img src="../../images/bench.png" alt="Bench" style="view-transition-name: bench-icon;">
+                <span>Bench</span>
+            </div>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
+                <img src="../../images/bench.png" alt="Bench" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">A home for your Claude Code sessions.</h1>
+                <p class="app-hero-subtitle wipe">
+                    Run Claude in tabs across every project, watch each change as it lands, hand work to agents on their own branches, and keep tabs on all of it from your iPhone.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://github.com/mattbirchler/bench-releases" class="btn-fill">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for Mac
+                    </a>
+                </div>
+                <p class="app-hero-note">Free. For Macs with Apple silicon running macOS 26 or later, with Claude Code installed.</p>
+            </div>
+
+            <div class="app-hero-stage" data-steps="900,1100,1100,1000,1200" role="img" aria-label="The Bench window. Claude adds a pricing page to a website project while the sidebar shows every project's status and the timer for the one that's working.">
+                <div class="bn-window" aria-hidden="true">
+                    <div class="bn-titlebar">
+                        <span class="bn-lights"><i></i><i></i><i></i></span>
+                    </div>
+                    <div class="bn-body">
+                        <div class="bn-sidebar">
+                            <p class="bn-side-label">Active</p>
+                            <div class="bn-proj">
+                                <span class="bn-proj-icon" style="--bn-proj: #e2774a"><i class="ph ph-fork-knife"></i></span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">Recipes</span>
+                                    <span class="bn-proj-sub bn-waiting"><i class="bn-dot"></i> Needs you</span>
+                                </span>
+                            </div>
+                            <div class="bn-proj is-selected">
+                                <span class="bn-proj-icon" style="--bn-proj: #6c5ce7"><i class="ph ph-globe"></i></span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">Website</span>
+                                    <span class="bn-proj-sub bn-hero-status"><b data-step-text="0s|4s|19s|33s|46s|">0s</b> <span data-step-text="Thinking|Reading the nav|Writing pricing.html|Linking it from the nav|Wrapping up|Done">Thinking</span></span>
+                                </span>
+                            </div>
+                            <div class="bn-proj">
+                                <span class="bn-proj-icon" style="--bn-proj: #2fa36b"><i class="ph ph-mountains"></i></span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">Trail Log</span>
+                                    <span class="bn-proj-sub bn-done"><i class="ph ph-check-circle"></i> Done</span>
+                                </span>
+                            </div>
+                            <div class="bn-proj">
+                                <span class="bn-proj-icon" style="--bn-proj: #d6455d"><i class="ph ph-microphone"></i></span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">Podcast Studio</span>
+                                    <span class="bn-proj-sub"><i class="ph ph-git-branch"></i> main</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="bn-main">
+                            <div class="bn-tabs">
+                                <span class="bn-tab"><i class="ph ph-terminal-window"></i> Shell</span>
+                                <span class="bn-tab is-active"><i class="ph ph-asterisk"></i> Claude</span>
+                                <span class="bn-tab"><i class="ph ph-file-html"></i> pricing.html</span>
+                            </div>
+                            <div class="bn-term">
+                                <p class="bn-term-prompt">&rsaquo; Add a pricing page with three plans, and link it from the nav.</p>
+                                <p class="bn-line bn-l1"><i class="bn-bullet"></i>I'll look at the nav first so the new page matches.</p>
+                                <p class="bn-line bn-l2"><i class="bn-bullet is-tool"></i><b>Write</b>(site/pricing.html)<br><span class="bn-term-dim">&#9492; Wrote 84 lines</span></p>
+                                <p class="bn-line bn-l3"><i class="bn-bullet is-tool"></i><b>Update</b>(site/nav.html)<br><span class="bn-term-dim">&#9492; Added 1 line</span></p>
+                                <p class="bn-line bn-l4"><i class="bn-bullet"></i>The pricing page is up with Free, Pro and Team plans, and it's linked from the nav.</p>
+                                <p class="bn-line bn-l5 bn-term-dim">&#10043; Worked for 46s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- On the Mac -->
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">On the Mac</p>
+                <h2 class="section-title wipe">Every project, every session, one window.</h2>
+                <p class="section-subtitle wipe">Bench gives Claude Code a proper place to live: tabs for each project, a sidebar that tells you what needs you, and the changes in plain view.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Workspaces -->
+                <article class="tile" style="--span: 7" data-demo="workspaces">
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat">
+                            <div class="bn-body bn-body-ws">
+                                <div class="bn-sidebar" role="tablist" aria-label="Example projects">
+                                    <button type="button" class="bn-proj" role="tab" aria-selected="false" data-project="recipes">
+                                        <span class="bn-proj-icon" style="--bn-proj: #e2774a"><i class="ph ph-fork-knife"></i></span>
+                                        <span class="bn-proj-text">
+                                            <span class="bn-proj-name">Recipes</span>
+                                            <span class="bn-proj-sub bn-waiting"><i class="bn-dot"></i> Needs you</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="bn-proj is-selected" role="tab" aria-selected="true" data-project="website">
+                                        <span class="bn-proj-icon" style="--bn-proj: #6c5ce7"><i class="ph ph-globe"></i></span>
+                                        <span class="bn-proj-text">
+                                            <span class="bn-proj-name">Website</span>
+                                            <span class="bn-proj-sub bn-working"><b data-timer="123">2m 03s</b> Working</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="bn-proj" role="tab" aria-selected="false" data-project="trail">
+                                        <span class="bn-proj-icon" style="--bn-proj: #2fa36b"><i class="ph ph-mountains"></i></span>
+                                        <span class="bn-proj-text">
+                                            <span class="bn-proj-name">Trail Log</span>
+                                            <span class="bn-proj-sub bn-done"><i class="ph ph-check-circle"></i> Done</span>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="bn-main">
+                                    <div class="bn-pane" data-pane="recipes" role="tabpanel" hidden>
+                                        <div class="bn-tabs">
+                                            <span class="bn-tab is-active"><i class="ph ph-asterisk"></i> Claude</span>
+                                            <span class="bn-tab"><i class="ph ph-terminal-window"></i> Shell</span>
+                                            <span class="bn-tab"><i class="ph ph-file-code"></i> RecipeStore.swift</span>
+                                        </div>
+                                        <div class="bn-pane-body">
+                                            <p class="bn-pane-branch"><i class="ph ph-git-branch"></i> main</p>
+                                            <div class="bn-ask">
+                                                <p><i class="ph ph-hand-palm"></i> Claude wants to run: <code>swift test</code></p>
+                                                <span class="bn-ask-btns"><span>Allow</span><span>Deny</span></span>
+                                            </div>
+                                            <p class="bn-pane-meta">Waiting on you for 1m 12s</p>
+                                        </div>
+                                    </div>
+                                    <div class="bn-pane" data-pane="website" role="tabpanel">
+                                        <div class="bn-tabs">
+                                            <span class="bn-tab is-active"><i class="ph ph-asterisk"></i> Claude</span>
+                                            <span class="bn-tab"><i class="ph ph-browser"></i> Preview</span>
+                                            <span class="bn-tab"><i class="ph ph-file-html"></i> pricing.html</span>
+                                        </div>
+                                        <div class="bn-pane-body">
+                                            <p class="bn-pane-branch"><i class="ph ph-git-branch"></i> pricing-page</p>
+                                            <p class="bn-pane-line"><i class="bn-bullet is-tool"></i><b>Write</b>(site/pricing.html)</p>
+                                            <p class="bn-pane-line"><i class="bn-bullet is-busy"></i>Linking it from the nav&hellip;</p>
+                                            <p class="bn-pane-meta">Working for <span data-timer="123">2m 03s</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bn-pane" data-pane="trail" role="tabpanel" hidden>
+                                        <div class="bn-tabs">
+                                            <span class="bn-tab is-active"><i class="ph ph-asterisk"></i> Claude</span>
+                                            <span class="bn-tab"><i class="ph ph-git-diff"></i> MapView.swift</span>
+                                        </div>
+                                        <div class="bn-pane-body">
+                                            <p class="bn-pane-branch"><i class="ph ph-git-branch"></i> main</p>
+                                            <p class="bn-pane-line"><i class="bn-bullet"></i>Fixed: the map now remembers where you zoomed to.</p>
+                                            <p class="bn-pane-meta">Finished 4 minutes ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Click a project to switch to it.</span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Every project gets its own workspace.</h3>
+                        <p>Add a folder and it gets its own tabs: Claude Code, shells, files and diffs. The sidebar shows each project's branch, whether Claude is working, waiting on you, or done, and how long it's been at it.</p>
+                    </div>
+                </article>
+
+                <!-- Changes -->
+                <article class="tile" style="--span: 5" data-demo="changes" data-steps="800,800,800">
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat bn-changes" aria-hidden="true">
+                            <div class="bn-seg"><span class="is-active">Changes</span><span>Files</span></div>
+                            <p class="bn-changes-branch"><i class="ph ph-git-branch"></i> main <span class="bn-changes-total" data-step-text="+0|+8|+34|+51">+0</span></p>
+                            <p class="bn-changes-head"><i class="ph ph-caret-down"></i> Unstaged <span data-step-text="0|1|2|3">0</span></p>
+                            <div class="bn-change bn-c1"><i class="ph ph-file"></i> RecipeStore.swift <span class="bn-add">+8</span><span class="bn-badge is-m">M</span></div>
+                            <div class="bn-change bn-c2"><i class="ph ph-file"></i> ShoppingList.swift <span class="bn-add">+26</span><span class="bn-badge">U</span></div>
+                            <div class="bn-change bn-c3"><i class="ph ph-file"></i> ShoppingListView.swift <span class="bn-add">+17</span><span class="bn-badge">U</span></div>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>See the changes as Claude makes them.</h3>
+                        <p>Every file Claude touches shows up live, with its additions and deletions. Click one for the full diff, stage what you like, and see which commits your branch has that the base doesn't.</p>
+                    </div>
+                </article>
+
+                <!-- Agents -->
+                <article class="tile tile-split" style="--span: 12" data-demo="agents" data-steps="900,1300,1300,1300">
+                    <div class="tile-copy">
+                        <h3>Hand work to agents on their own branches.</h3>
+                        <p>Start an agent with a prompt and Bench gives it a fresh git worktree, so it can't step on what you're doing. Each one shows its own status, its pull request, and whether checks passed. When the PR merges, Bench can clean up the worktree for you.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat bn-agents" aria-hidden="true">
+                            <div class="bn-agent-prompt">
+                                <span class="bn-agent-label"><i class="ph ph-plus"></i> New Agent on a Branch</span>
+                                <p>Support dark mode on every screen.</p>
+                            </div>
+                            <div class="bn-proj is-selected">
+                                <span class="bn-proj-icon" style="--bn-proj: #e2774a"><i class="ph ph-fork-knife"></i></span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">Recipes</span>
+                                    <span class="bn-proj-sub"><i class="ph ph-git-branch"></i> main &middot; you're working here</span>
+                                </span>
+                            </div>
+                            <div class="bn-agent">
+                                <span class="bn-agent-icon"><i class="ph ph-git-branch"></i></span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">agent/dark-mode</span>
+                                    <span class="bn-proj-sub bn-agent-status" data-step-text="|Working in a fresh worktree|Opened PR #42|Checks passed|Merged. Worktree cleaned up.">&nbsp;</span>
+                                </span>
+                                <span class="bn-pr"><i class="ph ph-git-pull-request"></i> #42</span>
+                                <span class="bn-agent-state">
+                                    <i class="ph ph-spinner-gap bn-s-work"></i>
+                                    <i class="ph ph-circle-dashed bn-s-pend"></i>
+                                    <i class="ph ph-check-circle bn-s-pass"></i>
+                                    <i class="ph ph-git-merge bn-s-merged"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- On the iPhone -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">On the iPhone</p>
+                <h2 class="section-title wipe">Step away. Claude doesn't have to wait.</h2>
+                <p class="section-subtitle wipe">The Bench iPhone app connects to your Mac so you can follow along from the couch. It's coming soon through TestFlight.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Permission prompt -->
+                <article class="tile tile-split" style="--span: 12" data-demo="phone">
+                    <div class="tile-copy">
+                        <h3>Allow or deny from anywhere.</h3>
+                        <p>See every session at a glance, read along as Claude works, and tap Allow or Deny when it asks permission. Reply with a message or a photo, and review diffs without getting up. Try it.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="bn-phone">
+                            <div class="bn-phone-head">
+                                <span class="bn-phone-icon" style="--bn-proj: #6c5ce7">W</span>
+                                <span class="bn-proj-text">
+                                    <span class="bn-proj-name">Website</span>
+                                    <span class="bn-proj-sub"><i class="ph ph-git-branch"></i> pricing-page</span>
+                                </span>
+                            </div>
+                            <div class="bn-phone-chat">
+                                <p class="bn-bubble">Add a pricing page with three plans, and link it from the nav.</p>
+                                <p class="bn-reply"><i class="ph ph-asterisk"></i> The page and nav link are done. I'd like to run the build to make sure nothing broke.</p>
+                                <p class="bn-reply bn-phone-result" aria-live="polite" hidden></p>
+                            </div>
+                            <div class="bn-perm">
+                                <p><i class="ph ph-hand-palm"></i> Claude wants to run: <code>npm run build</code></p>
+                                <div class="bn-perm-btns">
+                                    <button type="button" class="bn-allow" data-perm="allow">Allow</button>
+                                    <button type="button" class="bn-deny" data-perm="deny">Deny</button>
+                                </div>
+                            </div>
+                            <div class="bn-phone-input">
+                                <span><i class="ph ph-plus"></i></span>
+                                <span class="bn-phone-field">Message Claude</span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-phone-reset hidden><i class="ph ph-arrow-counter-clockwise"></i> Ask again</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Overview -->
+                <article class="tile" style="--span: 7">
+                    <div class="tile-stage">
+                        <div class="bn-phone bn-phone-list" aria-hidden="true">
+                            <p class="bn-phone-title">Bench</p>
+                            <p class="bn-phone-summary">1 needs you, 1 working, 2 done</p>
+                            <div class="bn-card is-working">
+                                <span class="bn-phone-icon" style="--bn-proj: #e2774a">R</span>
+                                <span class="bn-card-text"><b>Recipes</b><span><em data-timer="363">6m 03s</em> Adding items from a recipe</span></span>
+                                <i class="ph ph-asterisk"></i>
+                            </div>
+                            <div class="bn-card is-waiting">
+                                <span class="bn-phone-icon" style="--bn-proj: #6c5ce7">W</span>
+                                <span class="bn-card-text"><b>Website</b><span>Claude wants to run: npm run build</span></span>
+                                <i class="bn-dot"></i>
+                            </div>
+                            <div class="bn-card is-done">
+                                <span class="bn-phone-icon" style="--bn-proj: #2fa36b">T</span>
+                                <span class="bn-card-text"><b>Trail Log</b><span>Fixed: the map now remembers your zoom.</span></span>
+                                <i class="ph ph-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Every session at a glance.</h3>
+                        <p>One list shows what's working, what needs you, and what's done, across every project on your Mac.</p>
+                    </div>
+                </article>
+
+                <!-- Private -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-lock-key" aria-hidden="true"></i>
+                    <div>
+                    <h3>Your Mac to your phone. Nowhere else.</h3>
+                    <p>The iPhone app talks to your Mac over your own Tailscale network. Your code never passes through anyone's servers, including ours.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Small things -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">And the rest</p>
+                <h2 class="section-title wipe">And a lot of small things.</h2>
+            </div>
+
+            <div class="bento">
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-lightning" aria-hidden="true"></i>
+                    <h3>One-click shortcuts.</h3>
+                    <p>Add tab shortcuts for the commands you run all the time. JavaScript projects get a dev server button.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>
+                    <h3>Pick up where you left off.</h3>
+                    <p>Resume past Claude conversations from History, and your tabs come back when Bench relaunches.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-list-checks" aria-hidden="true"></i>
+                    <h3>Menu bar status.</h3>
+                    <p>See what's working and what needs you without switching apps.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-browser" aria-hidden="true"></i>
+                    <h3>Previews.</h3>
+                    <p>Open your local dev server in a tab right next to the code.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-desktop-tower" aria-hidden="true"></i>
+                    <h3>Other Macs.</h3>
+                    <p>Pair a second Mac and see its projects in the same sidebar.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>
+                    <h3>Updates itself.</h3>
+                    <p>New versions download in the background and install when you quit.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Download -->
+        <section id="download" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Download</p>
+                <h2 class="section-title wipe">Free. No account, no catch.</h2>
+                <p class="section-subtitle wipe">Bench has no analytics and doesn't send your code anywhere. Claude Code talks to Anthropic the same way it always does.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-card-badge">Price</div>
+                    <div class="pricing-card-price">Free</div>
+                    <div class="pricing-card-period">Every feature, on every Mac you own</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            No account or subscription
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Signed and notarized by Apple
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Updates itself in the background
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://github.com/mattbirchler/bench-releases" class="btn-fill">Download for Mac</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">You'll need</div>
+                    <div class="pricing-card-price">macOS 26</div>
+                    <div class="pricing-card-period">On a Mac with Apple silicon (M1 or later)</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Claude Code, installed and signed in
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            git (Bench offers to install it)
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            GitHub CLI for PR status (optional)
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Tailscale for iPhone (optional)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Pull up a bench.</h2>
+                <p class="cta-copy">
+                    Download the zip, drag Bench into Applications, and add a project folder.
+                </p>
+                <div class="download-buttons" style="justify-content: center;">
+                    <a href="https://github.com/mattbirchler/bench-releases" class="btn-fill">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for Mac
+                    </a>
+                </div>
+                <p class="bn-fine">Bench is an independent app, not made by or affiliated with Anthropic. Claude and Claude Code are trademarks of Anthropic.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/bench.png" alt="Bench">
+                <span>Bench</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span class="app-footer-sep">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./bench.js?v=5395dc4d" defer></script>
+</body>
+</html>
