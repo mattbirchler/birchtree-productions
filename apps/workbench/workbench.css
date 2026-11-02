@@ -1,5 +1,5 @@
-/* Bench - page-local styles for the live feature demos.
-   Loaded only by apps/bench/index.html, on top of app.css. Every rule is
+/* Workbench - page-local styles for the live feature demos.
+   Loaded only by apps/workbench/index.html, on top of app.css. Every rule is
    scoped under .calm-app and every class is prefixed bn- so nothing here can
    collide with the shared calm components.
 
@@ -872,4 +872,593 @@ body.calm-app {
 
 .calm-app .bn-agent-status {
     white-space: normal;
+}
+
+/* ---------- Terminal or chat ---------- */
+.calm-app .bn-views {
+    display: flex;
+    flex-direction: column;
+    min-height: 19rem;
+}
+
+.calm-app .bn-views .bn-tabs {
+    align-items: center;
+}
+
+.calm-app .bn-viewswitch {
+    display: inline-flex;
+    gap: 0.15rem;
+    margin-left: auto;
+    padding: 0.15rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.calm-app .bn-viewswitch button {
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.5rem;
+    border: 0;
+    border-radius: 0.38rem;
+    background: none;
+    color: var(--bn-dim);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .bn-viewswitch button:hover {
+    color: var(--bn-ink);
+}
+
+.calm-app .bn-viewswitch button[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.14);
+    color: var(--bn-ink);
+}
+
+.calm-app .bn-viewswitch button:focus-visible,
+.calm-app .bn-theme-picker button:focus-visible,
+.calm-app .bn-macs-pills button:focus-visible {
+    outline: 2px solid var(--bn-orange);
+    outline-offset: 2px;
+}
+
+.calm-app .bn-views[data-view="chat"] .bn-view-term,
+.calm-app .bn-views[data-view="term"] .bn-view-chat {
+    display: none;
+}
+
+.calm-app .bn-view {
+    animation: bn-view-in 0.35s var(--ease-out);
+}
+
+@keyframes bn-view-in {
+    from { opacity: 0; transform: translateY(0.3rem); }
+}
+
+.calm-app .bn-vline {
+    position: relative;
+    padding-left: 1rem;
+}
+
+.calm-app .bn-view-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0.85rem 0.9rem 0.8rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.calm-app .bn-chat-me {
+    align-self: flex-end;
+    max-width: 80%;
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.85rem;
+    background: #c96a4a;
+    color: #fff;
+}
+
+.calm-app .bn-chat-card,
+.calm-app .bn-chat-cmd,
+.calm-app .bn-chat-ask {
+    border: 1px solid var(--bn-line);
+    border-radius: 0.6rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.calm-app .bn-chat-card-head,
+.calm-app .bn-chat-cmd {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    color: var(--bn-dim);
+}
+
+.calm-app .bn-chat-card code,
+.calm-app .bn-chat-cmd code {
+    font-family: var(--bn-mono);
+    color: #9db8f5;
+}
+
+.calm-app .bn-chat-diff {
+    padding: 0.35rem 0.6rem;
+    background: rgba(76, 195, 138, 0.12);
+    color: #b9e8cf;
+    font-family: var(--bn-mono);
+    font-size: 0.7rem;
+}
+
+.calm-app .bn-chat-cmd span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+    color: var(--bn-green);
+}
+
+.calm-app .bn-chat-ask {
+    padding: 0.55rem 0.65rem;
+    border-color: color-mix(in srgb, var(--bn-orange) 55%, transparent);
+}
+
+.calm-app .bn-chat-ask p {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.calm-app .bn-chat-ask p i {
+    color: var(--bn-orange);
+}
+
+.calm-app .bn-chat-ask-btns {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.calm-app .bn-chat-ask-btns span {
+    padding: 0.25rem 0.7rem;
+    border-radius: 0.45rem;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+
+.calm-app .bn-chat-ask-btns span:first-child {
+    background: var(--bn-orange);
+    color: #2a160d;
+}
+
+.calm-app .bn-chat-input {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--bn-line);
+    border-radius: 0.7rem;
+    color: var(--bn-dim);
+}
+
+.calm-app .bn-chat-model {
+    font-size: 0.68rem;
+}
+
+/* ---------- Themes ---------- */
+.calm-app .bn-themed {
+    --th-bg: #1e1e2e; --th-side: #181825; --th-ink: #cdd6f4; --th-dim: #7f849c;
+    --th-accent: #fab387; --th-add: #a6e3a1; --th-del: #f38ba8;
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    background: var(--th-bg);
+    color: var(--th-ink);
+    font-size: 0.74rem;
+    text-align: left;
+    box-shadow: 0 14px 30px -20px rgba(70, 30, 10, 0.5),
+                inset 0 0 0 1px color-mix(in srgb, var(--th-ink) 10%, transparent);
+    transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+.calm-app .bn-themed[data-theme="latte"] {
+    --th-bg: #eff1f5; --th-side: #e6e9ef; --th-ink: #4c4f69; --th-dim: #8c8fa1;
+    --th-accent: #fe640b; --th-add: #40a02b; --th-del: #d20f39;
+}
+.calm-app .bn-themed[data-theme="dracula"] {
+    --th-bg: #282a36; --th-side: #21222c; --th-ink: #f8f8f2; --th-dim: #6272a4;
+    --th-accent: #ffb86c; --th-add: #50fa7b; --th-del: #ff5555;
+}
+.calm-app .bn-themed[data-theme="solarized"] {
+    --th-bg: #fdf6e3; --th-side: #eee8d5; --th-ink: #586e75; --th-dim: #93a1a1;
+    --th-accent: #cb4b16; --th-add: #859900; --th-del: #dc322f;
+}
+.calm-app .bn-themed[data-theme="gruvbox"] {
+    --th-bg: #282828; --th-side: #1d2021; --th-ink: #ebdbb2; --th-dim: #928374;
+    --th-accent: #fe8019; --th-add: #b8bb26; --th-del: #fb4934;
+}
+.calm-app .bn-themed[data-theme="rose"] {
+    --th-bg: #191724; --th-side: #1f1d2e; --th-ink: #e0def4; --th-dim: #6e6a86;
+    --th-accent: #ebbcba; --th-add: #9ccfd8; --th-del: #eb6f92;
+}
+
+.calm-app .bn-themed-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.6rem 0.45rem;
+    background: var(--th-side);
+    transition: background-color 0.45s ease;
+}
+
+.calm-app .bn-themed-proj {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: 0.45rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calm-app .bn-themed-proj.is-on {
+    background: color-mix(in srgb, var(--th-accent) 22%, transparent);
+}
+
+.calm-app .bn-themed-proj i {
+    display: grid;
+    place-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 0.3rem;
+    background: var(--bn-proj);
+    color: #fff;
+    font-size: 0.62rem;
+    font-style: normal;
+}
+
+.calm-app .bn-themed-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0.7rem 0.8rem;
+}
+
+.calm-app .bn-themed-me {
+    align-self: flex-end;
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.75rem;
+    background: var(--th-accent);
+    color: var(--th-bg);
+    font-weight: 600;
+    transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+.calm-app .bn-themed-diff {
+    border-radius: 0.45rem;
+    overflow: hidden;
+    font-family: var(--bn-mono);
+    font-size: 0.66rem;
+}
+
+.calm-app .bn-themed-diff p {
+    padding: 0.12rem 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+.calm-app .bn-themed-diff .is-add {
+    background: color-mix(in srgb, var(--th-add) 18%, transparent);
+    color: var(--th-add);
+}
+
+.calm-app .bn-themed-diff .is-del {
+    background: color-mix(in srgb, var(--th-del) 16%, transparent);
+    color: var(--th-del);
+}
+
+.calm-app .bn-themed-say {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.calm-app .bn-themed-say i {
+    color: var(--th-accent);
+}
+
+.calm-app .bn-theme-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.calm-app .bn-theme-picker button {
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.calm-app .bn-theme-picker button:hover {
+    border-color: var(--accent);
+}
+
+.calm-app .bn-theme-picker button[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, #fff);
+}
+
+/* ---------- Limits ---------- */
+.calm-app .bn-limits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1.4rem 0.8rem 1.1rem;
+}
+
+.calm-app .bn-rings {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.calm-app .bn-rings-sep {
+    align-self: stretch;
+    width: 1px;
+    margin: 0.2rem 0.1rem 1.1rem;
+    background: var(--bn-line);
+}
+
+.calm-app .bn-ring {
+    --v: var(--v3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.66rem;
+    color: var(--bn-dim);
+}
+
+.calm-app .bn-ring svg {
+    width: 2.3rem;
+    height: 2.3rem;
+    transform: rotate(-90deg);
+}
+
+.calm-app .bn-ring circle {
+    fill: none;
+    stroke-width: 4;
+}
+
+.calm-app .bn-ring-track {
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+.calm-app .bn-ring-val {
+    stroke: #8e8e96;
+    stroke-linecap: round;
+    stroke-dasharray: var(--v) 100;
+    transition: stroke-dasharray 0.9s var(--ease-out), stroke 0.4s ease;
+}
+
+.calm-app.is-armed [data-demo="limits"][data-step="0"] .bn-ring { --v: 0; }
+.calm-app.is-armed [data-demo="limits"][data-step="1"] .bn-ring { --v: var(--v1); }
+.calm-app.is-armed [data-demo="limits"][data-step="2"] .bn-ring { --v: var(--v2); }
+
+.calm-app [data-demo="limits"]:not([data-step="0"]):not([data-step="1"]):not([data-step="2"]) .bn-ring-hot .bn-ring-val {
+    stroke: var(--bn-orange);
+}
+
+.calm-app [data-demo="limits"]:not([data-step="0"]):not([data-step="1"]):not([data-step="2"]) .bn-ring-hot {
+    color: var(--bn-orange);
+}
+
+.calm-app .bn-limits-note {
+    min-height: 1.2em;
+    font-size: 0.74rem;
+    color: var(--bn-ink);
+}
+
+/* ---------- Other Macs ---------- */
+.calm-app .bn-macs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-width: 22rem;
+    margin: 0 auto;
+    padding: 0.7rem 0.55rem 0.8rem;
+    background: var(--bn-side);
+    font-size: 0.82rem;
+}
+
+.calm-app .bn-macs-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.calm-app .bn-macs-pills button {
+    padding: 0.25rem 0.7rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--bn-dim);
+    font: inherit;
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .bn-macs-pills button:hover {
+    color: var(--bn-ink);
+}
+
+.calm-app .bn-macs-pills button[aria-selected="true"] {
+    background: #e9e9ec;
+    color: #1c1c1f;
+}
+
+.calm-app .bn-macs-add {
+    display: grid;
+    place-items: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--bn-dim);
+}
+
+.calm-app .bn-macs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    animation: bn-view-in 0.35s var(--ease-out);
+}
+
+.calm-app .bn-macs-list[hidden] {
+    display: none;
+}
+
+.calm-app .bn-macs .bn-ask {
+    margin-top: 0.3rem;
+}
+
+/* ---------- Brain Dump ---------- */
+.calm-app .bn-dump {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.8rem;
+    font-size: 0.8rem;
+}
+
+.calm-app .bn-dump-head {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+}
+
+.calm-app .bn-dump-head > i {
+    color: var(--bn-orange);
+    font-size: 1rem;
+}
+
+.calm-app .bn-dump-status {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--bn-dim);
+}
+
+.calm-app .bn-dump-said {
+    margin-bottom: 0.3rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--bn-ink);
+    font-size: 0.76rem;
+    line-height: 1.5;
+    transition: opacity 0.5s ease;
+}
+
+.calm-app .bn-dump-task {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid var(--bn-line);
+    border-radius: 0.6rem;
+    transition: opacity 0.4s ease, transform 0.5s var(--ease-out);
+}
+
+.calm-app .bn-dump-task .bn-phone-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 0.4rem;
+    font-size: 0.75rem;
+}
+
+.calm-app .bn-dump-task .bn-proj-text {
+    flex: 1;
+}
+
+.calm-app .bn-dump-spin {
+    color: var(--bn-orange);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.calm-app .bn-dump-start {
+    align-self: flex-end;
+    margin-top: 0.2rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.45rem;
+    background: var(--bn-orange);
+    color: #2a160d;
+    font-size: 0.74rem;
+    font-weight: 700;
+    transition: opacity 0.3s ease, transform 0.15s ease;
+}
+
+/* No JS: the started state. */
+.calm-app .bn-dump-spin { opacity: 1; }
+.calm-app .bn-dump-start { opacity: 0.4; }
+
+.calm-app.is-armed [data-demo="dump"] .bn-dump-spin { opacity: 0; }
+.calm-app.is-armed [data-demo="dump"] .bn-dump-start { opacity: 0; }
+.calm-app.is-armed [data-demo="dump"][data-step="0"] .bn-dump-said { opacity: 0; }
+.calm-app.is-armed [data-demo="dump"] .bn-dump-task {
+    opacity: 0;
+    transform: translateY(0.4rem);
+}
+.calm-app.is-armed [data-demo="dump"][data-step="3"] .bn-d1,
+.calm-app.is-armed [data-demo="dump"][data-step="4"] .bn-d1,
+.calm-app.is-armed [data-demo="dump"][data-step="4"] .bn-d2,
+.calm-app.is-armed [data-demo="dump"][data-step="5"] .bn-dump-task,
+.calm-app.is-armed [data-demo="dump"][data-step="6"] .bn-dump-task {
+    opacity: 1;
+    transform: none;
+}
+.calm-app.is-armed [data-demo="dump"][data-step="5"] .bn-dump-start { opacity: 1; }
+.calm-app.is-armed [data-demo="dump"][data-step="6"] .bn-dump-start { opacity: 0.4; }
+.calm-app.is-armed [data-demo="dump"][data-step="6"] .bn-dump-spin {
+    opacity: 1;
+    animation: bn-spin 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm-app.is-armed [data-demo="dump"][data-step="6"] .bn-dump-spin,
+    .calm-app .bn-view,
+    .calm-app .bn-macs-list {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .calm-app .bn-themed {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .bn-themed-side {
+        display: none;
+    }
+
+    .calm-app .bn-rings {
+        gap: 0.5rem;
+    }
 }

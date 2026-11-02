@@ -1,4 +1,4 @@
-/* Bench - page-local demo behavior. Loaded only by apps/bench/index.html,
+/* Workbench - page-local demo behavior. Loaded only by apps/workbench/index.html,
    after app.js (which runs the stepped demos). */
 (function () {
     'use strict';
@@ -98,7 +98,64 @@
         });
     }
 
+    // Terminal or chat: flip the same session between the two views.
+    function initViews() {
+        var tile = document.querySelector('[data-demo="views"]');
+        if (!tile) { return; }
+        var win = tile.querySelector('.bn-views');
+        var buttons = all(tile, '[data-set-view]');
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                win.setAttribute('data-view', btn.getAttribute('data-set-view'));
+                buttons.forEach(function (b) {
+                    b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+                });
+            });
+        });
+    }
+
+    // Themes: recolor the little window with the picked terminal theme.
+    function initThemes() {
+        var tile = document.querySelector('[data-demo="themes"]');
+        if (!tile) { return; }
+        var win = tile.querySelector('.bn-themed');
+        var buttons = all(tile, '[data-theme-pick]');
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                win.setAttribute('data-theme', btn.getAttribute('data-theme-pick'));
+                buttons.forEach(function (b) {
+                    b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+                });
+            });
+        });
+    }
+
+    // Other Macs: switch the sidebar between this Mac and a paired one.
+    function initMacs() {
+        var tile = document.querySelector('[data-demo="macs"]');
+        if (!tile) { return; }
+        var buttons = all(tile, '[data-mac]');
+        var lists = all(tile, '[data-mac-list]');
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = btn.getAttribute('data-mac');
+                buttons.forEach(function (b) {
+                    b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+                });
+                lists.forEach(function (l) {
+                    l.hidden = l.getAttribute('data-mac-list') !== id;
+                });
+            });
+        });
+    }
+
     initTimers();
     initWorkspaces();
     initPhone();
+    initViews();
+    initThemes();
+    initMacs();
 }());

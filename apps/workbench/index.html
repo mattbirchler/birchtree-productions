@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=297c1aa9">
-    <link rel="stylesheet" href="./workbench.css?v=87b60754">
+    <link rel="stylesheet" href="./workbench.css?v=d0fed237">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -87,7 +87,7 @@
                         Download for Mac
                     </a>
                 </div>
-                <p class="app-hero-note">Free. For Macs with Apple silicon running macOS 26 or later, with Claude Code installed.</p>
+                <p class="app-hero-note"><span class="badge-accent">Beta</span> Free, with no account. For Macs with Apple silicon running macOS 26 or later, with Claude Code installed. <a href="https://birchtree.me/blog/workbench-is-the-best-developer-tool-ive-ever-made-in-beta-now/">Read why I made it</a>.</p>
             </div>
 
             <div class="app-hero-stage" data-steps="900,1100,1100,1000,1200" role="img" aria-label="The Workbench window. Claude adds a pricing page to a website project while the sidebar shows every project's status and the timer for the one that's working.">
@@ -233,7 +233,7 @@
                     </div>
                     <div class="tile-copy">
                         <h3>Every project gets its own workspace.</h3>
-                        <p>Add a folder and it gets its own tabs: Claude Code, shells, files and diffs. The sidebar shows each project's branch, whether Claude is working, waiting on you, or done, and how long it's been at it.</p>
+                        <p>Add a folder and it gets its own tabs: Claude Code, shells, files, diffs and previews. The sidebar shows whether Claude is working, waiting on you, or done, and answers permission prompts right there. Projects sort themselves into Active, Recent and Inactive as you use them.</p>
                     </div>
                 </article>
 
@@ -254,15 +254,214 @@
                     </div>
                     <div class="tile-copy">
                         <h3>See the changes as Claude makes them.</h3>
-                        <p>Every file Claude touches shows up live, with its additions and deletions. Click one for the full diff, stage what you like, and see which commits your branch has that the base doesn't.</p>
+                        <p>Every file Claude touches shows up live, with its additions and deletions. Click one for the full diff, and leave comments on lines to send back to Claude.</p>
                     </div>
                 </article>
 
-                <!-- Agents -->
+                <!-- Terminal or chat -->
+                <article class="tile tile-split" style="--span: 12" data-demo="views">
+                    <div class="tile-copy">
+                        <h3>Terminal or chat, same session.</h3>
+                        <p>Claude Code runs in a real terminal built on Ghostty, so it uses your font, theme and keybindings. Press &#8997;&#8984;T and the same session turns into a chat: edits show as diffs, commands fold their output away, and questions become cards with real buttons. It's still Claude Code underneath, so you can flip back any time.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat bn-views" data-view="chat">
+                            <div class="bn-tabs">
+                                <span class="bn-tab is-active"><i class="ph ph-asterisk"></i> Claude</span>
+                                <span class="bn-viewswitch" role="group" aria-label="Show the session as">
+                                    <button type="button" data-set-view="term" aria-pressed="false" aria-label="Terminal"><i class="ph ph-terminal-window"></i></button>
+                                    <button type="button" data-set-view="chat" aria-pressed="true" aria-label="Chat"><i class="ph ph-chats-circle"></i></button>
+                                </span>
+                            </div>
+                            <div class="bn-view bn-view-term bn-term" aria-hidden="true">
+                                <p class="bn-term-prompt">&rsaquo; Add a "Clear checked items" button to the shopping list.</p>
+                                <p class="bn-vline"><i class="bn-bullet is-tool"></i><b>Update</b>(Recipes/ShoppingListView.swift)<br><span class="bn-term-dim">&#9492; Added 6 lines</span></p>
+                                <p class="bn-vline"><i class="bn-bullet is-tool"></i><b>Bash</b>(swift test)<br><span class="bn-term-dim">&#9492; Test Suite 'All tests' passed. Executed 14 tests&hellip;<br>&nbsp;&nbsp;(+38 lines)</span></p>
+                                <p class="bn-vline"><i class="bn-bullet"></i>Should it ask before clearing, or clear right away?<br><span class="bn-term-dim">&#10095; 1. Ask first<br>&nbsp;&nbsp;2. Clear right away</span></p>
+                            </div>
+                            <div class="bn-view bn-view-chat" aria-hidden="true">
+                                <p class="bn-chat-me">Add a "Clear checked items" button to the shopping list.</p>
+                                <div class="bn-chat-card">
+                                    <p class="bn-chat-card-head"><i class="ph ph-pencil-simple"></i> Edited <code>ShoppingListView.swift</code> <span class="bn-add">+6</span></p>
+                                    <p class="bn-chat-diff">+ Button("Clear Checked Items") {<br>+&nbsp;&nbsp;&nbsp;&nbsp;store.shoppingList.clearChecked()</p>
+                                </div>
+                                <p class="bn-chat-cmd"><i class="ph ph-terminal-window"></i> <code>swift test</code> <span><i class="ph ph-check-circle"></i> 14 passed</span></p>
+                                <div class="bn-chat-ask">
+                                    <p><i class="ph ph-asterisk"></i> Should it ask before clearing, or clear right away?</p>
+                                    <span class="bn-chat-ask-btns"><span>Ask first</span><span>Clear right away</span></span>
+                                </div>
+                                <p class="bn-chat-input"><span>Message Claude</span><span class="bn-chat-model">Opus 5.5 &middot; 48k / 1M</span></p>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Switch views with the buttons in the tab bar.</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Themes -->
+                <article class="tile" style="--span: 7" data-demo="themes">
+                    <div class="tile-stage">
+                        <div class="bn-themed" data-theme="mocha" aria-hidden="true">
+                            <div class="bn-themed-side">
+                                <span class="bn-themed-proj is-on"><i style="--bn-proj: #2fa36b">R</i> Recipes</span>
+                                <span class="bn-themed-proj"><i style="--bn-proj: #c2457a">F</i> Field Notes</span>
+                                <span class="bn-themed-proj"><i style="--bn-proj: #6c5ce7">W</i> Website</span>
+                            </div>
+                            <div class="bn-themed-main">
+                                <p class="bn-themed-me">Show how many items are left to buy.</p>
+                                <div class="bn-themed-diff">
+                                    <p class="is-del">- List(store.items) { item in</p>
+                                    <p class="is-add">+ List {</p>
+                                    <p class="is-add">+&nbsp;&nbsp;&nbsp;&nbsp;Text("3 items left to buy")</p>
+                                </div>
+                                <p class="bn-themed-say"><i class="ph ph-asterisk"></i> Added a count at the top of the list.</p>
+                            </div>
+                        </div>
+                        <div class="bn-theme-picker" role="group" aria-label="Terminal theme">
+                            <button type="button" data-theme-pick="mocha" aria-pressed="true">Catppuccin Mocha</button>
+                            <button type="button" data-theme-pick="latte" aria-pressed="false">Catppuccin Latte</button>
+                            <button type="button" data-theme-pick="dracula" aria-pressed="false">Dracula</button>
+                            <button type="button" data-theme-pick="solarized" aria-pressed="false">Solarized Light</button>
+                            <button type="button" data-theme-pick="gruvbox" aria-pressed="false">Gruvbox Dark</button>
+                            <button type="button" data-theme-pick="rose" aria-pressed="false">Ros&eacute; Pine</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Looks like your terminal.</h3>
+                        <p>Workbench takes on your Ghostty theme's colors for its sidebars, chat and diffs, and switches between light and dark with your Mac. Pick a theme to try it.</p>
+                    </div>
+                </article>
+
+                <!-- Limits -->
+                <article class="tile" style="--span: 5" data-demo="limits" data-steps="700,1200,1300">
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat bn-limits" aria-hidden="true">
+                            <div class="bn-rings">
+                                <span class="bn-ring" style="--v1: 18; --v2: 34; --v3: 22;"><svg viewBox="0 0 36 36"><circle class="bn-ring-track" cx="18" cy="18" r="14" pathLength="100"/><circle class="bn-ring-val" cx="18" cy="18" r="14" pathLength="100"/></svg>CPU</span>
+                                <span class="bn-ring" style="--v1: 41; --v2: 47; --v3: 48;"><svg viewBox="0 0 36 36"><circle class="bn-ring-track" cx="18" cy="18" r="14" pathLength="100"/><circle class="bn-ring-val" cx="18" cy="18" r="14" pathLength="100"/></svg>Memory</span>
+                                <i class="bn-rings-sep"></i>
+                                <span class="bn-ring bn-ring-hot" style="--v1: 46; --v2: 71; --v3: 86;"><svg viewBox="0 0 36 36"><circle class="bn-ring-track" cx="18" cy="18" r="14" pathLength="100"/><circle class="bn-ring-val" cx="18" cy="18" r="14" pathLength="100"/></svg>5h</span>
+                                <span class="bn-ring" style="--v1: 30; --v2: 32; --v3: 34;"><svg viewBox="0 0 36 36"><circle class="bn-ring-track" cx="18" cy="18" r="14" pathLength="100"/><circle class="bn-ring-val" cx="18" cy="18" r="14" pathLength="100"/></svg>Week</span>
+                                <span class="bn-ring" style="--v1: 11; --v2: 13; --v3: 15;"><svg viewBox="0 0 36 36"><circle class="bn-ring-track" cx="18" cy="18" r="14" pathLength="100"/><circle class="bn-ring-val" cx="18" cy="18" r="14" pathLength="100"/></svg>Fable</span>
+                            </div>
+                            <p class="bn-limits-note" data-step-text="&nbsp;|All quiet|Three agents running|5-hour limit at 86%, resets in 42m">5-hour limit at 86%, resets in 42m</p>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Your plan's limits, at a glance.</h3>
+                        <p>Rings show your 5-hour, weekly and per-model limits next to your Mac's CPU and memory. They stay grey until they need your attention.</p>
+                    </div>
+                </article>
+
+                <!-- Other Macs -->
+                <article class="tile tile-split" style="--span: 12" data-demo="macs">
+                    <div class="tile-copy">
+                        <h3>Your other Macs, in the same sidebar.</h3>
+                        <p>Pair a second Mac, like a Mac mini on a shelf that does your iOS builds, and work in its projects from the one in front of you. Read and answer its sessions, start Claude tabs and agents, look at its changes, and run its shortcuts.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat bn-macs">
+                            <div class="bn-macs-pills" role="tablist" aria-label="Paired Macs">
+                                <button type="button" role="tab" aria-selected="true" data-mac="here">This Mac</button>
+                                <button type="button" role="tab" aria-selected="false" data-mac="mini">Mac mini</button>
+                                <span class="bn-macs-add" aria-hidden="true"><i class="ph ph-plus"></i></span>
+                            </div>
+                            <div class="bn-macs-list" data-mac-list="here" role="tabpanel">
+                                <div class="bn-proj">
+                                    <span class="bn-proj-icon" style="--bn-proj: #2fa36b"><i class="ph ph-fork-knife"></i></span>
+                                    <span class="bn-proj-text">
+                                        <span class="bn-proj-name">Recipes</span>
+                                        <span class="bn-proj-sub bn-working"><b data-timer="245">4m 05s</b> Adding items from a recipe</span>
+                                    </span>
+                                </div>
+                                <div class="bn-proj">
+                                    <span class="bn-proj-icon" style="--bn-proj: #6c5ce7"><i class="ph ph-globe"></i></span>
+                                    <span class="bn-proj-text">
+                                        <span class="bn-proj-name">Website</span>
+                                        <span class="bn-proj-sub bn-done"><i class="ph ph-check-circle"></i> Added the pricing page</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="bn-macs-list" data-mac-list="mini" role="tabpanel" hidden>
+                                <div class="bn-proj">
+                                    <span class="bn-proj-icon" style="--bn-proj: #c2457a"><i class="ph ph-notebook"></i></span>
+                                    <span class="bn-proj-text">
+                                        <span class="bn-proj-name">Field Notes</span>
+                                        <span class="bn-proj-sub bn-working"><b data-timer="512">8m 32s</b> Running xcodebuild test</span>
+                                    </span>
+                                </div>
+                                <div class="bn-proj">
+                                    <span class="bn-proj-icon" style="--bn-proj: #e2774a"><i class="ph ph-paw-print"></i></span>
+                                    <span class="bn-proj-text">
+                                        <span class="bn-proj-name">Pixel Pets</span>
+                                        <span class="bn-proj-sub bn-waiting"><i class="bn-dot"></i> Claude wants to run: fastlane beta</span>
+                                    </span>
+                                </div>
+                                <div class="bn-ask">
+                                    <p><i class="ph ph-hand-palm"></i> From your Mac mini</p>
+                                    <span class="bn-ask-btns"><span>Allow</span><span>Deny</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span>Switch between Macs at the top of the sidebar.</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Agents -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Agents</p>
+                <h2 class="section-title wipe">Hand off the work. Keep your branch.</h2>
+                <p class="section-subtitle wipe">Every agent gets its own git worktree and branch, so a few of them can work at once without stepping on you or each other.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Brain Dump -->
+                <article class="tile tile-split" style="--span: 12" data-demo="dump" data-steps="900,1300,600,600,600,1400">
+                    <div class="tile-copy">
+                        <h3>Brain Dump: say it all at once.</h3>
+                        <p>Press &#8997;&#8984;N and talk through everything you want done, across all your projects. Claude splits it into one task per project, each with a branch and a prompt you can edit or move to another project. Nothing starts until you click Start, and then they all run side by side.</p>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="bn-window bn-window-flat bn-dump" aria-hidden="true">
+                            <p class="bn-dump-head"><i class="ph ph-brain"></i> Brain Dump <span class="bn-dump-status" data-step-text="Listening|Listening|Splitting into tasks|1 task|2 tasks|3 tasks|Started 3 agents">Started 3 agents</span></p>
+                            <p class="bn-dump-said">&ldquo;Okay, the recipes app needs a button to clear checked items. On the website the footer link to the press kit is broken. And Field Notes should export an empty notebook as a blank PDF instead of failing.&rdquo;</p>
+                            <div class="bn-dump-task bn-d1">
+                                <span class="bn-phone-icon" style="--bn-proj: #2fa36b">R</span>
+                                <span class="bn-proj-text"><span class="bn-proj-name">Add a Clear Checked Items button</span><span class="bn-proj-sub"><i class="ph ph-git-branch"></i> clear-checked-items</span></span>
+                                <i class="ph ph-spinner-gap bn-dump-spin"></i>
+                            </div>
+                            <div class="bn-dump-task bn-d2">
+                                <span class="bn-phone-icon" style="--bn-proj: #6c5ce7">W</span>
+                                <span class="bn-proj-text"><span class="bn-proj-name">Fix the press kit link in the footer</span><span class="bn-proj-sub"><i class="ph ph-git-branch"></i> fix-press-kit-link</span></span>
+                                <i class="ph ph-spinner-gap bn-dump-spin"></i>
+                            </div>
+                            <div class="bn-dump-task bn-d3">
+                                <span class="bn-phone-icon" style="--bn-proj: #c2457a">F</span>
+                                <span class="bn-proj-text"><span class="bn-proj-name">Export empty notebooks as a blank PDF</span><span class="bn-proj-sub"><i class="ph ph-git-branch"></i> empty-notebook-export</span></span>
+                                <i class="ph ph-spinner-gap bn-dump-spin"></i>
+                            </div>
+                            <span class="bn-dump-start">Start 3 Agents</span>
+                        </div>
+                        <div class="stage-foot">
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Agent lifecycle -->
                 <article class="tile tile-split" style="--span: 12" data-demo="agents" data-steps="900,1300,1300,1300">
                     <div class="tile-copy">
-                        <h3>Hand work to agents on their own branches.</h3>
-                        <p>Start an agent with a prompt and Workbench gives it a fresh git worktree, so it can't step on what you're doing. Each one shows its own status, its pull request, and whether checks passed. When the PR merges, Workbench can clean up the worktree for you.</p>
+                        <h3>From prompt to merged pull request.</h3>
+                        <p>Start an agent with a prompt and Workbench gives it a fresh worktree on its own branch. Each one shows its status, its pull request, and whether checks passed. After the PR merges, Workbench follows the deploy on hosts like Vercel and Railway, and can clean up the worktree for you.</p>
                     </div>
                     <div class="tile-stage">
                         <div class="bn-window bn-window-flat bn-agents" aria-hidden="true">
@@ -305,7 +504,7 @@
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">On the iPhone</p>
                 <h2 class="section-title wipe">Step away. Claude doesn't have to wait.</h2>
-                <p class="section-subtitle wipe">The Workbench iPhone app connects to your Mac so you can follow along from the couch. It's coming soon through TestFlight.</p>
+                <p class="section-subtitle wipe">The Workbench iPhone app connects to your Mac so you can follow along from the couch. It's in beta on TestFlight, needs iOS 27, and runs as a full iPad app too.</p>
             </div>
 
             <div class="bento">
@@ -372,7 +571,7 @@
                     </div>
                     <div class="tile-copy">
                         <h3>Every session at a glance.</h3>
-                        <p>One list shows what's working, what needs you, and what's done, across every project on your Mac.</p>
+                        <p>Sessions that need you sit at the top, then the ones Claude is working on, then the ones that are done. Get notified for the projects you choose, or put every session on your Lock Screen at once.</p>
                     </div>
                 </article>
 
@@ -380,8 +579,8 @@
                 <article class="tile tile-dark" style="--span: 5">
                     <i class="ph ph-lock-key" aria-hidden="true"></i>
                     <div>
-                    <h3>Your Mac to your phone. Nowhere else.</h3>
-                    <p>The iPhone app talks to your Mac over your own Tailscale network. Your code never passes through anyone's servers, including ours.</p>
+                    <h3>Your code goes from your Mac to your phone.</h3>
+                    <p>The iPhone app talks to your Mac over your own Tailscale network, so your code never passes through our servers. Notifications are encrypted on your Mac so only your phone can read them.</p>
                     </div>
                 </article>
             </div>
@@ -396,14 +595,34 @@
 
             <div class="bento">
                 <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-squares-four" aria-hidden="true"></i>
+                    <h3>Overview.</h3>
+                    <p>Every Claude session across every project in one grid, with the ones that need you first. &#8984;J jumps to the next one.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-command" aria-hidden="true"></i>
+                    <h3>Go anywhere.</h3>
+                    <p>&#8984;K opens a command bar for any project or action: switch projects, start an agent, or begin a Brain Dump.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-currency-dollar" aria-hidden="true"></i>
+                    <h3>Usage and costs.</h3>
+                    <p>See what your sessions would cost at API prices, by day, model and project.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
                     <i class="ph ph-lightning" aria-hidden="true"></i>
                     <h3>One-click shortcuts.</h3>
-                    <p>Add tab shortcuts for the commands you run all the time. JavaScript projects get a dev server button.</p>
+                    <p>Add tab shortcuts for commands you run all the time. JavaScript projects get a dev server button and a preview tab.</p>
                 </article>
                 <article class="tile bn-mini" style="--span: 4">
                     <i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>
                     <h3>Pick up where you left off.</h3>
-                    <p>Resume past Claude conversations from History, and your tabs come back when Workbench relaunches.</p>
+                    <p>Resume past conversations in one click, and your tabs come back when Workbench relaunches.</p>
+                </article>
+                <article class="tile bn-mini" style="--span: 4">
+                    <i class="ph ph-note-pencil" aria-hidden="true"></i>
+                    <h3>Your draft stays put.</h3>
+                    <p>Text in the message box is still there when you switch projects and come back.</p>
                 </article>
                 <article class="tile bn-mini" style="--span: 4">
                     <i class="ph ph-list-checks" aria-hidden="true"></i>
@@ -411,14 +630,9 @@
                     <p>See what's working and what needs you without switching apps.</p>
                 </article>
                 <article class="tile bn-mini" style="--span: 4">
-                    <i class="ph ph-browser" aria-hidden="true"></i>
-                    <h3>Previews.</h3>
-                    <p>Open your local dev server in a tab right next to the code.</p>
-                </article>
-                <article class="tile bn-mini" style="--span: 4">
-                    <i class="ph ph-desktop-tower" aria-hidden="true"></i>
-                    <h3>Other Macs.</h3>
-                    <p>Pair a second Mac and see its projects in the same sidebar.</p>
+                    <i class="ph ph-hand-waving" aria-hidden="true"></i>
+                    <h3>A welcome that sets you up.</h3>
+                    <p>It checks for the tools it needs, signs you in to Claude Code, suggests projects, and pairs your iPhone.</p>
                 </article>
                 <article class="tile bn-mini" style="--span: 4">
                     <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>
@@ -433,7 +647,7 @@
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Download</p>
                 <h2 class="section-title wipe">Free. No account, no catch.</h2>
-                <p class="section-subtitle wipe">Workbench has no analytics and doesn't send your code anywhere. Claude Code talks to Anthropic the same way it always does.</p>
+                <p class="section-subtitle wipe">Workbench is in beta and costs nothing. Your code and conversations never come to us. It shares anonymous usage counts to help improve it, which you can turn off in Settings.</p>
             </div>
             <div class="pricing-cards">
                 <div class="pricing-card pricing-card-featured">
@@ -465,7 +679,7 @@
                     <ul class="pricing-features">
                         <li>
                             <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            Claude Code, installed and signed in
+                            Claude Code, signed in with a Claude plan
                         </li>
                         <li>
                             <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
@@ -473,11 +687,15 @@
                         </li>
                         <li>
                             <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            GitHub CLI for PR status (optional)
+                            GitHub CLI for PR, check and deploy status (optional)
                         </li>
                         <li>
                             <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            Tailscale for iPhone (optional)
+                            Tailscale for iPhone and other Macs (optional)
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            iOS 27 for the iPhone app (TestFlight beta)
                         </li>
                     </ul>
                 </div>
@@ -487,7 +705,7 @@
         <!-- Final CTA -->
         <section class="section">
             <div class="cta">
-                <h2 class="section-title">Pull up a bench.</h2>
+                <h2 class="section-title">Step up to the bench.</h2>
                 <p class="cta-copy">
                     Download the zip, drag Workbench into Applications, and add a project folder.
                 </p>
@@ -518,6 +736,6 @@
     </footer>
 
     <script src="../../app.js?v=a4bbf3cd" defer></script>
-    <script src="./workbench.js?v=5395dc4d" defer></script>
+    <script src="./workbench.js?v=93c5a615" defer></script>
 </body>
 </html>
