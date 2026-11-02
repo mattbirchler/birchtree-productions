@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Workbench</title>
+    <link rel="icon" href="../../images/workbench.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=be9fc7ad">
+    <style>
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .tldr {
+            background: rgba(136, 57, 239, 0.05);
+            border: 1px solid rgba(136, 57, 239, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .tldr h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-link);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tldr p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "•";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="./" class="privacy-nav-brand">
+                <img src="../../images/workbench.png" alt="Workbench">
+                <span>Workbench</span>
+            </a>
+            <a href="./" class="back-link">&larr; Back to Workbench</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Workbench</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="tldr">
+            <h2>TLDR</h2>
+            <p>Workbench has no accounts and no ads. Your code, prompts, and conversations go from your Mac to your own devices and never to us. Both apps share anonymous usage counts to help improve Workbench, and you can turn that off. Notifications pass through Workbench's push service on their way to Apple, encrypted so only your phone can read them.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Anonymous Usage Data</h2>
+            <p>Both apps send anonymous counts of what you use to <a href="https://posthog.com">PostHog</a>, an analytics service. This is on unless you turn it off: on the Mac, Settings &gt; General &gt; Share anonymous usage data; on the iPhone, Settings &gt; Share Anonymous Usage Data.</p>
+            <ul>
+                <li><strong>What's sent:</strong> which features you use, like opening a Claude tab, starting an agent, pairing an iPhone, sending a reply, or answering a permission prompt, plus simple counts such as how many projects you have. Each install gets a random ID that isn't linked to you.</li>
+                <li><strong>What's never sent:</strong> your code, prompts, messages, file names, project or branch names, or your name or email.</li>
+                <li><strong>What's left out:</strong> location, time zone, language, and device name are removed before anything is sent, and PostHog is set to discard IP addresses.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>The Mac App</h2>
+            <p>Workbench runs on your Mac and keeps its settings and project list there. Besides the usage data above, it connects to:</p>
+            <ul>
+                <li><strong>GitHub,</strong> to check for updates. If you install the GitHub CLI, Workbench also uses it to show your pull requests, checks, and deploys.</li>
+                <li><strong>Anthropic,</strong> using Claude Code's own sign-in, to read your plan's usage limits for the rings in the sidebar. Recaps, the one-line summaries of finished work, are written by Claude Code on your plan.</li>
+                <li><strong>Workbench's push service,</strong> when your iPhone has notifications or the Lock Screen dashboard turned on (see below). If you add your own Apple push key in Settings &gt; iPhone, your Mac sends to Apple directly instead.</li>
+            </ul>
+            <p>Claude Code, which you install separately, talks to Anthropic under Anthropic's own terms and privacy policy. Workbench doesn't change what Claude Code sends.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>The iPhone App</h2>
+            <p>The iPhone app connects directly to Workbench on your own Mac, over your own Tailscale network. Your projects, sessions, and code go from your Mac to your phone without passing through our servers.</p>
+            <ul>
+                <li><strong>Camera:</strong> used only to scan the pairing code Workbench shows on your Mac. Nothing is recorded or saved.</li>
+                <li><strong>Pairing details:</strong> stored in your phone's keychain.</li>
+                <li><strong>Notifications:</strong> off unless you turn them on, and only for the projects you choose on your Mac. Your phone's notification token goes to your own Mac. Your Mac encrypts each notification's text so only your phone can read it, then sends it through Workbench's push service to Apple. The service and Apple only see "Open Workbench to see what happened." The service doesn't store or log anything.</li>
+                <li><strong>Lock Screen dashboard:</strong> if you turn it on, your Mac sends its updates through the same push service to Apple. These updates aren't encrypted yet: they include your Mac's name, project names, and a short line about each session, like what Claude is doing or asking. Nothing is stored or logged. Turn the dashboard off and these updates stop.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Children</h2>
+            <p>Workbench isn't directed at children and doesn't knowingly collect information from anyone.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>If this policy changes, the new version will be posted here with a new date.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Questions?</h2>
+            <p>Email <a href="mailto:matt@birchtree.me">matt@birchtree.me</a>.</p>
+        </section>
+
+        <p class="last-updated">Last updated: November 2, 2026</p>
+    </main>
+</body>
+</html>
