@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Privacy Policy - Dict</title>
+    <link rel="icon" href="../../images/dict.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=be9fc7ad">
+    <style>
+        .privacy-page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: var(--space-3xl) var(--space-lg);
+        }
+
+        .privacy-header {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .privacy-header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .privacy-header .app-name {
+            font-size: var(--font-size-lg);
+            color: var(--color-link);
+            font-weight: 500;
+        }
+
+        .tldr {
+            background: rgba(136, 57, 239, 0.05);
+            border: 1px solid rgba(136, 57, 239, 0.15);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .tldr h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-link);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tldr p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .privacy-section h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+
+        .privacy-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .privacy-section li {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: var(--space-xs);
+        }
+
+        .privacy-section li::before {
+            content: "•";
+            color: var(--color-link);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Nav */
+        .privacy-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--space-sm) var(--space-lg);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .privacy-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .privacy-nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+        }
+
+        .privacy-nav-brand span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .back-link {
+            font-size: var(--font-size-sm);
+            color: var(--color-link);
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="privacy-nav">
+        <div class="privacy-nav-container">
+            <a href="./" class="privacy-nav-brand">
+                <img src="../../images/dict.png" alt="Dict">
+                <span>Dict</span>
+            </a>
+            <a href="./" class="back-link">&larr; Back to Dict</a>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <header class="privacy-header">
+            <p class="app-name">Dict</p>
+            <h1>Privacy Policy</h1>
+        </header>
+
+        <section class="tldr">
+            <h2>TLDR</h2>
+            <p>What you say never leaves your Mac. Dict has no accounts, no analytics and no crash reporting. It connects to the internet for two things only: checking for updates, and downloading the Parakeet speech model if you choose it. The <a href="https://github.com/mattbirchler/Dict">source is public</a>, so anyone can check.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>What Stays on Your Mac</h2>
+            <ul>
+                <li><strong>Audio.</strong> Captured from the microphone only while you hold the dictation key (or while hands-free mode is on), kept in memory for transcription, and thrown away once the text is typed. Dict never writes audio to disk.</li>
+                <li><strong>Transcripts.</strong> Made by a speech model running on your Mac: Apple's built-in speech recognition, or the Parakeet model. Formatting uses the on-device Apple Intelligence model when it's available.</li>
+                <li><strong>History.</strong> Recent dictations are stored in a local database so you can copy them again. You choose how many to keep, or none.</li>
+                <li><strong>Settings and word replacements.</strong> Stored in Dict's preferences file.</li>
+                <li><strong>The field you dictate into.</strong> When formatting runs, Dict reads the text already in the focused field (through the Accessibility permission) and passes the names and terms it finds there to the on-device formatter, so they're spelled the way your document spells them. That text is used for one dictation and never stored or sent anywhere. You can turn this off in Settings &gt; General.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>The Only Network Connections</h2>
+            <ul>
+                <li><strong>Model download.</strong> The first time you choose the Parakeet engine, Dict downloads the model (about 500 MB) from Hugging Face. The request carries nothing about you.</li>
+                <li><strong>Update check.</strong> Once a day, and when you choose Check for Updates, Dict asks GitHub whether there's a new version. Like every update check, that request includes Dict's version and your macOS version, and nothing else.</li>
+            </ul>
+            <p>There are no accounts, no analytics, no crash reporting and no other connections. Apple's speech engine runs on your Mac and, on macOS 26 and later, doesn't send audio to Apple.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Removing Everything</h2>
+            <p>Quit Dict, then delete:</p>
+            <ul>
+                <li><code>/Applications/Dict.app</code></li>
+                <li><code>~/Library/Application Support/FluidAudio</code> (the Parakeet model)</li>
+                <li><code>~/Library/Preferences/birchtree.Dict-app.plist</code> (settings)</li>
+                <li><code>~/Library/Application Support/Dict</code> (your history)</li>
+            </ul>
+            <p>You can remove Dict's Microphone and Accessibility permissions in System Settings &gt; Privacy &amp; Security.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Children</h2>
+            <p>Dict isn't directed at children and doesn't collect information from anyone.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>If this policy changes, the new version will be posted here with a new date.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Questions?</h2>
+            <p>Email <a href="mailto:matt@birchtree.me">matt@birchtree.me</a> or <a href="https://github.com/mattbirchler/Dict/issues">open an issue on GitHub</a>.</p>
+        </section>
+
+        <p class="last-updated">Last updated: November 3, 2026</p>
+    </main>
+</body>
+</html>
