@@ -478,16 +478,18 @@ body.calm-app {
 
 .calm-app .dc-progress i {
     display: block;
-    width: 0;
+    width: 100%;
     height: 100%;
     background: var(--accent);
-    transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.calm-app [data-step] .dc-engine-parakeet .dc-progress i { width: 0; }
+.calm-app [data-step] .dc-engine-parakeet .dc-progress i { transform: scaleX(0); }
 .calm-app [data-step="1"] .dc-engine-parakeet .dc-progress i,
 .calm-app [data-step="2"] .dc-engine-parakeet .dc-progress i,
-.calm-app [data-step="3"] .dc-engine-parakeet .dc-progress i { width: 100%; }
+.calm-app [data-step="3"] .dc-engine-parakeet .dc-progress i { transform: scaleX(1); }
 
 .calm-app [data-step="2"] .dc-engine-apple,
 .calm-app [data-step="3"] .dc-engine-apple { border-color: transparent; }
