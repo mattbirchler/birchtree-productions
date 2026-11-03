@@ -87,9 +87,10 @@ The homepage follows the app pages' look (white cards on `#f7f7f7`, MonoLisa
 headings) and has no gradients:
 
 - **Hero**: title and tagline beside `.springboard`, a home screen of every
-  app icon around the Birchtree mark. Add a new app's icon there. The ring
-  of 12 around the mark is full (Workbench took the last spot), so the next app
-  needs a layout change or a swap.
+  app icon around the Birchtree mark. Add a new app's icon there. The grid is
+  5x5 with the mark in the middle 3x3, leaving 16 spots; 13 hold apps (Dict is
+  the latest) and the rest are dashed `.springboard-slot`s. Replace a slot with
+  the next app's icon.
 - **Apps bento** (`.bento` > `.app-tile`, width via `style="--span: 4"` out of
   12, tinted via `--tint`, which should match that app's `--app-accent`).
   Each tile's `.app-tile-stage` uses one treatment: `stage-phone` (one framed
