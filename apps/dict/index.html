@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <title>Dict - Free, Private Dictation for the Mac</title>
+    <meta name="description" content="Dict is a free, open source dictation app for the Mac. Hold a key, say what you want to type, and let go. The words land wherever your cursor is, transcribed entirely on your Mac.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dict - Free, Private Dictation for the Mac">
+    <meta property="og:description" content="Hold a key, talk, let go. Free, open source dictation that never sends your voice anywhere.">
+    <meta property="og:image" content="https://birchtree.me/images/dict-hero.jpg">
+    <meta property="og:url" content="https://birchtree.me/apps/dict/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dict - Free, Private Dictation for the Mac">
+    <meta name="twitter:description" content="Hold a key, talk, let go. Free, open source dictation that never sends your voice anywhere.">
+    <meta name="twitter:image" content="https://birchtree.me/images/dict-hero.jpg">
+
+    <link rel="canonical" href="https://birchtree.me/apps/dict/">
+    <link rel="icon" href="../../images/dict.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../../app.css?v=297c1aa9">
+    <link rel="stylesheet" href="./dict.css?v=65df2a0d">
+    <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Dict",
+        "description": "Free, private, open source dictation for the Mac.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "macOS",
+        "downloadUrl": "https://github.com/mattbirchler/Dict/releases/latest",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Birchtree Productions, LLC"
+        }
+    }
+    </script>
+</head>
+<body class="calm-app" style="--app-accent: #f2602a;">
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="app-nav-container">
+            <a href="../../" class="app-nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span>Birchtree Productions</span>
+            </a>
+            <div class="app-nav-brand">
+                <img src="../../images/dict.png" alt="Dict" style="view-transition-name: dict-icon;">
+                <span>Dict</span>
+            </div>
+            <ul class="app-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero -->
+        <header class="app-hero app-hero-split">
+            <div class="app-hero-copy">
+                <img src="../../images/dict.png" alt="Dict" class="app-hero-icon">
+                <h1 class="app-hero-title wipe">Hold a key. Talk. Let go.</h1>
+                <p class="app-hero-subtitle wipe">
+                    Dict is free, private dictation for the Mac. Say what you want to type and the words land wherever your cursor is, transcribed entirely on your Mac.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://github.com/mattbirchler/Dict/releases/latest" class="btn-fill">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for Mac
+                    </a>
+                    <a href="https://github.com/mattbirchler/Dict" class="btn-dot">View the source</a>
+                </div>
+                <p class="app-hero-note"><span class="badge-accent">Open source</span> Free, with no account and no usage cap. For Macs with Apple silicon running macOS 26 or later.</p>
+            </div>
+
+            <div class="app-hero-stage dc-hero" data-steps="900,2600,1000,1800" role="img" aria-label="A message being written in a Mac app. Holding the Right Command key brings up Dict's recording panel with a glowing spectrum, and when the key is let go the spoken sentence is typed into the message.">
+                <div class="dc-desk" aria-hidden="true">
+                    <div class="dc-mail">
+                        <div class="dc-mail-bar">
+                            <span class="dc-lights"><i></i><i></i><i></i></span>
+                            <span class="dc-mail-title">New Message</span>
+                        </div>
+                        <div class="dc-mail-field"><span>To:</span> Sam Okafor</div>
+                        <div class="dc-mail-field"><span>Subject:</span> Friday's launch</div>
+                        <div class="dc-mail-body">
+                            <p>Hi Sam,</p>
+                            <p class="dc-typed"><span class="dc-typed-text">Running about ten minutes late, so save me a seat near the front and I'll bring the coffee.</span><i class="dc-caret"></i></p>
+                        </div>
+                    </div>
+
+                    <div class="dc-hud dc-hud-float">
+                        <span class="dc-rec"></span>
+                        <span class="dc-check"><i class="ph ph-check"></i></span>
+                        <span class="dc-meter" data-cols="16" data-modes="idle|talk|process|idle|idle"></span>
+                        <span class="dc-hud-label" data-step-text="Hold &#8984; to dictate|MacBook Pro Microphone|Processing|Inserted|Hold &#8984; to dictate">Hold &#8984; to dictate</span>
+                        <span class="dc-hud-hint" data-step-text="||Esc cancel||">&nbsp;</span>
+                    </div>
+
+                    <div class="dc-keys">
+                        <span class="dc-key dc-key-wide">option</span>
+                        <span class="dc-key dc-key-cmd">&#8984;<small>command</small></span>
+                    </div>
+                </div>
+                <button type="button" class="demo-btn demo-replay dc-hero-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+            </div>
+        </header>
+
+        <!-- Dictation -->
+        <section id="features" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Dictation</p>
+                <h2 class="section-title wipe">Anywhere there's a cursor.</h2>
+                <p class="section-subtitle wipe">Messages, documents, code editors, terminals, search boxes. Dict lives in your menu bar and types into whatever app you're already using.</p>
+            </div>
+
+            <div class="bento">
+                <!-- Hands-free -->
+                <article class="tile" style="--span: 7" data-steps="700,800,800,800,900">
+                    <div class="tile-stage dc-stage-dark">
+                        <div class="dc-hud dc-hud-big" aria-hidden="true">
+                            <div class="dc-hud-row">
+                                <span class="dc-rec"></span>
+                                <span class="dc-meter" data-cols="16" data-modes="idle|talk|talk|talk|talk|idle"></span>
+                                <span class="dc-hud-label">Hands-free</span>
+                                <span class="dc-hud-hint">&#8984; finish &middot; esc cancel</span>
+                            </div>
+                            <p class="dc-live"><span data-step-text="|I think we should ship|I think we should ship the new build tomorrow|I think we should ship the new build tomorrow as long as we finish testing|I think we should ship the new build tomorrow as long as we finish testing|I think we should ship the new build tomorrow as long as we finish testing before the deadline on Friday.">&nbsp;</span> <span class="dc-live-pending" data-step-text="I think| the new build| as long as we| before the deadline| on Friday|">&nbsp;</span></p>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="dc-foot-note">Tap Space while holding the key</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Hands-free for the long ones.</h3>
+                        <p>Tap Space while you hold the key and Dict keeps listening after you let go. The panel grows to show your words as they arrive. Press Command when you're done.</p>
+                    </div>
+                </article>
+
+                <!-- Styles -->
+                <article class="tile" style="--span: 5" data-demo="styles">
+                    <div class="tile-stage">
+                        <div class="dc-seg" role="tablist" aria-label="Dictation style">
+                            <button type="button" role="tab" aria-selected="false" data-style="verbatim">Verbatim</button>
+                            <button type="button" role="tab" aria-selected="true" data-style="clean">Clean</button>
+                            <button type="button" role="tab" aria-selected="false" data-style="polished">Polished</button>
+                        </div>
+                        <div class="demo-card dc-out" aria-live="polite">
+                            <p data-style-pane="verbatim" hidden>Um, so me and Sam was thinking we could, uh, ship it Monday. Actually no, Wednesday.</p>
+                            <p data-style-pane="clean">Me and Sam was thinking we could ship it Wednesday.</p>
+                            <p data-style-pane="polished" hidden>Sam and I were thinking we could ship it Wednesday.</p>
+                        </div>
+                        <p class="dc-said"><i class="ph ph-microphone"></i> You said: &ldquo;Um, so me and Sam was thinking we could, uh, ship it Monday. Actually no, Wednesday.&rdquo;</p>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Leaves out the ums.</h3>
+                        <p>Verbatim keeps every word. Clean drops the filler and keeps only your corrected version when you change your mind. Polished fixes small grammar slips too. Both run on Apple Intelligence, on your Mac.</p>
+                    </div>
+                </article>
+
+                <!-- Context -->
+                <article class="tile" style="--span: 5" data-steps="900,1300">
+                    <div class="tile-stage">
+                        <div class="demo-card dc-doc" aria-hidden="true">
+                            <p class="dc-doc-old">Priya's notes on the <b>Kubernetes</b> migration are in the <b>infra-docs</b> repo.</p>
+                            <p class="dc-doc-new"><span data-step-text="&nbsp;|ask pria about the cooper netties config in infra docs|Ask Priya about the Kubernetes config in infra-docs.">&nbsp;</span><i class="dc-caret"></i></p>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="dc-foot-note" data-step-text="Already in the document|What the engine heard|What Dict typed">Already in the document</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Spells it the way your document does.</h3>
+                        <p>Dict reads the field you're dictating into and spells names, acronyms and identifiers the way they already appear there. In editors and terminals, code terms come out formatted.</p>
+                    </div>
+                </article>
+
+                <!-- Engines -->
+                <article class="tile" style="--span: 7" data-steps="700,1500,700">
+                    <div class="tile-stage">
+                        <div class="dc-engines" aria-hidden="true">
+                            <div class="demo-card dc-engine dc-engine-apple">
+                                <p class="dc-engine-name"><i class="ph ph-apple-logo"></i> Apple</p>
+                                <p class="dc-engine-meta">Built in. Ready the moment you install.</p>
+                                <p class="dc-engine-tag">English</p>
+                                <span class="dc-engine-on">In use</span>
+                            </div>
+                            <div class="demo-card dc-engine dc-engine-parakeet">
+                                <p class="dc-engine-name"><i class="ph ph-bird"></i> Parakeet</p>
+                                <p class="dc-engine-meta">Better with names, jargon and long sentences.</p>
+                                <p class="dc-engine-tag">25 European languages</p>
+                                <span class="dc-progress"><i></i></span>
+                                <span class="dc-engine-status" data-step-text="500 MB, one time|Downloading|Switched to Parakeet|Switched to Parakeet">500 MB, one time</span>
+                            </div>
+                        </div>
+                        <div class="stage-foot">
+                            <span class="dc-foot-note">Both run on your Mac</span>
+                            <button type="button" class="demo-btn demo-replay" data-replay><i class="ph ph-arrow-counter-clockwise"></i> Replay</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Two engines, both on your Mac.</h3>
+                        <p>Apple's speech recognition works right away. NVIDIA's Parakeet is a one-time 500 MB download that's more accurate and punctuates on its own. When the download finishes, Dict switches over by itself.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Make it yours -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Make it yours</p>
+                <h2 class="section-title wipe">Your key, your colors, your history.</h2>
+            </div>
+
+            <div class="bento">
+                <!-- Schemes -->
+                <article class="tile" style="--span: 7" data-demo="schemes">
+                    <div class="tile-stage dc-stage-dark">
+                        <div class="dc-hud dc-hud-live" data-scheme="ember" aria-hidden="true">
+                            <span class="dc-rec"></span>
+                            <span class="dc-meter" data-cols="16"></span>
+                            <span class="dc-hud-label">MacBook Pro Microphone</span>
+                        </div>
+                        <div class="dc-picks" role="group" aria-label="Color scheme">
+                            <button type="button" data-scheme-pick="ember" aria-pressed="true"><i style="--sw: #ff6b29"></i>Ember</button>
+                            <button type="button" data-scheme-pick="phosphor" aria-pressed="false"><i style="--sw: #33d46e"></i>Phosphor</button>
+                            <button type="button" data-scheme-pick="glacier" aria-pressed="false"><i style="--sw: #3b9cf0"></i>Glacier</button>
+                            <button type="button" data-scheme-pick="ultraviolet" aria-pressed="false"><i style="--sw: #a04ff0"></i>Ultraviolet</button>
+                            <button type="button" data-scheme-pick="graphite" aria-pressed="false"><i style="--sw: #b9b9c0"></i>Graphite</button>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Five color schemes.</h3>
+                        <p>The panel's live spectrum follows your voice in Ember, Phosphor, Glacier, Ultraviolet or Graphite. Pick one to try it.</p>
+                    </div>
+                </article>
+
+                <!-- Hotkey -->
+                <article class="tile" style="--span: 5" data-demo="hotkey">
+                    <div class="tile-stage">
+                        <div class="dc-keyrow" role="group" aria-label="Dictation key">
+                            <button type="button" class="dc-key" data-key-pick="&#8984;" aria-pressed="true">&#8984;<small>right command</small></button>
+                            <button type="button" class="dc-key" data-key-pick="&#8997;" aria-pressed="false">&#8997;<small>right option</small></button>
+                            <button type="button" class="dc-key" data-key-pick="&#8963;" aria-pressed="false">&#8963;<small>right control</small></button>
+                            <button type="button" class="dc-key" data-key-pick="fn" aria-pressed="false">fn<small>globe</small></button>
+                        </div>
+                        <div class="dc-hud dc-hud-idle" aria-hidden="true">
+                            <span class="dc-meter" data-cols="12" data-modes="idle"></span>
+                            <span class="dc-hud-label">Hold <b class="dc-key-name">&#8984;</b> to dictate</span>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Pick your key.</h3>
+                        <p>Right Command by default. Right Option, Right Control, Fn or any combination you record work too, as press-and-hold or press-to-toggle.</p>
+                    </div>
+                </article>
+
+                <!-- History -->
+                <article class="tile" style="--span: 7" data-steps="600">
+                    <div class="tile-stage dc-stage-dark">
+                        <div class="dc-history" aria-hidden="true">
+                            <div class="dc-stats">
+                                <span><b data-count-from="0" data-count-to="948">948</b>Words</span>
+                                <span><b data-count-from="0" data-count-to="31">31</b>Dictations</span>
+                                <span><b><span data-count-from="0" data-count-to="22">22</span> min</b>Time saved</span>
+                                <span><b data-count-from="0" data-count-to="5">5</b>Day streak</span>
+                            </div>
+                            <ul class="dc-recent">
+                                <li><p>Can you move our one on one to Thursday afternoon? I have a dentist appointment Wednesday.</p><small>41 sec</small><i class="ph ph-copy"></i></li>
+                                <li><p>Add eggs, oat milk, coffee beans, and the good olive oil to the list.</p><small>3 min</small><i class="ph ph-copy"></i></li>
+                                <li><p>Thanks for the detailed bug report. A fix is going out in the next update.</p><small>1 hr</small><i class="ph ph-copy"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tile-copy">
+                        <h3>Copy it again later.</h3>
+                        <p>History keeps your recent dictations on your Mac, as many as you choose or none at all. Up top: words dictated, time saved and your day streak.</p>
+                    </div>
+                </article>
+
+                <!-- Private -->
+                <article class="tile tile-dark" style="--span: 5">
+                    <i class="ph ph-lock-key" aria-hidden="true"></i>
+                    <div>
+                        <h3>Nothing you say leaves your Mac.</h3>
+                        <p>Audio stays in memory and is thrown away once the text is typed. No account, no analytics, no crash reporting. Dict only goes online to check for updates and, if you ask, to download Parakeet. <a href="./privacy.html">Privacy policy</a>.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Small things -->
+        <section class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">And the rest</p>
+                <h2 class="section-title wipe">The small things.</h2>
+            </div>
+
+            <div class="bento">
+                <article class="tile dc-mini" style="--span: 4">
+                    <i class="ph ph-text-aa" aria-hidden="true"></i>
+                    <h3>Word replacements.</h3>
+                    <p>Teach Dict the words it keeps getting wrong, and it fixes them every time.</p>
+                </article>
+                <article class="tile dc-mini" style="--span: 4">
+                    <i class="ph ph-x-circle" aria-hidden="true"></i>
+                    <h3>Changed your mind?</h3>
+                    <p>Press Escape to cancel a recording, or a transcription that's still in progress.</p>
+                </article>
+                <article class="tile dc-mini" style="--span: 4">
+                    <i class="ph ph-microphone" aria-hidden="true"></i>
+                    <h3>Lives in the menu bar.</h3>
+                    <p>The icon follows your voice while you talk. Its menu switches styles, copies your last dictation, and opens History.</p>
+                </article>
+                <article class="tile dc-mini" style="--span: 4">
+                    <i class="ph ph-hand-waving" aria-hidden="true"></i>
+                    <h3>Try it during setup.</h3>
+                    <p>Setup explains each permission as it asks, and you dictate your first sentence before it's over.</p>
+                </article>
+                <article class="tile dc-mini" style="--span: 4">
+                    <i class="ph ph-arrows-clockwise" aria-hidden="true"></i>
+                    <h3>Updates itself.</h3>
+                    <p>Dict checks for new versions once a day, or whenever you choose Check for Updates.</p>
+                </article>
+                <article class="tile dc-mini" style="--span: 4">
+                    <i class="ph ph-github-logo" aria-hidden="true"></i>
+                    <h3>Read every line.</h3>
+                    <p>Dict is MIT licensed, and the full source is <a href="https://github.com/mattbirchler/Dict">on GitHub</a>. Issues and ideas are welcome there too.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Download -->
+        <section id="download" class="section">
+            <div class="section-header scroll-reveal">
+                <p class="section-label wipe">Download</p>
+                <h2 class="section-title wipe">Free. For real.</h2>
+                <p class="section-subtitle wipe">No subscription, no usage cap, no upsell. Dict is open source, and it stays free.</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-card-badge">Price</div>
+                    <div class="pricing-card-price">Free</div>
+                    <div class="pricing-card-period">Every feature, as much as you like</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            No account or subscription
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Open source under the MIT License
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Updates built in
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://github.com/mattbirchler/Dict/releases/latest" class="btn-fill">Download for Mac</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">You'll need</div>
+                    <div class="pricing-card-price">macOS 26</div>
+                    <div class="pricing-card-period">On a Mac with Apple silicon (M1 or later)</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Microphone access, so Dict can hear you
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Accessibility access, so Dict can type for you
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Apple Intelligence for Clean and Polished (optional)
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            500 MB of space for Parakeet (optional)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <div class="cta">
+                <h2 class="section-title">Say it instead.</h2>
+                <p class="cta-copy">
+                    Download the disk image, drag Dict into Applications, and follow the short setup.
+                </p>
+                <div class="download-buttons" style="justify-content: center;">
+                    <a href="https://github.com/mattbirchler/Dict/releases/latest" class="btn-fill">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download for Mac
+                    </a>
+                    <a href="https://github.com/mattbirchler/Dict" class="btn-dot">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="app-footer-container">
+            <a href="../../" class="app-footer-brand">
+                <img src="../../images/dict.png" alt="Dict">
+                <span>Dict</span>
+            </a>
+            <div class="app-footer-links">
+                <a href="./privacy.html">Privacy Policy</a>
+                <span class="app-footer-sep">|</span>
+                <a href="https://github.com/mattbirchler/Dict">GitHub</a>
+                <span class="app-footer-sep">|</span>
+                <span>&copy; <span id="current-year"></span> Birchtree Productions, LLC</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../app.js?v=a4bbf3cd" defer></script>
+    <script src="./dict.js?v=966346b6" defer></script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+/* Dict page: live replicas of the recording panel and friends.
+   Every rule is scoped under .calm-app and prefixed dc-. */
+
+body.calm-app {
+    --dc-ink: #f4eee9;
+    --dc-muted: #a99fae;
+    --dc-peach: #ffb066;
+    --dc-plum: #17121f;
+    --dc-led: 'Chakra Petch', var(--font-sans);
+    --dc-backdrop:
+        radial-gradient(110% 90% at 0% 100%, rgba(255, 107, 41, 0.34), transparent 55%),
+        radial-gradient(90% 80% at 100% 0%, rgba(255, 61, 128, 0.26), transparent 55%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1.5px) 0 0 / 18px 18px,
+        var(--dc-plum);
+}
+
+/* ---------- Dark stages ---------- */
+.calm-app .dc-stage-dark,
+.calm-app .app-hero-stage.dc-hero {
+    background: var(--dc-backdrop);
+    color: var(--dc-ink);
+}
+
+.calm-app .dc-stage-dark {
+    align-items: center;
+}
+
+.calm-app .dc-stage-dark .stage-foot {
+    align-self: stretch;
+    color: var(--dc-muted);
+}
+
+.calm-app .dc-foot-note {
+    font-size: 0.8rem;
+}
+
+/* ---------- The panel ---------- */
+.calm-app .dc-hud {
+    --dc-lo: #ff6b29;
+    --dc-hi: #ff3d80;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    max-width: 100%;
+    padding: 0.65rem 1.15rem 0.65rem 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--dc-lo) 38%, transparent);
+    border-radius: 1.1rem;
+    background: linear-gradient(180deg, #1d181f, #0f0c10);
+    box-shadow:
+        0 0 34px -6px color-mix(in srgb, var(--dc-lo) 45%, transparent),
+        0 18px 30px -18px rgba(0, 0, 0, 0.8);
+    color: var(--dc-ink);
+    font-family: var(--dc-led);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.calm-app .dc-hud[data-scheme="phosphor"] { --dc-lo: #2fd36b; --dc-hi: #9dffbd; }
+.calm-app .dc-hud[data-scheme="glacier"] { --dc-lo: #2f8fe6; --dc-hi: #9ad6ff; }
+.calm-app .dc-hud[data-scheme="ultraviolet"] { --dc-lo: #9b3fe6; --dc-hi: #e08bff; }
+.calm-app .dc-hud[data-scheme="graphite"] { --dc-lo: #a5a5ab; --dc-hi: #f2f2f5; }
+
+.calm-app .dc-hud-label {
+    font-size: 0.78rem;
+}
+
+.calm-app .dc-hud-hint {
+    font-size: 0.72rem;
+    color: var(--dc-peach);
+}
+
+.calm-app .dc-hud-hint:empty {
+    display: none;
+}
+
+.calm-app .dc-rec {
+    flex: none;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: #ff3b30;
+    box-shadow: 0 0 10px #ff3b30;
+}
+
+.calm-app .dc-check {
+    display: none;
+    color: #ffd25e;
+    font-size: 1.05rem;
+}
+
+/* Dot-matrix spectrum, filled in by dict.js */
+.calm-app .dc-meter {
+    --dot: 4px;
+    flex: none;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(5, var(--dot));
+    gap: 2px;
+}
+
+.calm-app .dc-meter i {
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--dc-lo) 16%, transparent);
+    transition: background-color 0.12s ease;
+}
+
+.calm-app .dc-meter i.on {
+    background: var(--dc-lo);
+    box-shadow: 0 0 4px color-mix(in srgb, var(--dc-lo) 70%, transparent);
+}
+
+.calm-app .dc-meter i.on.hi {
+    background: var(--dc-hi);
+    box-shadow: 0 0 4px color-mix(in srgb, var(--dc-hi) 70%, transparent);
+}
+
+/* ---------- Hero: a message, the panel and the key ---------- */
+.calm-app .dc-hero {
+    position: relative;
+}
+
+.calm-app .dc-desk {
+    display: grid;
+    justify-items: center;
+    gap: 1.4rem;
+    width: 100%;
+    max-width: 30rem;
+}
+
+.calm-app .dc-mail {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.9rem;
+    background: #fff;
+    color: #1d1d1f;
+    font-family: var(--font-system);
+    font-size: 0.88rem;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.75);
+}
+
+.calm-app .dc-mail-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2rem;
+    background: #f3f2f4;
+    border-bottom: 1px solid #e3e1e5;
+}
+
+.calm-app .dc-lights {
+    position: absolute;
+    left: 0.8rem;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.calm-app .dc-lights i {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #ff5f57;
+}
+
+.calm-app .dc-lights i:nth-child(2) { background: #febc2e; }
+.calm-app .dc-lights i:nth-child(3) { background: #28c840; }
+
+.calm-app .dc-mail-title {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #55525a;
+}
+
+.calm-app .dc-mail-field {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #efedf0;
+}
+
+.calm-app .dc-mail-field span {
+    color: #8a8690;
+}
+
+.calm-app .dc-mail-body {
+    display: grid;
+    gap: 0.6rem;
+    min-height: 9rem;
+    padding: 0.9rem 1rem 2.6rem;
+    line-height: 1.5;
+}
+
+.calm-app .dc-typed-text {
+    transition: opacity 0.6s ease;
+}
+
+.calm-app .dc-caret {
+    display: inline-block;
+    width: 1.5px;
+    height: 1.05em;
+    margin-left: 1px;
+    vertical-align: -0.15em;
+    background: var(--accent);
+    animation: dc-blink 1.1s steps(1) infinite;
+}
+
+@keyframes dc-blink {
+    50% { opacity: 0; }
+}
+
+.calm-app .dc-hud-float {
+    margin-top: -3.3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.calm-app .dc-keys {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.calm-app .dc-key {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    min-width: 3.4rem;
+    height: 3.2rem;
+    padding: 0 0.6rem;
+    border: 0;
+    border-radius: 0.6rem;
+    background: linear-gradient(180deg, #2b2730, #1f1b23);
+    box-shadow: 0 3px 0 #0b090c, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    color: var(--dc-ink);
+    font-family: var(--font-system);
+    font-size: 1.05rem;
+    line-height: 1;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, color 0.2s ease;
+}
+
+.calm-app .dc-key small {
+    font-size: 0.55rem;
+    color: var(--dc-muted);
+    letter-spacing: 0.02em;
+}
+
+.calm-app .dc-key-wide {
+    min-width: 4.4rem;
+    font-size: 0.6rem;
+    color: var(--dc-muted);
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 0.45rem;
+}
+
+.calm-app .dc-key.is-down,
+.calm-app .dc-key[aria-pressed="true"] {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #0b090c, 0 0 18px -2px color-mix(in srgb, var(--accent) 70%, transparent);
+    color: #ffb48a;
+}
+
+.calm-app .dc-hero-replay {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+/* Hero steps: 0 idle, 1 recording, 2 processing, 3 inserted, 4 idle */
+.calm-app.is-armed .dc-hero:not([data-step="3"]):not([data-step="4"]) .dc-typed-text {
+    opacity: 0;
+}
+
+.calm-app .dc-hero:not([data-step="1"]) .dc-hud-float .dc-rec {
+    display: none;
+}
+
+.calm-app .dc-hero[data-step="3"] .dc-hud-float .dc-check {
+    display: inline-flex;
+}
+
+.calm-app .dc-hero[data-step="3"] .dc-hud-float .dc-meter {
+    display: none;
+}
+
+.calm-app .dc-hero[data-step="3"] .dc-hud-float .dc-hud-label {
+    color: #ffd25e;
+}
+
+.calm-app .dc-hero[data-step="2"] .dc-hud-float .dc-hud-label {
+    color: var(--dc-peach);
+}
+
+.calm-app .dc-hero[data-step="1"] .dc-key-cmd {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #0b090c, 0 0 18px -2px color-mix(in srgb, var(--accent) 70%, transparent);
+    color: #ffb48a;
+}
+
+/* ---------- Hands-free ---------- */
+.calm-app .dc-hud-big {
+    display: grid;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.85rem 1.1rem 1rem;
+    white-space: normal;
+}
+
+.calm-app .dc-hud-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.calm-app .dc-hud-big .dc-hud-hint {
+    margin-left: auto;
+}
+
+.calm-app .dc-live {
+    min-height: 3em;
+    font-family: var(--font-system);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.45;
+    text-transform: none;
+}
+
+.calm-app .dc-live-pending {
+    color: rgba(244, 238, 233, 0.5);
+}
+
+/* ---------- Dictation styles ---------- */
+.calm-app .dc-seg {
+    display: flex;
+    align-self: center;
+    padding: 0.2rem;
+    border-radius: var(--radius-pill);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.calm-app .dc-seg button {
+    padding: 0.4rem 0.9rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font: 600 0.82rem var(--font-system);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calm-app .dc-seg button[aria-selected="true"] {
+    background: #fff;
+    color: var(--color-text);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.calm-app .dc-out {
+    min-height: 5.5rem;
+    padding: 1rem 1.1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.calm-app .dc-out p {
+    animation: dc-swap 0.35s var(--ease-out);
+}
+
+@keyframes dc-swap {
+    from { opacity: 0; transform: translateY(4px); }
+}
+
+.calm-app .dc-said {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--stage-muted);
+}
+
+/* ---------- Context spelling ---------- */
+.calm-app .dc-doc {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.calm-app .dc-doc-old {
+    color: var(--color-text-secondary);
+}
+
+.calm-app .dc-doc-old b {
+    color: var(--accent-ink);
+    font-weight: 600;
+}
+
+.calm-app .dc-doc-new {
+    min-height: 3em;
+    transition: color 0.3s ease;
+}
+
+.calm-app [data-step="1"] .dc-doc-new {
+    color: #a39fa8;
+    font-style: italic;
+}
+
+/* ---------- Engines ---------- */
+.calm-app .dc-engines {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.calm-app .dc-engine {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.35rem;
+    padding: 1rem;
+    border: 1.5px solid transparent;
+    transition: border-color 0.4s ease;
+}
+
+.calm-app .dc-engine-name {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.calm-app .dc-engine-meta {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+}
+
+.calm-app .dc-engine-tag {
+    font-size: 0.75rem;
+    color: var(--stage-muted);
+}
+
+.calm-app .dc-engine-on,
+.calm-app .dc-engine-status {
+    justify-self: start;
+    margin-top: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text-secondary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.calm-app .dc-engine-on {
+    background: color-mix(in srgb, var(--accent) 14%, #fff);
+    color: var(--accent-ink);
+}
+
+.calm-app .dc-engine-apple {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.calm-app .dc-progress {
+    display: block;
+    height: 4px;
+    margin-top: 0.35rem;
+    overflow: hidden;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.calm-app .dc-progress i {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--accent);
+    transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.calm-app [data-step] .dc-engine-parakeet .dc-progress i { width: 0; }
+.calm-app [data-step="1"] .dc-engine-parakeet .dc-progress i,
+.calm-app [data-step="2"] .dc-engine-parakeet .dc-progress i,
+.calm-app [data-step="3"] .dc-engine-parakeet .dc-progress i { width: 100%; }
+
+.calm-app [data-step="2"] .dc-engine-apple,
+.calm-app [data-step="3"] .dc-engine-apple { border-color: transparent; }
+.calm-app [data-step="2"] .dc-engine-apple .dc-engine-on,
+.calm-app [data-step="3"] .dc-engine-apple .dc-engine-on { visibility: hidden; }
+
+.calm-app [data-step="2"] .dc-engine-parakeet,
+.calm-app [data-step="3"] .dc-engine-parakeet {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.calm-app [data-step="2"] .dc-engine-status,
+.calm-app [data-step="3"] .dc-engine-status {
+    background: color-mix(in srgb, var(--accent) 14%, #fff);
+    color: var(--accent-ink);
+}
+
+/* ---------- Color schemes ---------- */
+.calm-app .dc-hud-live {
+    align-self: center;
+}
+
+.calm-app .dc-picks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.calm-app .dc-picks button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--dc-ink);
+    font: 600 0.78rem var(--font-system);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.calm-app .dc-picks button i {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--sw);
+    box-shadow: 0 0 6px var(--sw);
+}
+
+.calm-app .dc-picks button:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.calm-app .dc-picks button[aria-pressed="true"] {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- Hotkey ---------- */
+.calm-app .dc-keyrow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.calm-app .dc-keyrow .dc-key {
+    min-width: 4.6rem;
+    height: 3.6rem;
+    cursor: pointer;
+}
+
+.calm-app .dc-hud-idle {
+    align-self: center;
+}
+
+.calm-app .dc-key-name {
+    font-family: var(--font-system);
+    font-weight: 600;
+    text-transform: none;
+}
+
+/* ---------- History ---------- */
+.calm-app .dc-history {
+    display: grid;
+    gap: 0.9rem;
+    width: 100%;
+}
+
+.calm-app .dc-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0.9rem 0.5rem;
+    border: 1px solid rgba(255, 107, 41, 0.3);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #1d181f, #0f0c10);
+    box-shadow: 0 0 30px -10px rgba(255, 107, 41, 0.5);
+}
+
+.calm-app .dc-stats > span {
+    display: grid;
+    justify-items: center;
+    gap: 0.2rem;
+    font-family: var(--dc-led);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dc-peach);
+    text-align: center;
+}
+
+.calm-app .dc-stats > span + span {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calm-app .dc-stats b {
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #ff4f86;
+    text-shadow: 0 0 14px rgba(255, 61, 128, 0.45);
+}
+
+.calm-app .dc-recent {
+    list-style: none;
+    display: grid;
+}
+
+.calm-app .dc-recent li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    padding: 0.6rem 0.2rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.calm-app .dc-recent li + li {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calm-app .dc-recent small {
+    grid-row: 2;
+    color: rgba(244, 238, 233, 0.45);
+    font-size: 0.72rem;
+}
+
+.calm-app .dc-recent i {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    color: var(--dc-peach);
+    font-size: 1.05rem;
+}
+
+/* ---------- Statement tile link ---------- */
+.calm-app .tile-dark a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ---------- Small things ---------- */
+.calm-app .dc-mini {
+    gap: 0.5rem;
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.calm-app .dc-mini > i {
+    margin-bottom: 0.4rem;
+    font-size: 1.6rem;
+    color: var(--accent-ink);
+}
+
+.calm-app .dc-mini h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.calm-app .dc-mini p {
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+}
+
+.calm-app .dc-mini a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* ---------- Motion and size ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .dc-caret,
+    .calm-app .dc-out p {
+        animation: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .calm-app .dc-hero-replay {
+        position: static;
+        justify-self: end;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .calm-app .dc-hud .dc-meter {
+        --dot: 3px;
+    }
+
+    .calm-app .dc-hud-live .dc-hud-label {
+        letter-spacing: 0.06em;
+    }
+
+    .calm-app .dc-engines {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calm-app .dc-hud-big .dc-hud-hint {
+        display: none;
+    }
+
+    .calm-app .dc-hud-float .dc-hud-hint {
+        display: none;
+    }
+
+    .calm-app .dc-hud {
+        gap: 0.6rem;
+    }
+
+    .calm-app .dc-hud-live .dc-hud-label {
+        font-size: 0.66rem;
+    }
+
+    .calm-app .dc-stats > span {
+        font-size: 0.52rem;
+        letter-spacing: 0.08em;
+    }
+}
