@@ -735,3 +735,9 @@ body.calm-app {
         letter-spacing: 0.08em;
     }
 }
+
+/* Buy and Try buttons stacked in the price card */
+.calm-app .pricing-cta {
+    display: grid;
+    gap: 0.6rem;
+}
