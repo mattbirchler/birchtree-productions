@@ -180,7 +180,7 @@
 
         <section class="tldr">
             <h2>TLDR</h2>
-            <p>What you say never leaves your Mac. Dict has no accounts, no analytics and no crash reporting. It connects to the internet for two things only: checking for updates, and downloading the Parakeet speech model if you choose it. The <a href="https://github.com/mattbirchler/Dict">source is public</a>, so anyone can check.</p>
+            <p>What you say never leaves your Mac. Dict has no accounts, no analytics and no crash reporting. It connects to the internet for two things only: checking for updates, and downloading the Parakeet speech model if you choose it. Your license key is checked on your Mac, never online.</p>
         </section>
 
         <section class="privacy-section">
@@ -201,6 +201,11 @@
                 <li><strong>Update check.</strong> Once a day, and when you choose Check for Updates, Dict asks GitHub whether there's a new version. Like every update check, that request includes Dict's version and your macOS version, and nothing else.</li>
             </ul>
             <p>There are no accounts, no analytics, no crash reporting and no other connections. Apple's speech engine runs on your Mac and, on macOS 26 and later, doesn't send audio to Apple.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Your License Key</h2>
+            <p>Buying Dict happens on a web page in your browser, handled by Stripe. The page shows your license key, which carries the email address you bought with and the purchase date. Dict checks the key on your Mac against a public key built into the app. It never sends the key anywhere or asks a server whether it's valid. The key is stored in Dict's preferences file.</p>
         </section>
 
         <section class="privacy-section">
@@ -227,10 +232,10 @@
 
         <section class="privacy-section">
             <h2>Questions?</h2>
-            <p>Email <a href="mailto:matt@birchtree.me">matt@birchtree.me</a> or <a href="https://github.com/mattbirchler/Dict/issues">open an issue on GitHub</a>.</p>
+            <p>Email <a href="mailto:matt@birchtree.me">matt@birchtree.me</a>.</p>
         </section>
 
-        <p class="last-updated">Last updated: November 3, 2026</p>
+        <p class="last-updated">Last updated: November 4, 2026</p>
     </main>
 </body>
 </html>
