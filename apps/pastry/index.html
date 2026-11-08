@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="preload" href="../../fonts/MonoLisaText-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../../app.css?v=297c1aa9">
-    <link rel="stylesheet" href="./pastry.css?v=42aebd71">
+    <link rel="stylesheet" href="./pastry.css?v=c70a4565">
     <script defer data-domain="quickstuff.app" src="https://plausible.io/js/script.js"></script>
 
     <!-- Structured Data -->
@@ -80,14 +80,14 @@
                 <p class="app-hero-subtitle wipe">
                     Pastry notices when you copy something sensitive, cleans what you're about to share, and stays out of sight when your screen is shared. All of it happens on your Mac.
                 </p>
-                <!-- On launch day, replace the span with: <a href="https://apps.apple.com/app/id6822359056" class="btn-fill">...Download on the Mac App Store</a> -->
                 <div class="download-buttons">
-                    <span class="btn-fill" aria-disabled="true" style="cursor: default;">
+                    <a href="https://pastry.birchtree.productions/download" class="btn-fill">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                        Coming soon to the Mac App Store
-                    </span>
+                        Download for Mac
+                    </a>
+                    <a href="#pricing" class="btn-dot">Buy Pastry</a>
                 </div>
-                <p class="app-hero-note">Free with your five most recent items. A one-time purchase or a yearly subscription unlocks the rest, on your Mac and iPhone.</p>
+                <p class="app-hero-note">$39.99 once or $19.99 a year. Try it with your five most recent items before you buy.<br>macOS 26 or later on Apple silicon.</p>
             </div>
 
             <div class="app-hero-stage" role="img" aria-label="The Pastry panel. A one-time code at the top of the list is counting down and deletes itself when the timer runs out.">
@@ -380,7 +380,7 @@
                     <i class="ph ph-lock-key" aria-hidden="true"></i>
                     <div>
                     <h3>Only your devices can read it.</h3>
-                    <p>No account, no analytics, no servers of ours. Reading and naming screenshots happens on your Mac. iCloud sync is optional, end-to-end encrypted, and the only way anything leaves it, to your other Macs and to Pastry for iPhone.</p>
+                    <p>No account, no analytics, and nothing you copy ever reaches us. Reading and naming screenshots happens on your Mac. iCloud sync is optional, end-to-end encrypted, and the only way anything leaves it, to your other Macs and to Pastry for iPhone.</p>
                     </div>
                 </article>
             </div>
@@ -524,33 +524,14 @@
         <section id="pricing" class="section">
             <div class="section-header scroll-reveal">
                 <p class="section-label wipe">Pricing</p>
-                <h2 class="section-title wipe">Free to use. Pay once, or by the year.</h2>
-                <p class="section-subtitle wipe">Use Pastry free for as long as you like. A one-time purchase or a yearly subscription unlocks your full history, collections, the paste stack and iCloud sync. Both unlock exactly the same things, and nothing is ever deleted if a subscription ends.</p>
+                <h2 class="section-title wipe">Buy once, or by the year.</h2>
+                <p class="section-subtitle wipe">Both unlock exactly the same things: your full history, collections, the paste stack and iCloud sync. Nothing is ever deleted if a subscription ends.</p>
             </div>
             <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="pricing-card-badge">Free</div>
-                    <div class="pricing-card-price">$0</div>
-                    <div class="pricing-card-period">For as long as you like</div>
-                    <ul class="pricing-features">
-                        <li>
-                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            Your five most recent items
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            Every privacy protection
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            Image shrinking and screenshot search
-                        </li>
-                    </ul>
-                </div>
                 <div class="pricing-card pricing-card-featured">
-                    <div class="pricing-card-badge">Unlocked</div>
-                    <div class="pricing-card-price">Once <span class="unit">or yearly</span></div>
-                    <div class="pricing-card-period">A one-time purchase, or a subscription you can cancel any time</div>
+                    <div class="pricing-card-badge">Lifetime</div>
+                    <div class="pricing-card-price">$39.99 <span class="unit">once</span></div>
+                    <div class="pricing-card-period">Pay once, yours for good</div>
                     <ul class="pricing-features">
                         <li>
                             <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
@@ -566,11 +547,41 @@
                         </li>
                         <li>
                             <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
-                            One purchase covers Pastry for Mac and for iPhone
+                            Every update, and every privacy protection
                         </li>
                     </ul>
+                    <div class="pricing-cta">
+                        <a href="https://pastry.birchtree.productions/buy/lifetime" class="btn-fill">Buy for $39.99</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-badge">Yearly</div>
+                    <div class="pricing-card-price">$19.99 <span class="unit">a year</span></div>
+                    <div class="pricing-card-period">Renews each year, cancel any time</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Your full history, up to 2,000 items
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Collections, their shortcuts and the paste stack
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            iCloud sync across your Macs and iPhone, end-to-end encrypted
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="1.5" width="14" height="14"><polyline points="2.5 7.5 5.5 10.5 11.5 4"/></svg>
+                            Every update, and every privacy protection
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://pastry.birchtree.productions/buy/yearly" class="btn-dot">Subscribe for $19.99 a year</a>
+                    </div>
                 </div>
             </div>
+            <p class="section-subtitle scroll-reveal" style="text-align: center; margin: 2rem auto 0; max-width: 40rem;">Want to try it first? <a href="https://pastry.birchtree.productions/download" class="pz-text-link">Download Pastry</a> and use it with your five most recent items, then unlock it from Settings whenever you're ready. Payment is handled by Stripe, and you get a license key with a one-click button to activate it. Subscribers can <a href="https://pastry.birchtree.productions/manage" class="pz-text-link">manage or cancel</a> any time. Pastry for iPhone is free.</p>
         </section>
 
         <!-- Final CTA -->
@@ -578,16 +589,16 @@
             <div class="cta">
                 <h2 class="section-title">Copy freely.<br>Keep it private.</h2>
                 <p class="cta-copy">
-                    Pastry for Mac is on its way to the App Store, with Pastry for iPhone to follow.
+                    Buy Pastry once for $39.99, or subscribe for $19.99 a year. Pastry for iPhone is free, and syncs with your Mac.
                 </p>
-                <!-- On launch day, replace the span with: <a href="https://apps.apple.com/app/id6822359056" class="btn-fill">...Download on the Mac App Store</a> -->
                 <div class="download-buttons">
-                    <span class="btn-fill" aria-disabled="true" style="cursor: default;">
+                    <a href="https://pastry.birchtree.productions/download" class="btn-fill">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                        Coming soon to the Mac App Store
-                    </span>
+                        Download for Mac
+                    </a>
+                    <a href="#pricing" class="btn-dot">Buy Pastry</a>
                 </div>
-                <p class="cta-copy">Requires macOS 26</p>
+                <p class="cta-copy">Requires macOS 26 or later on Apple silicon. Pastry is notarized by Apple and keeps itself up to date. <a href="https://github.com/mattbirchler/Pastry-releases/releases" class="pz-text-link">Release history</a></p>
             </div>
         </section>
     </main>

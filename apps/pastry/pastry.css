@@ -607,3 +607,19 @@ body.calm-app {
         width: 5.5rem;
     }
 }
+
+/* Two stacked buy buttons in the paid pricing card. */
+.calm-app .pz-pricing-cta {
+    display: grid;
+    gap: 0.6rem;
+}
+
+/* Inline links in running copy (pricing note, CTA). */
+.calm-app .pz-text-link {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.calm-app .pz-text-link:hover {
+    color: var(--accent-ink);
+}
