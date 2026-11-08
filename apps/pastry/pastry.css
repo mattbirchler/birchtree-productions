@@ -623,3 +623,422 @@ body.calm-app {
 .calm-app .pz-text-link:hover {
     color: var(--accent-ink);
 }
+
+
+/* =====================================================================
+   The Pastry look (November 2026 redesign)
+   Warm Frost from the app: cream and espresso, a pink glaze for anything
+   primary, and sprinkles. Layered over the calm components above, so the
+   demos and app.js keep working unchanged.
+   ===================================================================== */
+body.calm-app {
+    --pz-cream: #fff8f2;
+    --pz-frost: #fffdfb;
+    --pz-biscuit: #efdccd;
+    --pz-biscuit-deep: #e2c6b2;
+    --pz-cocoa: #4a2f25;
+    --pz-latte: #8a6a5c;
+    --pz-glaze: #e8789a;
+    --pz-glaze-deep: #c2567a;
+    --pz-glaze-soft: #fde4ec;
+    --pz-espresso: #2f1f19;
+    --pz-sprinkles: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%3E%3Crect%20x%3D%2281%22%20y%3D%22245.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F4A3BC%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2838%2088%20248%29%22/%3E%3Crect%20x%3D%22100%22%20y%3D%22169.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23FFD27A%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2812%20107%20172%29%22/%3E%3Crect%20x%3D%2217%22%20y%3D%22213.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%238FD3C7%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28137%2024%20216%29%22/%3E%3Crect%20x%3D%2223%22%20y%3D%2296.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%239FBAF5%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28149%2030%2099%29%22/%3E%3Crect%20x%3D%2213%22%20y%3D%22235.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23CDA9F2%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28129%2020%20238%29%22/%3E%3Crect%20x%3D%2253%22%20y%3D%2212.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F6B58E%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2822%2060%2015%29%22/%3E%3Crect%20x%3D%22110%22%20y%3D%22110.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F4A3BC%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2817%20117%20113%29%22/%3E%3Crect%20x%3D%2260%22%20y%3D%2226.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23FFD27A%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28141%2067%2029%29%22/%3E%3Crect%20x%3D%22107%22%20y%3D%2218.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%238FD3C7%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28144%20114%2021%29%22/%3E%3Crect%20x%3D%2230%22%20y%3D%22245.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%239FBAF5%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2857%2037%20248%29%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22163.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23CDA9F2%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28149%20167%20166%29%22/%3E%3Crect%20x%3D%22241%22%20y%3D%2218.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F6B58E%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28147%20248%2021%29%22/%3E%3Crect%20x%3D%22148%22%20y%3D%22104.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F4A3BC%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2812%20155%20107%29%22/%3E%3Crect%20x%3D%2255%22%20y%3D%2214.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23FFD27A%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28142%2062%2017%29%22/%3E%3Crect%20x%3D%22218%22%20y%3D%2237.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%238FD3C7%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%2874%20225%2040%29%22/%3E%3Crect%20x%3D%22106%22%20y%3D%2239.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%239FBAF5%22%20fill-opacity%3D%220.9%22%20transform%3D%22rotate%28138%20113%2042%29%22/%3E%3C/svg%3E");
+    --pz-sprinkles-faint: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22300%22%20height%3D%22300%22%3E%3Crect%20x%3D%2259%22%20y%3D%22160.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F4A3BC%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28143%2066%20163%29%22/%3E%3Crect%20x%3D%2291%22%20y%3D%2255.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23FFD27A%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28148%2098%2058%29%22/%3E%3Crect%20x%3D%2295%22%20y%3D%22193.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%238FD3C7%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%2824%20102%20196%29%22/%3E%3Crect%20x%3D%22279%22%20y%3D%2235.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%239FBAF5%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28144%20286%2038%29%22/%3E%3Crect%20x%3D%2229%22%20y%3D%22108.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23CDA9F2%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28127%2036%20111%29%22/%3E%3Crect%20x%3D%22271%22%20y%3D%22221.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F6B58E%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%2880%20278%20224%29%22/%3E%3Crect%20x%3D%22237%22%20y%3D%22235.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F4A3BC%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%2892%20244%20238%29%22/%3E%3Crect%20x%3D%22152%22%20y%3D%22130.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23FFD27A%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%2846%20159%20133%29%22/%3E%3Crect%20x%3D%22123%22%20y%3D%2244.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%238FD3C7%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28147%20130%2047%29%22/%3E%3Crect%20x%3D%22152%22%20y%3D%22271.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%239FBAF5%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28126%20159%20274%29%22/%3E%3Crect%20x%3D%22174%22%20y%3D%22232.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23CDA9F2%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%2873%20181%20235%29%22/%3E%3Crect%20x%3D%2236%22%20y%3D%2263.8%22%20width%3D%2214%22%20height%3D%224.4%22%20rx%3D%222.2%22%20fill%3D%22%23F6B58E%22%20fill-opacity%3D%220.45%22%20transform%3D%22rotate%28131%2043%2066%29%22/%3E%3C/svg%3E");
+    --color-text: var(--pz-cocoa);
+    --stage-tint: #fdf0f3;
+    --stage-muted: var(--pz-latte);
+    --tile-dark-bg: var(--pz-espresso);
+    --tile-dark-ink: #fdebd8;
+    --hero-wallpaper: radial-gradient(circle at 20% 15%, #ffe3c7 0%, transparent 45%),
+                      linear-gradient(140deg, #fbd3dc 0%, #f4b4c8 45%, #d9b6ef 100%);
+    background: var(--pz-cream);
+    color: var(--pz-cocoa);
+}
+
+/* Navigation: a little frosted pill */
+.calm-app .app-nav {
+    background: rgba(255, 248, 242, 0.82);
+}
+
+/* ---------- Hero ---------- */
+.calm-app .pz-hero {
+    position: relative;
+    isolation: isolate;
+    background: var(--pz-frost);
+    border: 1.5px solid var(--pz-biscuit);
+}
+.calm-app .pz-sprinkles {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--pz-sprinkles-faint);
+    -webkit-mask-image: radial-gradient(ellipse at 30% 40%, #000 0%, transparent 70%);
+    mask-image: radial-gradient(ellipse at 30% 40%, #000 0%, transparent 70%);
+    pointer-events: none;
+}
+.calm-app .app-hero-icon {
+    border-radius: 24%;
+    box-shadow: 0 14px 30px -12px rgba(194, 86, 122, 0.55);
+    animation: pz-bob 4.5s ease-in-out infinite;
+}
+@keyframes pz-bob {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-6px) rotate(3deg); }
+}
+.calm-app .app-hero-title,
+.calm-app .section-title {
+    color: var(--pz-cocoa);
+    letter-spacing: -0.025em;
+}
+.calm-app .pz-glaze-word {
+    position: relative;
+    white-space: nowrap;
+    background: linear-gradient(transparent 62%, var(--pz-glaze-soft) 62%, var(--pz-glaze-soft) 92%, transparent 92%);
+    padding: 0 0.08em;
+}
+.calm-app .app-hero-subtitle,
+.calm-app .section-subtitle,
+.calm-app .tile-copy p {
+    color: var(--pz-latte);
+}
+.calm-app .pz-chip {
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    margin: 0 0.15rem 0.4rem 0;
+    border-radius: 999px;
+    background: var(--pz-frost);
+    border: 1.5px solid var(--pz-biscuit);
+    color: var(--pz-cocoa);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.calm-app .app-hero-note {
+    color: var(--pz-latte);
+}
+.calm-app .app-hero-stage {
+    border-radius: 2rem;
+    background-image: var(--pz-sprinkles), var(--hero-wallpaper);
+    box-shadow: 0 30px 60px -30px rgba(160, 70, 100, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Buttons: glaze and cream ---------- */
+.calm-app .btn-fill {
+    background: var(--pz-glaze-deep);
+    color: #fff;
+    border-radius: 999px;
+    box-shadow: 0 10px 22px -10px rgba(194, 86, 122, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.calm-app .btn-fill:hover {
+    background: #ad4a6b;
+    transform: translateY(-2px);
+}
+.calm-app .btn-dot {
+    background: var(--pz-frost);
+    color: var(--pz-cocoa);
+    border: 1.5px solid var(--pz-biscuit-deep);
+    border-radius: 999px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.calm-app .btn-dot:hover {
+    border-color: var(--pz-glaze);
+    transform: translateY(-2px);
+}
+.calm-app .btn-dot::after,
+.calm-app .btn-dot:hover::after {
+    background: var(--pz-glaze);
+}
+
+/* ---------- Section labels: a sprinkle and a word ---------- */
+.calm-app .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: var(--pz-glaze-soft);
+    color: var(--pz-glaze-deep);
+    letter-spacing: 0.08em;
+}
+.calm-app .section-label::before {
+    content: "";
+    width: 0.85rem;
+    height: 0.28rem;
+    border-radius: 999px;
+    background: var(--pz-glaze);
+    transform: rotate(-35deg);
+}
+
+/* ---------- Tiles: frosted cards with a glazed stage ---------- */
+.calm-app .tile {
+    background: var(--pz-frost);
+    border: 1.5px solid var(--pz-biscuit);
+    border-radius: 2rem;
+    box-shadow: 0 16px 36px -26px rgba(140, 70, 70, 0.45);
+    transition: transform 0.35s cubic-bezier(.2,.9,.3,1.2), box-shadow 0.35s ease;
+}
+.calm-app .tile:hover {
+    transform: translateY(-4px) rotate(-0.25deg);
+    box-shadow: 0 24px 44px -26px rgba(194, 86, 122, 0.45);
+}
+.calm-app .tile-stage {
+    border-radius: 1.5rem;
+    background-color: var(--stage-tint);
+    background-image: var(--pz-sprinkles-faint);
+    border: 1px solid rgba(232, 120, 154, 0.12);
+}
+.calm-app .tile-copy h3 {
+    color: var(--pz-cocoa);
+}
+.calm-app .tile-dark {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--pz-espresso);
+    border-color: var(--pz-espresso);
+}
+/* Sprinkles only in the top of the dark card, clear of the words. */
+.calm-app .tile-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: var(--pz-sprinkles-faint);
+    -webkit-mask-image: linear-gradient(#000 0%, transparent 55%);
+    mask-image: linear-gradient(#000 0%, transparent 55%);
+}
+.calm-app .demo-btn {
+    border-radius: 999px;
+    border: 1.5px solid var(--pz-biscuit);
+    background: var(--pz-frost);
+    color: var(--pz-cocoa);
+}
+.calm-app .demo-btn:hover {
+    border-color: var(--pz-glaze);
+    color: var(--pz-glaze-deep);
+}
+.calm-app .demo-card {
+    border-radius: 1.1rem;
+    border: 1px solid var(--pz-biscuit);
+    box-shadow: 0 12px 28px -20px rgba(140, 70, 70, 0.5);
+}
+
+/* ---------- Pricing: one box, two ways to pay ---------- */
+.calm-app .pz-box {
+    max-width: 62rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 2rem;
+    padding: 2.25rem;
+    background: var(--pz-frost);
+    border: 1.5px solid var(--pz-biscuit);
+    border-radius: 2.25rem;
+    box-shadow: 0 30px 60px -40px rgba(140, 70, 70, 0.55);
+}
+.calm-app .pz-box-includes h3 {
+    font-size: 1.35rem;
+    color: var(--pz-cocoa);
+    margin: 0.25rem 0 1rem;
+}
+.calm-app .pz-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+}
+.calm-app .pz-includes li {
+    position: relative;
+    padding-left: 1.75rem;
+    color: var(--pz-cocoa);
+    line-height: 1.45;
+}
+.calm-app .pz-includes li::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 0.62em;
+    width: 0.95rem;
+    height: 0.32rem;
+    border-radius: 999px;
+    transform: rotate(-35deg);
+    background: var(--pz-glaze);
+}
+.calm-app .pz-includes li:nth-child(5n+2)::before { background: #f2b950; }
+.calm-app .pz-includes li:nth-child(5n+3)::before { background: #5fbfae; }
+.calm-app .pz-includes li:nth-child(5n+4)::before { background: #7c9de8; }
+.calm-app .pz-includes li:nth-child(5n+5)::before { background: #b58be6; }
+.calm-app .pz-box-small {
+    font-size: 0.9rem;
+    color: var(--pz-latte);
+    margin: 0;
+}
+.calm-app .pz-plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.calm-app .pz-plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.75rem 1.4rem 1.4rem;
+    border-radius: 1.6rem;
+    border: 1.5px solid var(--pz-biscuit);
+    background: var(--pz-cream);
+    color: var(--pz-cocoa);
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(.2,.9,.3,1.2), border-color 0.2s ease, box-shadow 0.3s ease;
+}
+.calm-app .pz-plan:hover {
+    transform: translateY(-4px);
+    border-color: var(--pz-glaze);
+    box-shadow: 0 20px 36px -24px rgba(194, 86, 122, 0.6);
+}
+.calm-app .pz-plan-featured {
+    background-color: var(--pz-glaze-soft);
+    border-color: rgba(232, 120, 154, 0.55);
+}
+.calm-app .pz-plan-sticker {
+    position: absolute;
+    top: -0.85rem;
+    right: 1rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: var(--pz-espresso);
+    color: #fdebd8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    transform: rotate(4deg);
+    box-shadow: 0 8px 16px -8px rgba(47, 31, 25, 0.6);
+}
+.calm-app .pz-plan-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pz-glaze-deep);
+}
+.calm-app .pz-plan-price {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+.calm-app .pz-plan-price small {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--pz-latte);
+}
+.calm-app .pz-plan-detail {
+    color: var(--pz-latte);
+    font-size: 0.95rem;
+    flex: 1;
+    margin-bottom: 0.9rem;
+}
+.calm-app .pz-plan-btn {
+    display: block;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    background: var(--pz-frost);
+    border: 1.5px solid var(--pz-biscuit-deep);
+}
+.calm-app .pz-plan-featured .pz-plan-btn {
+    background: var(--pz-glaze-deep);
+    border-color: var(--pz-glaze-deep);
+    color: #fff;
+    box-shadow: 0 10px 22px -10px rgba(194, 86, 122, 0.8);
+}
+.calm-app .pz-fine {
+    max-width: 40rem;
+    margin: 1.75rem auto 0;
+    text-align: center;
+    color: var(--pz-latte);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ---------- Final call: a box of donuts ---------- */
+.calm-app .pz-cta {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 4rem 2rem 3rem;
+    border-radius: 2.5rem;
+    background: var(--pz-espresso);
+    color: #fdebd8;
+    text-align: center;
+}
+.calm-app .pz-sprinkles-dark {
+    background-image: var(--pz-sprinkles);
+    opacity: 0.55;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 10%, transparent 75%);
+    mask-image: radial-gradient(ellipse at 50% 30%, #000 10%, transparent 75%);
+}
+.calm-app .pz-cta-icon {
+    display: block;
+    margin: 0 auto;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 24%;
+    box-shadow: 0 16px 34px -12px rgba(0, 0, 0, 0.6);
+    animation: pz-bob 4.5s ease-in-out infinite;
+}
+.calm-app .pz-cta h2 {
+    font-size: clamp(2rem, 4.5vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin: 1.25rem 0 0.75rem;
+    color: #fff4ea;
+}
+.calm-app .pz-cta p {
+    color: #dcc3ae;
+    max-width: 32rem;
+    margin: 0 auto 1.5rem;
+}
+.calm-app .pz-cta .download-buttons {
+    justify-content: center;
+}
+.calm-app .pz-cta .btn-dot {
+    background: transparent;
+    color: #fdebd8;
+    border-color: rgba(253, 235, 216, 0.4);
+}
+.calm-app .pz-cta .btn-dot::after {
+    background: #f7b6c9;
+}
+.calm-app .pz-cta .pz-cta-small {
+    font-size: 0.85rem;
+    margin: 1.5rem auto 0;
+    color: #b89c88;
+}
+.calm-app .pz-cta .pz-text-link {
+    color: #f7b6c9;
+}
+
+@media (max-width: 860px) {
+    .calm-app .pz-box {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+}
+@media (max-width: 520px) {
+    .calm-app .pz-plans {
+        grid-template-columns: 1fr;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .calm-app .app-hero-icon,
+    .calm-app .pz-cta-icon { animation: none; }
+    .calm-app .tile:hover,
+    .calm-app .pz-plan:hover,
+    .calm-app .btn-fill:hover,
+    .calm-app .btn-dot:hover { transform: none; }
+}
