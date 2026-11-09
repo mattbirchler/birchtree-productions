@@ -180,17 +180,17 @@
 
         <section class="tldr">
             <h2>TLDR</h2>
-            <p>What you say never leaves your Mac. Dict has no accounts, no analytics and no crash reporting. It connects to the internet for two things only: checking for updates, and downloading the Parakeet speech model if you choose it. Your license key is checked on your Mac, never online.</p>
+            <p>What you say never leaves your Mac, unless you turn on cloud cleanup with your own OpenRouter key. Dict has no accounts and no crash reporting. It sends anonymous usage counts (never your words), and you can turn that off. Your license key is checked on your Mac, never online.</p>
         </section>
 
         <section class="privacy-section">
             <h2>What Stays on Your Mac</h2>
             <ul>
                 <li><strong>Audio.</strong> Captured from the microphone only while you hold the dictation key (or while hands-free mode is on), kept in memory for transcription, and thrown away once the text is typed. Dict never writes audio to disk.</li>
-                <li><strong>Transcripts.</strong> Made by a speech model running on your Mac: Apple's built-in speech recognition, or the Parakeet model. Formatting uses the on-device Apple Intelligence model when it's available.</li>
+                <li><strong>Transcripts.</strong> Made by a speech model running on your Mac: Apple's built-in speech recognition, or the Parakeet model. Formatting uses the on-device Apple Intelligence model when it's available, unless you've turned on cloud cleanup.</li>
                 <li><strong>History.</strong> Recent dictations are stored in a local database so you can copy them again. You choose how many to keep, or none.</li>
                 <li><strong>Settings and word replacements.</strong> Stored in Dict's preferences file.</li>
-                <li><strong>The field you dictate into.</strong> When formatting runs, Dict reads the text already in the focused field (through the Accessibility permission) and passes the names and terms it finds there to the on-device formatter, so they're spelled the way your document spells them. That text is used for one dictation and never stored or sent anywhere. You can turn this off in Settings &gt; General.</li>
+                <li><strong>The field you dictate into.</strong> When formatting runs, Dict reads the text already in the focused field (through the Accessibility permission) and passes the names and terms it finds there to the on-device formatter, so they're spelled the way your document spells them. That text is used for one dictation and never stored. It's never sent anywhere either, except that with cloud cleanup on, the names and terms Dict found go to OpenRouter along with the transcript. You can turn this off in Settings &gt; General.</li>
             </ul>
         </section>
 
@@ -199,8 +199,17 @@
             <ul>
                 <li><strong>Model download.</strong> The first time you choose the Parakeet engine, Dict downloads the model (about 500 MB) from Hugging Face. The request carries nothing about you.</li>
                 <li><strong>Update check.</strong> Once a day, and when you choose Check for Updates, Dict asks GitHub whether there's a new version. Like every update check, that request includes Dict's version and your macOS version, and nothing else.</li>
+                <li><strong>Anonymous usage data.</strong> Unless you turn it off, Dict sends usage counts to PostHog, described below.</li>
+                <li><strong>Cloud cleanup, only if you add a key.</strong> This is off until you paste your own OpenRouter API key into Settings &gt; General &gt; Cloud cleanup. Then, for each dictation that gets formatted, Dict sends the transcript text, the formatting instructions, and any names and terms read from the field you're dictating into to OpenRouter, which passes them to the model you chose (Claude Haiku 5.5 by default). Your audio is never sent. Dict also asks OpenRouter for your key's total spend when you click Check in Settings. The key is stored in your Mac's Keychain and sent only to OpenRouter. What OpenRouter and the model provider do with requests is covered by their own policies. Remove the key, or turn the toggle off, and these requests stop.</li>
             </ul>
-            <p>There are no accounts, no analytics, no crash reporting and no other connections. Apple's speech engine runs on your Mac and, on macOS 26 and later, doesn't send audio to Apple.</p>
+            <p>There are no accounts, no crash reporting and no other connections. Apple's speech engine runs on your Mac and, on macOS 26 and later, doesn't send audio to Apple.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>Anonymous Usage Data</h2>
+            <p>Dict sends a small set of events that show how much it gets used: when the app launches, when a dictation finishes (its word count, its length in seconds, the engine and the dictation style), when one fails and why, which onboarding steps are viewed, when the Parakeet model finishes downloading, when Buy is clicked, when a license is activated (by link or by pasting), and when the free trial ends.</p>
+            <p>What is never sent: your audio, your words, your history, your word replacements, the text of the field you dictate into, and your license key or the email address in it. Dict tells PostHog not to store your IP address or look up your location, and doesn't create a profile for you. Each copy of Dict has a random ID so repeat launches can be counted together, and it isn't linked to who you are.</p>
+            <p>Turn it off in Settings &gt; General &gt; Share anonymous usage data. Nothing is sent after that.</p>
         </section>
 
         <section class="privacy-section">
@@ -215,14 +224,15 @@
                 <li><code>/Applications/Dict.app</code></li>
                 <li><code>~/Library/Application Support/FluidAudio</code> (the Parakeet model)</li>
                 <li><code>~/Library/Preferences/birchtree.Dict-app.plist</code> (settings)</li>
-                <li><code>~/Library/Application Support/Dict</code> (your history)</li>
+                <li><code>~/Library/Application Support/Dict</code> (your history and the trial start date)</li>
+                <li>The <code>birchtree.Dict-app.openrouter</code> item in Keychain Access, if you added an OpenRouter key</li>
             </ul>
             <p>You can remove Dict's Microphone and Accessibility permissions in System Settings &gt; Privacy &amp; Security.</p>
         </section>
 
         <section class="privacy-section">
             <h2>Children</h2>
-            <p>Dict isn't directed at children and doesn't collect information from anyone.</p>
+            <p>Dict isn't directed at children and doesn't collect personal information from anyone.</p>
         </section>
 
         <section class="privacy-section">
@@ -235,7 +245,7 @@
             <p>Email <a href="mailto:matt@birchtree.me">matt@birchtree.me</a>.</p>
         </section>
 
-        <p class="last-updated">Last updated: November 4, 2026</p>
+        <p class="last-updated">Last updated: November 9, 2026</p>
     </main>
 </body>
 </html>
