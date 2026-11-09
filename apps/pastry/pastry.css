@@ -1042,3 +1042,55 @@ body.calm-app {
     .calm-app .btn-fill:hover,
     .calm-app .btn-dot:hover { transform: none; }
 }
+
+/* ---------- Images tile: shrink and strip in one demo ---------- */
+.calm-app .tile[data-demo="photo"][data-step="2"] .pz-bar span,
+.calm-app .tile[data-demo="photo"][data-step="3"] .pz-bar span {
+    transform: scaleX(0.62);
+}
+
+/* ---------- iPhone tile: a small phone holding the synced history ---------- */
+.calm-app .pz-phone-stage {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.calm-app .pz-phone {
+    position: relative;
+    width: 15rem;
+    max-width: 100%;
+    padding: 2.4rem 0.6rem 1rem;
+    border: 0.45rem solid var(--pz-espresso);
+    border-radius: 2.4rem;
+    background: var(--pz-cream);
+    box-shadow: 0 18px 36px -22px rgba(120, 40, 80, 0.55);
+}
+
+.calm-app .pz-phone-island {
+    position: absolute;
+    top: 0.6rem;
+    left: 50%;
+    width: 4.2rem;
+    height: 1.05rem;
+    border-radius: var(--radius-pill);
+    background: var(--pz-espresso);
+    transform: translateX(-50%);
+}
+
+.calm-app .pz-phone-title {
+    margin: 0 0.4rem 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--pz-cocoa);
+}
+
+.calm-app .pz-phone .pz-row {
+    height: 3.1rem;
+    gap: 0.6rem;
+    padding: 0 0.4rem;
+}
+
+.calm-app .pz-phone .pz-row-title {
+    font-size: 0.82rem;
+}
